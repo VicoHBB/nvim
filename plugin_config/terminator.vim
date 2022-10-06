@@ -2,7 +2,8 @@ let g:terminator_runfile_map = {
             \ "javascript": "node",
             \ "python": "python -u",
             \ "c": "gcc $dir$fileName -o $dir$fileNameWithoutExt && $dir$fileNameWithoutExt",
-						\ "rust": "rustc $dir$fileName && ./$fileNameWithoutExt"
+            \ "rust": "rustc $dir$fileName && ./$fileNameWithoutExt",
+            \ "verilog_systemverilog": "make lint"
             \ }
 
 let g:terminator_repl_command = {
@@ -10,4 +11,3 @@ let g:terminator_repl_command = {
   \'javascript': 'node',
   \}
 
-            "\ "c": "gcc $dir$fileName -o $dir$fileNameWithoutExt && cppcheck --addon=misra.json --template=gcc --inline-suppr --force --std=c99 --quiet $dir && $dir$fileNameWithoutExt",

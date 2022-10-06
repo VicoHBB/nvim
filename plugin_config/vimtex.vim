@@ -2,7 +2,11 @@
 filetype plugin indent on
  "Viewer options: One may configure the viewer either by specifying a built-in
  "viewer method:
+
+let g:tex_flavor='latex'
 let g:vimtex_view_method = 'zathura'
+set conceallevel=1
+let g:tex_conceal='abdmg'
 
  "Or with a generic interface:
 "let g:vimtex_view_general_viewer = 'okular'

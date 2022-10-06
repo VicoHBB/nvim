@@ -42,38 +42,47 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 "Leader
-let g:which_key_map_spc['w'] = [ ':w'                     , 'Save file' ]
-let g:which_key_map_spc['q'] = [ ':q'                     , 'Quit Neovim' ]
-let g:which_key_map_spc['Q'] = [ ':q!'                     , 'Force Quit' ]
-let g:which_key_map_spc['s'] = [ ':RG'                     , 'Serach Word(RG)' ]
-let g:which_key_map_spc['n'] = [ ':NERDTreeFind'                     , 'Files project' ]
-let g:which_key_map_spc['r'] = [ '<Plug>(coc-rename)'                     , 'Rename Variable' ]
-"let g:which_key_map_spc[';'] = [ '$a;'                     , 'Add ";" at the end' ]
-let g:which_key_map_spc['rf'] = [ ':TerminatorRunFileInOutputBuffer'     , 'Run File' ]
-let g:which_key_map_spc['rc'] = [ ':TerminatorOutputBufferClose'      , 'Close Output' ]
-let g:which_key_map_spc['df'] = [ ':DashboardNewFile'                 , 'Open Dashboard' ]
-let g:which_key_map_spc['s'] = [ ':RG'                                , 'Serach Word(RG)' ]
-let g:which_key_map_spc['<Tab>'] = [ ':bdelete'                         , 'Close File(Buffer)' ]
-let g:which_key_map_spc['g'] = [ ':LazyGit'                           , 'LazyGit' ]
+let g:which_key_map_spc['w']     = [ ':w',                               'Save file' ]
+let g:which_key_map_spc['q']     = [ ':q',                               'Quit Neovim' ]
+let g:which_key_map_spc['Q']     = [ ':q!',                              'Force Quit' ]
+let g:which_key_map_spc['s']     = [ ':RG',                              'Serach Word(RG)' ]
+let g:which_key_map_spc['n']     = [ ':NERDTreeFind',                    'Files project' ]
+let g:which_key_map_spc['r']     = [ '<Plug>(coc-rename)',               'Rename Variable' ]
+let g:which_key_map_spc[';']     = [ '$a;<ESC>',                         'Add ";" at the end' ]
+let g:which_key_map_spc['rf']    = [ ':TerminatorRunFileInOutputBuffer', 'Run File' ]
+let g:which_key_map_spc['rc']    = [ ':TerminatorOutputBufferClose',     'Close Output' ]
+let g:which_key_map_spc['df']    = [ ':DashboardNewFile',                'Open Dashboard' ]
+let g:which_key_map_spc['s']     = [ ':RG',                              'Serach Word(RG)' ]
+let g:which_key_map_spc['<Tab>'] = [ ':bdelete',                         'Close File(Buffer)' ]
+let g:which_key_map_spc['g']     = [ ':LazyGit',                         'LazyGit' ]
 "
 "f
-let g:which_key_map_f['f'] = [ ':Files'                         , 'Serach Files' ]
-let g:which_key_map_f['c'] = [ ':HopChar2'                      , 'Find & Move to a 2 Characters' ]
-let g:which_key_map_f['l'] = [ ':HopLine'                       , 'Find & Move to a Line' ]
-let g:which_key_map_f['w'] = [ ':HopWord'                       , 'Find & Move to a Word' ]
+let g:which_key_map_f['f']  = [ ':Files'                         , 'Serach Files' ]
+let g:which_key_map_f['c']  = [ ':HopChar2'                      , 'Find & Move to a 2 Characters' ]
+let g:which_key_map_f['l']  = [ ':HopLine'                       , 'Find & Move to a Line' ]
+let g:which_key_map_f['w']  = [ ':HopWord'                       , 'Find & Move to a Word' ]
 let g:which_key_map_f['zh'] = [ ':History'                      , 'FZF History' ]
 
 
 "g
-let g:which_key_map_g['d']   = [ '<Plug>(coc-definition)'           , 'Go to Definition' ]
-let g:which_key_map_g['y']   = [ '<Plug>(coc-type-definition)'      , 'Type  definition' ]
-let g:which_key_map_g['i']   = [ '<Plug>(coc-implementation)'       , 'Go to Implementation' ]
-let g:which_key_map_g['r']   = [ '<Plug>(coc-references)'           , 'Go to References' ]
-let g:which_key_map_g['f']   = [ '<C-w>F'                               , 'Go to File' ]
+let g:which_key_map_g['t']   = [ ':1'                                   , 'Go to top' ]
+let g:which_key_map_g['b']   = [ ':999'                                 , 'Go to bottom' ]
+let g:which_key_map_g['d']   = [ '<Plug>(coc-definition)'               , 'Go to Definition' ]
+let g:which_key_map_g['y']   = [ '<Plug>(coc-type-definition)'          , 'Type  definition' ]
+let g:which_key_map_g['i']   = [ '<Plug>(coc-implementation)'           , 'Go to Implementation' ]
+let g:which_key_map_g['r']   = [ '<Plug>(coc-references)'               , 'Go to References' ]
+let g:which_key_map_g['f']   = [ ':call OpenFileInPrevWindow()'         , 'Go to File' ]
+"
+function! OpenFileInPrevWindow()
+    let cfile = expand("<cfile>")
+    wincmd p
+    execute "Files " . cfile
+endfunction
 "
 "m
 let g:which_key_map_g['a']   = [ ':make'            , 'Make All' ]
 let g:which_key_map_g['c']   = [ ':make clean'      , 'Make Clean' ]
+let g:which_key_map_g['d']   = [ ':make debug'      , 'Make Clean' ]
 
 
 " Register which key map

@@ -1,8 +1,7 @@
 lua << EOF
-
 require'nvim-treesitter.configs'.setup {
 	-- A list of parser names, or "all"	
-	ensure_installed = { "c", "cpp", "lua", "rust", "python", "vim", "verilog", "latex", "markdown", "make" },
+	ensure_installed = { "c", "cpp", "lua", "rust", "python", "vim", "verilog", "latex", "markdown", "make","bash", "gitignore" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,

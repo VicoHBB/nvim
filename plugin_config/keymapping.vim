@@ -107,8 +107,6 @@ nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
 " Only set if you have telescope installed
 nnoremap gpr <cmd>lua require('goto-preview').goto_preview_references()<CR>
 
-""""""""""""""""""""""""""""" Easymotion
-"nmap fc  <Plug>(easymotion-s2)
 """"""""""""""""""""""""""""" Hop
 nmap fc  :HopChar2<CR>
 nmap fw  :HopWord<CR>
@@ -143,6 +141,7 @@ nmap <Leader><Tab> :bdelete<CR>
 """""""""""""""""""""""""""""" Tmux
 nnoremap <silent> <C-h>   :TmuxNavigateLeft  <CR>
 nnoremap <silent> <C-j>   :TmuxNavigateDown  <CR>
+nnoremap <silent> tj      :TmuxNavigateDown  <CR>
 nnoremap <silent> <C-k>   :TmuxNavigateUp    <CR>
 nnoremap <silent> <C-l>   :TmuxNavigateRight <CR>
 nnoremap <silent> <C-p>   :TmuxNavigatePrevious <CR>
@@ -162,7 +161,7 @@ nnoremap <silent>     <F7>   :SignifyToggleHighlight<CR>
 "nnoremap <silent>  ff         :Files<CR>
 nnoremap <silent>  <Leader>l :Lines<CR>
 nnoremap <silent>  <Leader>s :Rg<CR>
-nnoremap fzh <cmd>History<CR>
+nnoremap fzh       <cmd>History<CR>
 
 """""""""""""""""""""""""""""" Floatterm
 nmap   	   <silent>   <F2>    :FloatermNew<CR>
@@ -178,6 +177,8 @@ nmap       <silent>   <F5>    :FloatermKill<CR>
 
 "for make
 nmap <silent>ma        :make<CR>
+nmap <silent>mr        :make run<CR>
+nmap <silent>md        :FloatermNew make debug<CR>
 nmap <silent>mc        :make clean<CR>
 
 """""""""""""""""""""""""""""" Align
@@ -192,11 +193,11 @@ nmap \gi        :GrammarousCheck<CR>
 nnoremap tag <cmd>Tagbar<CR>
 
 """""""""""""""""""""""""""""" Find easy commadns with telescope
-nnoremap <F12> <cmd>Telescope<CR>
-nnoremap B <cmd>Telescope buffers<CR>
-nnoremap cmd <cmd>Telescope commands<CR>
+nnoremap <F12>              <cmd>Telescope<CR>
+nnoremap B                  <cmd>Telescope buffers<CR>
+nnoremap cmd                <cmd>Telescope commands<CR>
 nnoremap <leader>h          <cmd>Telescope oldfiles<CR>
-nnoremap <silent>  ff         <cmd>Telescope fd<CR>
+nnoremap <silent>  ff       <cmd>Telescope fd<CR>
 
 """""""""""""""""""""""""""""" Lazygit
 nnoremap <leader>g <cmd>LazyGit<CR>
@@ -214,3 +215,5 @@ nmap <leader>rc    :TerminatorOutputBufferClose<CR>
 """""""""""""""""""""""""""""" Dashboardnewfile
 nmap <leader>df    <cmd>DashboardNewFile<CR>
 "nmap <leader>rs    <Plug>Stop running filc
+"
+vnoremap <silent>ts :'<,'>TakeScreenShot<CR><Cmd>echo 'Take screenshot'<CR>

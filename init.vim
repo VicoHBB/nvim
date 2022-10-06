@@ -52,7 +52,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'PhilRunninger/nerdtree-visual-selection'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Poder moverse entre pestañas ctrl+HJKL
-"  Plug 'benmills/vimux'
+	Plug 'benmills/vimux'
 	Plug 'christoomey/vim-tmux-navigator'
 " Multiple cursors
 	Plug 'terryma/vim-multiple-cursors'
@@ -64,19 +64,20 @@ call plug#begin('~/.vim/plugged')
 	endif
 " Language
 	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-  Plug 'nvim-treesitter/nvim-treesitter-context'
+	Plug 'nvim-treesitter/nvim-treesitter-context'
 " Lidea de identacón
   Plug 'lukas-reineke/indent-blankline.nvim'
 " fzf
- 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+" Vim rooter
 	Plug 'airblade/vim-rooter'
 "Auto-completado solo para Vim
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Syntax colors
  	Plug 'sheerun/vim-polyglot'
 " Completar brackets y parentesis
-  Plug 'jiangmiao/auto-pairs'
+	Plug 'jiangmiao/auto-pairs'
 	Plug 'tpope/vim-surround'
 " Comentarios
 	Plug 'scrooloose/nerdcommenter'
@@ -92,18 +93,16 @@ call plug#begin('~/.vim/plugged')
 	Plug 'frazrepo/vim-rainbow'
 "Snippets
 	Plug 'honza/vim-snippets'
-	"Plug 'sirver/ultisnips'
 "Codi
 	Plug 'metakirby5/codi.vim'
-    "Plug 'ChristianChiarulli/codi.vim'
-"Plug for check C
-	"Plug 'Valloric/YouCompleteMe'
+  "Plug 'ChristianChiarulli/codi.vim'
 "verilog_systemverilog
 	Plug 'vhda/verilog_systemverilog.vim'
 	"vhdl
 	Plug 'suoto/vim-hdl'
 "LaTex
 	Plug 'lervag/vimtex'
+"Easy- aling
 	Plug 'junegunn/vim-easy-align'
 "ASM
 	Plug 'shirk/vim-gas'
@@ -127,7 +126,7 @@ call plug#begin('~/.vim/plugged')
 "Sniprun
 	Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 "Dashboard
-	Plug 'glepnir/dashboard-nvim'
+Plug 'glepnir/dashboard-nvim'
 "Telescope
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
@@ -141,22 +140,31 @@ call plug#begin('~/.vim/plugged')
 	Plug 'zyedidia/vim-snake'
 "Markdown
 	Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-"Vim-which-key
-	"Plug 'liuchengxu/vim-which-key'
 " alpha
 	Plug 'goolord/alpha-nvim'
+" Devicon
   Plug 'kyazdani42/nvim-web-devicons'
-" Vim search pulse
-	"Plug 'inside/vim-search-pulse' 
+" bccalc
+  Plug 'vim-scripts/bccalc.vim'
+"Endwise
+	Plug 'tpope/vim-endwise'
+"Vim screenshot
+	Plug 'SergioRibera/vim-screenshot', { 'do': 'npm install --prefix Renderizer' }
+""""""""""""""""To probe""""""""""""""""
+"Vim-which-key
+	"Plug 'liuchengxu/vim-which-key'
+" nvim-tree
+	"Plug 'kyazdani42/nvim-tree.lua'
+"xml
+  Plug 'othree/xml.vim'	
+"Tabnine
+	"Plug 'zxqfl/tabnine-vim'
+"YCM
+	"Plug 'Valloric/YouCompleteMe'
 "Vim-dap
 	"Plug 'mfussenegger/nvim-dap'
 "Vimspector
 	"Plug 'puremourning/vimspector'
-"lens
-	"Plug 'camspiers/animate.vim'
-	"Plug 'camspiers/lens.vim'
-"Wakatime
-"Plug 'wakatime/vim-wakatime'
 call plug#end()
 
 let g:plug_timeout = 40000000
@@ -168,9 +176,11 @@ let g:vim_search_pulse_mode = 'pattern'
 		"let g:neovide_scroll_animation_length = 0.3
 		"let g:neovide_cursor_vfx_mode = "railgun"
 "endif
+"
+let g:ruby_host_prog = '/home/vhbb/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-host'
 
 "perl
-source ~/.config/nvim/plugin_config/perl.vim
+"source ~/.config/nvim/plugin_config/perl.vim
 "languages 
 source ~/.config/nvim/plugin_config/languages.vim
 "theme
@@ -216,10 +226,17 @@ source ~/.config/nvim/plugin_config/keymapping.vim
 "which-key
 "source ~/.config/nvim/plugin_config/which-key.vim
 
+
 "hi Normal guibg=NONE ctermbg=NONE
 " c
 autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
+
+"For the screenshot
+let g:vimShotSavePath="~/Pictures/code-screenshots"
+
+"let g:ycm_server_keep_logfiles = 1
+"let g:ycm_server_log_level = 'debug'
 
 """""""""""""""""""""""""""""""""""""""""""""""" Kite
 ""let g:kite_supported_languajes = ['javascript','python']
@@ -238,4 +255,3 @@ autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
 let g:SuperTabDefaultCompletionType = 'context'
 " VHLD
 let g:vimhdl_conf_file = '<config/file>'
-
