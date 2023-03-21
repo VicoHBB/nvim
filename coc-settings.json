@@ -1,4 +1,5 @@
 {
+   "suggest.autoTrigger": "none" // To disable auto trigger
    "suggest.completionItemKindLabels": {
     "variable": "\uf71b",
     "constant": "\uf8ff",
@@ -22,7 +23,8 @@
     "reference": "\uf87a",
     "typeParameter": "\uf278",
     "default": "\uf29c"
-  }
+  },
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.3/clangd_15.0.3/bin/clangd"
   //"cSpell.userWords": [
     //"Aumento",
     //"Becerril",

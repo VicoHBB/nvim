@@ -39,7 +39,7 @@ highlight default link WhichKey          Operator
 " Hide status line
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 "Leader
 let g:which_key_map_spc['w']     = [ ':w',                               'Save file' ]

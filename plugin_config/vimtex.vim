@@ -31,3 +31,8 @@ let g:vimtex_compiler_latexmk = {
     \ ]
     \}
 let g:vimtex_syntax_packages = {'minted': {'load': 2}}
+let g:Tex_BibtexFlavor = 'biber'
+let g:Tex_DefaultTargetFormat="pdf"
+" The following is relevant to make LaTeX rerun after biber if necessary: 
+" (include all formats for which re-running is to be enabled)
+let g:Tex_MultipleCompileFormats='pdf,dvi'

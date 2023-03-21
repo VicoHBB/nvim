@@ -7,15 +7,21 @@ nmap <silent><leader><leader> <Cmd>echo 'Think'<CR>
 "''''''''''''''''''''''''''''''''''''''''''''''COC
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+"nmap <silent> [g <Plug>(coc-diagnostic-prev)
+"nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" GoTo code navigation.
+" GoTo code navigation. COC
 "nmap <silent> gd <Plug>('jumpDefinition','tab drop')<CR>
-nmap <silent> gd <Plug>(coc-definition)
+"COC
+"nmap <silent> gd <Plug>(coc-definition)       
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+"nmap <silent> gr <Plug>(coc-references)
+"LSP saga
+nmap <silent> gd <cmd>Lspsaga goto_definition<CR>
+nmap <silent> gr <cmd>Lspsaga lsp_finder<CR>
+nmap <silent> g? <cmd>Lspsaga hover_doc<CR>
+
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -34,7 +40,10 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>r <Plug>(coc-rename)
+" COC
+"nmap <leader>r <Plug>(coc-rename)
+" Lspsaga
+nmap <leader>r <cmd>Lspsaga rename<CR>
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -50,8 +59,12 @@ augroup end
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" COC
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+" Lspsaga
+"nmap <leader>a  <cmd>Lspsaga code_action<CR>
+" Code action menu
+nmap <leader>a  <cmd>CodeActionMenu<CR>
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -111,10 +124,13 @@ nnoremap gpr <cmd>lua require('goto-preview').goto_preview_references()<CR>
 nmap fc  :HopChar2<CR>
 nmap fw  :HopWord<CR>
 nmap fl  :HopLine<CR>
-nmap ?   :HopPattern<CR>
+nmap fW  :HopPattern<CR>
 
-"""""""""""""""""""""""""" NERDTreeF
-nmap <Leader>n :NERDTreeFind<CR>
+"""""""""""""""""""""""""" NERDTree
+"nmap <Leader>n :NERDTreeFind<CR>
+nmap <Leader>n :NvimTreeToggle<CR>
+
+"""""""""""""""""""""""""" NvimTree
 
 """"""""""""""""""""""""""""" Ranger
 let g:ranger_map_keys = 0
@@ -180,6 +196,7 @@ nmap <silent>ma        :make<CR>
 nmap <silent>mr        :make run<CR>
 nmap <silent>md        :FloatermNew make debug<CR>
 nmap <silent>mc        :make clean<CR>
+nmap <silent>mv        :make view<CR>
 
 """""""""""""""""""""""""""""" Align
 xmap ga            <Plug>(EasyAlign)
@@ -194,6 +211,7 @@ nnoremap tag <cmd>Tagbar<CR>
 
 """""""""""""""""""""""""""""" Find easy commadns with telescope
 nnoremap <F12>              <cmd>Telescope<CR>
+nnoremap bp                 <cmd>BufferLinePick<CR>
 nnoremap B                  <cmd>Telescope buffers<CR>
 nnoremap cmd                <cmd>Telescope commands<CR>
 nnoremap <leader>h          <cmd>Telescope oldfiles<CR>
@@ -216,4 +234,18 @@ nmap <leader>rc    :TerminatorOutputBufferClose<CR>
 nmap <leader>df    <cmd>DashboardNewFile<CR>
 "nmap <leader>rs    <Plug>Stop running filc
 "
+"""""""""""""""""""""""""""""" Take screenshoot
 vnoremap <silent>ts :'<,'>TakeScreenShot<CR><Cmd>echo 'Take screenshot'<CR>
+
+"""""""""""""""""""""""""""""" Lspsaga
+nmap <leader>[     <cmd>Lspsaga diagnostic_jump_prev<CR>
+nmap <leader>]     <cmd>Lspsaga diagnostic_jump_next<CR>
+nmap <leader>?     <cmd>Lspsaga show_line_diagnostics<CR>
+
+
+"""""""""""""""""""""""""""""" Verilog_Systemverilog
+nnoremap fi <cmd>VerilogFollowInstance<CR>
+nnoremap fp <cmd>VerilogFollowPort<CR>
+nnoremap <leader>u <cmd>VerilogGotoInstanceStart<CR>
+
+"autocmd FileType verilog_systemveriog map <buffer> gd :VerilogFollowPort<CR>
