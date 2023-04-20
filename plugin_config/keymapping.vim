@@ -14,12 +14,12 @@ nmap <silent><leader><leader> <Cmd>echo 'Think'<CR>
 "nmap <silent> gd <Plug>('jumpDefinition','tab drop')<CR>
 "COC
 "nmap <silent> gd <Plug>(coc-definition)       
-nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 "nmap <silent> gr <Plug>(coc-references)
 "LSP saga
 nmap <silent> gd <cmd>Lspsaga goto_definition<CR>
 nmap <silent> gr <cmd>Lspsaga lsp_finder<CR>
+nmap <silent> gt <cmd>Lspsaga peek_definition<CR>
 nmap <silent> g? <cmd>Lspsaga hover_doc<CR>
 
 
@@ -67,7 +67,7 @@ augroup end
 nmap <leader>a  <cmd>CodeActionMenu<CR>
 
 " Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
+"nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap qf <Plug>(coc-fix-current)
 
@@ -126,15 +126,23 @@ nmap fw  :HopWord<CR>
 nmap fl  :HopLine<CR>
 nmap fW  :HopPattern<CR>
 
+""""""""""""""""""""""""""""" Hop
+nmap <leader>s   <cmd>ISwap<CR>
+nmap <leader>sw  <cmd>ISwapWith<CR>
+nmap <leader>sn  <cmd>ISwapNode<CR>
+
 """""""""""""""""""""""""" NERDTree
 "nmap <Leader>n :NERDTreeFind<CR>
-nmap <Leader>n :NvimTreeToggle<CR>
 
 """""""""""""""""""""""""" NvimTree
+nmap <Leader>n :NvimTreeToggle<CR>
 
 """"""""""""""""""""""""""""" Ranger
 let g:ranger_map_keys = 0
 map  F :RnvimrToggle<CR>
+
+""""""""""""""""""""""""""""" Navbuddy
+nmap <Leader>N :Navbuddy<CR>
 
 """"""""""""""""""""""""""""" Atajos de comandos basicos
 nmap <Leader>w :w<CR>
@@ -169,14 +177,14 @@ nnoremap <silent> <C-Up>    10k
 """"""""""""""""""""""""""""""" Signify 
 "nnoremap <silent>     <F12>  :SignifyToggle<CR>
 "See changes
-nnoremap <silent>     <F6>  :SignifyHunkDiff<CR>
+nnoremap <silent>     <F6>   :SignifyHunkDiff<CR>
 nnoremap <silent>     <F7>   :SignifyToggleHighlight<CR>
 "nnoremap <silent>     <F6>   :SignifyDiff<CR>
 
 """""""""""""""""""""""""""""" FZF
 "nnoremap <silent>  ff         :Files<CR>
 nnoremap <silent>  <Leader>l :Lines<CR>
-nnoremap <silent>  <Leader>s :Rg<CR>
+nnoremap <silent>  <Leader>S :Rg<CR>
 nnoremap fzh       <cmd>History<CR>
 
 """""""""""""""""""""""""""""" Floatterm
@@ -202,20 +210,19 @@ nmap <silent>mv        :make view<CR>
 xmap ga            <Plug>(EasyAlign)
 nmap ga            <Plug>(EasyAlign)
 
-"""""""""""""""""""""""""""""" Grammar check
-nmap \g         :GrammarousCheck --lang=es<CR>
-nmap \gi        :GrammarousCheck<CR>
-
 """""""""""""""""""""""""""""" Tagbar
 nnoremap tag <cmd>Tagbar<CR>
 
 """""""""""""""""""""""""""""" Find easy commadns with telescope
-nnoremap <F12>              <cmd>Telescope<CR>
+nnoremap <F12>              <cmd>Telescope prompt_prefix=🔍<CR>
+nnoremap B                  <cmd>Telescope buffers prompt_prefix=🔍<CR>
+nnoremap cmd                <cmd>Telescope commands theme=dropdown prompt_prefix=🔍<CR>
+nnoremap coc                <cmd>Telescope coc theme=ivy prompt_prefix=🔍<CR>
+nnoremap <leader> h         <cmd>Telescope oldfiles prompt_prefix=🔍<CR>
+nnoremap <silent>  ff       <cmd>Telescope fd prompt_prefix=🔍<CR>
+
+"""""""""""""""""""""""""""""" Select open buffer
 nnoremap bp                 <cmd>BufferLinePick<CR>
-nnoremap B                  <cmd>Telescope buffers<CR>
-nnoremap cmd                <cmd>Telescope commands<CR>
-nnoremap <leader>h          <cmd>Telescope oldfiles<CR>
-nnoremap <silent>  ff       <cmd>Telescope fd<CR>
 
 """""""""""""""""""""""""""""" Lazygit
 nnoremap <leader>g <cmd>LazyGit<CR>
@@ -223,7 +230,6 @@ nnoremap <leader>g <cmd>LazyGit<CR>
 """""""""""""""""""""""""""""" Sniprun 
 nmap <silent>qr    <Plug>SnipRun
 nmap <silent>qs    <Plug>SnipClose
-vmap <silent>qr    <Plug>SnipRun
 
 """""""""""""""""""""""""""""" Vimterminator
 "nmap <leader>rf    <Plug>Run current file
@@ -237,15 +243,17 @@ nmap <leader>df    <cmd>DashboardNewFile<CR>
 """""""""""""""""""""""""""""" Take screenshoot
 vnoremap <silent>ts :'<,'>TakeScreenShot<CR><Cmd>echo 'Take screenshot'<CR>
 
-"""""""""""""""""""""""""""""" Lspsaga
+"""""""""""""""""""""""""""""" Lspsaga Dx
 nmap <leader>[     <cmd>Lspsaga diagnostic_jump_prev<CR>
 nmap <leader>]     <cmd>Lspsaga diagnostic_jump_next<CR>
-nmap <leader>?     <cmd>Lspsaga show_line_diagnostics<CR>
-
+nmap <leader>?     <cmd>Lspsaga show_buf_diagnostics<CR>
+"nmap <leader>dl    <cmd>Lspsaga show_line_diagnostics<CR
 
 """""""""""""""""""""""""""""" Verilog_Systemverilog
 nnoremap fi <cmd>VerilogFollowInstance<CR>
 nnoremap fp <cmd>VerilogFollowPort<CR>
 nnoremap <leader>u <cmd>VerilogGotoInstanceStart<CR>
 
-"autocmd FileType verilog_systemveriog map <buffer> gd :VerilogFollowPort<CR>
+" Customize with popup({border = ...})  : `single` (default), `double`, `rounded`
+"nnoremap <leader>\ <cmd>lua require("nabla").toggle_virt({ autogen = true, silent = true, align_center=true, })<CR> 
+

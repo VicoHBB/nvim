@@ -1,4 +1,5 @@
 lua << EOF
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
 require'nvim-treesitter.configs'.setup {
 	-- A list of parser names, or "all"	
@@ -28,5 +29,14 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = true,
   },
 }
+
+parser_config.d2 = {
+  install_info = {
+    url = 'https://github.com/pleshevskiy/tree-sitter-d2',
+    revision = 'main',
+    files = { 'src/parser.c', 'src/scanner.cc' },
+  },
+  filetype = 'd2',
+};
 
 EOF

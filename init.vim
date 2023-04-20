@@ -26,13 +26,14 @@ set shell=/bin/zsh
 set foldmethod=manual
 " para spelling
 set spell spelllang=es_es
+" for autopairs
+set runtimepath+=.
 
 """"""""""""""""""""""""""""""""""""""""""PlugIns
 "Packer
 lua require('plugins')
-""""""""VIMPLUG
+""""""""Vimplug
 call plug#begin('~/.vim/plugged')
-
 "Themes
   Plug 'morhetz/gruvbox'
 " Terminal
@@ -65,16 +66,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   " Vim rooter
-   Plug 'airblade/vim-rooter'
+  Plug 'airblade/vim-rooter'
 "Auto-completado solo para Vim
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Syntax colors
-   Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
 " Completar brackets y parentesis
-  Plug 'jiangmiao/auto-pairs'
+  "Plug 'jiangmiao/auto-pairs'
+  Plug 'windwp/nvim-autopairs'
   Plug 'tpope/vim-surround'
-" Comentarios
-  Plug 'scrooloose/nerdcommenter'
+" Commentaries
+  Plug 'numToStr/Comment.nvim'        " Optional
 " C
   Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
   Plug 'ludwig/split-manpage.vim'
@@ -98,6 +100,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'suoto/vim-hdl'
 "LaTex
   Plug 'lervag/vimtex'
+  "Plug 'jbyuki/nabla.nvim'
 "Easy- aling
   Plug 'junegunn/vim-easy-align'
 "ASM
@@ -110,9 +113,16 @@ call plug#begin('~/.vim/plugged')
   Plug 'pechorin/any-jump.vim'
 "LSP
   Plug 'neovim/nvim-lspconfig'
-  Plug 'williamboman/nvim-lsp-installer'
   Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
-  Plug 'lukas-reineke/lsp-format.nvim'
+  Plug 'Kasama/nvim-custom-diagnostic-highlight'
+  Plug 'folke/trouble.nvim'
+  "Plug 'ray-x/lsp_signature.nvim'
+""Mason
+    Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }
+    Plug 'williamboman/mason-lspconfig.nvim'
+""Language tools for Mason
+      Plug 'mfussenegger/nvim-lint'       " linters
+      Plug 'mhartington/formatter.nvim'   " formatter
 "goto-preview
   Plug 'rmagatti/goto-preview'
 "History
@@ -131,6 +141,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jvgrootveld/telescope-zoxide'
   Plug 'fannheyward/telescope-coc.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+  Plug 'nvim-telescope/telescope-ui-select.nvim'
 "Hop
   Plug 'phaazon/hop.nvim'
 "Tortoise-Typing
@@ -170,12 +181,17 @@ call plug#begin('~/.vim/plugged')
 " For ultisnips users.
   Plug 'quangnguyen30192/cmp-nvim-ultisnips'
   Plug 'SirVer/ultisnips'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""To probe""""""""""""""""
 " d2
   Plug 'terrastruct/d2-vim'
 " Neoscroll
   Plug 'karb94/neoscroll.nvim'
+" Nvim-navbuddy
+  Plug 'SmiteshP/nvim-navic'
+  Plug 'SmiteshP/nvim-navbuddy'
+" isawp
+  Plug 'mizlan/iswap.nvim'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""To probe""""""""""""""""
 " Org
   Plug 'nvim-orgmode/orgmode'
   "Plug 'nvim-neorg/neorg'
@@ -183,14 +199,14 @@ call plug#begin('~/.vim/plugged')
 "xml
   Plug 'othree/xml.vim'	
 " null-ls.nvim
-	"Plug 'jose-elias-alvarez/null-ls.nvim'
+  " Plug 'jose-elias-alvarez/null-ls.nvim'
 "Nvim-spectre
 	Plug 'windwp/nvim-spectre'
+" ChatGPT
+  Plug 'jackMort/ChatGPT.nvim'
+  Plug 'MunifTanjim/nui.nvim'
 "Vim-which-key
 	"Plug 'liuchengxu/vim-which-key'
-"Tabnine
-"YCM
-	"Plug 'Valloric/YouCompleteMe'
 "Vim-dap
 	"Plug 'mfussenegger/nvim-dap'
 "Vimspector
@@ -207,7 +223,7 @@ let g:ruby_host_prog = '/home/vhbb/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-h
 "perl
 "source ~/.config/nvim/plugin_config/perl.vim
 "languages 
-source ~/.config/nvim/plugin_config/languages.vim
+source ~/.config/nvim/plugin_config/lsp_config.vim
 "theme
 source ~/.config/nvim/plugin_config/theme.vim
 "lualine 
@@ -256,6 +272,12 @@ source ~/.config/nvim/plugin_config/org.vim
 source ~/.config/nvim/plugin_config/nvim-cmp.vim
 "neoscroll
 source ~/.config/nvim/plugin_config/neoscroll.vim
+"nvim-autopairs
+source ~/.config/nvim/plugin_config/nvim-autopairs.vim
+"nvim-navbuddy
+source ~/.config/nvim/plugin_config/nvim-navbuddy.vim
+"Comment
+source ~/.config/nvim/plugin_config/Comment.vim
 "which-key
 "source ~/.config/nvim/plugin_config/which-key.vim
 
@@ -301,15 +323,160 @@ let g:SuperTabDefaultCompletionType = 'context'
 
 "Test for lua
 lua << EOF
--- local null_ls = require("null-ls")
--- local sources = { null_ls.builtins.formatting.verible_verilog_format }
--- 
--- null_ls.setup({
---     sources = {
---         null_ls.builtins.formatting.stylua,
---         null_ls.builtins.diagnostics.eslint,
---         null_ls.builtins.completion.spell,
--- 				null_ls.builtins.formatting.verible_verilog_format
---     },
--- })
+
+require('chatgpt').setup({
+ yank_register = "+",
+  edit_with_instructions = {
+    diff = true,
+    keymaps = {
+      accept = "<C-e>",
+      toggle_diff = "<C-d>",
+      toggle_settings = "<C-o>",
+      cycle_windows = "<Tab>",
+      use_output_as_input = "<C-i>",
+      close = "<C-c>",
+    },
+  },
+  chat = {
+    welcome_message = WELCOME_MESSAGE,
+    loading_text = "Loading, please wait ...",
+    question_sign = "", -- 🙂
+    answer_sign = "ﮧ", -- 🤖
+    max_line_length = 120,
+    sessions_window = {
+      border = {
+        style = "rounded",
+        text = {
+          top = " Sessions ",
+        },
+      },
+      win_options = {
+        winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+      },
+    },
+    keymaps = {
+      submit = "<C-e>",
+      close = { "<C-c>" },
+      yank_last = "<C-y>",
+      yank_last_code = "<C-k>",
+      scroll_up = "<C-u>",
+      scroll_down = "<C-d>",
+      toggle_settings = "<C-o>",
+      new_session = "<C-n>",
+      cycle_windows = "<Tab>",
+      select_session = "<Space>",
+      rename_session = "r",
+      delete_session = "d",
+    },
+  },
+  popup_layout = {
+    relative = "editor",
+    position = "50%",
+    size = {
+      height = "80%",
+      width = "80%",
+    },
+  },
+  popup_window = {
+    filetype = "chatgpt",
+    border = {
+      highlight = "FloatBorder",
+      style = "rounded",
+      text = {
+        top = " ChatGPT ",
+      },
+    },
+    win_options = {
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+    },
+  },
+  popup_input = {
+    prompt = "  ",
+    border = {
+      highlight = "FloatBorder",
+      style = "rounded",
+      text = {
+        top_align = "center",
+        top = " Prompt ",
+      },
+    },
+    win_options = {
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+    },
+    submit = "<C-e>",
+  },
+  settings_window = {
+    border = {
+      style = "rounded",
+      text = {
+        top = " Settings ",
+      },
+    },
+    win_options = {
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+    },
+  },
+  openai_params = {
+    model = "gpt-3.5-turbo",
+    frequency_penalty = 0,
+    presence_penalty = 0,
+    max_tokens = 300,
+    temperature = 0,
+    top_p = 1,
+    n = 1,
+  },
+  openai_edit_params = {
+    model = "code-davinci-edit-001",
+    temperature = 0,
+    top_p = 1,
+    n = 1,
+  },
+  actions_paths = {},
+  predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
+})
+
+
+require('iswap').setup{
+  -- The keys that will be used as a selection, in order
+  -- ('asdfghjklqwertyuiopzxcvbnm' by default)
+  keys = 'qwertyuiop',
+
+  -- Grey out the rest of the text when making a selection
+  -- (enabled by default)
+  grey = 'disable',
+
+  -- Highlight group for the sniping value (asdf etc.)
+  -- default 'Search'
+  hl_snipe = 'ErrorMsg',
+
+  -- Highlight group for the visual selection of terms
+  -- default 'Visual'
+  hl_selection = 'WarningMsg',
+
+  -- Highlight group for the greyed background
+  -- default 'Comment'
+  hl_grey = 'LineNr',
+
+  -- Post-operation flashing highlight style,
+  -- either 'simultaneous' or 'sequential', or false to disable
+  -- default 'sequential'
+  flash_style = false,
+
+  -- Highlight group for flashing highlight afterward
+  -- default 'IncSearch'
+  hl_flash = 'ModeMsg',
+
+  -- Move cursor to the other element in ISwap*With commands
+  -- default false
+  move_cursor = true,
+
+  -- Automatically swap with only two arguments
+  -- default nil
+  autoswap = true,
+
+  -- Other default options you probably should not change:
+  debug = nil,
+  hl_grey_priority = '1000',
+}
+
 EOF

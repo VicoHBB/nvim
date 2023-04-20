@@ -41,16 +41,19 @@ return require('packer').startup( function()
     'weilbith/nvim-code-action-menu',
     cmd = 'CodeActionMenu',
   }
+  use {"ecthelionvi/NeoColumn.nvim",
+    config = function ()
+      require("NeoColumn").setup({
+        fg_color = '',
+        bg_color = '',
+        NeoColumn = '80',
+        excluded_ft = {},
+        always_on = true,
+      })
+    end
+  }
 
-  --use {
-    --'kosayoda/nvim-lightbulb',
-    --requires = 'antoinemadec/FixCursorHold.nvim',
-    --config = function()
-      --require('nvim-lightbulb').setup({
-        --autocmd = {enabled = true}
-      --})
-    --end,
-  --}
+
   --use {
     --'w0rp/ale',
     --ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'python', 'markdown', 'racket', 'vim', 'tex', 'lua', 'rust', ''},

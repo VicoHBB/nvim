@@ -194,7 +194,7 @@ local buttons = {
         dashboard.button("SPC h", " -> Complete History",":Telescope oldfiles<CR>"),
         dashboard.button("f f", " -> Find File",":Telescope find_files<CR>"),
         dashboard.button("F"," -> File Browser",":RnvimrToggle<CR>"),
-        dashboard.button("SPC s", " -> Find Word",":Rg<CR>"),
+        dashboard.button("SPC S", " -> Find Word",":Rg<CR>"),
         dashboard.button("p l"," -> Plug Update", ":PlugUpdate<CR>"),
         dashboard.button("p a"," -> Packer Update", ":PackerSync<CR>"),
         dashboard.button("init.vim"," -> Configuration", ":e /home/vhbb/.config/nvim/init.vim<CR>"),

@@ -135,6 +135,9 @@ cmp.setup.cmdline(':', {
     
 --Tabnine
 tabnine.setup({
+    -- disable_auto_comment=true,
+    -- accept_keymap=nil,
+    -- disable_suggestion=true,
     max_lines = 1000,
     max_num_results = 20,
     sort = true,
@@ -150,6 +153,5 @@ tabnine.setup({
     show_prediction_strength = true,
     -- entry.completion_item.data.detail.multiline = true, -- chechk this
 })
-
 
 EOF

@@ -74,6 +74,12 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["NeoColumn.nvim"] = {
+    config = { "\27LJ\2\n~\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\2B\0\2\1K\0\1\0\16excluded_ft\1\0\4\14NeoColumn\a80\14always_on\2\rbg_color\5\rfg_color\5\nsetup\14NeoColumn\frequire\0" },
+    loaded = true,
+    path = "/home/vhbb/.local/share/nvim/site/pack/packer/start/NeoColumn.nvim",
+    url = "https://github.com/ecthelionvi/NeoColumn.nvim"
+  },
   ["cellular-automaton.nvim"] = {
     loaded = true,
     path = "/home/vhbb/.local/share/nvim/site/pack/packer/start/cellular-automaton.nvim",
@@ -111,6 +117,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for codewindow.nvim]], true)
 try_loadstring("\27LJ\2\nW\0\0\3\0\4\0\b6\0\0\0'\2\1\0B\0\2\0029\1\2\0B\1\1\0019\1\3\0B\1\1\1K\0\1\0\27apply_default_keybinds\nsetup\15codewindow\frequire\0", "config", "codewindow.nvim")
 time([[Config for codewindow.nvim]], false)
+-- Config for: NeoColumn.nvim
+time([[Config for NeoColumn.nvim]], true)
+try_loadstring("\27LJ\2\n~\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\0\0=\3\4\2B\0\2\1K\0\1\0\16excluded_ft\1\0\4\14NeoColumn\a80\14always_on\2\rbg_color\5\rfg_color\5\nsetup\14NeoColumn\frequire\0", "config", "NeoColumn.nvim")
+time([[Config for NeoColumn.nvim]], false)
 -- Config for: colorful-winsep.nvim
 time([[Config for colorful-winsep.nvim]], true)
 try_loadstring("\27LJ\2\n�\1\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\fsymbols\1\a\0\0\b━\b┃\b┏\b┓\b┗\b┛\14highlight\1\0\1\rinterval\3\30\1\0\1\afg\f#B8BB26\nsetup\20colorful-winsep\frequire\0", "config", "colorful-winsep.nvim")
