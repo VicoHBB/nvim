@@ -278,6 +278,10 @@ source ~/.config/nvim/plugin_config/nvim-autopairs.vim
 source ~/.config/nvim/plugin_config/nvim-navbuddy.vim
 "Comment
 source ~/.config/nvim/plugin_config/Comment.vim
+"Iswap
+source ~/.config/nvim/plugin_config/iswap.vim
+"ChatGPT
+source ~/.config/nvim/plugin_config/chatgpt.vim
 "which-key
 "source ~/.config/nvim/plugin_config/which-key.vim
 
