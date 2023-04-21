@@ -190,6 +190,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'SmiteshP/nvim-navbuddy'
 " isawp
   Plug 'mizlan/iswap.nvim'
+" ChatGPT
+  Plug 'jackMort/ChatGPT.nvim'
+  Plug 'MunifTanjim/nui.nvim'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""To probe""""""""""""""""
 " Org
@@ -202,9 +205,6 @@ call plug#begin('~/.vim/plugged')
   " Plug 'jose-elias-alvarez/null-ls.nvim'
 "Nvim-spectre
 	Plug 'windwp/nvim-spectre'
-" ChatGPT
-  Plug 'jackMort/ChatGPT.nvim'
-  Plug 'MunifTanjim/nui.nvim'
 "Vim-which-key
 	"Plug 'liuchengxu/vim-which-key'
 "Vim-dap
@@ -323,160 +323,5 @@ let g:SuperTabDefaultCompletionType = 'context'
 
 "Test for lua
 lua << EOF
-
-require('chatgpt').setup({
- yank_register = "+",
-  edit_with_instructions = {
-    diff = true,
-    keymaps = {
-      accept = "<C-e>",
-      toggle_diff = "<C-d>",
-      toggle_settings = "<C-o>",
-      cycle_windows = "<Tab>",
-      use_output_as_input = "<C-i>",
-      close = "<C-c>",
-    },
-  },
-  chat = {
-    welcome_message = WELCOME_MESSAGE,
-    loading_text = "Loading, please wait ...",
-    question_sign = "", -- 🙂
-    answer_sign = "ﮧ", -- 🤖
-    max_line_length = 120,
-    sessions_window = {
-      border = {
-        style = "rounded",
-        text = {
-          top = " Sessions ",
-        },
-      },
-      win_options = {
-        winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-      },
-    },
-    keymaps = {
-      submit = "<C-e>",
-      close = { "<C-c>" },
-      yank_last = "<C-y>",
-      yank_last_code = "<C-k>",
-      scroll_up = "<C-u>",
-      scroll_down = "<C-d>",
-      toggle_settings = "<C-o>",
-      new_session = "<C-n>",
-      cycle_windows = "<Tab>",
-      select_session = "<Space>",
-      rename_session = "r",
-      delete_session = "d",
-    },
-  },
-  popup_layout = {
-    relative = "editor",
-    position = "50%",
-    size = {
-      height = "80%",
-      width = "80%",
-    },
-  },
-  popup_window = {
-    filetype = "chatgpt",
-    border = {
-      highlight = "FloatBorder",
-      style = "rounded",
-      text = {
-        top = " ChatGPT ",
-      },
-    },
-    win_options = {
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-    },
-  },
-  popup_input = {
-    prompt = "  ",
-    border = {
-      highlight = "FloatBorder",
-      style = "rounded",
-      text = {
-        top_align = "center",
-        top = " Prompt ",
-      },
-    },
-    win_options = {
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-    },
-    submit = "<C-e>",
-  },
-  settings_window = {
-    border = {
-      style = "rounded",
-      text = {
-        top = " Settings ",
-      },
-    },
-    win_options = {
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-    },
-  },
-  openai_params = {
-    model = "gpt-3.5-turbo",
-    frequency_penalty = 0,
-    presence_penalty = 0,
-    max_tokens = 300,
-    temperature = 0,
-    top_p = 1,
-    n = 1,
-  },
-  openai_edit_params = {
-    model = "code-davinci-edit-001",
-    temperature = 0,
-    top_p = 1,
-    n = 1,
-  },
-  actions_paths = {},
-  predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
-})
-
-
-require('iswap').setup{
-  -- The keys that will be used as a selection, in order
-  -- ('asdfghjklqwertyuiopzxcvbnm' by default)
-  keys = 'qwertyuiop',
-
-  -- Grey out the rest of the text when making a selection
-  -- (enabled by default)
-  grey = 'disable',
-
-  -- Highlight group for the sniping value (asdf etc.)
-  -- default 'Search'
-  hl_snipe = 'ErrorMsg',
-
-  -- Highlight group for the visual selection of terms
-  -- default 'Visual'
-  hl_selection = 'WarningMsg',
-
-  -- Highlight group for the greyed background
-  -- default 'Comment'
-  hl_grey = 'LineNr',
-
-  -- Post-operation flashing highlight style,
-  -- either 'simultaneous' or 'sequential', or false to disable
-  -- default 'sequential'
-  flash_style = false,
-
-  -- Highlight group for flashing highlight afterward
-  -- default 'IncSearch'
-  hl_flash = 'ModeMsg',
-
-  -- Move cursor to the other element in ISwap*With commands
-  -- default false
-  move_cursor = true,
-
-  -- Automatically swap with only two arguments
-  -- default nil
-  autoswap = true,
-
-  -- Other default options you probably should not change:
-  debug = nil,
-  hl_grey_priority = '1000',
-}
 
 EOF

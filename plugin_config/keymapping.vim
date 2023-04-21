@@ -22,7 +22,6 @@ nmap <silent> gr <cmd>Lspsaga lsp_finder<CR>
 nmap <silent> gt <cmd>Lspsaga peek_definition<CR>
 nmap <silent> g? <cmd>Lspsaga hover_doc<CR>
 
-
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -121,10 +120,14 @@ nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>
 nnoremap gpr <cmd>lua require('goto-preview').goto_preview_references()<CR>
 
 """"""""""""""""""""""""""""" Hop
-nmap fc  :HopChar2<CR>
-nmap fw  :HopWord<CR>
-nmap fl  :HopLine<CR>
-nmap fW  :HopPattern<CR>
+nmap gpt  <cmd>ChatGPT<CR>
+
+
+""""""""""""""""""""""""""""" Hop
+nmap fc  <cmd>HopChar2<CR>
+nmap fw  <cmd>HopWord<CR>
+nmap fl  <cmd>HopLine<CR>
+nmap fW  <cmd>HopPattern<CR>
 
 """"""""""""""""""""""""""""" Hop
 nmap <leader>s   <cmd>ISwap<CR>
