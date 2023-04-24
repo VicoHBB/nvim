@@ -3,7 +3,8 @@ local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
 require'nvim-treesitter.configs'.setup {
 	-- A list of parser names, or "all"	
-	ensure_installed = { "c", "cpp", "lua", "rust", "python", "vim", "verilog", "latex", "markdown", "make" ,"bash", "gitignore" },
+	ensure_installed = { "c", "cpp", "lua", "rust", "python", "vim", "verilog", 
+											 "latex", "markdown", "make" ,"bash", "gitignore" },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,

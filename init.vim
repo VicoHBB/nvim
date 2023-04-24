@@ -15,7 +15,6 @@ set laststatus=2
 set signcolumn=yes               "To the vim signify on the other column"
 "set autochdir
 "autocmd BufRead,BufNewFile * setlocal signcolumn=yes
-
 "For lualine
 "Lualine shows mode, so is necesarry to disable
 set noshowmode
@@ -28,6 +27,7 @@ set foldmethod=manual
 set spell spelllang=es_es
 " for autopairs
 set runtimepath+=.
+
 
 """"""""""""""""""""""""""""""""""""""""""PlugIns
 "Packer
@@ -72,7 +72,6 @@ call plug#begin('~/.vim/plugged')
 " Syntax colors
   Plug 'sheerun/vim-polyglot'
 " Completar brackets y parentesis
-  "Plug 'jiangmiao/auto-pairs'
   Plug 'windwp/nvim-autopairs'
   Plug 'tpope/vim-surround'
 " Commentaries
@@ -193,6 +192,11 @@ call plug#begin('~/.vim/plugged')
 " ChatGPT
   Plug 'jackMort/ChatGPT.nvim'
   Plug 'MunifTanjim/nui.nvim'
+"Sad
+  Plug 'ray-x/guihua.lua', {'do': 'cd lua/fzy && make' }
+  Plug 'ray-x/sad.nvim'
+" Marks
+  Plug 'chentoast/marks.nvim'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""To probe""""""""""""""""
 " Org
@@ -203,8 +207,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'othree/xml.vim'	
 " null-ls.nvim
   " Plug 'jose-elias-alvarez/null-ls.nvim'
-"Nvim-spectre
-	Plug 'windwp/nvim-spectre'
 "Vim-which-key
 	"Plug 'liuchengxu/vim-which-key'
 "Vim-dap
@@ -219,6 +221,7 @@ let g:vim_search_pulse_mode = 'pattern'
 
 " Ruby Host
 let g:ruby_host_prog = '/home/vhbb/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-host'
+
 
 "perl
 "source ~/.config/nvim/plugin_config/perl.vim
@@ -282,15 +285,22 @@ source ~/.config/nvim/plugin_config/Comment.vim
 source ~/.config/nvim/plugin_config/iswap.vim
 "ChatGPT
 source ~/.config/nvim/plugin_config/chatgpt.vim
+"Sad
+source ~/.config/nvim/plugin_config/sad.vim
+"Marks
+source ~/.config/nvim/plugin_config/marks.vim
 "which-key
 "source ~/.config/nvim/plugin_config/which-key.vim
 
 "hi Normal guibg=NONE ctermbg=NONE
+" Configuration for filetypes
 " c
-autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
+autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab colorcolumn=80
+autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab colorcolumn=80
+autocmd FileType python setlocal colorcolumn=80
+autocmd FileType verilog_systemverilog setlocal colorcolumn=80
 "autocmd FileType verilog_systemverilog cmd VerilogErrorFormat Verilator 1
-"autocmd FileType verilog_systemverilog :VerilatorErrorFormat Verilator 1
+
 
 "For the screenshot
 let g:vimShotSavePath="~/Pictures/code-screenshots"
@@ -320,8 +330,6 @@ let g:rooter_change_directory_for_non_project_files = 'current'
 		"\ 'deffile' : expand('<sfile>:p:h:h') . '/ctags/latex.cnf'
 "\ }
 
-"Ultisnippets
-"let g:UltiSnipsExpandTrigger = "<tab>"
 " Verilog
 let g:SuperTabDefaultCompletionType = 'context'
 

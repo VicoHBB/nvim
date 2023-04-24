@@ -5,7 +5,7 @@ require('chatgpt').setup({
   edit_with_instructions = {
     diff = true,
     keymaps = {
-      accept = "<C-e>",
+      accept = "<A-Enter>",
       toggle_diff = "<C-d>",
       toggle_settings = "<C-o>",
       cycle_windows = "<Tab>",
@@ -31,7 +31,7 @@ require('chatgpt').setup({
       },
     },
     keymaps = {
-      submit = "<C-e>",
+      submit = "<A-Enter>",
       close = { "<C-c>" },
       yank_last = "<C-y>",
       yank_last_code = "<C-k>",
@@ -79,7 +79,7 @@ require('chatgpt').setup({
     win_options = {
       winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
     },
-    submit = "<C-e>",
+    submit = "<A-Enter>",
   },
   settings_window = {
     border = {

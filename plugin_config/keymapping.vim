@@ -203,11 +203,12 @@ tnoremap   <silent>   <F1>    <C-\><C-n>:FloatermToggle<CR>
 nmap       <silent>   <F5>    :FloatermKill<CR>
 
 "for make
-nmap <silent>ma        :make<CR>
-nmap <silent>mr        :make run<CR>
-nmap <silent>md        :FloatermNew make debug<CR>
-nmap <silent>mc        :make clean<CR>
-nmap <silent>mv        :make view<CR>
+nmap <leader>M         :make 
+nmap <leader>ma        :make<CR>
+nmap <leader>mr        :make run<CR>
+nmap <leader>md        :FloatermNew make debug<CR>
+nmap <leader>mc        :make clean<CR>
+nmap <leader>mv        :make view<CR>
 
 """""""""""""""""""""""""""""" Align
 xmap ga            <Plug>(EasyAlign)
@@ -217,15 +218,19 @@ nmap ga            <Plug>(EasyAlign)
 nnoremap tag <cmd>Tagbar<CR>
 
 """""""""""""""""""""""""""""" Find easy commadns with telescope
-nnoremap <F12>              <cmd>Telescope prompt_prefix=🔍<CR>
-nnoremap B                  <cmd>Telescope buffers prompt_prefix=🔍<CR>
+nnoremap <F12>              <cmd>Telescope builtin prompt_prefix=🔍<CR>
+nnoremap <leader>B          <cmd>Telescope buffers prompt_prefix=🔍<CR>
 nnoremap cmd                <cmd>Telescope commands theme=dropdown prompt_prefix=🔍<CR>
 nnoremap coc                <cmd>Telescope coc theme=ivy prompt_prefix=🔍<CR>
-nnoremap <leader> h         <cmd>Telescope oldfiles prompt_prefix=🔍<CR>
-nnoremap <silent>  ff       <cmd>Telescope fd prompt_prefix=🔍<CR>
+nnoremap <leader>h          <cmd>Telescope oldfiles prompt_prefix=🔍<CR>
+nnoremap <silent> ff        <cmd>Telescope fd prompt_prefix=🔍<CR>
+
+"""""""""""""""""""""""""""""" Marks
+nnoremap <silent> tm        <cmd>MarksToggleSigns<CR>
+nnoremap <silent> Tm        <cmd>Telescope marks prompt_prefix=🔍<CR>
 
 """""""""""""""""""""""""""""" Select open buffer
-nnoremap bp                 <cmd>BufferLinePick<CR>
+nnoremap <leader>b          <cmd>BufferLinePick<CR>
 
 """""""""""""""""""""""""""""" Lazygit
 nnoremap <leader>g <cmd>LazyGit<CR>

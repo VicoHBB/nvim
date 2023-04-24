@@ -2,6 +2,8 @@
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
+vim.g.virtcolumn_char = '▕' -- char to display the line
+vim.g.virtcolumn_priority = 10 -- priority of extmark
 
 return require('packer').startup( function()
   -- Packer can manage itself
@@ -18,7 +20,7 @@ return require('packer').startup( function()
   use {
     "nvim-zh/colorful-winsep.nvim",
     config = function ()
-      require('colorful-winsep').setup({ 
+      require('colorful-winsep').setup({
         -- highlight for Window separator
         highlight = {
           fg = "#B8BB26",
@@ -37,30 +39,31 @@ return require('packer').startup( function()
   }
 
   --- to probe
-  use { 
+  use {
     'weilbith/nvim-code-action-menu',
     cmd = 'CodeActionMenu',
   }
-  use {"ecthelionvi/NeoColumn.nvim",
-    config = function ()
-      require("NeoColumn").setup({
-        fg_color = '',
-        bg_color = '',
-        NeoColumn = '80',
-        excluded_ft = {},
-        always_on = true,
-      })
-    end
-  }
 
+  use { 'xiyaowong/virtcolumn.nvim' }
 
-  --use {
-    --'w0rp/ale',
-    --ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'python', 'markdown', 'racket', 'vim', 'tex', 'lua', 'rust', ''},
-    --cmd = 'ALEEnable',
-    --config = 'vim.cmd[[ALEEnable]]'
-  --}
-  
+  -- use {
+  --   "luukvbaal/statuscol.nvim",
+  -- }
+
+  -- use {"ecthelionvi/NeoColumn.nvim",
+  --   config = function ()
+  --     require("NeoColumn").setup({
+  --       fg_color = '',
+  --       bg_color = '',
+  --       NeoColumn = '80',
+  --       excluded_ft = {},
+  --       always_on = true,
+  --     })
+  --   end
+  -- }
+  --
+  --
+
 end)
 
 

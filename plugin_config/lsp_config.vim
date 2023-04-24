@@ -110,7 +110,9 @@ require('lspconfig').lua_ls.setup {
   },
 }
 
--- require'lspconfig'.grammarly.setup{}
+-- require'lspconfig'.grammarly.setup{
+--   filetypes    = { "markdown", "tex" },
+-- }
 
 require('lspconfig')['rust_analyzer'].setup{
   capabilities = capabilities,
