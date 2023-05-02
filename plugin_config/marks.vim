@@ -28,6 +28,7 @@ require('marks').setup {
     "floaterm",
     "NvimTree", 
     "markdown", 
+		"lspsagafinder",
     "code-action-menu-warning-message", 
     "code-action-menu-menu",
   },

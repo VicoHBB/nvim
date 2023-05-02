@@ -129,7 +129,7 @@ nmap fw  <cmd>HopWord<CR>
 nmap fl  <cmd>HopLine<CR>
 nmap fW  <cmd>HopPattern<CR>
 
-""""""""""""""""""""""""""""" Hop
+""""""""""""""""""""""""""""" Iswap
 nmap <leader>s   <cmd>ISwap<CR>
 nmap <leader>sw  <cmd>ISwapWith<CR>
 nmap <leader>sn  <cmd>ISwapNode<CR>

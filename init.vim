@@ -96,7 +96,7 @@ call plug#begin('~/.vim/plugged')
 " Verilog instance
   Plug 'antoinemadec/vim-verilog-instance'
 "vhdl
-  Plug 'suoto/vim-hdl'
+  " Plug 'suoto/vim-hdl'
 "LaTex
   Plug 'lervag/vimtex'
   "Plug 'jbyuki/nabla.nvim'
@@ -199,6 +199,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'chentoast/marks.nvim'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""To probe""""""""""""""""
+" Syntax Tree Surfer
+  Plug 'ziontee113/syntax-tree-surfer'
 " Org
   Plug 'nvim-orgmode/orgmode'
   "Plug 'nvim-neorg/neorg'
