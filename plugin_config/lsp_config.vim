@@ -1,7 +1,13 @@
+" lua require'nvim_lsp'.ocamllsp.setup{on_attach=require'virtualtypes'.on_attach}
+
 lua << EOF
 
 -- local null_ls = require("null-ls")    -- null
 local util = require("formatter.util")
+
+require("lsp_signature").setup({})
+
+-- require('virtualtypes').on_attach
 
 require("mason").setup({
     ui = {
@@ -34,7 +40,20 @@ require("mason-lspconfig").setup({
   automatic_installation = false,
 }) 
 
-require('nvim-custom-diagnostic-highlight').setup({ })
+require('nvim-custom-diagnostic-highlight').setup({
+	register_handler = true,                                    -- Wether to register the handler automatically
+  handler_name = 'kasama/nvim-custom-diagnostic-highlight',   -- The name of the handler to be registered (has no effect if register_handler = false)
+  highlight_group = 'Conceal',                                -- The Highlight group to set at the diagnostic
+  patterns_override = {                                       -- Lua patterns to be tested against the diagnostic message. Overrides default behavior
+    '%sunused', '^unused', 'not used', 'never used',
+    'not read', 'never read', 'empty block', 'not accessed'
+  },
+  extra_patterns = {},                                        -- Extra lua patterns to add. Does NOT override and will be added to the above
+  diagnostic_handler_namespace = 'unused_hl_ns',              -- Name of the handler namespace that will contain the highlight (needs to be unique)
+  defer_until_n_lines_away = false,                           -- If set to a number, then highlighting is deferred until the cursor is N lines away from
+                                                              -- diagnostics. Useful to avoid unwanted highlights in the currently edited position.
+  defer_highlight_update_events = {'CursorHold', 'CursorHoldI'}, -- Events on which deferred highlights will be updated (passed to nvim_create_autocmd)
+})
 
 require('lspconfig').clangd.setup{
   capabilities = capabilities,
@@ -42,9 +61,9 @@ require('lspconfig').clangd.setup{
 }
 
 --require'lspconfig'.ccls.setup{}
-require('lspconfig').pyright.setup{
-  capabilities = capabilities,
-}
+-- require('lspconfig').pyright.setup{
+--   capabilities = capabilities,
+-- }
 require('lspconfig').pylsp.setup{
   settings = {
     pylsp = {
@@ -62,7 +81,21 @@ require('lspconfig').texlab.setup{
   filetypes    = { "tex", "plaintex", "bib" },
 }
 
+require('lspconfig').ltex.setup{
+  settings = {
+		ltex = {
+			language = "en-GB",
+			-- language = "es",
+      dictionary = {
+        ['en-GB'] = { "MicroPython" },
+        ['es'] = { "MicroPython" },
+      },
+		},
+	},
+}
+
 require('lspconfig').marksman.setup{
+	cmd = { "marksman", "server" },
   capabilities = capabilities,
 }
 
@@ -254,4 +287,3 @@ require("lspsaga").setup({
 })          -- lspsaga
 
 EOF
-

@@ -80,7 +80,7 @@ _G.packer_plugins = {
     url = "https://github.com/eandrju/cellular-automaton.nvim"
   },
   ["codewindow.nvim"] = {
-    config = { "\27LJ\2\nù\1\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\0019\1\4\0B\1\1\1K\0\1\0\27apply_default_keybinds\1\0\4\16show_cursor\2\fz_index\3\1\21width_multiplier\3\1\18window_border\vsingle\nsetup\15codewindow\frequire\0" },
+    config = { "\27LJ\2\nù\1\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\0019\1\4\0B\1\1\1K\0\1\0\27apply_default_keybinds\1\0\4\18window_border\vsingle\16show_cursor\2\fz_index\3\1\21width_multiplier\3\1\nsetup\15codewindow\frequire\0" },
     loaded = true,
     path = "/home/vhbb/.local/share/nvim/site/pack/packer/start/codewindow.nvim",
     url = "https://github.com/gorbit99/codewindow.nvim"
@@ -104,11 +104,10 @@ _G.packer_plugins = {
     path = "/home/vhbb/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  ["syntax-tree-surfer"] = {
-    config = { "\27LJ\2\nD\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\23syntax-tree-surfer\frequire\0" },
+  ["vim-ctags"] = {
     loaded = true,
-    path = "/home/vhbb/.local/share/nvim/site/pack/packer/start/syntax-tree-surfer",
-    url = "https://github.com/ziontee113/syntax-tree-surfer"
+    path = "/home/vhbb/.local/share/nvim/site/pack/packer/start/vim-ctags",
+    url = "https://github.com/webastien/vim-ctags"
   },
   ["virtcolumn.nvim"] = {
     loaded = true,
@@ -124,12 +123,8 @@ try_loadstring("\27LJ\2\nõ\1\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\
 time([[Config for colorful-winsep.nvim]], false)
 -- Config for: codewindow.nvim
 time([[Config for codewindow.nvim]], true)
-try_loadstring("\27LJ\2\nù\1\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\0019\1\4\0B\1\1\1K\0\1\0\27apply_default_keybinds\1\0\4\16show_cursor\2\fz_index\3\1\21width_multiplier\3\1\18window_border\vsingle\nsetup\15codewindow\frequire\0", "config", "codewindow.nvim")
+try_loadstring("\27LJ\2\nù\1\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\0019\1\4\0B\1\1\1K\0\1\0\27apply_default_keybinds\1\0\4\18window_border\vsingle\16show_cursor\2\fz_index\3\1\21width_multiplier\3\1\nsetup\15codewindow\frequire\0", "config", "codewindow.nvim")
 time([[Config for codewindow.nvim]], false)
--- Config for: syntax-tree-surfer
-time([[Config for syntax-tree-surfer]], true)
-try_loadstring("\27LJ\2\nD\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\23syntax-tree-surfer\frequire\0", "config", "syntax-tree-surfer")
-time([[Config for syntax-tree-surfer]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

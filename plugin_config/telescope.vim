@@ -4,6 +4,7 @@ require('telescope').load_extension('media_files')
 require("telescope").load_extension('zoxide')
 require('telescope').load_extension('coc')
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension('harpoon')
 
 require'telescope'.setup {
   defaults= {

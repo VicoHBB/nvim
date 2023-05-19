@@ -11,6 +11,7 @@ return require('packer').startup( function()
   -- Packer can manage itself
   use {'wbthomason/packer.nvim'}
   use {'eandrju/cellular-automaton.nvim'}
+  use { 'webastien/vim-ctags' }
   use {
     'gorbit99/codewindow.nvim',
     config = function()
@@ -42,6 +43,7 @@ return require('packer').startup( function()
         --no_exec_files = { "packer", "TelescopePrompt", "mason", "CompetiTest", "NvimTree" },
         -- Symbols for separator lines, the order: horizontal, vertical, top left, top right, bottom left, bottom right.
         symbols = { "━", "┃", "┏", "┓", "┗", "┛" },
+        -- symbols = { "━", "┃", "", "", "", "" },
       })
     end
   }

@@ -191,7 +191,7 @@ local buttons = {
         { type = "text", val = "Comands", opts = { hl = "SpecialComment", position = "center" } },
         { type = "padding", val = 1 },
         dashboard.button("e", " -> New File", ":ene<CR>"),
-        dashboard.button("SPC h", " -> Complete History",":Telescope oldfiles prompt_prefix=🔍<CR>"),
+        dashboard.button("SPC H", " -> Complete History",":Telescope oldfiles prompt_prefix=🔍<CR>"),
         dashboard.button("f f", " -> Find File",":Telescope find_files prompt_prefix=🔍<CR>"),
         dashboard.button("F"," -> File Browser",":RnvimrToggle<CR>"),
         dashboard.button("SPC S", " -> Find Word",":Telescope live_grep prompt_prefix=🔍<CR>"),

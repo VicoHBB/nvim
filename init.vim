@@ -36,6 +36,7 @@ lua require('plugins')
 call plug#begin('~/.vim/plugged')
 "Themes
   Plug 'morhetz/gruvbox'
+  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 " Terminal
   Plug 'voldikss/vim-floaterm'
 " nvim-tree
@@ -115,7 +116,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
   Plug 'Kasama/nvim-custom-diagnostic-highlight'
   Plug 'folke/trouble.nvim'
-  "Plug 'ray-x/lsp_signature.nvim'
+  Plug 'ray-x/lsp_signature.nvim'
 ""Mason
     Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }
     Plug 'williamboman/mason-lspconfig.nvim'
@@ -169,7 +170,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'dmitmel/cmp-cmdline-history'
   Plug 'kdheepak/cmp-latex-symbols'
   Plug 'f3fora/cmp-spell'
+  Plug 'lukas-reineke/cmp-under-comparator'
 "Tabnine
+  " Plug 'codota/tabnine-nvim', { 'do': './dl_binaries.sh' }
   Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 "fzf
   Plug 'tzachar/cmp-fuzzy-buffer'
@@ -197,13 +200,25 @@ call plug#begin('~/.vim/plugged')
   Plug 'ray-x/sad.nvim'
 " Marks
   Plug 'chentoast/marks.nvim'
+" Asynconousjjk
+  Plug 'skywind3000/asyncrun.vim'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""To probe""""""""""""""""
+" Harpon
+  Plug 'ThePrimeagen/harpoon'
+" Virtual-types
+  " Plug 'jubnzv/virtual-types.nvim'
 " Syntax Tree Surfer
   Plug 'ziontee113/syntax-tree-surfer'
 " Org
   Plug 'nvim-orgmode/orgmode'
   "Plug 'nvim-neorg/neorg'
+" Cmake Tools
+  " Plug 'Civitasv/cmake-tools.nvim'
+"Vim-dap
+	" Plug 'mfussenegger/nvim-dap'
+"Vimspector
+"Zen mode
   "Plug 'folke/zen-mode.nvim'
 "xml
   Plug 'othree/xml.vim'	
@@ -211,9 +226,6 @@ call plug#begin('~/.vim/plugged')
   " Plug 'jose-elias-alvarez/null-ls.nvim'
 "Vim-which-key
 	"Plug 'liuchengxu/vim-which-key'
-"Vim-dap
-	"Plug 'mfussenegger/nvim-dap'
-"Vimspector
 	"Plug 'puremourning/vimspector'
 call plug#end()
 
@@ -334,8 +346,37 @@ let g:rooter_change_directory_for_non_project_files = 'current'
 
 " Verilog
 let g:SuperTabDefaultCompletionType = 'context'
+let g:asyncrun_open = 8
 
 "Test for lua
 lua << EOF
 
+-- require('tabnine').setup({
+--   disable_auto_comment=true,
+--   accept_keymap="<C-t>",
+--   dismiss_keymap = "<C-]>",
+--   debounce_ms = 800,
+--   suggestion_color = {gui = "#808080", cterm = 244},
+--   exclude_filetypes = {"TelescopePrompt"},
+--   log_file_path = nil, -- absolute path to Tabnine log file
+-- })
+
+-- require("cmake-tools").setup {
+--   cmake_command = "cmake",
+--   cmake_build_directory = "",
+--   cmake_build_directory_prefix = "cmake_build_", -- when cmake_build_directory is "", this option will be activated
+--   cmake_generate_options = { "-D", "CMAKE_EXPORT_COMPILE_COMMANDS=1" },
+--   cmake_soft_link_compile_commands = true, -- if softlink compile commands json file
+--   cmake_build_options = {},
+--   cmake_console_size = 10, -- cmake output window height
+--   cmake_console_position = "belowright", -- "belowright", "aboveleft", ...
+--   cmake_show_console = "always", -- "always", "only_on_error"
+--   cmake_dap_configuration = { name = "cpp", type = "codelldb", request = "launch" }, -- dap configuration, optional
+--   cmake_variants_message = {
+--     short = { show = true },
+--     long = { show = true, max_length = 40 }
+--   }
+-- }
+
 EOF
+

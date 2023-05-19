@@ -1,5 +1,6 @@
 {
    "suggest.autoTrigger": "none" // To disable auto trigger
+   "signature.enable": false,
    "suggest.completionItemKindLabels": {
     "variable": "\uf71b",
     "constant": "\uf8ff",
@@ -24,7 +25,8 @@
     "typeParameter": "\uf278",
     "default": "\uf29c"
   },
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.3/clangd_15.0.3/bin/clangd"
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.3/clangd_15.0.3/bin/clangd",
+  "snippets.ultisnips.pythonPrompt": false
   //"cSpell.userWords": [
     //"Aumento",
     //"Becerril",

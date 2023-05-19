@@ -25,19 +25,6 @@ nmap <silent> g? <cmd>Lspsaga hover_doc<CR>
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 " Symbol renaming.
 " COC
 "nmap <leader>r <Plug>(coc-rename)
@@ -45,16 +32,13 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>r <cmd>Lspsaga rename<CR>
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+lua << EOF
+  vim.keymap.set( 'v' , '<space>f', function()
+    vim.lsp.buf.format { async = true }
+  end, opts)
+EOF
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
@@ -82,14 +66,14 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
+" if has('nvim-0.4.0') || has('patch-8.2.0750')
+"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+" endif
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
@@ -155,8 +139,12 @@ nmap <Leader>q :q<CR>
 nmap <Leader>Q :q!<CR>
 
 """"""""""""""""""""""""""""" Split resize 
-nnoremap <Leader>> 10<C-w>>
-nnoremap <Leader>< 10<C-w><
+nnoremap <A-l> 2<C-w>>
+nnoremap <A-h> 2<C-w><
+nnoremap <A-j> 2<C-w>+
+nnoremap <A-k> 2<C-w>-
+nnoremap <A-=> 2<C-w>=
+
 """"""""""""""""""""""""""""" Fast ";"
 nnoremap <Leader>; $a;<Esc>
 
@@ -203,12 +191,12 @@ tnoremap   <silent>   <F1>    <C-\><C-n>:FloatermToggle<CR>
 nmap       <silent>   <F5>    :FloatermKill<CR>
 
 "for make
-nmap <leader>M         :make 
-nmap <leader>ma        :make<CR>
-nmap <leader>mr        :make run<CR>
+nmap <leader>M         :AsyncRun make 
+nmap <leader>ma        :AsyncRun make<CR>
+nmap <leader>mr        :AsyncRun make run<CR>
 nmap <leader>md        :FloatermNew make debug<CR>
-nmap <leader>mc        :make clean<CR>
-nmap <leader>mv        :make view<CR>
+nmap <leader>mc        :AsyncRun make clean<CR>
+nmap <leader>mv        :AsyncRun make view<CR>
 
 """""""""""""""""""""""""""""" Align
 xmap ga            <Plug>(EasyAlign)
@@ -222,12 +210,17 @@ nnoremap <F12>              <cmd>Telescope builtin prompt_prefix=🔍<CR>
 nnoremap <leader>B          <cmd>Telescope buffers prompt_prefix=🔍<CR>
 nnoremap cmd                <cmd>Telescope commands theme=dropdown prompt_prefix=🔍<CR>
 nnoremap coc                <cmd>Telescope coc theme=ivy prompt_prefix=🔍<CR>
-nnoremap <leader>h          <cmd>Telescope oldfiles prompt_prefix=🔍<CR>
+nnoremap <leader>H          <cmd>Telescope oldfiles prompt_prefix=🔍<CR>
 nnoremap <silent> ff        <cmd>Telescope fd prompt_prefix=🔍<CR>
 
 """""""""""""""""""""""""""""" Marks
 nnoremap <silent> tm        <cmd>MarksToggleSigns<CR>
 nnoremap <silent> Tm        <cmd>Telescope marks prompt_prefix=🔍<CR>
+"""""""""""""""""""""""""""""" Harpon
+nnoremap <silent><C-a>     <cmd>lua require("harpoon.mark").add_file()<CR>
+nnoremap <leader>h         <cmd>Telescope harpoon marks<CR>
+nnoremap <leader>>         <cmd>lua require("harpoon.ui").nav_next()<CR>
+nnoremap <leader><         <cmd>lua require("harpoon.ui").nav_prev()<CR>
 
 """""""""""""""""""""""""""""" Select open buffer
 nnoremap <leader>b          <cmd>BufferLinePick<CR>
@@ -236,8 +229,9 @@ nnoremap <leader>b          <cmd>BufferLinePick<CR>
 nnoremap <leader>g <cmd>LazyGit<CR>
 
 """""""""""""""""""""""""""""" Sniprun 
-nmap <silent>qr    <Plug>SnipRun
-nmap <silent>qs    <Plug>SnipClose
+nnoremap <silent>qr    <Plug>SnipRun
+vnoremap <silent>qr    <Plug>SnipRun
+nnoremap <silent>qs    <Plug>SnipClose
 
 """""""""""""""""""""""""""""" Vimterminator
 "nmap <leader>rf    <Plug>Run current file
@@ -249,7 +243,7 @@ nmap <leader>df    <cmd>DashboardNewFile<CR>
 "nmap <leader>rs    <Plug>Stop running filc
 "
 """""""""""""""""""""""""""""" Take screenshoot
-vnoremap <silent>ts :'<,'>TakeScreenShot<CR><Cmd>echo 'Take screenshot'<CR>
+vnoremap <silent>ts :TakeScreenShot<CR><Cmd>echo 'Take screenshot'<CR>
 
 """""""""""""""""""""""""""""" Lspsaga Dx
 nmap <leader>[     <cmd>Lspsaga diagnostic_jump_prev<CR>
