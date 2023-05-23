@@ -24,14 +24,15 @@ set shell=/bin/zsh
 " para verilog
 set foldmethod=manual
 " para spelling
-set spell spelllang=es_es
+set spell spelllang=en_us
 " for autopairs
 set runtimepath+=.
 
 
 """"""""""""""""""""""""""""""""""""""""""PlugIns
-"Packer
+"""""""Packer
 lua require('plugins')
+
 """"""""Vimplug
 call plug#begin('~/.vim/plugged')
 "Themes
@@ -319,7 +320,7 @@ autocmd FileType verilog_systemverilog setlocal colorcolumn=80
 "For the screenshot
 let g:vimShotSavePath="~/Pictures/code-screenshots"
 
-let g:rooter_patterns = ['.git', 'makefile' ]
+let g:rooter_patterns = ['.git', 'makefile', 'CMakeLists.txt']
 let g:rooter_change_directory_for_non_project_files = 'current'
 
 """""""""""""""""""""""""""""""""""""""""""""""" Kite
@@ -351,6 +352,24 @@ let g:asyncrun_open = 8
 "Test for lua
 lua << EOF
 
+--[[ Lazy ]]
+-- local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- if not vim.loop.fs_stat(lazypath) then
+--   vim.fn.system({
+--     "git",
+--     "clone",
+--     "--filter=blob:none",
+--     "https://github.com/folke/lazy.nvim.git",
+--     "--branch=stable", -- latest stable release
+--     lazypath,
+--   })
+-- end
+--
+-- vim.opt.rtp:prepend(lazypath)
+
+-- require("lazy").setup({
+-- })
+
 -- require('tabnine').setup({
 --   disable_auto_comment=true,
 --   accept_keymap="<C-t>",
@@ -377,6 +396,7 @@ lua << EOF
 --     long = { show = true, max_length = 40 }
 --   }
 -- }
+
 
 EOF
 

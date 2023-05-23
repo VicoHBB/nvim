@@ -20,7 +20,7 @@ require("mason").setup({
         -- Width of the window. Accepts:
         -- - Integer greater than 1 for fixed width.
         -- - Float in the range of 0-1 for a percentage of screen width.
-        width = 0.8,
+        width = 0.8require'lspconfig'.cmake.setup{},
 
         -- Height of the window. Accepts:
         -- - Integer greater than 1 for fixed height.
@@ -60,6 +60,9 @@ require('lspconfig').clangd.setup{
   filetypes    = { "c", "cpp" },
 }
 
+require('lspconfig').cmake.setup{
+}
+
 --require'lspconfig'.ccls.setup{}
 -- require('lspconfig').pyright.setup{
 --   capabilities = capabilities,
@@ -84,7 +87,7 @@ require('lspconfig').texlab.setup{
 require('lspconfig').ltex.setup{
   settings = {
 		ltex = {
-			language = "en-GB",
+			language = "en-US",
 			-- language = "es",
       dictionary = {
         ['en-GB'] = { "MicroPython" },
@@ -98,6 +101,10 @@ require('lspconfig').marksman.setup{
 	cmd = { "marksman", "server" },
   capabilities = capabilities,
 }
+
+-- require'lspconfig'.grammarly.setup{
+-- 	filetypes = {"markdown"}
+-- }
 
 require('lspconfig').asm_lsp.setup{
   capabilities = capabilities,
