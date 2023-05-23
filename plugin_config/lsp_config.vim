@@ -20,7 +20,7 @@ require("mason").setup({
         -- Width of the window. Accepts:
         -- - Integer greater than 1 for fixed width.
         -- - Float in the range of 0-1 for a percentage of screen width.
-        width = 0.8require'lspconfig'.cmake.setup{},
+        width = 0.8,
 
         -- Height of the window. Accepts:
         -- - Integer greater than 1 for fixed height.
