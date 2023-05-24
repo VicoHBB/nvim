@@ -1,8 +1,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""Keymaps
 "Tecla lider ESPACIO
 let mapleader=" "
-nmap <silent><leader>         <Cmd>echo 'What to do?'<CR>
-nmap <silent><leader><leader> <Cmd>echo 'Think'<CR>
+nmap <silent><leader>                 <Cmd>echo 'What to do?'<CR>
+nmap <silent><leader><leader><leader> <Cmd>echo 'Think'<CR>
 
 "''''''''''''''''''''''''''''''''''''''''''''''COC
 " Use `[g` and `]g` to navigate diagnostics
@@ -114,18 +114,16 @@ nmap fl  <cmd>HopLine<CR>
 nmap fW  <cmd>HopPattern<CR>
 
 """"""""""""""""""""""""""""" Iswap
-nmap <leader>s   <cmd>ISwap<CR>
 nmap <leader>sw  <cmd>ISwapWith<CR>
 nmap <leader>sn  <cmd>ISwapNode<CR>
 
-"""""""""""""""""""""""""" NERDTree
-"nmap <Leader>n :NERDTreeFind<CR>
+""""""""""""""""""""""""""""" Iswap
+nmap <leader>st  <cmd>TSJToggle<CR>
 
 """""""""""""""""""""""""" NvimTree
 nmap <Leader>n :NvimTreeToggle<CR>
 
 """"""""""""""""""""""""""""" Ranger
-let g:ranger_map_keys = 0
 map  F :RnvimrToggle<CR>
 
 """"""""""""""""""""""""""""" Navbuddy
@@ -195,7 +193,7 @@ nmap <leader>M         :AsyncRun make
 nmap <leader>ma        :AsyncRun make<CR>
 nmap <leader>mr        :AsyncRun make run<CR>
 nmap <leader>md        :FloatermNew make debug<CR>
-nmap <leader>mc        :AsyncRun make clean<CR>
+nmap <leader>mC        :AsyncRun make clean<CR>
 nmap <leader>mv        :AsyncRun make view<CR>
 
 """""""""""""""""""""""""""""" Align
@@ -238,10 +236,6 @@ nnoremap <silent>qs    <Plug>SnipClose
 "nmap <leader>rs    <Plug>Stop running file
 nmap <leader>rc    :TerminatorOutputBufferClose<CR>
 
-"""""""""""""""""""""""""""""" Dashboardnewfile
-nmap <leader>df    <cmd>DashboardNewFile<CR>
-"nmap <leader>rs    <Plug>Stop running filc
-"
 """""""""""""""""""""""""""""" Take screenshoot
 vnoremap <silent>ts :TakeScreenShot<CR><Cmd>echo 'Take screenshot'<CR>
 

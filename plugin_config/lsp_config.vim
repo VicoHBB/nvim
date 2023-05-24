@@ -5,7 +5,20 @@ lua << EOF
 -- local null_ls = require("null-ls")    -- null
 local util = require("formatter.util")
 
-require("lsp_signature").setup({})
+require("lsp_signature").setup({
+  doc_lines = 50, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+                 -- set to 0 if you DO NOT want any API comments be shown
+                 -- This setting only take effect in insert mode, it does not affect signature help in normal
+                 -- mode, 10 by default
+
+  max_height = 15, -- max height of signature floating_window
+  max_width = 80, -- max_width of signature floating_window
+
+  handler_opts = {
+    border = "double"   -- double, rounded, single, shadow, none, or a table of borders
+  },
+
+})
 
 -- require('virtualtypes').on_attach
 
@@ -58,6 +71,12 @@ require('nvim-custom-diagnostic-highlight').setup({
 require('lspconfig').clangd.setup{
   capabilities = capabilities,
   filetypes    = { "c", "cpp" },
+	on_new_config = function(new_config, new_cwd)
+			local status, cmake = pcall(require, "cmake-tools")
+			if status then
+					cmake.clangd_on_new_config(new_config)
+			end
+	end,
 }
 
 require('lspconfig').cmake.setup{
