@@ -24,7 +24,8 @@ set shell=/bin/zsh
 " para verilog
 set foldmethod=manual
 " para spelling
-set spell spelllang=en_us
+" set spell spelllang=en_us
+set spell spelllang=es_es
 " for autopairs
 set runtimepath+=.
 
@@ -209,6 +210,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'Wansmer/treesj'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""To probe""""""""""""""""
+" Matchit 
+  Plug 'https://github.com/adelarsq/vim-matchit'
+  Plug 'andymass/vim-matchup'
 " Virtual-types
   " Plug 'jubnzv/virtual-types.nvim'
 " Syntax Tree Surfer
@@ -239,6 +243,8 @@ let g:vim_search_pulse_mode = 'pattern'
 " Ruby Host
 let g:ruby_host_prog = '/home/vhbb/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-host'
 
+" Matchit
+runtime macros/matchit.vim
 
 "perl
 "source ~/.config/nvim/plugin_config/perl.vim

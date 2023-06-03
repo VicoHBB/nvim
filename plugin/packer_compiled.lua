@@ -80,7 +80,7 @@ _G.packer_plugins = {
     url = "https://github.com/eandrju/cellular-automaton.nvim"
   },
   ["codewindow.nvim"] = {
-    config = { "\27LJ\2\nù\1\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\0019\1\4\0B\1\1\1K\0\1\0\27apply_default_keybinds\1\0\4\fz_index\3\1\21width_multiplier\3\1\18window_border\vsingle\16show_cursor\2\nsetup\15codewindow\frequire\0" },
+    config = { "\27LJ\2\nù\1\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\0019\1\4\0B\1\1\1K\0\1\0\27apply_default_keybinds\1\0\4\21width_multiplier\3\1\18window_border\vsingle\16show_cursor\2\fz_index\3\1\nsetup\15codewindow\frequire\0" },
     loaded = true,
     path = "/home/vhbb/.local/share/nvim/site/pack/packer/start/codewindow.nvim",
     url = "https://github.com/gorbit99/codewindow.nvim"
@@ -117,14 +117,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: codewindow.nvim
-time([[Config for codewindow.nvim]], true)
-try_loadstring("\27LJ\2\nù\1\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\0019\1\4\0B\1\1\1K\0\1\0\27apply_default_keybinds\1\0\4\fz_index\3\1\21width_multiplier\3\1\18window_border\vsingle\16show_cursor\2\nsetup\15codewindow\frequire\0", "config", "codewindow.nvim")
-time([[Config for codewindow.nvim]], false)
 -- Config for: colorful-winsep.nvim
 time([[Config for colorful-winsep.nvim]], true)
 try_loadstring("\27LJ\2\nõ\1\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\fsymbols\1\a\0\0\b‚îÅ\b‚îÉ\b‚îè\b‚îì\b‚îó\b‚îõ\14highlight\1\0\1\rinterval\3\30\1\0\1\afg\f#B8BB26\nsetup\20colorful-winsep\frequire\0", "config", "colorful-winsep.nvim")
 time([[Config for colorful-winsep.nvim]], false)
+-- Config for: codewindow.nvim
+time([[Config for codewindow.nvim]], true)
+try_loadstring("\27LJ\2\nù\1\0\0\4\0\5\0\t6\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\3\0B\1\2\0019\1\4\0B\1\1\1K\0\1\0\27apply_default_keybinds\1\0\4\21width_multiplier\3\1\18window_border\vsingle\16show_cursor\2\fz_index\3\1\nsetup\15codewindow\frequire\0", "config", "codewindow.nvim")
+time([[Config for codewindow.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

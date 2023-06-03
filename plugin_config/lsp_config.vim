@@ -106,8 +106,8 @@ require('lspconfig').texlab.setup{
 require('lspconfig').ltex.setup{
   settings = {
 		ltex = {
-			language = "en-US",
-			-- language = "es",
+			-- language = "en-US",
+			language = "es",
       dictionary = {
         ['en-GB'] = { "MicroPython" },
         ['es'] = { "MicroPython" },

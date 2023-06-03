@@ -4,7 +4,7 @@ let g:terminator_runfile_map = {
             \ "c": "make &&",
             \ "rust": "rustc $dir$fileName && ./$fileNameWithoutExt",
             \ "verilog_systemverilog": "make lint",
-            \ "d2": "d2 --layout=elk -t 200 $dir$fileName DIMG/$fileNameWithoutExt.png && gwenview DIMG/$fileNameWithoutExt.png"
+            \ "d2": "d2 --layout=elk -t 3 $dir$fileName DIMG/$fileNameWithoutExt.png && gwenview DIMG/$fileNameWithoutExt.png"
             \ }
 
 let g:terminator_repl_command = {
