@@ -76,8 +76,8 @@ keyset( 'n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", {silent= true} )
 keyset( 'n', "<C-p>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
 
 -- Signify
-keyset( 'n', "<F6>", "<CMD>SignifyHunkDiff<CR>", {silent= true} )
-keyset( 'n', "<F7>", "<CMD>SignifyToggleHighlight<CR>", {silent= true} )
+-- keyset( 'n', "<F6>", "<CMD>SignifyHunkDiff<CR>", {silent= true} )
+-- keyset( 'n', "<F7>", "<CMD>SignifyToggleHighlight<CR>", {silent= true} )
 
 -- FZF
 keyset( 'n', "<leader>l", "<CMD>Lines<CR>", {silent= true} )
@@ -153,6 +153,8 @@ keyset( 'n', "fi", "<CMD>VerilogFollowInstance<CR>", {silent= true} )
 keyset( 'n', "fp", "<CMD>VerilogFollowPort<CR>", {silent= true} )
 keyset( 'n', "<leader>u", "<CMD>VerilogGotoInstanceStart<CR>", {silent= true} )
 
+-- Oil
+vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+
 -- [[ Test ]]
 keyset( 'n', "<leader>rc", "<CMD>TerminatorOutputBufferClose<CR>", {silent= true} )
-

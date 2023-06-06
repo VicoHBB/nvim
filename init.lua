@@ -1,5 +1,1 @@
-require("core/global_settings")
-require("core/plugins")
-require("core/plugin_config")
-require("core/colorscheme")
-require("core/keymaps")
+require('core')

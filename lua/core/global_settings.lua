@@ -19,6 +19,9 @@ vim.cmd([[ set foldmethod=manual ]])
 vim.cmd([[ set spell spelllang=en_us ]])
 vim.cmd([[ set runtimepath+=. ]])
 
+-- Termguicolors
+vim.o.termguicolors = true
+
 -- Ruby Host
 vim.g.ruby_host_prog = '/home/vhbb/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-host'
 
