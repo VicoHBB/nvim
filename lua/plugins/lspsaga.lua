@@ -7,6 +7,12 @@ return {
     {"nvim-treesitter/nvim-treesitter"}
   },
   config = function()
+      -- require("lspsaga").init_lsp_saga{
+      --     error_sign = '',
+      --     warn_sign = '',
+      --     hint_sign = '',
+      --     infor_sign = '',
+      -- }
       require("lspsaga").setup({
         ui = {
           -- This option only works in Neovim 0.9

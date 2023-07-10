@@ -16,9 +16,18 @@ return {
     priority = 1000,
     lazy = false,
   },
-  "tpope/vim-surround",                                           -- Vim surround
+  -- "tpope/vim-surround",                                           -- Vim surround
+  {
+      "kylechui/nvim-surround",
+      version = "*", -- Use for stability; omit to use `main` branch for the latest features
+      event = "VeryLazy",
+      config = function()
+          require("nvim-surround").setup({
+              -- Configuration here, or leave empty to use defaults
+          })
+      end
+  },
   "junegunn/vim-easy-align",                                      -- Easy align
-  "shirk/vim-gas",                                                -- ASM
   "preservim/tagbar",                                             -- Tagbar
   {                                                               -- Local History
     "dinhhuy258/vim-local-history",
@@ -65,8 +74,38 @@ return {
       -- may set any options here
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
       vim.g.loaded_matchit = 1
+      -- vim.g.matchup_surround_enabled = 1
     end
   },
-  "eandrju/cellular-automaton.nvim",
-
+  {
+    "eandrju/cellular-automaton.nvim",
+    event = "VeryLazy",
+  },
+  {
+    "glts/vim-radical",
+    dependencies = {
+      "glts/vim-magnum",
+      "tpope/vim-repeat",
+    },
+    event = "VeryLazy",
+  },
+  {
+    'nacro90/numb.nvim',
+    config = function ()
+      require('numb').setup{
+        show_numbers         = true, -- Enable 'number' for the window while peeking
+        show_cursorline      = true, -- Enable 'cursorline' for the window while peeking
+        hide_relativenumbers = true, -- Enable turning off 'relativenumber' for the window while peeking
+        number_only          = false, -- Peek only when the command is only a number instead of when it starts with a number
+        centered_peeking     = true, -- Peeked line will be centered relative to window
+      }
+    end
+  },
+  {
+    'Wansmer/treesj',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesj').setup({--[[ your config ]]})
+    end,
+  },
 }

@@ -9,5 +9,13 @@ vim.cmd([[
   autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab colorcolumn=80
   autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab colorcolumn=80
   autocmd FileType python setlocal colorcolumn=80
-  autocmd FileType verilog_systemverilog setlocal colorcolumn=80
+  autocmd FileType verilog_systemverilog setlocal tabstop=4 colorcolumn=80
+  autocmd FileType lua setlocal colorcolumn=80
+]])
+
+vim.cmd([[
+  augroup matchup_matchparen_highlight
+    autocmd!
+    autocmd ColorScheme * hi MatchParen guifg=red
+  augroup END
 ]])

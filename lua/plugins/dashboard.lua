@@ -188,12 +188,13 @@ return {
               { type = "text", val = "Comands", opts = { hl = "SpecialComment", position = "center" } },
               { type = "padding", val = 1 },
               dashboard.button("e", " -> New File", ":ene<CR>"),
-              dashboard.button("SPC H", " -> Complete History",":Telescope oldfiles prompt_prefix=🔍<CR>"),
-              dashboard.button("f f", " -> Find File",":Telescope find_files prompt_prefix=🔍<CR>"),
+              dashboard.button("SPC H", " -> Complete History",":Telescope oldfiles<CR>"),
+              dashboard.button("f f", " -> Find File",":Telescope find_files<CR>"),
               dashboard.button("F"," -> File Browser",":RnvimrToggle<CR>"),
-              dashboard.button("SPC S", " -> Find Word",":Telescope live_grep prompt_prefix=🔍<CR>"),
+              dashboard.button("SPC S", " -> Find Word",":Telescope live_grep<CR>"),
               dashboard.button("L","󰒲 -> Lazy", ":Lazy<CR>"),
-              dashboard.button("init.vim"," -> Configuration", ":e /home/vhbb/.config/nvim/init.vim<CR>"),
+              dashboard.button("M","󰟾 -> Mason", ":Mason<CR>"),
+              dashboard.button("init.lua"," -> Configuration", ":e /home/vhbb/.config/nvim/init.lua<CR>"),
               dashboard.button("c h"," -> Checkhealth", ":checkhealth<CR>"),
               dashboard.button("Q", " -> Quit",":q<CR>"),
           },
@@ -212,11 +213,10 @@ return {
         },
       }
 
-
-      dashboard.section.footer.val = {
-          [[]],
-          [[       I'm more what I think of my self, I really have to be...      ]],
-      }
+      -- dashboard.section.footer.val = {
+      --     [[]],
+      --     [[       I'm more what I think of my self, I really have to be...      ]],
+      -- }
 
       local config = {
           layout = {
@@ -242,7 +242,7 @@ return {
       alpha.setup(config)
 
       local home = os.getenv('HOME')
-      local db = require('dashboard')
+      -- local db = require('dashboard')
       db.preview_command = 'cat | lolcat -F 0.3'
       --db.preview_file_path = home .. '/.config/nvim/static/neovim.cat'
       db.preview_file_height = 12

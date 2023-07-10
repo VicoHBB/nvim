@@ -45,7 +45,7 @@ return {
     -- invalid: `/path/with\\ space/xxx`
     -- default: ''
     -- let g:mkdp_browser = '/bin/brave'
-    vim.g.mkdp_open_ip = '/bin/brave'
+    vim.g.mkdp_browser = '/bin/brave'
 
     -- set to 1, echo preview page url in command line when open preview page
     -- default is 0
@@ -113,7 +113,7 @@ return {
     -- recognized filetypes
     -- these filetypes will have MarkdownPreview... commands
     -- let g:mkdp_filetypes = ['markdown']
-    vim.g.mkdp_filetypes = 'markdown'
+    -- vim.g.mkdp_filetypes = 'markdown'
 
     -- set default theme (dark or light)
     -- By default the theme is define according to the preferences of the system

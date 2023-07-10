@@ -1,4 +1,12 @@
 return {
+  {                                                                  -- SystemVerilog
+    "vhda/verilog_systemverilog.vim",
+    -- ft = { "verilog", "systemverilog", "verilog_systemverilog" },
+    lazy = false,
+    config = function()
+      vim.b.verilog_indent_modules = 1
+    end,
+  },
   {                                                                  -- SV Instance
     "antoinemadec/vim-verilog-instance",
     -- ft = { "verilog", "systemverilog", "verilog_systemverilog" },
@@ -11,13 +19,5 @@ return {
       -- When the variable is 1, empty lines in your code will be printed. Default value is 0.
       vim.g.verilog_instance_keep_empty_lines = 0
 	  end,
-  },
-  {                                                                  -- SystemVerilog
-    "vhda/verilog_systemverilog.vim",
-    -- ft = { "verilog", "systemverilog", "verilog_systemverilog" },
-    lazy = false,
-    config = function()
-      vim.b.verilog_indent_modules = 1
-    end,
   },
 }

@@ -6,7 +6,7 @@ return {
   "vim-scripts/c.vim",                                            -- For C
   "ludwig/split-manpage.vim",                                     -- split
   -- "webastien/vim-ctags",                                          -- Ctags
-  "frazrepo/vim-rainbow",                                         -- Vim rainbow
-  "zyedidia/vim-snake",                                           -- Snake gam
+  -- "frazrepo/vim-rainbow",                                         -- Vim rainbow
+  -- "zyedidia/vim-snake",                                           -- Snake gam
   -- "vim-scripts/bccalc.vim",                                       -- Calculate with bc
 }

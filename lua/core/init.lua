@@ -12,4 +12,4 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
-require "core/lazy"
+require("core/lazy")

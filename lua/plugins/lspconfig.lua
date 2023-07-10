@@ -8,13 +8,25 @@ return {
         filetypes    = { "c", "cpp" },
       }
 
+      -- require('lspconfig').ccls.setup {
+      --   init_options = {
+      --     compilationDatabaseDirectory = "build";
+      --     index = {
+      --       threads = 0;
+      --     };
+      --     clang = {
+      --       excludeArgs = { "-frounding-math"} ;
+      --     };
+      --   }
+      -- }
+
       require('lspconfig').cmake.setup{
       }
 
-      --require'lspconfig'.ccls.setup{}
       require('lspconfig').pyright.setup{
         capabilities = capabilities,
       }
+
       require('lspconfig').pylsp.setup{
         settings = {
           pylsp = {

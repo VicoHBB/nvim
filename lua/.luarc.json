@@ -2,7 +2,8 @@
     "diagnostics.globals": [
         "vim",
         "use",
-        "shell"
+        "shell",
+        "🔍"
     ],
     "workspace.checkThirdParty": false,
     "diagnostics.disable": [
