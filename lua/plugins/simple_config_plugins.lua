@@ -1,7 +1,6 @@
 return {
   "ryanoasis/vim-devicons",                                       -- Vim devicons
   "terryma/vim-multiple-cursors",                                 -- Multiple cursors
-  "terryma/vim-multiple-cursors",                                 -- Multiple cursors
   "mhinz/vim-signify",                                            -- Vim signify
   {
     "airblade/vim-rooter",                                        -- Vim Rooter
@@ -39,10 +38,12 @@ return {
     branch = 'v2', -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
-      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      require('hop').setup { keys = 'etovxqpdygfblzhckisuran' }
     end,
   },
-  "mistweaverco/Screenshot.nvim",
+  {
+    "mistweaverco/Screenshot.nvim",
+  },
   "SmiteshP/nvim-navic",
   {
     "skywind3000/asyncrun.vim",                                   -- Asyncrn
@@ -78,10 +79,6 @@ return {
     end
   },
   {
-    "eandrju/cellular-automaton.nvim",
-    event = "VeryLazy",
-  },
-  {
     "glts/vim-radical",
     dependencies = {
       "glts/vim-magnum",
@@ -107,5 +104,10 @@ return {
     config = function()
       require('treesj').setup({--[[ your config ]]})
     end,
+  },
+  -- To probe
+  {
+    "eandrju/cellular-automaton.nvim",
+    event = "VeryLazy",
   },
 }

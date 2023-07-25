@@ -51,8 +51,14 @@ return {
             language = "en-US",
             -- language = "es",
             dictionary = {
-              ['en-GB'] = { "MicroPython" },
-              ['es'] = { "MicroPython" },
+              ['en-GB'] = {
+                "MicroPython",
+                "AUTOSAR",
+              },
+              ['es'] = {
+                "MicroPython",
+                "AUTOSAR",
+              },
             },
           },
         },
@@ -63,7 +69,7 @@ return {
         capabilities = capabilities,
       }
 
-      -- require'lspconfig'.grammarly.setup{
+      -- require('lspconfig').grammarly.setup{
       -- 	filetypes = {"markdown"}
       -- }
 

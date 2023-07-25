@@ -3,7 +3,8 @@
         "vim",
         "use",
         "shell",
-        "🔍"
+        "🔍",
+        "capabilities"
     ],
     "workspace.checkThirdParty": false,
     "diagnostics.disable": [
