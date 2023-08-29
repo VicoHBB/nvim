@@ -86,9 +86,9 @@ keyset( 'n', "<C-p>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
 
 -- FZF
 keyset( 'n', "<leader>l", "<CMD>Lines<CR>", {silent= true} )
-keyset( 'n', "<leader>S", "<CMD>Rg<CR>", {silent= true} )
+keyset( 'n', "<leader>S", "<CMD>RG<CR>", {silent= true} )
 keyset( 'n', "fzh", "<CMD>History<CR>", {silent= true} )
--- keyset( 'n', "fzf", "<CMD>History<CR>", {silent= true} )
+keyset( 'n', "fzf", "<CMD>FZF<CR>", {silent= true} )
 
 -- Floaterm
 keyset( 'n', "<F1>", "<CMD>FloatermToggle<CR>", {silent= true} )
@@ -118,16 +118,21 @@ keyset( 'n', "tag", "<CMD>Tagbar<CR>", {silent= true} )
 keyset( 'n', "<leader>t", "<CMD>Telescope builtin<CR>", {silent= true} )
 keyset( 'n', "tb", "<CMD>Telescope buffers<CR>", {silent= true} )
 keyset( 'n', "cmd", "<CMD>Telescope commands theme=dropdown<CR>", {silent= true} )
--- keyset( 'n', "coc", "<CMD>Telescope coc theme=ivy prompt_prefix=🔍<CR>", {silent= true} )
 keyset( 'n', "th", "<CMD>Telescope oldfiles<CR>", {silent= true} )
 keyset( 'n', "ff", "<CMD>Telescope fd<CR>", {silent= true} )
 keyset( 'n', "<leader>h", "<CMD>Telescope harpoon marks<CR>", {silent= true} )
 keyset( 'n', "tm", "<CMD>Telescope marks<CR>", {silent= true} )
 keyset( 'n', "ty", "<CMD>Telescope yabs current_language_tasks <CR>", {silent= true} )
-keyset( 'n', "tr", "<CMD>Telescope yabs current_language_tasks <CR>", {silent= true} )
+keyset( 'n', "tc", "<CMD>Telescope yabs current_language_tasks <CR>", {silent= true} )
+keyset( 'n', "tc", "<CMD>Telescope yabs current_language_tasks <CR>", {silent= true} )
 keyset( 'n', "tY", "<CMD>Telescope yabs global_tasks <CR>", {silent= true} )
 keyset( 'n', "ts", "<CMD>Telescope spell_suggest<CR>", {silent= true} )
 keyset( 'n', "tt", "<CMD>TodoTrouble<CR>", {silent= true} )
+
+-- AnyJump
+-- keyset( { 'n', 'x' }, "<leader>j", "<CMD>AnyJump<CR>", {silent= true} )
+-- AnyJump with Telescope
+keyset( { 'n', 'x', 'v' }, "<leader>J", "<CMD>Telescope grep_string<CR>", {silent= true} )
 
 -- Marks
 keyset( 'n', "tM", "<CMD>MarksToggleSigns<CR>", {silent= true} )

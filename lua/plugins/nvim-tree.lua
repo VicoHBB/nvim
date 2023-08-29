@@ -17,10 +17,10 @@ return {
       --ignore_ft_on_setup = { "dashboard" },
       sort_by = "case_sensitive",
       view = {
-	adaptive_size = true,
-	mappings = {
-	    list = { },
-	},
+				adaptive_size = true,
+				-- mappings = {
+				-- 		list = { },
+				-- },
       },
       renderer = {
 	full_name = true,
