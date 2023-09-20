@@ -1,13 +1,12 @@
 local keyset = vim.keymap.set
 -- Think
-keyset( 'n', "<space>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
+-- keyset( 'n', "<space>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
 keyset( 'n', "<space><space>", "<CMD>echo 'Think, Think...'<CR>",{ silent= true } )
 
 
 -- GoTo
-keyset( "n", "gi", "<Plug>(coc-implementation)<CR>", {silent = true} )
 keyset( "n", "gd", "<CMD>Lspsaga goto_definition<CR>", {silent = true} )
-keyset( "n", "gr", "<CMD>Lspsaga lsp_finder<CR>", {silent = true} )
+keyset( "n", "gr", "<CMD>Lspsaga finder<CR>", {silent = true} )
 keyset( "n", "gt", "<CMD>Lspsaga peek_definition<CR>", {silent = true} )
 keyset( "n", "g?", "<CMD>Lspsaga hover_doc<CR>", {silent = true} )
 -- GoTo preview
@@ -193,5 +192,7 @@ keyset( 'n', "<leader>mr", ":AsyncRun make run<CR>", {silent= true} )
 keyset( 'n', "<leader>md", ":FloatermNew make debug<CR>", {silent= true} )
 keyset( 'n', "<leader>mC", ":AsyncRun make clean<CR>", {silent= true} )
 keyset( 'n', "<leader>mv", ":AsyncRun make view<CR>", {silent= true} )
+keyset( 'n', "<leader>mq", ":AsyncRun make qrtl<CR>", {silent= true} )
+keyset( 'n', "<leader>ms", ":AsyncRun make synth<CR>", {silent= true} )
 
 -- CMake

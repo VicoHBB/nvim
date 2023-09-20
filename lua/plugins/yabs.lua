@@ -104,7 +104,7 @@ return {
               output = 'quickfix',
             },
             Quartus_Tools = {
-              command = 'make view',
+              command = 'make qrtl',
               output = 'quickfix',
             },
             Verilating_and_Simulate = {
@@ -124,8 +124,20 @@ return {
               command = 'make all',
               output = 'quickfix',
             },
+            Synthesis_and_analysis = {
+              command = 'make synth',
+              output = 'quickfix',
+            },
+            Generate_Netlist = {
+              command = 'make net',
+              output = 'quickfix',
+            },
             Yosys = {
               command = 'make ys',
+              output = 'quickfix',
+            },
+            RTLViewer = {
+              command = 'make view',
               output = 'quickfix',
             },
           },

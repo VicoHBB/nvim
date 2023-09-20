@@ -2,8 +2,11 @@ return {
   {                                                               -- Nvim treesitter
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+		-- event = "VeryLazy",
 		dependencies = {
+			"pleshevskiy/tree-sitter-d2",
 			"HiPhish/nvim-ts-rainbow2",
+			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -20,6 +23,7 @@ return {
 					"latex",
 					"markdown",
 					"make",
+					"cmake",
 					"bash",
 					"gitignore",
 				},
@@ -33,34 +37,19 @@ return {
 				highlight = {
 					-- `false` will disable the whole extension
 					enable = true,
-					-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-					-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-					-- the name of the parser)
-					-- list of language that will be disabled
-					-- disable = { "c", "rust" },
-					-- disable = { "latex", "make" },
-					-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-					-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-					-- Using this option may slow down your editor, and you may see some duplicate highlights.
-					-- Instead of true it can also be a list of languages
 					additional_vim_regex_highlighting = true,
 				},
-
-				matchup = {
-					enable = true,              -- mandatory, false will disable the whole extension
-					-- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-					-- [options]
+				indent = {
+					enable = true,
 				},
 
-    	})
-
-			require('nvim-treesitter.configs').setup {
 				matchup = {
 					enable = true,              -- mandatory, false will disable the whole extension
 					-- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
 					-- [options]
 					disable_virtual_text = true,
 				},
+
 				rainbow = {
 					enable = false,
 					-- list of languages you want to disable the plugin for
@@ -69,9 +58,24 @@ return {
 					query = 'rainbow-parens',
 					-- Highlight the entire buffer all at once
 					strategy = require('ts-rainbow').strategy.global,
-				}
-			}
+				},
 
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@conditional.outer",
+							["ic"] = "@conditional.inner",
+							["al"] = "@loop.outer",
+							["il"] = "@loop.inner",
+						}
+					}
+				}
+
+    	})
 
 			-- parser_config.sv = {
 			-- 	install_info = {
@@ -82,7 +86,7 @@ return {
 			-- 		generate_requires_npm = true, -- if stand-alone parser without npm dependencies
 			-- 		requires_generate_from_grammar = true, -- if folder contains pre-generated src/parser.c
 			-- 	},
-			-- 	filetype = "verilog_systemverilog ", -- if filetype does not match the parser name
+			-- 	filetype = "systemverilog", -- if filetype does not match the parser name
 			-- }
 
 			parser_config.d2 = ({

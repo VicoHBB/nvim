@@ -21,6 +21,22 @@ return {
       -- }
 
       require('lspconfig').cmake.setup{
+        root_dir = require('lspconfig').util.root_pattern(
+          'CMakePresets.json',
+          'CTestConfig.cmake',
+          '.git',
+          'build',
+          'cmake',
+          'compile_commands.json'
+        )
+      }
+
+      require('lspconfig').neocmake.setup{
+        root_dir = require('lspconfig').util.root_pattern(
+          '.git',
+          'cmake',
+          'compile_commands.json'
+        ),
       }
 
       require('lspconfig').pyright.setup{
@@ -48,8 +64,8 @@ return {
       require('lspconfig').ltex.setup{
         settings = {
           ltex = {
-            language = "en-US",
-            -- language = "es",
+            -- language = "en-US",
+            language = "es",
             dictionary = {
               ['en-GB'] = {
                 "MicroPython",

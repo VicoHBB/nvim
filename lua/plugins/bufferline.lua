@@ -81,7 +81,7 @@ return {
 					text_align = "left",
 					separator = true,
 					--padding = 1
-				}
+				},
 			},
 			color_icons = true , -- whether or not to add the filetype icon highlights
 			show_buffer_icons = true , -- disable filetype icons for buffers

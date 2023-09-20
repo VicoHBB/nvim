@@ -3,19 +3,15 @@ return {
   "terryma/vim-multiple-cursors",                                 -- Multiple cursors
   "mhinz/vim-signify",                                            -- Vim signify
   {
-    "airblade/vim-rooter",                                        -- Vim Rooter
-    config = function()
-      -- Vim-rooter
-      vim.g.rooter_patterns = { '.git', 'makefile', 'compile_commands.json' }
-      vim.g.rooter_change_directory_for_non_project_files = 'current'
-    end,
+    'notjedi/nvim-rooter.lua',                                    -- Nvim roter
+    config = function() require'nvim-rooter'.setup({
+        rooter_patterns = { '.git', 'makefile', 'Makefile', 'app', 'compile_commands.json' },
+        trigger_patterns = { '*' },
+        manual = false,
+        fallback_to_parent = false,
+      })
+    end
   },
-  {                                                               -- Syntax
-    "sheerun/vim-polyglot",
-    priority = 1000,
-    lazy = false,
-  },
-  -- "tpope/vim-surround",                                           -- Vim surround
   {
       "kylechui/nvim-surround",
       version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -27,7 +23,6 @@ return {
       end
   },
   "junegunn/vim-easy-align",                                      -- Easy align
-  "preservim/tagbar",                                             -- Tagbar
   {                                                               -- Local History
     "dinhhuy258/vim-local-history",
     branch = "master",
