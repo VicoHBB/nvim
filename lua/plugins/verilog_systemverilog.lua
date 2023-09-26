@@ -1,16 +1,22 @@
 return {
   {                                                                  -- SystemVerilog
     "vhda/verilog_systemverilog.vim",
-    -- ft = { "verilog", "systemverilog", "verilog_systemverilog" },
-    lazy = false,
+    lazy = true,
+    ft = { "verilog", "systemverilog" },
     config = function()
-      vim.b.verilog_indent_modules = 1
+      vim.g.verilog_indent_modules = 1
     end,
+    keys = {
+      vim.keymap.set( 'n', "fi", "<CMD>VerilogFollowInstance<CR>", {silent= true} ),
+      vim.keymap.set( 'n', "fp", "<CMD>VerilogFollowPort<CR>", {silent= true} ),
+      vim.keymap.set( 'n', "<leader>u", "<CMD>VerilogGotoInstanceStart<CR>", {silent= true} ),
+      vim.keymap.set( 'n', "<leader>V", "<CMD>VerilogErrorFormat Verilator 1<CR>", {silent= true} )
+    }
   },
   {                                                                  -- SV Instance
     "antoinemadec/vim-verilog-instance",
-    -- ft = { "verilog", "systemverilog", "verilog_systemverilog" },
-    lazy = false,
+    lazy = true,
+    ft = { "verilog", "systemverilog" },
     config = function()
       -- When the variable is 1, last printed line will skip the coma. Default value is 0.
       vim.g.verilog_instance_skip_last_coma = 1

@@ -1,24 +1,17 @@
 local keyset = vim.keymap.set
 -- Think
--- keyset( 'n', "<space>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
+keyset( 'n', "<space>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
 keyset( 'n', "<space><space>", "<CMD>echo 'Think, Think...'<CR>",{ silent= true } )
-
 
 -- GoTo
 keyset( "n", "gd", "<CMD>Lspsaga goto_definition<CR>", {silent = true} )
 keyset( "n", "gr", "<CMD>Lspsaga finder<CR>", {silent = true} )
 keyset( "n", "gt", "<CMD>Lspsaga peek_definition<CR>", {silent = true} )
-keyset( "n", "g?", "<CMD>Lspsaga hover_doc<CR>", {silent = true} )
 -- GoTo preview
 keyset( "n", "gpd", require('goto-preview').goto_preview_definition, {silent = true} )
 keyset( "n", "gpr", require('goto-preview').goto_preview_references, {silent = true} )
 keyset( "n", "gpi", require('goto-preview').goto_preview_implementation, {silent = true} )
 keyset( "n", "gP", require('goto-preview').close_all_win, {silent = true} )
-
--- Show documentation Hover
--- Setup keymaps
-keyset("n", "K", require("hover").hover, {desc = "hover.nvim"}, {silent = true} )
-keyset("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"}, {silent = true} )
 
 -- Format
 keyset( 'v' , '<space>f', function()
@@ -94,7 +87,6 @@ keyset( 'n', "<F1>", "<CMD>FloatermToggle<CR>", {silent= true} )
 vim.cmd([[
   tnoremap   <silent>   <F1>    <C-\><C-n>:FloatermToggle<CR>
 ]])
-keyset( 'n', "<F1>", "<C-\\><C-n>:FloatermToggle<CR>", {silent= true} )
 keyset( 'n', "<F2>", "<CMD>FloatermNew<CR>", {silent= true} )
 keyset( 'n', "<F2>", "<C-\\><C-n><CMD>FloatermNew<CR>", {silent= true} )
 keyset( 'n', "<F3>", "<CMD>FloatermPrev<CR>", {silent= true} )
@@ -133,7 +125,7 @@ keyset( 'n', "tt", "<CMD>TodoTrouble<CR>", {silent= true} )
 -- AnyJump with Telescope
 keyset( { 'n', 'x', 'v' }, "<leader>J", "<CMD>Telescope grep_string<CR>", {silent= true} )
 
--- Marks
+-- Marks (#0ecd21de)
 keyset( 'n', "tM", "<CMD>MarksToggleSigns<CR>", {silent= true} )
 
 -- Harpoon
@@ -157,12 +149,7 @@ keyset( 'v', "ts", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent=
 -- LSPSAGA Dx
 keyset( 'n', "<leader>[", "<CMD>Lspsaga diagnostic_jump_prev<CR>", {silent= true} )
 keyset( 'n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>", {silent= true} )
-keyset( 'n', "<leader>?", "<CMD>TroubleToggle<CR>", {silent= true} )
-
--- Verilog_Systemverilog
-keyset( 'n', "fi", "<CMD>VerilogFollowInstance<CR>", {silent= true} )
-keyset( 'n', "fp", "<CMD>VerilogFollowPort<CR>", {silent= true} )
-keyset( 'n', "<leader>u", "<CMD>VerilogGotoInstanceStart<CR>", {silent= true} )
+keyset( 'n', "<leader>?", "<CMD>TroubleToggle workspace_diagnostics<CR>", {silent= true} )
 
 -- Oil
 vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })

@@ -1,5 +1,6 @@
 return {
-  "lervag/vimtex",                                                -- VimTex
+  { "lervag/vimtex",                                                -- VimTex
+  ft = {"tex","bib"},
   config = function ()
     vim.g.tex_flavor         = 'latex'
     vim.g.vimtex_view_method = 'zathura'
@@ -47,4 +48,12 @@ return {
     -- (include all formats for which re-running is to be enabled)
     vim.g.Tex_MultipleCompileFormats = 'pdf,dvi'
   end,
+  },
+  {
+    "icewind/ltex-client.nvim",
+    ft = {"tex","bib"},
+    config = function ()
+      require("ltex-client").setup()
+    end
+  },
 }
