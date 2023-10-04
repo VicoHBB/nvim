@@ -15,41 +15,41 @@ return {
       --focus_empty_on_setup = true,
       -- root_dirs = {},
       -- sync_root_with_cwd = true,
-			update_cwd = true,
-			update_focused_file = {
-				enable = true,
-				update_cwd = true
-			},
+      update_cwd = true,
+      update_focused_file = {
+        enable = true,
+        update_cwd = true
+      },
       --ignore_ft_on_setup = { "dashboard" },
       sort_by = "case_sensitive",
       view = {
-				adaptive_size = true,
-				-- mappings = {
-				-- 		list = { },
-				-- },
+        adaptive_size = true,
+        -- mappings = {
+        -- 		list = { },
+        -- },
       },
       renderer = {
-			full_name = true,
-			group_empty = true,
-			special_files = {},
-			symlink_destination = false,
-			indent_markers = {
-				enable = true,
-			},
-			icons = {
-				git_placement = "after",
-				webdev_colors = true,
-				show = {
-					file = true,
-					folder = true,
-					folder_arrow = true,
-					git = true,
-				},
-			},
+        full_name = true,
+        group_empty = true,
+        special_files = {},
+        symlink_destination = false,
+        indent_markers = {
+        enable = true,
+      },
+      icons = {
+        git_placement = "after",
+        webdev_colors = true,
+        show = {
+          file = true,
+          folder = true,
+          folder_arrow = true,
+          git = true,
+        },
+      },
       },
       diagnostics = {
-				enable = true,
-				show_on_dirs = true,
+        enable = true,
+        show_on_dirs = true,
       },
       filters = {
 				dotfiles = true,

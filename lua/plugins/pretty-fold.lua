@@ -43,7 +43,7 @@ return {
            { '%[', ']' }, -- % to escape lua pattern char
         },
 
-        -- ft_ignore = { 'neorg' },
+        -- ft_ignore = { 'org' },
       })
     end
   },

@@ -3,30 +3,32 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
 		-- event = "VeryLazy",
-		dependencies = {
-			"pleshevskiy/tree-sitter-d2",
-			"HiPhish/nvim-ts-rainbow2",
-			"nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "pleshevskiy/tree-sitter-d2",
+      "HiPhish/nvim-ts-rainbow2",
+      'andymass/vim-matchup',
 		},
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			require('nvim-treesitter.configs').setup ({
-				-- A list of parser names, or "all"
-				ensure_installed = {
-					"c",
-					"cpp",
-					"lua",
-					"rust",
-					"python",
-					"vim",
-					"verilog",
-					"latex",
-					"markdown",
-					"make",
-					"cmake",
-					"bash",
-					"gitignore",
-				},
+      require('nvim-treesitter.configs').setup ({
+      -- A list of parser names, or "all"
+        ensure_installed = {
+          "c",
+          "cpp",
+          "lua",
+          "rust",
+          "python",
+          "vim",
+          "verilog",
+          "latex",
+          "markdown",
+          "make",
+          "cmake",
+          "bash",
+          "gitignore",
+          "org"
+        },
 
 				-- Install parsers synchronously (only applied to `ensure_installed`)
 				sync_install = false,
@@ -37,7 +39,8 @@ return {
 				highlight = {
 					-- `false` will disable the whole extension
 					enable = true,
-					additional_vim_regex_highlighting = true,
+        additional_vim_regex_highlighting = { 'org' },
+					-- additional_vim_regex_highlighting = true,
 				},
 				indent = {
 					enable = true,
@@ -75,19 +78,27 @@ return {
 					}
 				}
 
-    	})
+      })
 
-			-- parser_config.sv = {
-			-- 	install_info = {
-			-- 		url = "/home/vhbb/Repos/tree-sitter/tree-sitter-sv", -- local path or git repo
-			-- 		files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
-			-- 		-- optional entries:
-			-- 		branch = "main", -- default branch in case of git repo if different from master
-			-- 		generate_requires_npm = true, -- if stand-alone parser without npm dependencies
-			-- 		requires_generate_from_grammar = true, -- if folder contains pre-generated src/parser.c
-			-- 	},
-			-- 	filetype = "systemverilog", -- if filetype does not match the parser name
-			-- }
+      parser_config.sv = ({
+        install_info = {
+          url = "/home/vhbb/Repos/tree-sitter/tree-sitter-sv", -- local path or git repo
+          -- url = "https://github.com/rfdonnelly/tree-sitter-sv",
+          files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+          -- optional entries:
+          branch = "main", -- default branch in case of git repo if different from master
+          generate_requires_npm = true, -- if stand-alone parser without npm dependencies
+          requires_generate_from_grammar = true, -- if folder contains pre-generated src/parser.c
+        },
+        filetype = "systemverilog", -- if filetype does not match the parser name
+      })
+
+  -- parser_config.verilog = {
+  --   filetype = {
+  --     "verilog",
+  --     "systemverilog",
+  --   }, -- if filetype does not match the parser name
+  -- }
 
 			parser_config.d2 = ({
 				{

@@ -6,12 +6,7 @@ return {
     config = function()
       vim.g.verilog_indent_modules = 1
     end,
-    keys = {
-      vim.keymap.set( 'n', "fi", "<CMD>VerilogFollowInstance<CR>", {silent= true} ),
-      vim.keymap.set( 'n', "fp", "<CMD>VerilogFollowPort<CR>", {silent= true} ),
-      vim.keymap.set( 'n', "<leader>u", "<CMD>VerilogGotoInstanceStart<CR>", {silent= true} ),
-      vim.keymap.set( 'n', "<leader>V", "<CMD>VerilogErrorFormat Verilator 1<CR>", {silent= true} )
-    }
+    keys = { }
   },
   {                                                                  -- SV Instance
     "antoinemadec/vim-verilog-instance",

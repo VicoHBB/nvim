@@ -76,6 +76,11 @@ return {
       filetypes    = { "tex", "plaintex", "bib" },
     }
 
+    -- To support org files
+    vim.cmd [[
+      autocmd BufRead,BufNewFile *.org set filetype=org
+    ]]
+
     require('lspconfig').ltex.setup{
       settings = {
         ltex = {
@@ -112,15 +117,32 @@ return {
     require('lspconfig').svlangserver.setup{
       on_attach = on_attach,
       capabilities = capabilities,
-      filetypes = { "vhdl", "verilog", "systemverilog", "verilog_systemverilog" },
+      filetypes = { "vhdl", "verilog", "systemverilog"  },
+      root_dir = require('lspconfig').util.root_pattern(
+        '.git',
+        'rtl'
+      )
     }
 
     require('lspconfig').svls.setup{
       on_attach = on_attach,
       capabilities = capabilities,
       cmd = { "svls", "-d" },
-      filetypes = { "vhdl", "verilog", "systemverilog", "verilog_systemverilog" },
+      filetypes = { "vhdl", "verilog", "systemverilog"  },
+      root_dir = require('lspconfig').util.root_pattern(
+        '.git',
+        'rtl'
+      )
     }
+
+    -- require'lspconfig'.verible.setup{
+    --   on_attach = on_attach,
+    --   flags = lsp_flags,
+    --   root_dir = require('lspconfig').util.root_pattern(
+    --     '.git',
+    --     'rtl'
+    --   )
+    -- }
 
     require('lspconfig').vimls.setup{
       on_attach = on_attach,

@@ -15,10 +15,11 @@ return {
     },
     'nvim-telescope/telescope-project.nvim',
     'tsakirist/telescope-lazy.nvim',
-
+    'joaomsa/telescope-orgmode.nvim',
     -- 'nvim-telescope/telescope-file-browser.nvim',
   },
   config = function()
+
     local actions = require("telescope.actions")
 
     require('telescope').load_extension('media_files')
@@ -28,6 +29,7 @@ return {
     require('telescope').load_extension('project')
     require("telescope").load_extension "lazy"
     require('telescope').load_extension('yabs')
+    require('telescope').load_extension('orgmode')
     -- require("telescope").load_extension("file_browser")
 
     require'telescope'.setup {
@@ -169,6 +171,7 @@ return {
         }
       },
     }
+
 
   end,
 

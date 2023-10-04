@@ -40,6 +40,16 @@ vim.opt.signcolumn = "yes"
 vim.cmd([[ filetype plugin indent on ]])
 vim.opt.conceallevel = 1
 
+vim.opt.list = true
+vim.opt.listchars = {
+  tab = ">>",
+  space = "·",
+  precedes = "…",
+  extends = "…",
+  conceal = "",
+  eol = " "
+}
+
 --[[ Leader map ]]
 vim.g.mapleader = " "
 

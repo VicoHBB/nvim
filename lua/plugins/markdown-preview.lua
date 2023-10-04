@@ -1,6 +1,7 @@
 return {
   "iamcco/markdown-preview.nvim",
   build = "cd app && yarn install",
+  ft = { "markdown" },
   config = function ()
     -- set to 1, nvim will open the preview window after entering the markdown buffer
     -- default: 0

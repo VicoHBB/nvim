@@ -39,7 +39,6 @@ return {
   {
     "mistweaverco/Screenshot.nvim",
   },
-  "SmiteshP/nvim-navic",
   {
     "skywind3000/asyncrun.vim",                                   -- Asyncrn
     config = function()
@@ -106,5 +105,9 @@ return {
   {
     "eandrju/cellular-automaton.nvim",
     event = "VeryLazy",
+  },
+  {
+    "jbyuki/quickmath.nvim",
+    event = "VeryLazy"
   },
 }

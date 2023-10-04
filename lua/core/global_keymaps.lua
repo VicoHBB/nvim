@@ -14,7 +14,7 @@ keyset( "n", "gpi", require('goto-preview').goto_preview_implementation, {silent
 keyset( "n", "gP", require('goto-preview').close_all_win, {silent = true} )
 
 -- Format
-keyset( 'v' , '<space>f', function()
+keyset( 'v' , '<leader>f', function()
   vim.lsp.buf.format { async = true }
 end)
 
@@ -125,13 +125,13 @@ keyset( 'n', "tt", "<CMD>TodoTrouble<CR>", {silent= true} )
 -- AnyJump with Telescope
 keyset( { 'n', 'x', 'v' }, "<leader>J", "<CMD>Telescope grep_string<CR>", {silent= true} )
 
--- Marks (#0ecd21de)
+-- Marks
 keyset( 'n', "tM", "<CMD>MarksToggleSigns<CR>", {silent= true} )
 
 -- Harpoon
 keyset( "n", "<C-a>", require('harpoon.mark').add_file, {silent = true} )
-keyset( "n", "<leader>", require('harpoon.ui').nav_next, {silent = true} )
-keyset( "n", "<leader<", require('harpoon.ui').nav_prev, {silent = true} )
+keyset( "n", "<leader>>", require('harpoon.ui').nav_next, {silent = true} )
+keyset( "n", "<leader><", require('harpoon.ui').nav_prev, {silent = true} )
 
 -- Bufferline
 keyset( 'n', "<leader>b", "<CMD>BufferLinePick<CR>", {silent= true} )
@@ -178,8 +178,3 @@ keyset( 'n', "<leader>ma", ":AsyncRun make all<CR>", {silent= true} )
 keyset( 'n', "<leader>mr", ":AsyncRun make run<CR>", {silent= true} )
 keyset( 'n', "<leader>md", ":FloatermNew make debug<CR>", {silent= true} )
 keyset( 'n', "<leader>mC", ":AsyncRun make clean<CR>", {silent= true} )
-keyset( 'n', "<leader>mv", ":AsyncRun make view<CR>", {silent= true} )
-keyset( 'n', "<leader>mq", ":AsyncRun make qrtl<CR>", {silent= true} )
-keyset( 'n', "<leader>ms", ":AsyncRun make synth<CR>", {silent= true} )
-
--- CMake

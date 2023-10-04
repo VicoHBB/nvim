@@ -3,7 +3,7 @@ return {
   config = function()
     local ft = require('Comment.ft')
 
-    ft.set('verilog_systemverilog', {'//%s', '/*%s*/'})
+    ft.set('systemverilog', {'//%s', '/*%s*/'})
 
     require('Comment').setup({
       ---Add a space b/w comment and the line
@@ -14,34 +14,34 @@ return {
       ignore = nil,
       ---LHS of toggle mappings in NORMAL mode
       toggler = {
-	---Line-comment toggle keymap
-	line = ' c ',
-	---Block-comment toggle keymap
-	block = ' cb',
+        ---Line-comment toggle keymap
+        line = ' c ',
+        ---Block-comment toggle keymap
+        block = ' cb',
       },
       ---LHS of operator-pending mappings in NORMAL and VISUAL mode
       opleader = {
-	---Line-comment keymap
-	line = ' c',
-	---Block-comment keymap
-	block = 'cb',
+        ---Line-comment keymap
+        line = ' c',
+        ---Block-comment keymap
+        block = 'cb',
       },
       ---LHS of extra mappings
       extra = {
-	---Add comment on the line above
-	above = ' cO',
-	---Add comment on the line below
-	below = ' co',
-	---Add comment at the end of line
-	eol = ' cA',
+        ---Add comment on the line above
+        above = ' cO',
+        ---Add comment on the line below
+        below = ' co',
+        ---Add comment at the end of line
+        eol = ' cA',
       },
       ---Enable keybindings
       ---NOTE: If given `false` then the plugin won't create any mappings
       mappings = {
-	---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-	basic = true,
-	---Extra mapping; `gco`, `gcO`, `gcA`
-	extra = true,
+        ---Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
+        basic = true,
+        ---Extra mapping; `gco`, `gcO`, `gcA`
+        extra = true,
       },
       ---Function to call before (un)comment
       pre_hook = nil,
