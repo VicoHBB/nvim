@@ -11,41 +11,23 @@ keyset(
   'n',
   'fi',
   '<CMD>VerilogFollowInstance<CR>',
-  {silent= true}
+  { silent= true }
 )
 keyset(
   'n',
   'fp',
   '<CMD>VerilogFollowPort<CR>',
-  {silent= true}
+  { silent= true }
 )
 keyset(
   'n',
   '<leader>u',
   '<CMD>VerilogGotoInstanceStart<CR>',
-  {silent= true}
+  { silent= true }
 )
 keyset(
   'n',
   '<leader>V',
   '<CMD>VerilogErrorFormat Verilator 1<CR>',
-  {silent= true}
-)
-keyset(
-  'n',
-  "<leader>mq",
-  ":AsyncRun make qrtl<CR>",
-  {silent= true}
-)
-keyset(
-  'n',
-  "<leader>ms",
-  ":AsyncRun make synth<CR>",
-  {silent= true}
-)
-keyset(
-  'n',
-  "<leader>mv",
-  ":AsyncRun make view<CR>",
-  {silent= true}
+  { silent= true }
 )

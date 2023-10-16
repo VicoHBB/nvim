@@ -11,3 +11,11 @@ vim.cmd([[
     autocmd ColorScheme * hi MatchParen guifg=red
   augroup END
 ]])
+
+-- Ignore quickfix as buffer
+vim.cmd([[
+  augroup qf
+    autocmd!
+    autocmd FileType qf set nobuflisted
+  augroup END
+]])

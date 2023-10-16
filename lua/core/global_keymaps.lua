@@ -25,13 +25,13 @@ keyset( 'n', "<leader>R", "<CMD>Lspsaga rename<CR>", {silent = true} )
 keyset( 'n', "<leader>a", "<CMD>CodeActionMenu<CR>", {silent= true} )
 
 -- ChatGPT
-keyset( 'n', "gpt", "<CMD>ChatGPT<CR>", {silent= true} )
+-- keyset( 'n', "gpt", "<CMD>ChatGPT<CR>", {silent= true} )
 
 -- HOP
-keyset( 'n', "fc", "<CMD>HopChar2<CR>", {silent= true} )
-keyset( 'n', "fw", "<CMD>HopWord<CR>", {silent= true} )
-keyset( 'n', "fl", "<CMD>HopLine<CR>", {silent= true} )
-keyset( 'n', "fW", "<CMD>HopPattern<CR>", {silent= true} )
+keyset( 'n', "gc", "<CMD>HopChar2<CR>", {silent= true} )
+keyset( 'n', "gw", "<CMD>HopWord<CR>", {silent= true} )
+keyset( 'n', "gl", "<CMD>HopLine<CR>", {silent= true} )
+keyset( 'n', "gW", "<CMD>HopPattern<CR>", {silent= true} )
 
 -- NvimTree
 keyset( 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>", {silent= true} )
@@ -77,7 +77,7 @@ keyset( 'n', "<C-p>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
 -- keyset( 'n', "<F7>", "<CMD>SignifyToggleHighlight<CR>", {silent= true} )
 
 -- FZF
-keyset( 'n', "<leader>l", "<CMD>Lines<CR>", {silent= true} )
+keyset( 'n', "<leader>L", "<CMD>Lines<CR>", {silent= true} )
 keyset( 'n', "<leader>S", "<CMD>RG<CR>", {silent= true} )
 keyset( 'n', "fzh", "<CMD>History<CR>", {silent= true} )
 keyset( 'n', "fzf", "<CMD>FZF<CR>", {silent= true} )
@@ -129,7 +129,7 @@ keyset( { 'n', 'x', 'v' }, "<leader>J", "<CMD>Telescope grep_string<CR>", {silen
 keyset( 'n', "tM", "<CMD>MarksToggleSigns<CR>", {silent= true} )
 
 -- Harpoon
-keyset( "n", "<C-a>", require('harpoon.mark').add_file, {silent = true} )
+keyset( "n", "<leader>A", require('harpoon.mark').add_file, {silent = true} )
 keyset( "n", "<leader>>", require('harpoon.ui').nav_next, {silent = true} )
 keyset( "n", "<leader><", require('harpoon.ui').nav_prev, {silent = true} )
 
@@ -178,3 +178,6 @@ keyset( 'n', "<leader>ma", ":AsyncRun make all<CR>", {silent= true} )
 keyset( 'n', "<leader>mr", ":AsyncRun make run<CR>", {silent= true} )
 keyset( 'n', "<leader>md", ":FloatermNew make debug<CR>", {silent= true} )
 keyset( 'n', "<leader>mC", ":AsyncRun make clean<CR>", {silent= true} )
+keyset('n', "<leader>mq", "<CMD>AsyncRun make qrtl<CR>", { silent= true })
+keyset('n', "<leader>ms", "<CMD>AsyncRun make synth<CR>", { silent= true })
+keyset('n', "<leader>mv", "<CMD>AsyncRun make view<CR>", { silent= true })

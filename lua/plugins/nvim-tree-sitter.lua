@@ -7,7 +7,8 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "pleshevskiy/tree-sitter-d2",
       "HiPhish/nvim-ts-rainbow2",
-      'andymass/vim-matchup',
+      "andymass/vim-matchup",
+      "nfrid/treesitter-utils",
 		},
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -30,53 +31,57 @@ return {
           "org"
         },
 
-				-- Install parsers synchronously (only applied to `ensure_installed`)
-				sync_install = false,
+        -- Install parsers synchronously (only applied to `ensure_installed`)
+        sync_install = false,
 
-				-- List of parsers to ignore installing (for "all")
-				-- ignore_install = { "javascript" },
+        -- List of parsers to ignore installing (for "all")
+        -- ignore_install = { "javascript" },
 
-				highlight = {
-					-- `false` will disable the whole extension
-					enable = true,
-        additional_vim_regex_highlighting = { 'org' },
-					-- additional_vim_regex_highlighting = true,
-				},
-				indent = {
-					enable = true,
-				},
+        highlight = {
+         -- `false` will disable the whole extension
+          enable = true,
+          additional_vim_regex_highlighting = { 'org' },
+          disable = {
+            "latex",
+            "make"
+          },
+         -- additional_vim_regex_highlighting = true,
+        },
+        indent = {
+          enable = true,
+        },
 
-				matchup = {
-					enable = true,              -- mandatory, false will disable the whole extension
-					-- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-					-- [options]
-					disable_virtual_text = true,
-				},
+        matchup = {
+          enable = true,              -- mandatory, false will disable the whole extension
+          -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
+          -- [options]
+          disable_virtual_text = true,
+        },
 
-				rainbow = {
-					enable = false,
-					-- list of languages you want to disable the plugin for
-					-- disable = { 'jsx', 'cpp' },
-					-- Which query to use for finding delimiters
-					query = 'rainbow-parens',
-					-- Highlight the entire buffer all at once
-					strategy = require('ts-rainbow').strategy.global,
-				},
+        rainbow = {
+          enable = false,
+          -- list of languages you want to disable the plugin for
+          -- disable = { 'jsx', 'cpp' },
+          -- Which query to use for finding delimiters
+          query = 'rainbow-parens',
+          -- Highlight the entire buffer all at once
+          strategy = require('ts-rainbow').strategy.global,
+        },
 
-				textobjects = {
-					select = {
-						enable = true,
-						lookahead = true,
-						keymaps = {
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-							["ac"] = "@conditional.outer",
-							["ic"] = "@conditional.inner",
-							["al"] = "@loop.outer",
-							["il"] = "@loop.inner",
-						}
-					}
-				}
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@conditional.outer",
+              ["ic"] = "@conditional.inner",
+              ["al"] = "@loop.outer",
+              ["il"] = "@loop.inner",
+            }
+          }
+        }
 
       })
 

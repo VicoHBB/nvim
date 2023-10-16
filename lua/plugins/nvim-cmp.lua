@@ -16,7 +16,8 @@ return {
     "tzachar/cmp-fuzzy-path",
     "lukas-reineke/cmp-rg",
     "honza/vim-snippets",                                           -- Snippets
-    "SirVer/ultisnips",                                             -- Ultisnips
+    "SirVer/ultisnips",   -- Ultisnips
+    -- "rafamadriz/friendly-snippets",
     "quangnguyen30192/cmp-nvim-ultisnips",
     {                                                               -- Tabnine
       "tzachar/cmp-tabnine",

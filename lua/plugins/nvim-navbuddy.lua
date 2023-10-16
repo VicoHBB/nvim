@@ -10,6 +10,7 @@ return {
         opts = { lsp = { auto_attach = true } }
     }
   },
+  event = "LspAttach",
   config = function()
     local navbuddy = require("nvim-navbuddy")
     local actions = require("nvim-navbuddy.actions")

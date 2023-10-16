@@ -92,7 +92,7 @@ return {
             },
           },
         },
-        verilog_systemverilog = {
+        systemverilog = {
           default_task = 'Verilating_and_Simulate',
           tasks = {
             Clean = {
@@ -113,7 +113,7 @@ return {
                 require('yabs'):run_task('Verilating', {
                   on_exit = function(Job, exit_code)
                     if exit_code == 0 then
-                      require('yabs').languages.verilog_systemverilog:run_task('Simulate')
+                      require('yabs').languages.systemverilog:run_task('Simulate')
                     end
                   end,
                 })
@@ -143,6 +143,7 @@ return {
           },
         },
       },
+      verilog = systemverilog,
       tasks = { -- Same values as `language.tasks`, but global
         Make = {
           command = 'make all',

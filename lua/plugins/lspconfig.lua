@@ -135,15 +135,6 @@ return {
       )
     }
 
-    -- require'lspconfig'.verible.setup{
-    --   on_attach = on_attach,
-    --   flags = lsp_flags,
-    --   root_dir = require('lspconfig').util.root_pattern(
-    --     '.git',
-    --     'rtl'
-    --   )
-    -- }
-
     require('lspconfig').vimls.setup{
       on_attach = on_attach,
       cmd = { "vim-language-server", "--stdio" },

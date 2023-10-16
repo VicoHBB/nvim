@@ -1,8 +1,7 @@
 return {
   {
     "lervag/vimtex",                                                -- VimTex
-  ft = {"tex","bib"},
-  config = function ()
+    config = function ()
       vim.g.tex_flavor         = 'latex'
       vim.g.vimtex_view_method = 'zathura'
       vim.g.tex_conceal        = 'adbmg'
@@ -52,7 +51,7 @@ return {
   },
   {
     "icewind/ltex-client.nvim",
-    ft = {"tex","bib", "markdown", "org"},
+    ft = { "tex", "bib", "markdown", "org" },
     config = function ()
       require("ltex-client").setup()
     end
