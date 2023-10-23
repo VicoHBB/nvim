@@ -35,6 +35,7 @@ return {
     require('telescope').load_extension('yabs')
     require('telescope').load_extension('orgmode')
     require('telescope').load_extension('undo')
+    require('telescope').load_extension('neoclip')
     -- require("telescope").load_extension("file_browser")
 
     require'telescope'.setup {

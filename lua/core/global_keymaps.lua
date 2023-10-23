@@ -112,8 +112,11 @@ keyset( 'n', "<leader>ff", "<CMD>Telescope fd<CR>", {silent= true} )
 keyset( 'n', "<leader>tm", "<CMD>Telescope marks<CR>", {silent= true} )
 keyset( 'n', "<leader>ty", "<CMD>Telescope yabs current_language_tasks<CR>", {silent= true} )
 keyset( 'n', "<leader>tY", "<CMD>Telescope yabs global_tasks <CR>", {silent= true} )
-keyset( 'n', "<leader>tt", "<CMD>TodoTrouble<CR>", {silent= true} )
 keyset( 'n', "<leader>tc", "<CMD>Telescope commands theme=dropdown<CR>", {silent= true} )
+keyset( 'n', "<leader>tr", "<CMD>Telescope neoclip theme=cursor prompt_title=Registers<CR>", {silent= true} )
+
+-- ToDo
+keyset( 'n', "<leader>tt", "<CMD>TodoTrouble<CR>", {silent= true} )
 
 -- Harpon marks
 keyset( 'n', "<leader>h", "<CMD>Telescope harpoon marks<CR>", {silent= true} )

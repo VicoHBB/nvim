@@ -44,7 +44,7 @@ return {
       nvim_lsp        = "[LSP]",
       nvim_lua        = "[Lua]",
       cmp_tabnine     = "[TN]",
-      path            = "[Path]",
+      -- path            = "[Path]",
       fuzzy_path      = "[Path]",
       spell           = "[Spell]",
       cmdline         = "[CMD]",
