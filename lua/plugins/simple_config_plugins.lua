@@ -5,7 +5,13 @@ return {
   {
     'notjedi/nvim-rooter.lua',                                    -- Nvim roter
     config = function() require'nvim-rooter'.setup({
-        rooter_patterns = { '.git', 'makefile', 'Makefile', 'app', 'compile_commands.json' },
+        rooter_patterns = {
+          '.git',
+          'makefile',
+          'Makefile',
+          'app',
+          'compile_commands.json',
+        },
         trigger_patterns = { '*' },
         manual = false,
         fallback_to_parent = false,
@@ -23,11 +29,11 @@ return {
       end
   },
   "junegunn/vim-easy-align",                                      -- Easy align
-  {                                                               -- Local History
-    "dinhhuy258/vim-local-history",
-    branch = "master",
-    build = ":UpdateRemotePlugins"
-  },
+  -- {                                                               -- Local History
+  --   "dinhhuy258/vim-local-history",
+  --   branch = "master",
+  --   build = ":UpdateRemotePlugins"
+  -- },
   {                                                               -- HOP
     "phaazon/hop.nvim",
     branch = 'v2', -- optional but strongly recommended
@@ -45,7 +51,7 @@ return {
       vim.g.asyncrun_open = 8
     end,
   },
-  {                                                               -- Virtual column
+  {                                                           -- Virtual column
     "xiyaowong/virtcolumn.nvim",
     lazy = false,
     config = function ()
@@ -96,8 +102,5 @@ return {
     "eandrju/cellular-automaton.nvim",
     event = "VeryLazy",
   },
-  {
-    "jbyuki/quickmath.nvim",
-    event = "VeryLazy"
-  },
+  -- lazy.nvim
 }

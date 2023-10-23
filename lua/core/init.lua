@@ -6,9 +6,9 @@ vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()
     require("core/autocmds")
-    -- require "usercmds"
+    -- require ("core/usercmds")
     require("core/global_keymaps")
-    -- require "config.diagnostic"
+    require ( "core/diagnostics" )
   end,
 })
 

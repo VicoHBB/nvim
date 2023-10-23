@@ -8,10 +8,13 @@ return {
   config = function()
 
     local on_attach = function (_, bufnr)
-      vim.keymap.set( "n", "K", "<CMD>Lspsaga hover_doc<CR>", {desc = "hover.nvim", silent = true, buffer=bufnr})
-      vim.keymap.set("n", "gK", require("hover").hover, {desc = "hover.nvim", silent = true, buffer=bufnr} )
+      vim.keymap.set( "n", "K", "<CMD>Lspsaga hover_doc<CR>", {desc = "Hover", silent = true, buffer=bufnr})
+      vim.keymap.set("n", "gK", require("hover").hover, {desc = "Hover different sources", silent = true, buffer=bufnr} )
       -- vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)", silent = true, buffer=bufnr} )
     end
+
+    -- Set up cmp.
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     require('lspconfig').clangd.setup{
       on_attach = on_attach,
@@ -82,6 +85,7 @@ return {
     ]]
 
     require('lspconfig').ltex.setup{
+      on_attach = on_attach,
       settings = {
         ltex = {
           -- language = "en-US",
@@ -101,6 +105,7 @@ return {
     }
 
     require('lspconfig').marksman.setup{
+      on_attach = on_attach,
       cmd = { "marksman", "server" },
       capabilities = capabilities,
     }
@@ -165,10 +170,6 @@ return {
         },
       },
     }
-
-    -- require'lspconfig'.grammarly.setup{
-    --   filetypes    = { "markdown", "tex" },
-    -- }
 
     require('lspconfig')['rust_analyzer'].setup{
       capabilities = capabilities,

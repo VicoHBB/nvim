@@ -9,25 +9,37 @@ vim.wo.colorcolumn = "80"
 -- Keymaps
 keyset(
   'n',
-  'fi',
+  'gi',
   '<CMD>VerilogFollowInstance<CR>',
-  { silent= true }
+  {
+    silent= true,
+    desc = "Follow Instance"
+  }
 )
 keyset(
   'n',
-  'fp',
+  'gp',
   '<CMD>VerilogFollowPort<CR>',
-  { silent= true }
+  {
+    silent= true,
+    desc = "Follow Port"
+  }
 )
 keyset(
   'n',
-  '<leader>u',
+  'gu',
   '<CMD>VerilogGotoInstanceStart<CR>',
-  { silent= true }
+  {
+    silent= true,
+    desc = "Go to Instance Start"
+  }
 )
 keyset(
   'n',
   '<leader>V',
   '<CMD>VerilogErrorFormat Verilator 1<CR>',
-  { silent= true }
+  {
+    silent= true,
+    desc = "Set Verilator Error format"
+  }
 )

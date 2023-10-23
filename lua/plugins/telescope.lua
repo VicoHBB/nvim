@@ -15,7 +15,11 @@ return {
     },
     'nvim-telescope/telescope-project.nvim',
     'tsakirist/telescope-lazy.nvim',
-    'joaomsa/telescope-orgmode.nvim',
+    {
+      'joaomsa/telescope-orgmode.nvim',
+      ft = {"org"},
+    },
+    "debugloop/telescope-undo.nvim",
     -- 'nvim-telescope/telescope-file-browser.nvim',
   },
   config = function()
@@ -30,6 +34,7 @@ return {
     require("telescope").load_extension "lazy"
     require('telescope').load_extension('yabs')
     require('telescope').load_extension('orgmode')
+    require('telescope').load_extension('undo')
     -- require("telescope").load_extension("file_browser")
 
     require'telescope'.setup {
@@ -149,6 +154,15 @@ return {
             open_lazy_root_live_grep = "<C-r>g",
           },
           -- Other telescope configuration options
+        },
+
+        undo = {
+          -- telescope-undo.nvim config, see below
+          side_by_side = true,
+          layout_strategy = "vertical",
+          layout_config = {
+            preview_height = 0.8,
+          },
         },
 
         ["ui-select"] = {

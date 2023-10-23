@@ -4,11 +4,11 @@ keyset( 'n', "<space>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
 keyset( 'n', "<space><space>", "<CMD>echo 'Think, Think...'<CR>",{ silent= true } )
 
 -- GoTo
-keyset( "n", "gd", "<CMD>Lspsaga goto_definition<CR>", {silent = true} )
-keyset( "n", "gr", "<CMD>Lspsaga finder<CR>", {silent = true} )
-keyset( "n", "gt", "<CMD>Lspsaga peek_definition<CR>", {silent = true} )
+keyset( "n", "gd", "<CMD>Lspsaga goto_definition<CR>", {silent = true, desc = "Go to Definition" } )
+keyset( "n", "gr", "<CMD>Lspsaga finder<CR>", {silent = true, desc = "Go to References"} )
+keyset( "n", "gt", "<CMD>Lspsaga peek_definition<CR>", {silent = true, desc = "Peek definition"} )
 -- GoTo preview
-keyset( "n", "gpd", require('goto-preview').goto_preview_definition, {silent = true} )
+keyset( "n", "gpd", require('goto-preview').goto_preview_definition, {silent = true, desc = "Go to Preview Definition"} )
 keyset( "n", "gpr", require('goto-preview').goto_preview_references, {silent = true} )
 keyset( "n", "gpi", require('goto-preview').goto_preview_implementation, {silent = true} )
 keyset( "n", "gP", require('goto-preview').close_all_win, {silent = true} )
@@ -40,14 +40,14 @@ keyset( 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>", {silent= true} )
 keyset( 'n', "<leader>N", "<CMD>Navbuddy<CR>", {silent= true} )
 
 -- Ranger
-keyset( 'n', "F", "<CMD>RnvimrToggle<CR>", {silent= true} )
+keyset( 'n', "<Leader>F", "<CMD>RnvimrToggle<CR>", {silent= true, desc="Open Ranger"} )
 
 -- Quick Save
-keyset( 'n', "<leader>w", ":w<CR>", {silent= true} )
+keyset( 'n', "<leader>w", ":w<CR>", {silent= true, desc="Quick Save"} )
 
 -- Quick Quit
-keyset( 'n', "<leader>q", ":q<CR>", {silent= true} )
-keyset( 'n', "<leader>Q", ":q!<CR>", {silent= true} )
+keyset( 'n', "<leader>q", ":q<CR>", {silent= true, desc ="Quick Quit"} )
+keyset( 'n', "<leader>Q", ":q!<CR>", {silent= true, desc = "Force Quit"} )
 
 -- Split resize
 keyset( 'n', "<A-l>", "2<C-w>>", {silent= true} )
@@ -67,20 +67,15 @@ keyset( 'n', "<leader><Tab>", "<CMD>bdelete<CR>", {silent= true} )
 -- Tmux
 keyset( 'n', "<C-h>", "<CMD>TmuxNavigateLeft<CR>", {silent= true} )
 keyset( 'n', "<C-j>", "<CMD>TmuxNavigateDown<CR>", {silent= true} )
-keyset( 'n', "tj", "<CMD>TmuxNavigateDown<CR>", {silent= true} )
+keyset( 'n', "<leader><C-j>", "<CMD>TmuxNavigateDown<CR>", {silent= true} )
 keyset( 'n', "<C-k>", "<CMD>TmuxNavigateUp<CR>", {silent= true} )
 keyset( 'n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", {silent= true} )
 keyset( 'n', "<C-p>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
 
--- Signify
--- keyset( 'n', "<F6>", "<CMD>SignifyHunkDiff<CR>", {silent= true} )
--- keyset( 'n', "<F7>", "<CMD>SignifyToggleHighlight<CR>", {silent= true} )
-
 -- FZF
 keyset( 'n', "<leader>L", "<CMD>Lines<CR>", {silent= true} )
-keyset( 'n', "<leader>S", "<CMD>RG<CR>", {silent= true} )
-keyset( 'n', "fzh", "<CMD>History<CR>", {silent= true} )
-keyset( 'n', "fzf", "<CMD>FZF<CR>", {silent= true} )
+-- keyset( 'n', "fzh", "<CMD>History<CR>", {silent= true} )
+-- keyset( 'n', "fzf", "<CMD>FZF<CR>", {silent= true} )
 
 -- Floaterm
 keyset( 'n', "<F1>", "<CMD>FloatermToggle<CR>", {silent= true} )
@@ -103,38 +98,33 @@ keyset( 'n', "<leader>s", "<CMD>ISwapNode<CR>", {silent= true} )
 keyset( 'n', "<leader>sw", "<CMD>ISwapWith<CR>", {silent= true} )
 
 -- Tabbar
-keyset( 'n', "tag", "<CMD>Tagbar<CR>", {silent= true} )
+keyset( 'n', "<F8>", "<CMD>Tagbar<CR>", {silent= true} )
 
 -- Telescope
-keyset( 'n', "<leader>t", "<CMD>Telescope builtin<CR>", {silent= true} )
-keyset( 'n', "tb", "<CMD>Telescope buffers<CR>", {silent= true} )
-keyset( 'n', "cmd", "<CMD>Telescope commands theme=dropdown<CR>", {silent= true} )
-keyset( 'n', "th", "<CMD>Telescope oldfiles<CR>", {silent= true} )
-keyset( 'n', "ff", "<CMD>Telescope fd<CR>", {silent= true} )
+keyset( 'n', "z=", "<CMD>Telescope spell_suggest<CR>", {silent= true} )
+keyset( 'n', "<leader>T", "<CMD>Telescope builtin<CR>", {silent= true} )
+keyset( 'n', "<leader>b", "<CMD>Telescope buffers<CR>", {silent= true} )
+keyset( 'n', "<leader>u", "<CMD>Telescope undo<CR>", {silent= true} )
+keyset( 'n', "<leader>fs", "<CMD>Telescope live_grep<CR>", {silent= true} )
+keyset( 'n', "<leader>gs", "<CMD>Telescope grep_string<CR>", {silent= true} )
+keyset( 'n', "<leader>th", "<CMD>Telescope oldfiles<CR>", {silent= true} )
+keyset( 'n', "<leader>ff", "<CMD>Telescope fd<CR>", {silent= true} )
+keyset( 'n', "<leader>tm", "<CMD>Telescope marks<CR>", {silent= true} )
+keyset( 'n', "<leader>ty", "<CMD>Telescope yabs current_language_tasks<CR>", {silent= true} )
+keyset( 'n', "<leader>tY", "<CMD>Telescope yabs global_tasks <CR>", {silent= true} )
+keyset( 'n', "<leader>tt", "<CMD>TodoTrouble<CR>", {silent= true} )
+keyset( 'n', "<leader>tc", "<CMD>Telescope commands theme=dropdown<CR>", {silent= true} )
+
+-- Harpon marks
 keyset( 'n', "<leader>h", "<CMD>Telescope harpoon marks<CR>", {silent= true} )
-keyset( 'n', "tm", "<CMD>Telescope marks<CR>", {silent= true} )
-keyset( 'n', "ty", "<CMD>Telescope yabs current_language_tasks <CR>", {silent= true} )
-keyset( 'n', "tc", "<CMD>Telescope yabs current_language_tasks <CR>", {silent= true} )
-keyset( 'n', "tc", "<CMD>Telescope yabs current_language_tasks <CR>", {silent= true} )
-keyset( 'n', "tY", "<CMD>Telescope yabs global_tasks <CR>", {silent= true} )
-keyset( 'n', "ts", "<CMD>Telescope spell_suggest<CR>", {silent= true} )
-keyset( 'n', "tt", "<CMD>TodoTrouble<CR>", {silent= true} )
-
--- AnyJump
--- keyset( { 'n', 'x' }, "<leader>j", "<CMD>AnyJump<CR>", {silent= true} )
--- AnyJump with Telescope
-keyset( { 'n', 'x', 'v' }, "<leader>J", "<CMD>Telescope grep_string<CR>", {silent= true} )
-
--- Marks
-keyset( 'n', "tM", "<CMD>MarksToggleSigns<CR>", {silent= true} )
 
 -- Harpoon
 keyset( "n", "<leader>A", require('harpoon.mark').add_file, {silent = true} )
 keyset( "n", "<leader>>", require('harpoon.ui').nav_next, {silent = true} )
 keyset( "n", "<leader><", require('harpoon.ui').nav_prev, {silent = true} )
 
--- Bufferline
-keyset( 'n', "<leader>b", "<CMD>BufferLinePick<CR>", {silent= true} )
+-- Marks
+keyset( 'n', "<leader>mk", "<CMD>MarksToggleSigns<CR>", {silent= true} )
 
 -- Lazygit
 keyset( 'n', "<leader>g", "<CMD>LazyGit<CR>", {silent= true} )
@@ -144,7 +134,7 @@ keyset( {'n','v'}, "<leader>qr", "<CMD>SnipRun<CR>", {silent= true} )
 keyset( 'n', "<leader>qc", "<CMD>SnipClose<CR>", {silent= true} )
 
 -- Take screenshoot
-keyset( 'v', "ts", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
+keyset( 'v', "<F10>", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
 
 -- LSPSAGA Dx
 keyset( 'n', "<leader>[", "<CMD>Lspsaga diagnostic_jump_prev<CR>", {silent= true} )
@@ -152,7 +142,7 @@ keyset( 'n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>", {silent= true
 keyset( 'n', "<leader>?", "<CMD>TroubleToggle workspace_diagnostics<CR>", {silent= true} )
 
 -- Oil
-vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+keyset("n", "-", require("oil").open, { desc = "Open parent directory" })
 
 -- TrueZen
 keyset( 'n', "<leader>zn", "<CMD>TZNarrow<CR>", {silent= true} )
@@ -181,3 +171,8 @@ keyset( 'n', "<leader>mC", ":AsyncRun make clean<CR>", {silent= true} )
 keyset('n', "<leader>mq", "<CMD>AsyncRun make qrtl<CR>", { silent= true })
 keyset('n', "<leader>ms", "<CMD>AsyncRun make synth<CR>", { silent= true })
 keyset('n', "<leader>mv", "<CMD>AsyncRun make view<CR>", { silent= true })
+
+-- Quickfix
+keyset( 'n', "<F7>", "<CMD>call ToggleQuickfixList()<CR>", {silent= true} )
+keyset( 'n', "<F6>", "<CMD>call ToggleLocationList()<CR>", {silent= true} )
+

@@ -53,11 +53,10 @@ return {
 	      mac = '',  -- e711
 	    },
 	  },
-	  "searchcount",
+	  -- "searchcount",
 	},
 	lualine_z = {
 	  '%p%%',
-	  'puto',
 	  '%l/%L',
 	  '%c',
 	  {
@@ -70,8 +69,7 @@ return {
 	    -- Displays diagnostics for the defined severity types
 	    sections = { 'error', 'warn', 'info', 'hint' },
 	    -- diagnostics_color = {
-					--
-	    --   -- Same values as the general color option can be used here.
+      -- Same values as the general color option can be used here.
 	    --   error = 'DiagnosticError', -- Changes diagnostics' error color.
 	    --   warn  = 'DiagnosticWarn',  -- Changes diagnostics' warn color.
 	    --   info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
@@ -85,12 +83,12 @@ return {
 	},
       },
       inactive_sections = {
-	lualine_a = {},
-	lualine_b = {},
-	lualine_c = {'filename'},
-	lualine_x = {'location'},
-	lualine_y = {},
-	lualine_z = {}
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {}
       },
       tabline = {},
       winbar = {},

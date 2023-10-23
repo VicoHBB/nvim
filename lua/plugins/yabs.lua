@@ -59,11 +59,12 @@ return {
           default_task = 'Run',
           tasks = {
             Run = {
-              command = 'Python -u',
-              output = 'quickfix',
+              command = 'python -u %',
+              output = 'terminal',
             },
             REPL = {
               command = 'ipython --no-autoindent',
+              -- command = 'bpython',
               output = 'terminal',
             },
             uPython_Clean = {
