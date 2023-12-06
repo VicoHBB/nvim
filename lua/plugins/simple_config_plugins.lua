@@ -29,11 +29,11 @@ return {
       end
   },
   "junegunn/vim-easy-align",                                      -- Easy align
-  -- {                                                               -- Local History
-  --   "dinhhuy258/vim-local-history",
-  --   branch = "master",
-  --   build = ":UpdateRemotePlugins"
-  -- },
+  {                                                               -- Local History
+    "dinhhuy258/vim-local-history",
+    branch = "master",
+    build = ":UpdateRemotePlugins"
+  },
   {                                                               -- HOP
     "phaazon/hop.nvim",
     branch = 'v2', -- optional but strongly recommended

@@ -10,6 +10,18 @@ return {
     local on_attach = function (_, bufnr)
       vim.keymap.set( "n", "K", "<CMD>Lspsaga hover_doc<CR>", {desc = "Hover", silent = true, buffer=bufnr})
       vim.keymap.set("n", "gK", require("hover").hover, {desc = "Hover different sources", silent = true, buffer=bufnr} )
+      vim.keymap.set(
+        { "i" },
+        '<C-k>',
+        function()
+          require('lsp_signature').toggle_float_win()
+        end,
+        {
+          silent = true,
+          noremap = true,
+          desc = 'toggle signature',
+        }
+      )
       -- vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)", silent = true, buffer=bufnr} )
     end
 
@@ -125,6 +137,9 @@ return {
       filetypes = { "vhdl", "verilog", "systemverilog"  },
       root_dir = require('lspconfig').util.root_pattern(
         '.git',
+        '.gitignore',
+        '.svlint.toml',
+        '.svls.toml',
         'rtl'
       )
     }
@@ -136,6 +151,9 @@ return {
       filetypes = { "vhdl", "verilog", "systemverilog"  },
       root_dir = require('lspconfig').util.root_pattern(
         '.git',
+        '.gitignore',
+        '.svlint.toml',
+        '.svls.toml',
         'rtl'
       )
     }

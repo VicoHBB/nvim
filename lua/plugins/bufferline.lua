@@ -35,21 +35,21 @@ return {
         end,
         max_name_length = 18,
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-        truncate_names = true, -- whether or not tab names should be truncated
+        truncate_names = true,  -- whether or not tab names should be truncated
         tab_size = 18,
         -- diagnostics = false | "nvim_lsp" | "coc",
         diagnostics = "nvim_lsp",
         diagnostics_update_in_insert = false,
         -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
+        -- rest of config ...
+        --- count is an integer representing total count of errors
+        --- level is a string "error" | "warning"
+        --- diagnostics_dict is a dictionary from error level ("error", "warning" or "info")to number of errors for each level.
+        --- this should return a string
+        --- Don't get too fancy as this function will be executed a lot
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
-          return "(" .. count .. ")"
-        end,
-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
-          if context.buffer:current() then
-            return ''
-          end
-
-          return ''
+          local icon = level:match("error") and " " or " "
+          return " " .. icon .. count
         end,
 
         -- NOTE: this will be called a lot so don't do any heavy processing here
@@ -83,14 +83,14 @@ return {
             --padding = 1
           },
         },
-        color_icons = true,   -- whether or not to add the filetype icon highlights
+        color_icons = true,       -- whether or not to add the filetype icon highlights
         show_buffer_icons = true, -- disable filetype icons for buffers
         show_buffer_close_icons = true,
         -- show_buffer_default_icon = true , -- whether or not an unrecognised filetype should show a default icon
         show_close_icon = true,
         show_tab_indicators = true,
         show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
-        persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+        persist_buffer_sort = true,   -- whether or not custom sorted buffers should persist
         -- can also be a table containing 2 custom separators
         -- [focused and unfocused]. eg: { '|', '|' }
         -- separator_style = "slant" | "thick" | "thin" | { 'any', 'any' },
