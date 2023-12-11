@@ -29,11 +29,6 @@ return {
       end
   },
   "junegunn/vim-easy-align",                                      -- Easy align
-  {                                                               -- Local History
-    "dinhhuy258/vim-local-history",
-    branch = "master",
-    build = ":UpdateRemotePlugins"
-  },
   {                                                               -- HOP
     "phaazon/hop.nvim",
     branch = 'v2', -- optional but strongly recommended
@@ -97,6 +92,7 @@ return {
       })
     end,
   },
+  'rush-rs/tree-sitter-asm',    --ASM
   -- To probe
   {
     "eandrju/cellular-automaton.nvim",

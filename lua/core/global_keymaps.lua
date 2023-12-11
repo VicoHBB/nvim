@@ -97,16 +97,17 @@ keyset( {'n','x'}, "ga", "<Plug>(EasyAlign)", {silent= true} )
 keyset( 'n', "<leader>s", "<CMD>ISwapNode<CR>", {silent= true} )
 keyset( 'n', "<leader>sw", "<CMD>ISwapWith<CR>", {silent= true} )
 
--- Tabbar
+-- Tagbar
 keyset( 'n', "<F8>", "<CMD>Tagbar<CR>", {silent= true} )
 
 -- Telescope
-keyset( 'n', "z=", "<CMD>Telescope spell_suggest<CR>", {silent= true} )
+keyset( 'n', "gs", "<CMD>Telescope grep_string<CR>", {silent= true} )
+keyset( 'n', "z=", "<CMD>Telescope spell_suggest theme=cursor prompt_title=Spell <CR>", {silent= true} )
 keyset( 'n', "<leader>T", "<CMD>Telescope builtin<CR>", {silent= true} )
 keyset( 'n', "<leader>b", "<CMD>Telescope buffers<CR>", {silent= true} )
 keyset( 'n', "<leader>u", "<CMD>Telescope undo<CR>", {silent= true} )
-keyset( 'n', "<leader>fs", "<CMD>Telescope live_grep<CR>", {silent= true} )
-keyset( 'n', "<leader>gs", "<CMD>Telescope grep_string<CR>", {silent= true} )
+-- keyset( 'n', "<leader>S", "<CMD>Telescope live_grep<CR>", {silent= true} )
+keyset("n", "<leader>S", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { silent= true })
 keyset( 'n', "<leader>th", "<CMD>Telescope oldfiles<CR>", {silent= true} )
 keyset( 'n', "<leader>ff", "<CMD>Telescope fd<CR>", {silent= true} )
 keyset( 'n', "<leader>tm", "<CMD>Telescope marks<CR>", {silent= true} )
@@ -130,7 +131,7 @@ keyset( "n", "<leader><", require('harpoon.ui').nav_prev, {silent = true} )
 keyset( 'n', "<leader>mk", "<CMD>MarksToggleSigns<CR>", {silent= true} )
 
 -- Lazygit
-keyset( 'n', "<leader>g", "<CMD>LazyGit<CR>", {silent= true} )
+keyset( 'n', "<leader>G", "<CMD>LazyGit<CR>", {silent= true} )
 
 -- Sniprun
 keyset( {'n','v'}, "<leader>qr", "<CMD>SnipRun<CR>", {silent= true} )
@@ -145,7 +146,7 @@ keyset( 'n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>", {silent= true
 keyset( 'n', "<leader>?", "<CMD>TroubleToggle workspace_diagnostics<CR>", {silent= true} )
 
 -- Oil
-keyset("n", "-", require("oil").open, { desc = "Open parent directory" })
+keyset("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- TrueZen
 keyset( 'n', "<leader>zn", "<CMD>TZNarrow<CR>", {silent= true} )
@@ -167,6 +168,7 @@ keyset( 't', "<C-a>p", "<C-\\><C-n><CMD>TmuxNavigatePrevious<CR>", {silent= true
 
 -- Make
 keyset( 'n', "<leader>M", ":AsyncRun make ", {silent= true} )
+keyset( 'n', "<leader>mS", ":AsyncStop<CR>", {silent= true} )
 keyset( 'n', "<leader>ma", ":AsyncRun make all<CR>", {silent= true} )
 keyset( 'n', "<leader>mr", ":AsyncRun make run<CR>", {silent= true} )
 keyset( 'n', "<leader>md", ":FloatermNew make debug<CR>", {silent= true} )

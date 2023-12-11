@@ -8,12 +8,17 @@ return {
     "nvim-lua/plenary.nvim",
     'nvim-telescope/telescope-media-files.nvim',
     'jvgrootveld/telescope-zoxide',
-    "nvim-telescope/telescope-ui-select.nvim",
+    'nvim-telescope/telescope-ui-select.nvim',
+    {
+        "nvim-telescope/telescope-live-grep-args.nvim" ,
+        -- This will not install any breaking changes.
+        -- For major updates, this must be adjusted manually.
+        version = "^1.0.0",
+    },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     },
-    'nvim-telescope/telescope-project.nvim',
     'tsakirist/telescope-lazy.nvim',
     {
       'joaomsa/telescope-orgmode.nvim',
@@ -25,17 +30,26 @@ return {
   config = function()
 
     local actions = require("telescope.actions")
+    local function quote_prompt(prompt_bufnr)
+        require("telescope-live-grep-args.actions").quote_prompt()(prompt_bufnr)
+    end
+    local function quote_prompt_ignoredir(prompt_bufnr)
+        require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob '!**/ignoredir/**'" })(prompt_bufnr)
+    end
+    local function quote_prompt_type(prompt_bufnr)
+        require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t " })(prompt_bufnr)
+    end
 
     require('telescope').load_extension('media_files')
     require("telescope").load_extension('zoxide')
     require("telescope").load_extension("ui-select")
     require("telescope").load_extension('harpoon')
-    require('telescope').load_extension('project')
     require("telescope").load_extension "lazy"
     require('telescope').load_extension('yabs')
     require('telescope').load_extension('orgmode')
     require('telescope').load_extension('undo')
     require('telescope').load_extension('neoclip')
+    require("telescope").load_extension("live_grep_args")
     -- require("telescope").load_extension("file_browser")
 
     require'telescope'.setup {
@@ -93,6 +107,9 @@ return {
 
             ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
             ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+
+            -- ["<C-\'>"] = lga_actions.quote_prompt(),
+            -- ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
           },
 
           n = {
@@ -163,6 +180,18 @@ return {
           layout_strategy = "vertical",
           layout_config = {
             preview_height = 0.8,
+          },
+        },
+
+        live_grep_args = {
+          auto_quoting = true, -- enable/disable auto-quoting
+          -- define mappings, e.g.
+          mappings = {     -- extend mappings
+            i = {
+                ["<A-r>"] = quote_prompt,
+                ["<A-d>"] = quote_prompt_ignoredir,
+                ["<A-t>"] = quote_prompt_type,
+            }
           },
         },
 

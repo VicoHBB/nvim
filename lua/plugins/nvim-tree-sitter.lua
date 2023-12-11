@@ -2,14 +2,14 @@ return {
   {                                                               -- Nvim treesitter
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-		-- event = "VeryLazy",
+    -- event = "VeryLazy",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "pleshevskiy/tree-sitter-d2",
       "HiPhish/nvim-ts-rainbow2",
       "andymass/vim-matchup",
       "nfrid/treesitter-utils",
-		},
+    },
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
       require('nvim-treesitter.configs').setup ({
@@ -98,6 +98,15 @@ return {
         filetype = "systemverilog", -- if filetype does not match the parser name
       })
 
+      parser_config.asm = {
+        install_info = {
+            url = 'https://github.com/rush-rs/tree-sitter-asm.git',
+            files = { 'src/parser.c' },
+            branch = 'main',
+        },
+        filetype = "asm", -- if filetype does not match the parser name
+      }
+
   -- parser_config.verilog = {
   --   filetype = {
   --     "verilog",
@@ -105,16 +114,16 @@ return {
   --   }, -- if filetype does not match the parser name
   -- }
 
-			parser_config.d2 = ({
-				{
-				install_info = {
-					url = 'https://github.com/pleshevskiy/tree-sitter-d2',
-					revision = 'main',
-					files = { 'src/parser.c', 'src/scanner.cc' },
-				},
-				filetype = 'd2',
-				}
-			})
+      parser_config.d2 = ({
+        {
+        install_info = {
+          url = 'https://github.com/pleshevskiy/tree-sitter-d2',
+          revision = 'main',
+          files = { 'src/parser.c', 'src/scanner.cc' },
+        },
+        filetype = 'd2',
+        }
+      })
 
 
     end,
