@@ -88,7 +88,12 @@ return {
 
     require('lspconfig').texlab.setup{
       capabilities = capabilities,
+      on_attach = on_attach,
       filetypes    = { "tex", "plaintex", "bib" },
+      root_dir = require('lspconfig').util.root_pattern(
+        'References',
+        'main'
+      )
     }
 
     -- To support org files

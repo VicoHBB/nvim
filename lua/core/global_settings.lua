@@ -16,7 +16,7 @@ vim.cmd([[ set noshowmode ]])
 vim.cmd([[ set showtabline=2 ]])
 vim.cmd([[ set shell=/bin/zsh ]])
 vim.cmd([[ set foldmethod=manual ]])
-vim.cmd([[ set spell spelllang=en_us ]])
+vim.cmd([[ set spell spelllang=es_es ]])
 vim.cmd([[ set runtimepath+=. ]])
 
 -- Termguicolors

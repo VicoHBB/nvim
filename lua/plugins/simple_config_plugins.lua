@@ -11,6 +11,7 @@ return {
           'Makefile',
           'app',
           'compile_commands.json',
+          'References',
         },
         trigger_patterns = { '*' },
         manual = false,

@@ -22,7 +22,7 @@ end)
 keyset( 'n', "<leader>R", "<CMD>Lspsaga rename<CR>", {silent = true} )
 
 -- Code Action Menu
-keyset( 'n', "<leader>a", "<CMD>CodeActionMenu<CR>", {silent= true} )
+keyset( 'n', "<leader>a", "<CMD>Lspsaga code_action<CR>", {silent= true} )
 
 -- ChatGPT
 -- keyset( 'n', "gpt", "<CMD>ChatGPT<CR>", {silent= true} )
@@ -79,9 +79,10 @@ keyset( 'n', "<leader>L", "<CMD>Lines<CR>", {silent= true} )
 
 -- Floaterm
 keyset( 'n', "<F1>", "<CMD>FloatermToggle<CR>", {silent= true} )
-vim.cmd([[
-  tnoremap   <silent>   <F1>    <C-\><C-n>:FloatermToggle<CR>
-]])
+keyset('t', '<F1>', "<C-\\><C-n>:FloatermToggle<CR>", {silent=true})
+-- vim.cmd([[
+--   tnoremap   <silent>   <F1>    <C-\><C-n>:FloatermToggle<CR>
+-- ]])
 keyset( 'n', "<F2>", "<CMD>FloatermNew<CR>", {silent= true} )
 keyset( 'n', "<F2>", "<C-\\><C-n><CMD>FloatermNew<CR>", {silent= true} )
 keyset( 'n', "<F3>", "<CMD>FloatermPrev<CR>", {silent= true} )
