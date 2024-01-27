@@ -22,6 +22,7 @@ return {
           "python",
           "vim",
           "verilog",
+          "sv",
           "latex",
           "markdown",
           "make",
@@ -85,9 +86,10 @@ return {
 
       })
 
+
       parser_config.sv = ({
         install_info = {
-          url = "/home/vhbb/Repos/tree-sitter/tree-sitter-sv", -- local path or git repo
+          url = "/home/vico/Repos/tree-sitter/tree-sitter-sv", -- local path or git repo
           -- url = "https://github.com/rfdonnelly/tree-sitter-sv",
           files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
           -- optional entries:
@@ -97,6 +99,8 @@ return {
         },
         filetype = "systemverilog", -- if filetype does not match the parser name
       })
+
+      vim.treesitter.language.register('sv', 'systemverilog') -- the someft filetype will use the python parser and queries.
 
       parser_config.asm = {
         install_info = {

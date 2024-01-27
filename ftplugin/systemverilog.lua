@@ -1,5 +1,7 @@
 local keyset = vim.keymap.set
 
+vim.o.syntax="enable"
+
 vim.bo.tabstop     = 4
 vim.bo.softtabstop = 4
 vim.bo.expandtab   = true

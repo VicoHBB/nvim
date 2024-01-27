@@ -1,5 +1,4 @@
 return {
-  "ryanoasis/vim-devicons",                                       -- Vim devicons
   "terryma/vim-multiple-cursors",                                 -- Multiple cursors
   "mhinz/vim-signify",                                            -- Vim signify
   {
@@ -95,9 +94,4 @@ return {
   },
   'rush-rs/tree-sitter-asm',    --ASM
   -- To probe
-  {
-    "eandrju/cellular-automaton.nvim",
-    event = "VeryLazy",
-  },
-  -- lazy.nvim
 }

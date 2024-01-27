@@ -69,7 +69,7 @@ return {
         ['<C-b>'] = cmp.mapping.scroll_docs(-6),
         ['<C-f>'] = cmp.mapping.scroll_docs(6),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-n>'] = cmp.mapping.abort(),
+        ['<C-c>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),   -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<Tab>'] = cmp.mapping.select_next_item(),
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
@@ -86,7 +86,7 @@ return {
             strategy = 2, -- mixed
           },
         },
-        { name = 'ultisnips' },   -- For ultisnips users.
+        { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'vsnip' }, -- For vsnip users.
         -- { name = 'luasnip' }, -- For luasnip users.
         -- { name = 'snippy' }, -- For snippy users.
@@ -99,9 +99,22 @@ return {
             end,
           },
         },
-      }, {
-        { name = 'fuzzy_buffer' },
-        { name = 'fuzzy_path'},
+        {
+          name = 'fuzzy_buffer',
+          option = {
+            get_bufnrs = function()
+              local bufs = {}
+              for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+                local buftype = vim.api.nvim_buf_get_option(buf, 'buftype')
+                if buftype ~= 'nofile' and buftype ~= 'prompt' then
+                  bufs[#bufs + 1] = buf
+                end
+              end
+              return bufs
+            end
+          },
+        },
+        -- { name = 'fuzzy_path'},
       }),
 
       formatting = {
@@ -131,6 +144,7 @@ return {
         priority_weight = 2,
         comparators = {
           require('cmp_tabnine.compare'),
+          require('cmp_fuzzy_buffer.compare'),
           require "cmp-under-comparator".under,
           compare.offset,
           compare.exact,

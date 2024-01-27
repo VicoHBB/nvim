@@ -1,8 +1,9 @@
 vim.opt.number = true
-vim.cmd([[ set mouse=a ]])
+vim.o.mouse="a"
+-- vim.cmd([[ set mouse=a ]])
 vim.cmd([[ set numberwidth=1 ]])
 vim.cmd([[ set clipboard=unnamed ]])
-vim.cmd([[ syntax enable ]])
+-- vim.cmd([[ syntax enable ]])
 vim.cmd([[ set showcmd ]])
 vim.cmd([[ set ruler ]])
 vim.cmd([[ set cursorline ]])
@@ -23,7 +24,7 @@ vim.cmd([[ set runtimepath+=. ]])
 vim.o.termguicolors = true
 
 -- Ruby Host
-vim.g.ruby_host_prog = '/home/vhbb/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-host'
+vim.g.ruby_host_prog = '~/.local/share/gem/ruby/3.0.0/bin/neovim-ruby-host'
 
 -- [[ COC ]]
 -- Some servers have issues with backup files, see #649

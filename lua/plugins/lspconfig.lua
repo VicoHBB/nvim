@@ -6,23 +6,119 @@ return {
   },
   priority = 1000,
   config = function()
+    local keyset = vim.keymap.set
 
     local on_attach = function (_, bufnr)
-      vim.keymap.set( "n", "K", "<CMD>Lspsaga hover_doc<CR>", {desc = "Hover", silent = true, buffer=bufnr})
-      vim.keymap.set("n", "gK", require("hover").hover, {desc = "Hover different sources", silent = true, buffer=bufnr} )
-      vim.keymap.set(
-        { "i" },
-        '<C-k>',
-        function()
-          require('lsp_signature').toggle_float_win()
-        end,
+      -- LSPSaga
+      keyset( "n", "K", "<CMD>Lspsaga hover_doc<CR>",
         {
+          desc   = "Hover",
           silent = true,
-          noremap = true,
-          desc = 'toggle signature',
+          buffer = bufnr,
         }
       )
-      -- vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)", silent = true, buffer=bufnr} )
+      -- Rename
+      keyset( 'n', "<leader>R", "<CMD>Lspsaga rename<CR>", {silent = true} )
+      -- Code Action Menu
+      keyset( 'n', "<leader>a", "<CMD>Lspsaga code_action<CR>", {silent= true} )
+      -- LSPSAGA Dx
+      keyset( 'n', "<leader>[", "<CMD>Lspsaga diagnostic_jump_prev<CR>", {silent= true} )
+      keyset( 'n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>", {silent= true} )
+      keyset( 'n', "<leader>?", "<CMD>TroubleToggle workspace_diagnostics<CR>", {silent= true} )
+
+      -- GoTo
+      keyset( "n", "gd", "<CMD>Lspsaga goto_definition<CR>",
+        {
+          desc   = "Go to Definition",
+          silent = true,
+          buffer = bufnr,
+        }
+      )
+      keyset( "n", "gr", "<CMD>Lspsaga finder<CR>",
+        {
+          desc   = "Go to References",
+          silent = true,
+          buffer = bufnr,
+        }
+      )
+      keyset( "n", "gt", "<CMD>Lspsaga peek_definition<CR>",
+        {
+          desc   = "Peek definition",
+          silent = true,
+          buffer = bufnr,
+        }
+      )
+
+      -- GoTo preview
+      keyset( "n", "gpd", require('goto-preview').goto_preview_definition,
+        {
+          desc = "Go to Preview Definition",
+          silent = true,
+          buffer = bufnr,
+        }
+      )
+      keyset( "n", "gpr", require('goto-preview').goto_preview_references,
+        {
+          desc = "Go to Preview references",
+          silent = true,
+          buffer = bufnr,
+        }
+      )
+      keyset( "n", "gpi", require('goto-preview').goto_preview_implementation,
+        {
+          desc = "Go to Preview implementation",
+          silent = true,
+          buffer = bufnr,
+        }
+      )
+      keyset( "n", "gP", require('goto-preview').close_all_win,
+        {
+          desc = "Close preview windows",
+          silent = true,
+          buffer = bufnr,
+        }
+      )
+
+      -- LSP with noice
+      keyset( "n", "gK", require("noice.lsp").hover,
+        {
+          desc = "Hover",
+          silent = true,
+          buffer=bufnr,
+        }
+      )
+      keyset( { "i", "n" }, "<C-k>", require("noice.lsp").signature,
+        {
+          desc = "toggle signature",
+          noremap = true,
+          silent = true,
+          buffer=bufnr,
+        }
+      )
+      keyset({ "n", "i", "s" }, "<c-f>", function()
+        if not require("noice.lsp").scroll(4) then
+          return "<c-f>"
+        end
+      end, { silent = true, expr = true })
+
+      keyset({ "n", "i", "s" }, "<c-b>", function()
+        if not require("noice.lsp").scroll(-4) then
+          return "<c-b>"
+        end
+      end, { silent = true, expr = true })
+
+      -- Lsp simple
+      -- Format
+      vim.keymap.set('v', '<space>f', function()
+          vim.lsp.buf.format { async = true }
+        end,
+        {
+          desc   = "Format",
+          silent = true,
+          buffer = bufnr,
+        }
+      )
+
     end
 
     -- Set up cmp.

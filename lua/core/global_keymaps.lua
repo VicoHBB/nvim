@@ -1,28 +1,8 @@
 local keyset = vim.keymap.set
+
 -- Think
 keyset( 'n', "<space>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
 keyset( 'n', "<space><space>", "<CMD>echo 'Think, Think...'<CR>",{ silent= true } )
-
--- GoTo
-keyset( "n", "gd", "<CMD>Lspsaga goto_definition<CR>", {silent = true, desc = "Go to Definition" } )
-keyset( "n", "gr", "<CMD>Lspsaga finder<CR>", {silent = true, desc = "Go to References"} )
-keyset( "n", "gt", "<CMD>Lspsaga peek_definition<CR>", {silent = true, desc = "Peek definition"} )
--- GoTo preview
-keyset( "n", "gpd", require('goto-preview').goto_preview_definition, {silent = true, desc = "Go to Preview Definition"} )
-keyset( "n", "gpr", require('goto-preview').goto_preview_references, {silent = true} )
-keyset( "n", "gpi", require('goto-preview').goto_preview_implementation, {silent = true} )
-keyset( "n", "gP", require('goto-preview').close_all_win, {silent = true} )
-
--- Format
-keyset( 'v' , '<leader>f', function()
-  vim.lsp.buf.format { async = true }
-end)
-
--- Rename
-keyset( 'n', "<leader>R", "<CMD>Lspsaga rename<CR>", {silent = true} )
-
--- Code Action Menu
-keyset( 'n', "<leader>a", "<CMD>Lspsaga code_action<CR>", {silent= true} )
 
 -- ChatGPT
 -- keyset( 'n', "gpt", "<CMD>ChatGPT<CR>", {silent= true} )
@@ -140,11 +120,6 @@ keyset( 'n', "<leader>qc", "<CMD>SnipClose<CR>", {silent= true} )
 
 -- Take screenshoot
 keyset( 'v', "<F10>", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
-
--- LSPSAGA Dx
-keyset( 'n', "<leader>[", "<CMD>Lspsaga diagnostic_jump_prev<CR>", {silent= true} )
-keyset( 'n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>", {silent= true} )
-keyset( 'n', "<leader>?", "<CMD>TroubleToggle workspace_diagnostics<CR>", {silent= true} )
 
 -- Oil
 keyset("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
