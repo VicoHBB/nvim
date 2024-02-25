@@ -8,9 +8,9 @@ return {
       vim.cmd.colorscheme "gruvbox"
     end,
   },
-  -- {
-  --   'sainnhe/gruvbox-material',
-  -- },
+  {
+    'sainnhe/gruvbox-material',
+  },
   -- {
   --   'luisiacc/gruvbox-baby',
   --   priority = 1000,
@@ -25,13 +25,10 @@ return {
   --     vim.g.gruvbox_baby_transparent_mode = 1
   --   end
   -- },
+  --
   {
     "catppuccin/nvim",
     name = "catppuccin",
---    priority = 1000,
-    lazy = false,
---  config = function()
---    vim.cmd.colorscheme "catppuccin-mocha"
---  end,
+    priority = 1000,
   },
 }

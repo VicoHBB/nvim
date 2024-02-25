@@ -51,23 +51,23 @@ return {
     end,
   },
   {
-    'akinsho/org-bullets.nvim',
-    ft = {
-      "markdown",
-      "org",
-      "neorg",
-    },
-    config = function()
-      require('org-bullets').setup({
-      })
-    end,
-  },
-  {
     'andreadev-it/orgmode-multi-key',
     config = function ()
       require('orgmode-multi-key').setup({
         key = "<leader>O"
       })
     end,
-  }
+  },
+  -- {
+  --   'akinsho/org-bullets.nvim',
+  --   ft = {
+  --     "markdown",
+  --     "org",
+  --     "neorg",
+  --   },
+  --   config = function()
+  --     require('org-bullets').setup({
+  --     })
+  --   end,
+  -- },
 }
