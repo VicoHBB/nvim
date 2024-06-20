@@ -2,7 +2,7 @@ return {
   {                                                               -- Nvim treesitter
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    -- event = "VeryLazy",
+    event = "VeryLazy",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "pleshevskiy/tree-sitter-d2",
@@ -44,7 +44,8 @@ return {
           additional_vim_regex_highlighting = { 'org' },
           disable = {
             "latex",
-            "make"
+            "make",
+            -- "org"
           },
          -- additional_vim_regex_highlighting = true,
         },

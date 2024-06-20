@@ -1,6 +1,10 @@
-return {
+return { -- Maybe remove???
   "metakirby5/codi.vim",                                          -- Codi
-  event = "VeryLazy",
+  -- event = "VeryLazy",
+  ft = {
+    "python",
+    "javascript"
+  },
   config = function()
     -- Change the color
     vim.cmd([[ highlight CodiVirtualText guifg=cyan ]])
@@ -21,8 +25,8 @@ return {
 
     vim.cmd([[
      let g:codi#aliases = {
-		       \ 'javascript.jsx': 'javascript',
-		       \ }
+           \ 'javascript.jsx': 'javascript',
+           \ }
     ]])
   end,
 }

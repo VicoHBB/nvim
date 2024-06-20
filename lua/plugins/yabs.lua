@@ -143,8 +143,28 @@ return {
             },
           },
         },
+        verilog = systemverilog,
+        d2= {
+          default_task = 'Preview',
+          tasks = {
+            -- \ "d2": "d2 --layout=elk -t 200 $dir$fileName DIMG/$fileNameWithoutExt.png && gwenview DIMG/$fileNameWithoutExt.png"
+            Preview = {
+              command = 'cowsay "TODOOOO"',
+              output = 'quickfix',
+            }
+          }
+        },
+        rust = {
+          default_task = 'Run',
+          tasks = {
+            -- \ "rust": "rustc $dir$fileName && ./$fileNameWithoutExt",
+            Run = {
+              command = 'cowsay "TODOOO"',
+              output = 'quickfix',
+            }
+          }
+        }
       },
-      verilog = systemverilog,
       tasks = { -- Same values as `language.tasks`, but global
         Make = {
           command = 'make all',
@@ -157,6 +177,10 @@ return {
         Clean = {
           command = 'make clean',
           output = 'quickfix',
+        },
+        Terminal = {
+          command = '',
+          output = 'terminal',
         },
         optional = {
           command = 'echo runs on condition',

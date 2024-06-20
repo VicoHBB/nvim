@@ -1,8 +1,16 @@
 return {
-  'neovim/nvim-lspconfig',                                        -- Config
+  'neovim/nvim-lspconfig', -- Config
   dependencies = {
     "williamboman/mason.nvim",
-    "folke/neodev.nvim"
+    "folke/neodev.nvim",
+    {
+      "SmiteshP/nvim-navbuddy",
+      dependencies = {
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim"
+      },
+      opts = { lsp = { auto_attach = true } }
+    }
   },
   priority = 1000,
   config = function()
@@ -41,39 +49,9 @@ return {
           buffer = bufnr,
         }
       )
-      keyset( "n", "gt", "<CMD>Lspsaga peek_definition<CR>",
+      keyset( "n", "gpd", "<CMD>Lspsaga peek_definition<CR>",
         {
           desc   = "Peek definition",
-          silent = true,
-          buffer = bufnr,
-        }
-      )
-
-      -- GoTo preview
-      keyset( "n", "gpd", require('goto-preview').goto_preview_definition,
-        {
-          desc = "Go to Preview Definition",
-          silent = true,
-          buffer = bufnr,
-        }
-      )
-      keyset( "n", "gpr", require('goto-preview').goto_preview_references,
-        {
-          desc = "Go to Preview references",
-          silent = true,
-          buffer = bufnr,
-        }
-      )
-      keyset( "n", "gpi", require('goto-preview').goto_preview_implementation,
-        {
-          desc = "Go to Preview implementation",
-          silent = true,
-          buffer = bufnr,
-        }
-      )
-      keyset( "n", "gP", require('goto-preview').close_all_win,
-        {
-          desc = "Close preview windows",
           silent = true,
           buffer = bufnr,
         }
@@ -222,6 +200,12 @@ return {
       cmd = { "marksman", "server" },
       capabilities = capabilities,
     }
+
+    -- require('lspconfig').markdown_oxide.setup{
+    --   on_attach = on_attach,
+    --   cmd = { "marksman", "server" },
+    --   capabilities = capabilities,
+    -- }
 
     -- require('lspconfig').grammarly.setup{
     -- 	filetypes = {"markdown"}

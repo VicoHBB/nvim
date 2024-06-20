@@ -1,8 +1,8 @@
 local keyset = vim.keymap.set
 
 -- Think
-keyset( 'n', "<space>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
-keyset( 'n', "<space><space>", "<CMD>echo 'Think, Think...'<CR>",{ silent= true } )
+keyset( 'n', "<leader>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
+keyset( 'n', "<leader><leader>", "<CMD>echo 'Think, Think...'<CR>",{ silent= true } )
 
 -- ChatGPT
 -- keyset( 'n', "gpt", "<CMD>ChatGPT<CR>", {silent= true} )
@@ -23,11 +23,11 @@ keyset( 'n', "<leader>N", "<CMD>Navbuddy<CR>", {silent= true} )
 keyset( 'n', "<Leader>F", "<CMD>RnvimrToggle<CR>", {silent= true, desc="Open Ranger"} )
 
 -- Quick Save
-keyset( 'n', "<leader>w", ":w<CR>", {silent= true, desc="Quick Save"} )
+keyset( 'n', "<leader>w", "<CMD>w<CR>", {silent= true, desc="Quick Save"} )
 
 -- Quick Quit
-keyset( 'n', "<leader>q", ":q<CR>", {silent= true, desc ="Quick Quit"} )
-keyset( 'n', "<leader>Q", ":q!<CR>", {silent= true, desc = "Force Quit"} )
+keyset( 'n', "<leader>q", "<CMD>q<CR>", {silent= true, desc ="Quick Quit"} )
+keyset( 'n', "<leader>Q", "<CMD>q!<CR>", {silent= true, desc = "Force Quit"} )
 
 -- Split resize
 keyset( 'n', "<A-l>", "2<C-w>>", {silent= true} )
@@ -131,9 +131,6 @@ keyset( 'n', "<leader>zf", "<CMD>TZFocus<CR>", {silent= true} )
 
 -- Yabs default
 keyset( 'n', "<leader>ry", "<CMD>YabsDefaultTask<CR>", {silent= true} )
-
--- Termiantor
-keyset( 'n', "<leader>rc", "<CMD>TerminatorOutputBufferClose<CR>", {silent= true} )
 
 -- TSJT
 keyset('n', "<leader>st", "<CMD>TSJToggle<CR>", { silent = true })

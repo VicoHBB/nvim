@@ -6,8 +6,6 @@ return {
     'nvim-lua/plenary.nvim',
     "nvim-lua/popup.nvim",
     "nvim-lua/plenary.nvim",
-    'nvim-telescope/telescope-media-files.nvim',
-    'jvgrootveld/telescope-zoxide',
     'nvim-telescope/telescope-ui-select.nvim',
     {
         "nvim-telescope/telescope-live-grep-args.nvim" ,
@@ -20,12 +18,7 @@ return {
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     },
     'tsakirist/telescope-lazy.nvim',
-    {
-      'joaomsa/telescope-orgmode.nvim',
-      ft = {"org"},
-    },
     "debugloop/telescope-undo.nvim",
-    -- 'nvim-telescope/telescope-file-browser.nvim',
   },
   config = function()
 
@@ -40,8 +33,6 @@ return {
         require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t " })(prompt_bufnr)
     end
 
-    require('telescope').load_extension('media_files')
-    require("telescope").load_extension('zoxide')
     require("telescope").load_extension("ui-select")
     require("telescope").load_extension('harpoon')
     require("telescope").load_extension "lazy"
@@ -50,7 +41,6 @@ return {
     require('telescope').load_extension('undo')
     require('telescope').load_extension('neoclip')
     require("telescope").load_extension("live_grep_args")
-    -- require("telescope").load_extension("file_browser")
 
     require'telescope'.setup {
       defaults= {
@@ -146,15 +136,6 @@ return {
           override_file_sorter = true,     -- override the file sorter
           case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
                                            -- the default case_mode is "smart_case"
-        },
-        media_files = {
-          -- filetypes whitelist
-          -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-          filetypes = {"png", "webp", "jpg", "jpeg"},
-          find_cmd = "rg" -- find command (defaults to `fd`)
-        },
-        zoxide = {
-          theme = "ivy",
         },
         lazy = {
           -- Optional theme (the extension doesn't set a default theme)

@@ -5,27 +5,32 @@ return {
   },
   ft = {
     "markdown",
-    "org",
-    "neorg",
+    "org"
   },
   opts = {
+    vim.cmd [[highlight Dash guibg=#1d2021 guifg=#83a598 gui=bold]],
+    -- vim.cmd [[highlight Dash_org guibg=#1d2021 guifg=#b8bb26 gui=bold]],
     markdown = {
-      headline_highlights = { "Headline" },
+      bullets = { "◉", "○", "✸", "✿" },
       codeblock_highlight = "CodeBlock",
       dash_highlight = "Dash",
-      dash_string = "-",
+      dash_string = "",
       quote_highlight = "Quote",
       quote_string = "┃",
       fat_headlines = false,
+      fat_headline_upper_string = "▃",
+      fat_headline_lower_string = "🬂",
     },
     org = {
-      headline_highlights = { "Headline" },
+      bullets = { "◉", "○", "✸", "✿" },
       codeblock_highlight = "CodeBlock",
       dash_highlight = "Dash",
-      dash_string = "-",
+      dash_string = "",
       quote_highlight = "Quote",
       quote_string = "┃",
       fat_headlines = false,
-    }
+      fat_headline_upper_string = "▃",
+      fat_headline_lower_string = "🬂",
+    },
   }
 }

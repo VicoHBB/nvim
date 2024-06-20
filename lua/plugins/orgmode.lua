@@ -2,23 +2,16 @@ return {
   {
     'nvim-orgmode/orgmode',
     dependencies = {
-      {
-        'nvim-treesitter/nvim-treesitter',
-        lazy = true,
-      },
-      "danilshvalov/org-modern.nvim"
+      'danilshvalov/org-modern.nvim'
     },
     event = 'VeryLazy',
+    ft = { 'org' },
     config = function()
-      local Menu = require("org-modern.menu")
-
-      -- Load treesitter grammar for org
-      require('orgmode').setup_ts_grammar()
-
       -- Setup orgmode
+      local Menu = require("org-modern.menu")
       require('orgmode').setup({
         org_agenda_files = '~/.nb/orgfiles/**/*',
-        org_default_notes_file = '~/nb/orgfiles/refile.org',
+        org_default_notes_file = '~/.nb/orgfiles/refile.org',
         ui = {
           menu = {
             handler = function(data)
@@ -38,36 +31,25 @@ return {
           },
         },
       })
-
-      vim.api.nvim_create_autocmd('FileType', {
-          pattern = 'org',
-          group = vim.api.nvim_create_augroup('orgmode_telescope_nvim', { clear = true }),
-          callback = function()
-            vim.keymap.set('n', '<leader>or', require('telescope').extensions.orgmode.refile_heading)
-          end,
-        }
-      )
-
     end,
   },
   {
-    'andreadev-it/orgmode-multi-key',
-    config = function ()
-      require('orgmode-multi-key').setup({
-        key = "<leader>O"
-      })
-    end,
+    'akinsho/org-bullets.nvim',
+    ft = { 'org' },
+    config = function()
+      require('org-bullets').setup()
+    end
   },
-  -- {
-  --   'akinsho/org-bullets.nvim',
-  --   ft = {
-  --     "markdown",
-  --     "org",
-  --     "neorg",
-  --   },
-  --   config = function()
-  --     require('org-bullets').setup({
-  --     })
-  --   end,
-  -- },
+  {
+    "nvim-orgmode/telescope-orgmode.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-orgmode/orgmode",
+      "nvim-telescope/telescope.nvim",
+    },
+    ft = {
+      'org',
+    },
+  }
 }
+

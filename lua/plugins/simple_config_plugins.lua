@@ -29,6 +29,13 @@ return {
       end
   },
   "junegunn/vim-easy-align",                                      -- Easy align
+  {                                                               -- Table Mode
+    'dhruvasagar/vim-table-mode',
+    ft = {
+      "markdown",
+      "org"
+    },
+  },
   {                                                               -- HOP
     "phaazon/hop.nvim",
     branch = 'v2', -- optional but strongly recommended
