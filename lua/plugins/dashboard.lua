@@ -190,7 +190,7 @@ return {
               dashboard.button("e", " -> New File", ":ene<CR>"),
               dashboard.button("SPC f h", " -> Complete History",":Telescope oldfiles<CR>"),
               dashboard.button("SPC f f", " -> Find File",":Telescope find_files<CR>"),
-              dashboard.button("SPC F"," -> File Browser",":RnvimrToggle<CR>"),
+              dashboard.button("SPC F"," -> File Browser",":Ranger<CR>"),
               dashboard.button("SPC f s", " -> Find Word",":Telescope live_grep<CR>"),
               dashboard.button("L","󰒲 -> Lazy", ":Lazy<CR>"),
               dashboard.button("M","󰟾 -> Mason", ":Mason<CR>"),

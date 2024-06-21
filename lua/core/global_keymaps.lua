@@ -17,10 +17,13 @@ keyset( 'n', "gW", "<CMD>HopPattern<CR>", {silent= true} )
 keyset( 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>", {silent= true} )
 
 -- Navbuddy
-keyset( 'n', "<leader>N", "<CMD>Navbuddy<CR>", {silent= true} )
+-- keyset( 'n', "<leader>N", "<CMD>Navbuddy<CR>", {silent= true} )
 
 -- Ranger
-keyset( 'n', "<Leader>F", "<CMD>RnvimrToggle<CR>", {silent= true, desc="Open Ranger"} )
+keyset( 'n', "<Leader>F", "<CMD>Ranger<CR>", {silent= true, desc="Open Ranger"} )
+
+-- Vifm
+keyset( 'n', "<Leader>fv", "<CMD>Vifm<CR>", {silent= true, desc="Open Ranger"} )
 
 -- Quick Save
 keyset( 'n', "<leader>w", "<CMD>w<CR>", {silent= true, desc="Quick Save"} )
@@ -112,7 +115,7 @@ keyset( "n", "<leader><", require('harpoon.ui').nav_prev, {silent = true} )
 keyset( 'n', "<leader>mk", "<CMD>MarksToggleSigns<CR>", {silent= true} )
 
 -- Lazygit
-keyset( 'n', "<leader>G", "<CMD>LazyGit<CR>", {silent= true} )
+keyset( 'n', "<leader>G", "<CMD>Lazygit<CR>", {silent= true} )
 
 -- Sniprun
 keyset( {'n','v'}, "<leader>qr", "<CMD>SnipRun<CR>", {silent= true} )

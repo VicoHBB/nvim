@@ -85,6 +85,14 @@ return {
         end
       end, { silent = true, expr = true })
 
+      -- Navbudy
+      keyset(
+        'n',
+        "<leader>N",
+        "<CMD>Navbuddy<CR>",
+        {silent= true}
+      )
+
       -- Lsp simple
       -- Format
       vim.keymap.set('v', '<space>f', function()

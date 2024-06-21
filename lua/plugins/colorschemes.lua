@@ -1,13 +1,13 @@
 return {
-  {
-    "morhetz/gruvbox",
-    priority = 1000,
-    lazy = false,
-    config = function()
-      vim.g.gruvbox_contrast_dark = "hard"
-      -- vim.cmd.colorscheme "gruvbox"
-    end,
-  },
+  -- {
+  --   "morhetz/gruvbox",
+  --   priority = 1000,
+  --   lazy = false,
+  --   config = function()
+  --     vim.g.gruvbox_contrast_dark = "hard"
+  --     -- vim.cmd.colorscheme "gruvbox"
+  --   end,
+  -- },
   {
     'sainnhe/gruvbox-material',
     config = function()
