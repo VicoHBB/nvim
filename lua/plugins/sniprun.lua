@@ -1,6 +1,7 @@
 return {
   "michaelb/sniprun",
   build = "sh install.sh",
+  event = "VeryLazy",
   config = function()
 
     require('sniprun').setup{

@@ -35,6 +35,9 @@ return {
       "markdown",
       "org"
     },
+    config = function()
+      vim.g.table_mode_map_prefix = '|'
+    end,
   },
   {                                                               -- HOP
     "phaazon/hop.nvim",

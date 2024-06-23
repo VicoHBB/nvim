@@ -85,11 +85,10 @@ keyset( 'n', "<leader>sw", "<CMD>ISwapWith<CR>", {silent= true} )
 keyset( 'n', "<F8>", "<CMD>Tagbar<CR>", {silent= true} )
 
 -- Telescope
-keyset( 'n', "gs", "<CMD>Telescope grep_string<CR>", {silent= true} )
-keyset( 'n', "z=", "<CMD>Telescope spell_suggest theme=cursor prompt_title=Spell <CR>", {silent= true} )
+keyset( { 'n', 'v' }, "gs", "<CMD>Telescope grep_string<CR>", {silent= true} )
+keyset( 'n', "z=", "<CMD>Telescope spell_suggest<CR>", {silent= true} )
 keyset( 'n', "<leader>T", "<CMD>Telescope builtin<CR>", {silent= true} )
 keyset( 'n', "<leader>b", "<CMD>Telescope buffers<CR>", {silent= true} )
-keyset( 'n', "<leader>u", "<CMD>Telescope undo<CR>", {silent= true} )
 -- keyset( 'n', "<leader>S", "<CMD>Telescope live_grep<CR>", {silent= true} )
 keyset("n", "<leader>S", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { silent= true })
 keyset( 'n', "<leader>th", "<CMD>Telescope oldfiles<CR>", {silent= true} )
@@ -98,13 +97,14 @@ keyset( 'n', "<leader>tm", "<CMD>Telescope marks<CR>", {silent= true} )
 keyset( 'n', "<leader>ty", "<CMD>Telescope yabs current_language_tasks<CR>", {silent= true} )
 keyset( 'n', "<leader>tY", "<CMD>Telescope yabs global_tasks <CR>", {silent= true} )
 keyset( 'n', "<leader>tc", "<CMD>Telescope commands theme=dropdown<CR>", {silent= true} )
-keyset( 'n', "<leader>tr", "<CMD>Telescope neoclip theme=cursor prompt_title=Registers<CR>", {silent= true} )
+keyset( 'n', "<leader>tr", "<CMD>Telescope neoclip prompt_title=Registers<CR>", {silent= true} )
+keyset( 'n', "<leader>tq", "<CMD>Telescope macroscope prompt_title=Macros<CR>", {silent= true} )
 
 -- ToDo
 keyset( 'n', "<leader>tt", "<CMD>TodoTrouble<CR>", {silent= true} )
 
 -- Harpon marks
-keyset( 'n', "<leader>h", "<CMD>Telescope harpoon marks<CR>", {silent= true} )
+keyset( 'n', "<leader>h", "<CMD>Telescope harpoon marks theme=dropdown<CR>", {silent= true} )
 
 -- Harpoon
 keyset( "n", "<leader>A", require('harpoon.mark').add_file, {silent = true} )

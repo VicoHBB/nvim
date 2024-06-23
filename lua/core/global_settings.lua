@@ -52,6 +52,9 @@ vim.opt.listchars = {
   eol = " "
 }
 
+--[[ undodir ]]
+vim.opt.undodir = os.getenv "HOME" .. "/.cache/nvim/undodir"
+
 --[[ Leader map ]]
 vim.g.mapleader = " "
 
