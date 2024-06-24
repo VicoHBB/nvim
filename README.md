@@ -4,11 +4,11 @@ These files are my configuration for Neovim, also using `Vim-Plug` as a plugin m
 
 ## To-DO
 * [ ] Review plugins
-* [ ] Clean plugins (There are to many, and don't even use )
+* [ ] Clean plugins (There are to many, and don't even use)
 * [ ] Review keybindings
 * [ ] Add descriptions to keybindings
 * [ ] Change `yabs`
-* [ ] Create a command for align tables in `makrdown` & `orgmode`
+* [-] Create a command for align tables in `makrdown` & `orgmode`
 * [ ] Review macros & registers
 
 
@@ -26,7 +26,8 @@ These files are my configuration for Neovim, also using `Vim-Plug` as a plugin m
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align)                      | 2024-06-19    |
 | [nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy.git)                    | 2024-06-19    |
 | [jiaoshijie/undotree](https://github.com/jiaoshijie/undotree)                     | 2024-06-22    |
-| [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim)                | 2024-06-22    |
+| [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim)                | 2024-06-23    |
+| [reach](https://github.com/toppair/reach.nvim)                                    | 2024-06-23    |
 
 ### To probe.
 

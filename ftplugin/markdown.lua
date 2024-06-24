@@ -46,7 +46,7 @@ keyset(
 
 keyset(
   'n',
-  "\\ta",
-  "<CMD>TableModeToggle<CR>",
+  "||",
+  "vip:'<,'> EasyAlign *|<CR>",
   {silent= true}
 )

@@ -43,9 +43,9 @@ keyset( 'n', "<A-=>", "2<C-w>=", {silent= true} )
 keyset( 'n', "<leader>;", "$a;<ESC>", {silent= true} )
 
 -- Tabs on Bufferline
-keyset( 'n', "<Tab>", "<CMD>bnext<CR>", {silent= true} )
-keyset( 'n', "<S-Tab>", "<CMD>bprevious<CR>", {silent= true} )
-keyset( 'n', "<leader><Tab>", "<CMD>bdelete<CR>", {silent= true} )
+keyset( 'n', "<leader>>", "<CMD>bnext<CR>", {silent= true} )
+keyset( 'n', "<leader><", "<CMD>bprevious<CR>", {silent= true} )
+keyset( 'n', "<leader>.", "<CMD>bdelete<CR>", {silent= true} )
 
 -- Tmux
 keyset( 'n', "<C-h>", "<CMD>TmuxNavigateLeft<CR>", {silent= true} )
@@ -75,7 +75,7 @@ keyset( 'n', "<F4>", "<C-\\><C-n><CMD>FloatermNext<CR>", {silent= true} )
 keyset( 'n', "<F5>", "<CMD>FloatermKill<CR>", {silent= true} )
 
 -- Align
-keyset( {'n','x'}, "ga", "<Plug>(EasyAlign)", {silent= true} )
+keyset( {'n','v','x'}, "ga", "<Plug>(EasyAlign)", {silent= true} )
 
 -- ISwuap
 keyset( 'n', "<leader>s", "<CMD>ISwapNode<CR>", {silent= true} )
@@ -88,12 +88,10 @@ keyset( 'n', "<F8>", "<CMD>Tagbar<CR>", {silent= true} )
 keyset( { 'n', 'v' }, "gs", "<CMD>Telescope grep_string<CR>", {silent= true} )
 keyset( 'n', "z=", "<CMD>Telescope spell_suggest<CR>", {silent= true} )
 keyset( 'n', "<leader>T", "<CMD>Telescope builtin<CR>", {silent= true} )
-keyset( 'n', "<leader>b", "<CMD>Telescope buffers<CR>", {silent= true} )
 -- keyset( 'n', "<leader>S", "<CMD>Telescope live_grep<CR>", {silent= true} )
 keyset("n", "<leader>S", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { silent= true })
 keyset( 'n', "<leader>th", "<CMD>Telescope oldfiles<CR>", {silent= true} )
 keyset( 'n', "<leader>ff", "<CMD>Telescope fd<CR>", {silent= true} )
-keyset( 'n', "<leader>tm", "<CMD>Telescope marks<CR>", {silent= true} )
 keyset( 'n', "<leader>ty", "<CMD>Telescope yabs current_language_tasks<CR>", {silent= true} )
 keyset( 'n', "<leader>tY", "<CMD>Telescope yabs global_tasks <CR>", {silent= true} )
 keyset( 'n', "<leader>tc", "<CMD>Telescope commands theme=dropdown<CR>", {silent= true} )
@@ -103,16 +101,11 @@ keyset( 'n', "<leader>tq", "<CMD>Telescope macroscope prompt_title=Macros<CR>", 
 -- ToDo
 keyset( 'n', "<leader>tt", "<CMD>TodoTrouble<CR>", {silent= true} )
 
--- Harpon marks
-keyset( 'n', "<leader>h", "<CMD>Telescope harpoon marks theme=dropdown<CR>", {silent= true} )
-
--- Harpoon
-keyset( "n", "<leader>A", require('harpoon.mark').add_file, {silent = true} )
-keyset( "n", "<leader>>", require('harpoon.ui').nav_next, {silent = true} )
-keyset( "n", "<leader><", require('harpoon.ui').nav_prev, {silent = true} )
+-- Buffers
+keyset('n', '<leader>b', function() require('reach').buffers() end, {silent=true})
 
 -- Marks
-keyset( 'n', "<leader>mk", "<CMD>MarksToggleSigns<CR>", {silent= true} )
+keyset( 'n', "<leader>\'", function() require('reach').marks() end, {silent= true} )
 
 -- Lazygit
 keyset( 'n', "<leader>G", "<CMD>Lazygit<CR>", {silent= true} )

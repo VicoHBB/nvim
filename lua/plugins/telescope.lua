@@ -1,4 +1,4 @@
-return { {
+return {
   'nvim-telescope/telescope.nvim',
   -- tag = '0.1.1',
   branch = '0.1.x',
@@ -11,6 +11,7 @@ return { {
       -- This "ill not install any breaking changes.
       -- For major updates, this must be adjusted manually.
       version = "^1.0.0",
+      event = "VeryLazy",
     },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -28,7 +29,8 @@ return { {
       require("telescope-live-grep-args.actions").quote_prompt()(prompt_bufnr)
     end
     local function quote_prompt_ignoredir(prompt_bufnr)
-      require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob '!**/ignoredir/**'" })(prompt_bufnr)
+      require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob '!**/ignoredir/**'" })(
+        prompt_bufnr)
     end
     local function quote_prompt_type(prompt_bufnr)
       require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t " })(prompt_bufnr)
@@ -132,10 +134,10 @@ return { {
       extensions = {
 
         fzf = {
-          fuzzy = true,                   -- false will only do exact matching
-          override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true,    -- override the file sorter
-          case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+          fuzzy = true,                     -- false will only do exact matching
+          override_generic_sorter = true,   -- override the generic sorter
+          override_file_sorter = true,      -- override the file sorter
+          case_mode = "smart_case",         -- or "ignore_case" or "respect_case"
           -- the default case_mode is "smart_case"
         },
         lazy = {
@@ -149,7 +151,7 @@ return { {
             open_in_file_browser = "<M-b>",
             open_in_find_files = "<C-f>",
             open_in_live_grep = "<C-g>",
-            open_plugins_picker = "<C-b>", -- Works only after having called first another action
+            open_plugins_picker = "<C-b>",   -- Works only after having called first another action
             open_lazy_root_find_files = "<C-r>f",
             open_lazy_root_live_grep = "<C-r>g",
           },
@@ -157,9 +159,9 @@ return { {
         },
 
         live_grep_args = {
-          auto_quoting = true, -- enable/disable auto-quoting
+          auto_quoting = true,   -- enable/disable auto-quoting
           -- define mappings, e.g.
-          mappings = {         -- extendmmappings
+          mappings = {           -- extendmmappings
             i = {
               ["<A-r>"] = quote_prompt,
               ["<A-d>"] = quote_prompt_ignoredir,
@@ -175,13 +177,10 @@ return { {
       },
     }
 
-    require("telescope").load_extension('harpoon')
     require("telescope").load_extension "lazy"
     require('telescope').load_extension('yabs')
     require('telescope').load_extension('orgmode')
     require('telescope').load_extension('neoclip')
     require("telescope").load_extension("live_grep_args")
   end,
-}
-
 }
