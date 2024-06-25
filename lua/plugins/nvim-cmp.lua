@@ -4,7 +4,6 @@ return {
   event = "VeryLazy",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-cmdline",
     "onsails/lspkind-nvim",
     "dmitmel/cmp-cmdline-history",
@@ -14,9 +13,18 @@ return {
     },
     "f3fora/cmp-spell",
     "lukas-reineke/cmp-under-comparator",
-    "tzachar/cmp-fuzzy-buffer",
-    "tzachar/fuzzy.nvim",
-    "tzachar/cmp-fuzzy-path",
+    {
+      'tzachar/cmp-fuzzy-buffer',
+      requires = {
+        'tzachar/fuzzy.nvim',
+      },
+    },
+    {
+      'tzachar/cmp-fuzzy-path',
+      dependencies = {
+        'tzachar/fuzzy.nvim',
+      },
+    },
     "honza/vim-snippets", -- Snippets
     "SirVer/ultisnips",   -- Ultisnips
     -- "rafamadriz/friendly-snippets",
@@ -49,6 +57,7 @@ return {
       spell           = "[Spell]",
       cmdline         = "[CMD]",
       cmdline_history = "[H]",
+      orgmode         = "[ORG]"
     }
 
     cmp.setup({
@@ -69,15 +78,20 @@ return {
         ['<C-b>'] = cmp.mapping.scroll_docs(-6),
         ['<C-f>'] = cmp.mapping.scroll_docs(6),
         ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-c>'] = cmp.mapping.abort(),
+        ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),   -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<Tab>'] = cmp.mapping.select_next_item(),
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
       }),
 
-      sources = cmp.config.sources({
+
+      sources = {
         { name = 'cmp_tabnine' },
         { name = 'nvim_lsp' },
+        { name = 'ultisnips' }, -- For ultisnips users.
+        -- { name = 'vsnip' }, -- For vsnip users.
+        -- { name = 'luasnip' }, -- For luasnip users.
+        -- { name = 'snippy' }, -- For snippy users.
         --{ name = "neorg" },
         { name = "orgmode" },
         {
@@ -86,10 +100,6 @@ return {
             strategy = 2, -- mixed
           },
         },
-        { name = 'ultisnips' }, -- For ultisnips users.
-        -- { name = 'vsnip' }, -- For vsnip users.
-        -- { name = 'luasnip' }, -- For luasnip users.
-        -- { name = 'snippy' }, -- For snippy users.
         {
           name = 'spell',
           option = {
@@ -114,8 +124,8 @@ return {
             end
           },
         },
-        -- { name = 'fuzzy_path'},
-      }),
+        { name = 'fuzzy_path'},
+      },
 
       formatting = {
         format = function(entry, vim_item)
@@ -156,6 +166,7 @@ return {
           compare.order,
         },
       },
+
     })
 
     -- Set configuration for specific filetype.
@@ -168,14 +179,6 @@ return {
       })
     })
 
-    -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-    cmp.setup.cmdline({ '/', '?' }, {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = 'fuzzy_buffer' },
-      }
-    })
-
     -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
@@ -185,6 +188,15 @@ return {
         { name = 'cmdline' },
         { name = 'cmdline_history' },
       })
+    })
+
+
+    -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'fuzzy_buffer' },
+      }
     })
 
     -- Sorting

@@ -23,7 +23,7 @@ return {
           "vim",
           "verilog",
           "sv",
-          "latex",
+          -- "latex",
           "markdown",
           "make",
           "cmake",

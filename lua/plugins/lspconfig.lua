@@ -15,7 +15,8 @@ return {
   priority = 1000,
   config = function()
     local keyset = vim.keymap.set
-
+    -- Set up cmp.
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local on_attach = function (_, bufnr)
       -- LSPSaga
       keyset( "n", "K", "<CMD>Lspsaga hover_doc<CR>",
@@ -107,9 +108,6 @@ return {
 
     end
 
-    -- Set up cmp.
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
     require('lspconfig').clangd.setup{
       on_attach = on_attach,
       capabilities = capabilities,
@@ -130,6 +128,7 @@ return {
 
     require('lspconfig').cmake.setup{
       on_attach = on_attach,
+      capabilities = capabilities,
       root_dir = require('lspconfig').util.root_pattern(
         'CMakePresets.json',
         'CTestConfig.cmake',
@@ -142,6 +141,7 @@ return {
 
     require('lspconfig').neocmake.setup{
       on_attach = on_attach,
+      capabilities = capabilities,
       root_dir = require('lspconfig').util.root_pattern(
         '.git',
         'cmake',
@@ -156,6 +156,7 @@ return {
 
     require('lspconfig').pylsp.setup{
       on_attach = on_attach,
+      capabilities = capabilities,
       settings = {
         pylsp = {
           plugins = {
@@ -185,6 +186,7 @@ return {
 
     require('lspconfig').ltex.setup{
       on_attach = on_attach,
+      capabilities = capabilities,
       settings = {
         ltex = {
           -- language = "en-US",
@@ -205,8 +207,8 @@ return {
 
     require('lspconfig').marksman.setup{
       on_attach = on_attach,
-      cmd = { "marksman", "server" },
       capabilities = capabilities,
+      cmd = { "marksman", "server" },
     }
 
     -- require('lspconfig').markdown_oxide.setup{
@@ -253,12 +255,14 @@ return {
 
     require('lspconfig').vimls.setup{
       on_attach = on_attach,
+      capabilities = capabilities,
       cmd = { "vim-language-server", "--stdio" },
       filetypes = { "vim" }
     }
 
     require('lspconfig').lua_ls.setup {
       on_attach = on_attach,
+      capabilities = capabilities,
       settings = {
         Lua = {
           runtime = {
