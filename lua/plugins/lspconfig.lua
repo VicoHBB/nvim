@@ -14,9 +14,16 @@ return {
   },
   priority = 1000,
   config = function()
+    local cmp_lsp = require("cmp_nvim_lsp")
     local keyset = vim.keymap.set
     -- Set up cmp.
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local capabilities = vim.tbl_deep_extend(
+      "force",
+      {},
+      vim.lsp.protocol.make_client_capabilities(),
+      cmp_lsp.default_capabilities()
+    )
     local on_attach = function (_, bufnr)
       -- LSPSaga
       keyset( "n", "K", "<CMD>Lspsaga hover_doc<CR>",
@@ -33,7 +40,7 @@ return {
       -- LSPSAGA Dx
       keyset( 'n', "<leader>[", "<CMD>Lspsaga diagnostic_jump_prev<CR>", {silent= true} )
       keyset( 'n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>", {silent= true} )
-      keyset( 'n', "<leader>?", "<CMD>TroubleToggle workspace_diagnostics<CR>", {silent= true} )
+      keyset( 'n', "<leader>?", "<CMD>Trouble diagnostics toggle<CR>", {silent= true} )
 
       -- GoTo
       keyset( "n", "gd", "<CMD>Lspsaga goto_definition<CR>",
@@ -66,7 +73,7 @@ return {
           buffer=bufnr,
         }
       )
-      keyset( { "i", "n" }, "<C-k>", require("noice.lsp").signature,
+      keyset( { "i" }, "<C-K>", require("noice.lsp").signature,
         {
           desc = "toggle signature",
           noremap = true,

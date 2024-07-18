@@ -40,16 +40,13 @@ return {
       require('org-bullets').setup()
     end
   },
-  {
-    "nvim-orgmode/telescope-orgmode.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-orgmode/orgmode",
-      "nvim-telescope/telescope.nvim",
-    },
-    ft = {
-      'org',
-    },
-  }
+  -- {
+  --   "nvim-orgmode/telescope-orgmode.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     "nvim-orgmode/orgmode",
+  --     "nvim-telescope/telescope.nvim",
+  --   },
+  -- }
 }
 

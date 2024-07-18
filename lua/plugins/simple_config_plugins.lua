@@ -1,9 +1,11 @@
 return {
-  "terryma/vim-multiple-cursors",                                 -- Multiple cursors
-  "mhinz/vim-signify",                                            -- Vim signify
+  'ThePrimeagen/vim-be-good',     -- Vim Be Good
+  "terryma/vim-multiple-cursors", -- Multiple cursors
+  -- "mhinz/vim-signify",                                            -- Vim signify
   {
-    'notjedi/nvim-rooter.lua',                                    -- Nvim roter
-    config = function() require'nvim-rooter'.setup({
+    'notjedi/nvim-rooter.lua', -- Nvim roter
+    config = function()
+      require 'nvim-rooter'.setup({
         rooter_patterns = {
           '.git',
           'makefile',
@@ -19,17 +21,17 @@ return {
     end
   },
   {
-      "kylechui/nvim-surround",
-      version = "*", -- Use for stability; omit to use `main` branch for the latest features
-      event = "VeryLazy",
-      config = function()
-          require("nvim-surround").setup({
-              -- Configuration here, or leave empty to use defaults
-          })
-      end
+    "kylechui/nvim-surround",
+    version = "*",   -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
   },
-  "junegunn/vim-easy-align",                                      -- Easy align
-  {                                                               -- Table Mode
+  "junegunn/vim-easy-align", -- Easy align
+  {                          -- Table Mode
     'dhruvasagar/vim-table-mode',
     ft = {
       "markdown",
@@ -39,7 +41,7 @@ return {
       vim.g.table_mode_map_prefix = '|'
     end,
   },
-  {                                                               -- HOP
+  {                -- HOP
     "phaazon/hop.nvim",
     branch = 'v2', -- optional but strongly recommended
     config = function()
@@ -48,23 +50,25 @@ return {
     end,
   },
   {
+    "mfussenegger/nvim-treehopper"
+  },
+  {
     "mistweaverco/Screenshot.nvim",
   },
   {
-    "skywind3000/asyncrun.vim",                                   -- Asyncrn
+    "skywind3000/asyncrun.vim", -- Asyncrn
     config = function()
       vim.g.asyncrun_open = 8
     end,
   },
-  {                                                           -- Virtual column
+  { -- Virtual column
     "xiyaowong/virtcolumn.nvim",
-    lazy = false,
-    config = function ()
+    config = function()
       vim.g.virtcolumn_char = '▕' -- char to display the line
       vim.g.virtcolumn_priority = 10 -- priority of extmark
     end
   },
-  {                                                               -- Vim-matchup
+  { -- Vim-matchup
     'andymass/vim-matchup',
     config = function()
       -- may set any options here
@@ -83,13 +87,13 @@ return {
   },
   {
     'nacro90/numb.nvim',
-    config = function ()
-      require('numb').setup{
-        show_numbers         = true, -- Enable 'number' for the window while peeking
-        show_cursorline      = true, -- Enable 'cursorline' for the window while peeking
-        hide_relativenumbers = true, -- Enable turning off 'relativenumber' for the window while peeking
+    config = function()
+      require('numb').setup {
+        show_numbers         = true,  -- Enable 'number' for the window while peeking
+        show_cursorline      = true,  -- Enable 'cursorline' for the window while peeking
+        hide_relativenumbers = true,  -- Enable turning off 'relativenumber' for the window while peeking
         number_only          = false, -- Peek only when the command is only a number instead of when it starts with a number
-        centered_peeking     = true, -- Peeked line will be centered relative to window
+        centered_peeking     = true,  -- Peeked line will be centered relative to window
       }
     end
   },
@@ -98,10 +102,16 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('treesj').setup({
-           use_default_keymaps = false,
+        use_default_keymaps = false,
       })
     end,
   },
-  'rush-rs/tree-sitter-asm',    --ASM
+  'rush-rs/tree-sitter-asm', --ASM
+  {
+    "terrastruct/d2-vim",    -- D2
+    ft = {
+      'd2'
+    }
+  },
   -- To probe
 }

@@ -3,7 +3,8 @@ return {
   config = function()
     local ft = require('Comment.ft')
 
-    ft.set('systemverilog', {'//%s', '/*%s*/'})
+    -- This life is for use the comment style of c on systemverilog & verilog
+    ft.set({ 'systemverilog', 'verilog' }, ft.get('c'))
 
     require('Comment').setup({
       ---Add a space b/w comment and the line

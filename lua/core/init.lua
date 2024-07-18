@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("User", {
     require("core/autocmds")
     -- require ("core/usercmds")
     require("core/global_keymaps")
-    require ( "core/diagnostics" )
+    require("core/diagnostics")
   end,
 })
 

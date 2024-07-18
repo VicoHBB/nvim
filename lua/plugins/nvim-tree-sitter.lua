@@ -4,9 +4,9 @@ return {
     build = ":TSUpdate",
     event = "VeryLazy",
     dependencies = {
+      -- "m-demare/hlargs.nvim",
       "nvim-treesitter/nvim-treesitter-textobjects",
       "pleshevskiy/tree-sitter-d2",
-      "HiPhish/nvim-ts-rainbow2",
       "andymass/vim-matchup",
       "nfrid/treesitter-utils",
     },
@@ -22,7 +22,8 @@ return {
           "python",
           "vim",
           "verilog",
-          "sv",
+          "systemverilog",
+          "asm",
           -- "latex",
           "markdown",
           "make",
@@ -60,16 +61,6 @@ return {
           disable_virtual_text = true,
         },
 
-        rainbow = {
-          enable = false,
-          -- list of languages you want to disable the plugin for
-          -- disable = { 'jsx', 'cpp' },
-          -- Which query to use for finding delimiters
-          query = 'rainbow-parens',
-          -- Highlight the entire buffer all at once
-          strategy = require('ts-rainbow').strategy.global,
-        },
-
         textobjects = {
           select = {
             enable = true,
@@ -88,6 +79,7 @@ return {
       })
 
 
+      -- This parser look better
       parser_config.sv = ({
         install_info = {
           url = "/home/vico/Repos/tree-sitter/tree-sitter-sv", -- local path or git repo
@@ -102,22 +94,6 @@ return {
       })
 
       vim.treesitter.language.register('sv', 'systemverilog') -- the someft filetype will use the python parser and queries.
-
-      parser_config.asm = {
-        install_info = {
-            url = 'https://github.com/rush-rs/tree-sitter-asm.git',
-            files = { 'src/parser.c' },
-            branch = 'main',
-        },
-        filetype = "asm", -- if filetype does not match the parser name
-      }
-
-  -- parser_config.verilog = {
-  --   filetype = {
-  --     "verilog",
-  --     "systemverilog",
-  --   }, -- if filetype does not match the parser name
-  -- }
 
       parser_config.d2 = ({
         {

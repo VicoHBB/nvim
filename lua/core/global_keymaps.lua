@@ -12,6 +12,8 @@ keyset( 'n', "gc", "<CMD>HopChar2<CR>", {silent= true} )
 keyset( 'n', "gw", "<CMD>HopWord<CR>", {silent= true} )
 keyset( 'n', "gl", "<CMD>HopLine<CR>", {silent= true} )
 keyset( 'n', "gW", "<CMD>HopPattern<CR>", {silent= true} )
+-- HOP Treehopper
+keyset( 'n', "gn", "<CMD>lua require('tsht').nodes()<CR>", {silent= true} )
 
 -- NvimTree
 keyset( 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>", {silent= true} )
@@ -90,7 +92,7 @@ keyset( 'n', "z=", "<CMD>Telescope spell_suggest<CR>", {silent= true} )
 keyset( 'n', "<leader>T", "<CMD>Telescope builtin<CR>", {silent= true} )
 -- keyset( 'n', "<leader>S", "<CMD>Telescope live_grep<CR>", {silent= true} )
 keyset("n", "<leader>S", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { silent= true })
-keyset( 'n', "<leader>th", "<CMD>Telescope oldfiles<CR>", {silent= true} )
+keyset( 'n', "<leader>fh", "<CMD>Telescope oldfiles<CR>", {silent= true} )
 keyset( 'n', "<leader>ff", "<CMD>Telescope fd<CR>", {silent= true} )
 keyset( 'n', "<leader>ty", "<CMD>Telescope yabs current_language_tasks<CR>", {silent= true} )
 keyset( 'n', "<leader>tY", "<CMD>Telescope yabs global_tasks <CR>", {silent= true} )
@@ -99,7 +101,7 @@ keyset( 'n', "<leader>tr", "<CMD>Telescope neoclip prompt_title=Registers<CR>", 
 keyset( 'n', "<leader>tq", "<CMD>Telescope macroscope prompt_title=Macros<CR>", {silent= true} )
 
 -- ToDo
-keyset( 'n', "<leader>tt", "<CMD>TodoTrouble<CR>", {silent= true} )
+keyset( 'n', "<leader>tt", "<CMD>Trouble todo togle<CR>", {silent= true} )
 
 -- Buffers
 keyset('n', '<leader>b', function() require('reach').buffers() end, {silent=true})

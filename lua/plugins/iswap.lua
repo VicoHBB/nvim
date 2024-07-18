@@ -1,5 +1,6 @@
 return {
   "mizlan/iswap.nvim",                                            -- ISwap
+  event = "VeryLazy",
   config = function()
     require('iswap').setup{
       -- The keys that will be used as a selection, in order

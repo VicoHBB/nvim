@@ -44,6 +44,7 @@ return {
           },
         },
         lualine_x = {
+          'tabnine',
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
