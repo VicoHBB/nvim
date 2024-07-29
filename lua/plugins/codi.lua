@@ -3,7 +3,9 @@ return { -- Maybe remove???
   -- event = "VeryLazy",
   ft = {
     "python",
-    "javascript"
+    "lua",
+    "javascript",
+    "cpp",
   },
   config = function()
     -- Change the color
@@ -25,7 +27,7 @@ return { -- Maybe remove???
 
     vim.cmd([[
      let g:codi#aliases = {
-           \ 'javascript.jsx': 'javascript',
+           \ 'cling': 'cpp',
            \ }
     ]])
   end,

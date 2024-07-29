@@ -9,10 +9,16 @@ These files are my configuration for Neovim, also using `Vim-Plug` as a plugin m
 * [ ] Add descriptions to keybindings
 * [ ] Change `yabs` for `overseer`
 * [ ] Update `cmake-tools`
-* [ ] Change `Ultisnips`
 * [-] Create a command for align tables in `makrdown` & `orgmode`
 * [ ] Review macros & registers
 * [ ] Install a plugin for a terminal
+* [ ] Creat a .txt for dependencies.
+
+## Dependencies
+For install dependencies install on `Arch` install []() run:
+```sh
+paru -S - < dependencies.txt
+```
 
 
 ## Plugins
@@ -21,6 +27,7 @@ These files are my configuration for Neovim, also using `Vim-Plug` as a plugin m
 
 | Plugin                                                                            | Last Review   |
 | --------------------------------------------------------------------------------- | ------------- |
+| [lazy](https://github.com/folke/lazy.nvim)                                        | 2024-07-17    |
 | [Comment](https://github.com/numToStr/Comment.nvim)                               | 2024-07-17    |
 | [alpha](https://github.com/goolord/alpha-nvim)                                    | 2024-07-17    |
 | [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)       | 2024-07-17    |
@@ -35,15 +42,24 @@ These files are my configuration for Neovim, also using `Vim-Plug` as a plugin m
 | [noice](https://github.com/folke/noice.nvim)                                      | 2024-07-14    |
 | [nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy.git)                    | 2024-06-19    |
 | [nvim-orgmode](https://github.com/nvim-orgmode/orgmode)                           | 2024-06-19    |
-| [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim)                | 2024-06-23    |
+| [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim)                | 2024-07-20    |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)             | 2024-07-16    |
 | [org-bullets](https://github.com/nvim-orgmode/org-bullets.nvim)                   | 2024-06-19    |
 | [org-modern](https://github.com/danilshvalov/org-modern.nvim)                     | 2024-06-19    |
 | [reach](https://github.com/toppair/reach.nvim)                                    | 2024-06-23    |
 | [tabnine](https://github.com/codota/tabnine-nvim)                                 | 2024-07-14    |
 | [telescope-orgmode](https://github.com/nvim-orgmode/telescope-orgmode.nvim)       | 2024-06-19    |
-| [treehopper](https://github.com/mfussenegger/nvim-treehopper)                     | 2024-07-16    |
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align)                      | 2024-06-19    |
+| [vimtex](https://github.com/lervag/vimtex)                                        | 2024-07-20    |
+| [verilog_systemverilog](https://github.com/vhda/verilog_systemverilog.vim)        | 2024-07-20    |
+| [vim-verilog-instance](https://github.com/antoinemadec/vim-verilog-instance)      | 2024-07-20    |
+| [nvim-recorder](https://github.com/chrisgrieser/nvim-recorder)                    | 2024-07-20    |
+| [lualine](https://github.com/nvim-lualine/lualine.nvim)                           | 2024-07-20    |
+| [nvim-peekup](https://github.com/gennaro-tedesco/nvim-peekup)                     | 2024-07-20    |
+| [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim) | 2024-07-20    |
+| [codi](https://github.com/metakirby5/codi.vim)                                    | 2024-07-20    |
+| [sniprun](https://github.com/michaelb/sniprun)                                    | 2024-07-20    |
+| [flash](https://github.com/folke/flash.nvim)                                      | 2024-07-27    |
 
 ### To probe.
 

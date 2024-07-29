@@ -1,25 +1,5 @@
 return {
   'ThePrimeagen/vim-be-good',     -- Vim Be Good
-  "terryma/vim-multiple-cursors", -- Multiple cursors
-  -- "mhinz/vim-signify",                                            -- Vim signify
-  {
-    'notjedi/nvim-rooter.lua', -- Nvim roter
-    config = function()
-      require 'nvim-rooter'.setup({
-        rooter_patterns = {
-          '.git',
-          'makefile',
-          'Makefile',
-          'app',
-          'compile_commands.json',
-          'References',
-        },
-        trigger_patterns = { '*' },
-        manual = false,
-        fallback_to_parent = false,
-      })
-    end
-  },
   {
     "kylechui/nvim-surround",
     version = "*",   -- Use for stability; omit to use `main` branch for the latest features
@@ -40,20 +20,6 @@ return {
     config = function()
       vim.g.table_mode_map_prefix = '|'
     end,
-  },
-  {                -- HOP
-    "phaazon/hop.nvim",
-    branch = 'v2', -- optional but strongly recommended
-    config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require('hop').setup { keys = 'etovxqpdygfblzhckisuran' }
-    end,
-  },
-  {
-    "mfussenegger/nvim-treehopper"
-  },
-  {
-    "mistweaverco/Screenshot.nvim",
   },
   {
     "skywind3000/asyncrun.vim", -- Asyncrn
@@ -79,26 +45,15 @@ return {
   },
   {
     "glts/vim-radical",
+    event = "VeryLazy",
     dependencies = {
       "glts/vim-magnum",
       "tpope/vim-repeat",
     },
-    event = "VeryLazy",
-  },
-  {
-    'nacro90/numb.nvim',
-    config = function()
-      require('numb').setup {
-        show_numbers         = true,  -- Enable 'number' for the window while peeking
-        show_cursorline      = true,  -- Enable 'cursorline' for the window while peeking
-        hide_relativenumbers = true,  -- Enable turning off 'relativenumber' for the window while peeking
-        number_only          = false, -- Peek only when the command is only a number instead of when it starts with a number
-        centered_peeking     = true,  -- Peeked line will be centered relative to window
-      }
-    end
   },
   {
     'Wansmer/treesj',
+    event = "VeryLazy",
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('treesj').setup({
@@ -106,7 +61,6 @@ return {
       })
     end,
   },
-  'rush-rs/tree-sitter-asm', --ASM
   {
     "terrastruct/d2-vim",    -- D2
     ft = {

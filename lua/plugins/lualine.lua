@@ -22,7 +22,11 @@ return {
         },
       },
       sections = {
-        lualine_a = { 'mode' },
+        lualine_a = {
+          'mode',
+          require("recorder").displaySlots,
+          require("recorder").recordingStatus,
+        },
         lualine_b = { 'branch', 'diff' },
         lualine_c = {
           {

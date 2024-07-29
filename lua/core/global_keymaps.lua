@@ -4,16 +4,8 @@ local keyset = vim.keymap.set
 keyset( 'n', "<leader>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
 keyset( 'n', "<leader><leader>", "<CMD>echo 'Think, Think...'<CR>",{ silent= true } )
 
--- ChatGPT
--- keyset( 'n', "gpt", "<CMD>ChatGPT<CR>", {silent= true} )
-
--- HOP
-keyset( 'n', "gc", "<CMD>HopChar2<CR>", {silent= true} )
-keyset( 'n', "gw", "<CMD>HopWord<CR>", {silent= true} )
-keyset( 'n', "gl", "<CMD>HopLine<CR>", {silent= true} )
-keyset( 'n', "gW", "<CMD>HopPattern<CR>", {silent= true} )
--- HOP Treehopper
-keyset( 'n', "gn", "<CMD>lua require('tsht').nodes()<CR>", {silent= true} )
+-- Tabnine Chat
+-- keyset( 'n', "gpt", "<CMD>TabnineChat<CR>", {silent= true} )
 
 -- NvimTree
 keyset( 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>", {silent= true} )
@@ -101,7 +93,7 @@ keyset( 'n', "<leader>tr", "<CMD>Telescope neoclip prompt_title=Registers<CR>", 
 keyset( 'n', "<leader>tq", "<CMD>Telescope macroscope prompt_title=Macros<CR>", {silent= true} )
 
 -- ToDo
-keyset( 'n', "<leader>tt", "<CMD>Trouble todo togle<CR>", {silent= true} )
+keyset( 'n', "<leader>tt", "<CMD>Trouble todo toggle<CR>", {silent= true} )
 
 -- Buffers
 keyset('n', '<leader>b', function() require('reach').buffers() end, {silent=true})

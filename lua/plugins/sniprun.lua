@@ -7,7 +7,9 @@ return {
     require('sniprun').setup{
        -- use those instead of the default for the current filetype
       selected_interpreters = { "python","gcc","rustc" },
-      repl_enable = {},               -- enable REPL-like behavior for the given interpreters
+      repl_enable = {
+        -- repl_enable = {'Python3_original'},
+      },               -- enable REPL-like behavior for the given interpreters
       repl_disable = {},              -- disable REPL-like behavior for the given interpreters
 
       interpreter_options = {         -- interpreter-specific options, see docs / :SnipInfo <name>
@@ -27,8 +29,7 @@ return {
       --# you can combo different display modes as desired
       display = {
         -- "Classic",                    --# display results in the command-line  area
-        "VirtualTextOk",              --# display ok results as virtual text (multiline is shortened)
-
+        -- "VirtualTextOk",              --# display ok results as virtual text (multiline is shortened)
         -- "VirtualTextErr",          --# display error results as virtual text
          "TempFloatingWindow",      --# display results in a floating window
         -- "LongTempFloatingWindow",  --# same as above, but only long results. To use with VirtualText__
