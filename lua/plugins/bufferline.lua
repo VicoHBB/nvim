@@ -48,7 +48,7 @@ return {
         --- this should return a string
         --- Don't get too fancy as this function will be executed a lot
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
-          local icon = level:match("error") and " " or " "
+          local icon = level:match("error") and " " or " "
           return " " .. icon .. count
         end,
 

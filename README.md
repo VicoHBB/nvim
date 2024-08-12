@@ -10,7 +10,6 @@ These files are my configuration for Neovim, also using `Vim-Plug` as a plugin m
 * [ ] Change `yabs` for `overseer`
 * [ ] Update `cmake-tools`
 * [-] Create a command for align tables in `makrdown` & `orgmode`
-* [ ] Review macros & registers
 * [ ] Install a plugin for a terminal
 * [ ] Creat a .txt for dependencies.
 
@@ -29,7 +28,7 @@ paru -S - < dependencies.txt
 | --------------------------------------------------------------------------------- | ------------- |
 | [lazy](https://github.com/folke/lazy.nvim)                                        | 2024-07-17    |
 | [Comment](https://github.com/numToStr/Comment.nvim)                               | 2024-07-17    |
-| [alpha](https://github.com/goolord/alpha-nvim)                                    | 2024-07-17    |
+| [alpha](https://github.com/goolord/alpha-nvim)                                    | 2024-08-11    |
 | [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)       | 2024-07-17    |
 | [cmp](https://github.com/hrsh7th/nvim-cmp)                                        | 2024-07-15    |
 | [colorful-winsep](https://github.com/nvim-zh/colorful-winsep.nvim)                | 2024-07-17    |
@@ -42,7 +41,7 @@ paru -S - < dependencies.txt
 | [noice](https://github.com/folke/noice.nvim)                                      | 2024-07-14    |
 | [nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy.git)                    | 2024-06-19    |
 | [nvim-orgmode](https://github.com/nvim-orgmode/orgmode)                           | 2024-06-19    |
-| [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim)                | 2024-07-20    |
+| [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim)                | 2024-08-11    |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)             | 2024-07-16    |
 | [org-bullets](https://github.com/nvim-orgmode/org-bullets.nvim)                   | 2024-06-19    |
 | [org-modern](https://github.com/danilshvalov/org-modern.nvim)                     | 2024-06-19    |
@@ -60,6 +59,8 @@ paru -S - < dependencies.txt
 | [codi](https://github.com/metakirby5/codi.vim)                                    | 2024-07-20    |
 | [sniprun](https://github.com/michaelb/sniprun)                                    | 2024-07-20    |
 | [flash](https://github.com/folke/flash.nvim)                                      | 2024-07-27    |
+| [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                              | 2024-08-11    |
+| [quicker](https://github.com/stevearc/quicker.nvim)                               | 2024-08-11    |
 
 ### To probe.
 

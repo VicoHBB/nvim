@@ -40,7 +40,15 @@ return {
       -- LSPSAGA Dx
       keyset( 'n', "<leader>[", "<CMD>Lspsaga diagnostic_jump_prev<CR>", {silent= true} )
       keyset( 'n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>", {silent= true} )
-      keyset( 'n', "<leader>?", "<CMD>Trouble diagnostics toggle<CR>", {silent= true} )
+      keyset(
+        'n',
+        '<leader>?',
+        function() vim.diagnostic.setqflist() end,
+        {
+          desc   = "Show diagnostics",
+          silent=true,
+        }
+      )
 
       -- GoTo
       keyset( "n", "gd", "<CMD>Lspsaga goto_definition<CR>",

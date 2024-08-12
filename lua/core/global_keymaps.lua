@@ -10,9 +10,6 @@ keyset( 'n', "<leader><leader>", "<CMD>echo 'Think, Think...'<CR>",{ silent= tru
 -- NvimTree
 keyset( 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>", {silent= true} )
 
--- Navbuddy
--- keyset( 'n', "<leader>N", "<CMD>Navbuddy<CR>", {silent= true} )
-
 -- Ranger
 keyset( 'n', "<Leader>F", "<CMD>Ranger<CR>", {silent= true, desc="Open Ranger"} )
 
@@ -24,7 +21,7 @@ keyset( 'n', "<leader>w", "<CMD>w<CR>", {silent= true, desc="Quick Save"} )
 
 -- Quick Quit
 keyset( 'n', "<leader>q", "<CMD>q<CR>", {silent= true, desc ="Quick Quit"} )
-keyset( 'n', "<leader>Q", "<CMD>q!<CR>", {silent= true, desc = "Force Quit"} )
+keyset( 'n', "<leader>Q", "<CMD>qall!<CR>", {silent= true, desc = "Force Quit"} )
 
 -- Split resize
 keyset( 'n', "<A-l>", "2<C-w>>", {silent= true} )
@@ -36,10 +33,18 @@ keyset( 'n', "<A-=>", "2<C-w>=", {silent= true} )
 -- Fast ';'
 keyset( 'n', "<leader>;", "$a;<ESC>", {silent= true} )
 
+-- Fast ',"
+keyset( 'n', "<leader>,", "$a,<ESC>", {silent= true} )
+
 -- Tabs on Bufferline
-keyset( 'n', "<leader>>", "<CMD>bnext<CR>", {silent= true} )
-keyset( 'n', "<leader><", "<CMD>bprevious<CR>", {silent= true} )
-keyset( 'n', "<leader>.", "<CMD>bdelete<CR>", {silent= true} )
+keyset( 'n', "<leader>l", "<CMD>bnext<CR>", {silent= true} )
+keyset( 'n', "<leader>h", "<CMD>bprevious<CR>", {silent= true} )
+keyset( 'n', "<leader>x", "<CMD>bdelete<CR>", {silent= true} )
+
+-- Split window
+keyset( 'n', "<leader>|", "<CMD>vsp<CR>", {silent= true} )
+keyset( 'n', "<leader>_", "<CMD>sp<CR>", {silent= true} )
+
 
 -- Tmux
 keyset( 'n', "<C-h>", "<CMD>TmuxNavigateLeft<CR>", {silent= true} )
@@ -48,11 +53,6 @@ keyset( 'n', "<leader><C-j>", "<CMD>TmuxNavigateDown<CR>", {silent= true} )
 keyset( 'n', "<C-k>", "<CMD>TmuxNavigateUp<CR>", {silent= true} )
 keyset( 'n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", {silent= true} )
 keyset( 'n', "<C-p>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
-
--- FZF
-keyset( 'n', "<leader>L", "<CMD>Lines<CR>", {silent= true} )
--- keyset( 'n', "fzh", "<CMD>History<CR>", {silent= true} )
--- keyset( 'n', "fzf", "<CMD>FZF<CR>", {silent= true} )
 
 -- Floaterm
 keyset( 'n', "<F1>", "<CMD>FloatermToggle<CR>", {silent= true} )
@@ -85,15 +85,15 @@ keyset( 'n', "<leader>T", "<CMD>Telescope builtin<CR>", {silent= true} )
 -- keyset( 'n', "<leader>S", "<CMD>Telescope live_grep<CR>", {silent= true} )
 keyset("n", "<leader>S", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { silent= true })
 keyset( 'n', "<leader>fh", "<CMD>Telescope oldfiles<CR>", {silent= true} )
-keyset( 'n', "<leader>ff", "<CMD>Telescope fd<CR>", {silent= true} )
+keyset( 'n', "<leader>ff", "<CMD>Telescope find_files<CR>", {silent= true} )
 keyset( 'n', "<leader>ty", "<CMD>Telescope yabs current_language_tasks<CR>", {silent= true} )
 keyset( 'n', "<leader>tY", "<CMD>Telescope yabs global_tasks <CR>", {silent= true} )
-keyset( 'n', "<leader>tc", "<CMD>Telescope commands theme=dropdown<CR>", {silent= true} )
-keyset( 'n', "<leader>tr", "<CMD>Telescope neoclip prompt_title=Registers<CR>", {silent= true} )
-keyset( 'n', "<leader>tq", "<CMD>Telescope macroscope prompt_title=Macros<CR>", {silent= true} )
+keyset( 'n', "<leader>tc", "<CMD>Telescope commands<CR>", {silent= true} )
+keyset( 'n', "<leader>tl", "<CMD>Telescope current_buffer_fuzzy_find<CR>", {silent= true} )
+keyset( 'n', "<leader>tg", "<CMD>Telescope git_bcommits<CR>", {silent= true} )
 
 -- ToDo
-keyset( 'n', "<leader>tt", "<CMD>Trouble todo toggle<CR>", {silent= true} )
+keyset( 'n', "<leader>tt", "<CMD>TodoQuickFix<CR>", {silent= true} )
 
 -- Buffers
 keyset('n', '<leader>b', function() require('reach').buffers() end, {silent=true})
@@ -126,7 +126,7 @@ keyset( 'n', "<leader>ry", "<CMD>YabsDefaultTask<CR>", {silent= true} )
 keyset('n', "<leader>st", "<CMD>TSJToggle<CR>", { silent = true })
 
 -- For terminal
-keyset( 't', "<C-a>n", "<C-\\><C-n>", {silent= true} )
+keyset('t', "<C-a>n", "<C-\\><C-n>", { silent= true })
 keyset( 't', "<C-a>p", "<C-\\><C-n><CMD>TmuxNavigatePrevious<CR>", {silent= true} )
 
 -- Make
@@ -141,6 +141,7 @@ keyset('n', "<leader>ms", "<CMD>AsyncRun make synth<CR>", { silent= true })
 keyset('n', "<leader>mv", "<CMD>AsyncRun make view<CR>", { silent= true })
 
 -- Quickfix
-keyset( 'n', "<F7>", "<CMD>call ToggleQuickfixList()<CR>", {silent= true} )
-keyset( 'n', "<F6>", "<CMD>call ToggleLocationList()<CR>", {silent= true} )
+keyset("n", "<F7>", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
+keyset("n", "<F6>", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist", })
+
 

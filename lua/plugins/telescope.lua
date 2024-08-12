@@ -128,7 +128,15 @@ return {
       pickers = {
         spell_suggest = {
           theme = "cursor",
-          prompt_tittle = "Spell"
+          prompt_title = "Spell"
+        },
+        commands = {
+          theme = "dropdown",
+          prompt_title = "Commands"
+        },
+        current_buffer_fuzzy_find = {
+          theme = "dropdown",
+          prompt_title = "Current Buffer Lines",
         },
       },
 
@@ -171,7 +179,7 @@ return {
           -- define mappings, e.g.
           mappings = {           -- extendmmappings
             i = {
-              ["<A-r>"] = quote_prompt,
+              ["<C-r>"] = quote_prompt,
               ["<A-d>"] = quote_prompt_ignoredir,
               ["<A-t>"] = quote_prompt_type,
             }
@@ -182,10 +190,6 @@ return {
           -- theme = "drop",
           theme = "ivy",
         }
-
-        -- neoclip = {
-        --   prompt_title = "Registers"
-        -- },
 
       },
     }
