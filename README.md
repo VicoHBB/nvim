@@ -7,11 +7,11 @@ These files are my configuration for Neovim, also using `Vim-Plug` as a plugin m
 * [ ] Clean plugins (There are to many, and don't even use)
 * [ ] Review keybindings
 * [ ] Add descriptions to keybindings
-* [ ] Change `yabs` for `overseer`
+* [-] Change `yabs` for `overseer`
 * [ ] Update `cmake-tools`
 * [-] Create a command for align tables in `makrdown` & `orgmode`
-* [ ] Install a plugin for a terminal
-* [ ] Creat a .txt for dependencies.
+* [X] Install a plugin for a terminal
+* [X] Creat a .txt for dependencies.
 
 ## Dependencies
 For install dependencies install on `Arch` install []() run:
@@ -26,41 +26,42 @@ paru -S - < dependencies.txt
 
 | Plugin                                                                            | Last Review   |
 | --------------------------------------------------------------------------------- | ------------- |
-| [lazy](https://github.com/folke/lazy.nvim)                                        | 2024-07-17    |
 | [Comment](https://github.com/numToStr/Comment.nvim)                               | 2024-07-17    |
 | [alpha](https://github.com/goolord/alpha-nvim)                                    | 2024-08-11    |
 | [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)       | 2024-07-17    |
 | [cmp](https://github.com/hrsh7th/nvim-cmp)                                        | 2024-07-15    |
+| [codi](https://github.com/metakirby5/codi.vim)                                    | 2024-07-20    |
 | [colorful-winsep](https://github.com/nvim-zh/colorful-winsep.nvim)                | 2024-07-17    |
+| [flash](https://github.com/folke/flash.nvim)                                      | 2024-07-27    |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                            | 2024-06-19    |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                            | 2024-07-16    |
 | [gruvbox-material](https://github.com/sainnhe/gruvbox-material)                   | 2024-07-16    |
 | [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)                       | 2024-07-16    |
 | [headlines](https://github.com/lukas-reineke/headlines.nvim)                      | 2024-07-17    |
 | [jiaoshijie/undotree](https://github.com/jiaoshijie/undotree)                     | 2024-06-22    |
+| [lazy](https://github.com/folke/lazy.nvim)                                        | 2024-07-17    |
+| [lualine](https://github.com/nvim-lualine/lualine.nvim)                           | 2024-08-12    |
 | [noice](https://github.com/folke/noice.nvim)                                      | 2024-07-14    |
+| [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                              | 2024-08-11    |
 | [nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy.git)                    | 2024-06-19    |
 | [nvim-orgmode](https://github.com/nvim-orgmode/orgmode)                           | 2024-06-19    |
+| [nvim-peekup](https://github.com/gennaro-tedesco/nvim-peekup)                     | 2024-07-20    |
+| [nvim-recorder](https://github.com/chrisgrieser/nvim-recorder)                    | 2024-07-20    |
 | [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim)                | 2024-08-11    |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)             | 2024-07-16    |
 | [org-bullets](https://github.com/nvim-orgmode/org-bullets.nvim)                   | 2024-06-19    |
 | [org-modern](https://github.com/danilshvalov/org-modern.nvim)                     | 2024-06-19    |
+| [quicker](https://github.com/stevearc/quicker.nvim)                               | 2024-08-11    |
 | [reach](https://github.com/toppair/reach.nvim)                                    | 2024-06-23    |
+| [sniprun](https://github.com/michaelb/sniprun)                                    | 2024-07-20    |
 | [tabnine](https://github.com/codota/tabnine-nvim)                                 | 2024-07-14    |
 | [telescope-orgmode](https://github.com/nvim-orgmode/telescope-orgmode.nvim)       | 2024-06-19    |
-| [vim-easy-align](https://github.com/junegunn/vim-easy-align)                      | 2024-06-19    |
-| [vimtex](https://github.com/lervag/vimtex)                                        | 2024-07-20    |
-| [verilog_systemverilog](https://github.com/vhda/verilog_systemverilog.vim)        | 2024-07-20    |
-| [vim-verilog-instance](https://github.com/antoinemadec/vim-verilog-instance)      | 2024-07-20    |
-| [nvim-recorder](https://github.com/chrisgrieser/nvim-recorder)                    | 2024-07-20    |
-| [lualine](https://github.com/nvim-lualine/lualine.nvim)                           | 2024-07-20    |
-| [nvim-peekup](https://github.com/gennaro-tedesco/nvim-peekup)                     | 2024-07-20    |
 | [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim) | 2024-07-20    |
-| [codi](https://github.com/metakirby5/codi.vim)                                    | 2024-07-20    |
-| [sniprun](https://github.com/michaelb/sniprun)                                    | 2024-07-20    |
-| [flash](https://github.com/folke/flash.nvim)                                      | 2024-07-27    |
-| [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                              | 2024-08-11    |
-| [quicker](https://github.com/stevearc/quicker.nvim)                               | 2024-08-11    |
+| [toggleterm](https://github.com/akinsho/toggleterm.nvim)                          | 2024-08-12    |
+| [verilog_systemverilog](https://github.com/vhda/verilog_systemverilog.vim)        | 2024-07-20    |
+| [vim-easy-align](https://github.com/junegunn/vim-easy-align)                      | 2024-06-19    |
+| [vim-verilog-instance](https://github.com/antoinemadec/vim-verilog-instance)      | 2024-07-20    |
+| [vimtex](https://github.com/lervag/vimtex)                                        | 2024-07-20    |
 
 ### To probe.
 
