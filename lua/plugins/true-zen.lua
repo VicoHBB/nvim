@@ -1,10 +1,10 @@
 return {
-	'Pocco81/true-zen.nvim',
-	config = function()
-		require("true-zen").setup ({
+  'Pocco81/true-zen.nvim',
+  config = function()
+    require("true-zen").setup ({
         -- your config goes here
         -- or just leave it empty :)
-      	modes = { -- configurations per mode
+        modes = { -- configurations per mode
         ataraxis = {
           shade = "dark", -- if `dark` then dim the padding windows, otherwise if it's `light` it'll brighten said windows
           backdrop = 0, -- percentage by which padding windows should be dimmed/brightened. Must be a number between 0 and 1. Set to 0 to keep the same background color
@@ -58,6 +58,6 @@ return {
         twilight = false, -- enable twilight (ataraxis)
         lualine = false -- hide nvim-lualine (ataraxis)
       },
-		 })
-	end,
+     })
+  end,
 }

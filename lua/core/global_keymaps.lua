@@ -54,19 +54,13 @@ keyset( 'n', "<C-k>", "<CMD>TmuxNavigateUp<CR>", {silent= true} )
 keyset( 'n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", {silent= true} )
 keyset( 'n', "<C-p>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
 
--- Floaterm
-keyset( 'n', "<F1>", "<CMD>FloatermToggle<CR>", {silent= true} )
-keyset('t', '<F1>', "<C-\\><C-n>:FloatermToggle<CR>", {silent=true})
--- vim.cmd([[
---   tnoremap   <silent>   <F1>    <C-\><C-n>:FloatermToggle<CR>
--- ]])
-keyset( 'n', "<F2>", "<CMD>FloatermNew<CR>", {silent= true} )
-keyset( 'n', "<F2>", "<C-\\><C-n><CMD>FloatermNew<CR>", {silent= true} )
-keyset( 'n', "<F3>", "<CMD>FloatermPrev<CR>", {silent= true} )
-keyset( 'n', "<F3>", "<C-\\><C-n><CMD>FloatermPrev<CR>", {silent= true} )
-keyset( 'n', "<F4>", "<CMD>FloatermNext<CR>", {silent= true} )
-keyset( 'n', "<F4>", "<C-\\><C-n><CMD>FloatermNext<CR>", {silent= true} )
-keyset( 'n', "<F5>", "<CMD>FloatermKill<CR>", {silent= true} )
+-- Toggleterm
+-- keyset('t', 'jk', "<C-\\><C-n>", {silent=true})
+keyset('t', '<F3>', "<Cmd>2TermExec cmd='' <CR>", {silent=true})
+keyset('t', '<C-h>', "<Cmd>TmuxNavigateLeft<CR>", {silent=true})
+keyset('t', '<C-j>', "<Cmd>TmuxNavigateDown<CR>", {silent=true})
+keyset('t', '<C-k>', "<Cmd>TmuxNavigateUp<CR>", {silent=true})
+keyset('t', '<C-l>', "<Cmd>TmuxNavigateRight<CR>", {silent=true})
 
 -- Align
 keyset( {'n','v','x'}, "ga", "<Plug>(EasyAlign)", {silent= true} )
@@ -109,7 +103,7 @@ keyset( {'n','v'}, "<leader>qr", "<CMD>SnipRun<CR>", {silent= true} )
 keyset( 'n', "<leader>qc", "<CMD>SnipClose<CR>", {silent= true} )
 
 -- Take screenshoot
-keyset( 'v', "<F10>", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
+-- keyset( 'v', "<F10>", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
 
 -- Oil
 keyset("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
@@ -124,10 +118,6 @@ keyset( 'n', "<leader>ry", "<CMD>YabsDefaultTask<CR>", {silent= true} )
 
 -- TSJT
 keyset('n', "<leader>st", "<CMD>TSJToggle<CR>", { silent = true })
-
--- For terminal
-keyset('t', "<C-a>n", "<C-\\><C-n>", { silent= true })
-keyset( 't', "<C-a>p", "<C-\\><C-n><CMD>TmuxNavigatePrevious<CR>", {silent= true} )
 
 -- Make
 keyset( 'n', "<leader>M", ":AsyncRun make ", {silent= true} )

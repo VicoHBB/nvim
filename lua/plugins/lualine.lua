@@ -107,12 +107,15 @@ return {
       winbar = {},
       inactive_winbar = {},
       extensions = {
-        'nvim-tree',
         'fzf',
-        'quickfix',
-        'trouble',
+        'lazy',
         'mason',
-        'lazy'
+        'nvim-tree',
+        'oil',
+        'overseer',
+        'quickfix',
+        'symbols-outline',
+        'toggleterm',
       }
     })
   end,
