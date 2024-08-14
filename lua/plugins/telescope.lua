@@ -195,7 +195,6 @@ return {
     }
 
     require("telescope").load_extension "lazy"
-    require('telescope').load_extension('yabs')
     -- require('telescope').load_extension('orgmode')
     -- require('telescope').load_extension('neoclip')
     require('telescope').load_extension('projects')

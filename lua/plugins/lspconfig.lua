@@ -204,18 +204,7 @@ return {
       capabilities = capabilities,
       settings = {
         ltex = {
-          -- language = "en-US",
-          language = "es",
-          dictionary = {
-            ['en-GB'] = {
-              "MicroPython",
-              "AUTOSAR",
-            },
-            ['es'] = {
-              "MicroPython",
-              "AUTOSAR",
-            },
-          },
+          language = "en-US",
         },
       },
     }

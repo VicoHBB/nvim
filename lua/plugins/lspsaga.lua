@@ -43,6 +43,9 @@ return {
         show_server_name = true,
         extend_gitsigns = true,
       },
+      outline = {
+        auto_preview = false,
+      },
     })
   end,
 }

@@ -1,3 +1,5 @@
+local commands = require('core.custom_commands')
+
 -- Remove spaces in the final of the line after write a file
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   callback = function()
@@ -22,6 +24,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo[event.buf].buflisted = false
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
+})
+
+-- Define autocommands to enable the command for specific file types
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'txt', 'markdown', 'org' },
+  callback = function()
+    commands.ltexedit()
+  end
 })
 
 vim.cmd([[

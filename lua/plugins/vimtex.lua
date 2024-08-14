@@ -49,12 +49,5 @@ return {
       -- (include all formats for which re-running is to be enabled)
       vim.g.Tex_MultipleCompileFormats = 'pdf,dvi'
     end,
-  },
-  {
-    "icewind/ltex-client.nvim",
-    ft = { "tex", "bib", "markdown", "org" },
-    config = function ()
-      require("ltex-client").setup()
-    end
-  },
+  }
 }

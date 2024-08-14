@@ -10,7 +10,7 @@ return {
   config = function()
 
     require("recorder").setup({
-      slots = { "a", "s" },
+      slots = { "a", "s", "d" },
       mapping = {
         startStopRecording = "q",
         playMacro = "@",
@@ -28,3 +28,4 @@ return {
 
   end,
 }
+

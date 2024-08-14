@@ -53,7 +53,6 @@ paru -S - < dependencies.txt
 | [org-modern](https://github.com/danilshvalov/org-modern.nvim)                     | 2024-06-19    |
 | [quicker](https://github.com/stevearc/quicker.nvim)                               | 2024-08-11    |
 | [reach](https://github.com/toppair/reach.nvim)                                    | 2024-06-23    |
-| [sniprun](https://github.com/michaelb/sniprun)                                    | 2024-07-20    |
 | [tabnine](https://github.com/codota/tabnine-nvim)                                 | 2024-07-14    |
 | [telescope-orgmode](https://github.com/nvim-orgmode/telescope-orgmode.nvim)       | 2024-06-19    |
 | [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim) | 2024-07-20    |
@@ -62,6 +61,7 @@ paru -S - < dependencies.txt
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align)                      | 2024-06-19    |
 | [vim-verilog-instance](https://github.com/antoinemadec/vim-verilog-instance)      | 2024-07-20    |
 | [vimtex](https://github.com/lervag/vimtex)                                        | 2024-07-20    |
+| [ltex-client](https://github.com/icewind/ltex-client.nvim)                        | 2024-08-13    |
 
 ### To probe.
 
