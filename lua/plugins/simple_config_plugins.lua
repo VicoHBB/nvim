@@ -21,12 +21,6 @@ return {
       vim.g.table_mode_map_prefix = '|'
     end,
   },
-  {
-    "skywind3000/asyncrun.vim", -- Asyncrn
-    config = function()
-      vim.g.asyncrun_open = 8
-    end,
-  },
   { -- Virtual column
     "xiyaowong/virtcolumn.nvim",
     config = function()

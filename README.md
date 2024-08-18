@@ -12,6 +12,7 @@ These files are my configuration for Neovim, also using `Vim-Plug` as a plugin m
 * [-] Create a command for align tables in `makrdown` & `orgmode`
 * [X] Install a plugin for a terminal
 * [X] Creat a .txt for dependencies.
+* [ ] Review `vimtex`
 
 ## Dependencies
 For install dependencies install on `Arch` install []() run:
@@ -38,8 +39,8 @@ paru -S - < dependencies.txt
 | [gruvbox-material](https://github.com/sainnhe/gruvbox-material)                   | 2024-07-16    |
 | [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)                       | 2024-07-16    |
 | [headlines](https://github.com/lukas-reineke/headlines.nvim)                      | 2024-07-17    |
-| [jiaoshijie/undotree](https://github.com/jiaoshijie/undotree)                     | 2024-06-22    |
 | [lazy](https://github.com/folke/lazy.nvim)                                        | 2024-07-17    |
+| [ltex-client](https://github.com/icewind/ltex-client.nvim)                        | 2024-08-13    |
 | [lualine](https://github.com/nvim-lualine/lualine.nvim)                           | 2024-08-12    |
 | [noice](https://github.com/folke/noice.nvim)                                      | 2024-07-14    |
 | [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                              | 2024-08-11    |
@@ -57,11 +58,11 @@ paru -S - < dependencies.txt
 | [telescope-orgmode](https://github.com/nvim-orgmode/telescope-orgmode.nvim)       | 2024-06-19    |
 | [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim) | 2024-07-20    |
 | [toggleterm](https://github.com/akinsho/toggleterm.nvim)                          | 2024-08-12    |
+| [undotree](https://github.com/jiaoshijie/undotree)                     | 2024-06-22    |
 | [verilog_systemverilog](https://github.com/vhda/verilog_systemverilog.vim)        | 2024-07-20    |
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align)                      | 2024-06-19    |
 | [vim-verilog-instance](https://github.com/antoinemadec/vim-verilog-instance)      | 2024-07-20    |
 | [vimtex](https://github.com/lervag/vimtex)                                        | 2024-07-20    |
-| [ltex-client](https://github.com/icewind/ltex-client.nvim)                        | 2024-08-13    |
 
 ### To probe.
 

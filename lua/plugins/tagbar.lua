@@ -1,8 +1,16 @@
 return {
   "preservim/tagbar",                                             -- Tagbar
+  ft = {
+    'verilog',
+    'systemverilog',
+  },
   config = function ()
 
+    vim.g.tagbar_silent = 1
+
     vim.cmd([[
+      " let g:tagbar_currenttag = ''
+      " let g:tagbar_ctags_bin
       " systemverilog {{{1
       let g:tagbar_type_systemverilog = {
           \ 'kinds' : [

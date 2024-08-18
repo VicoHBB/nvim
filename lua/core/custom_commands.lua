@@ -40,4 +40,37 @@ function M.ltexedit()
   })
 end
 
+function M.overseer_last_task()
+  cmd("OverseerRestartLast", function()
+    local overseer = require("overseer")
+    local tasks = overseer.list_tasks({ recent_first = true })
+    if vim.tbl_isempty(tasks) then
+      vim.notify("No tasks found", vim.log.levels.WARN)
+    else
+      overseer.run_action(tasks[1], "restart")
+    end
+  end, {
+    nargs = 0,
+    desc = "Restart last task"
+  })
+end
+
+-- REPL for lua & python
+function M.start_repl()
+  cmd("REPL", function()
+    local ft = vim.bo.filetype
+
+    if "lua" == ft then
+      vim.cmd("TermExec cmd='croissant'")
+    elseif "python" == ft then
+      vim.cmd("TermExec cmd='ipython --no-autoindent'")
+    else
+    end
+
+  end, {
+    nargs = 0,
+    desc = "Start REPL"
+  })
+end
+
 return M

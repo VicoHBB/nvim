@@ -55,12 +55,13 @@ keyset( 'n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", {silent= true} )
 keyset( 'n', "<C-p>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
 
 -- Toggleterm
--- keyset('t', 'jk', "<C-\\><C-n>", {silent=true})
+keyset('t', 'jk', "<C-\\><C-n>", {silent=true})
 keyset('t', '<F3>', "<Cmd>2TermExec cmd='' <CR>", {silent=true})
 keyset('t', '<C-h>', "<Cmd>TmuxNavigateLeft<CR>", {silent=true})
 keyset('t', '<C-j>', "<Cmd>TmuxNavigateDown<CR>", {silent=true})
 keyset('t', '<C-k>', "<Cmd>TmuxNavigateUp<CR>", {silent=true})
 keyset('t', '<C-l>', "<Cmd>TmuxNavigateRight<CR>", {silent=true})
+keyset('t', '<F3>', "<CMD>2TermExec cmd=''<CR>", { silent = true })
 
 -- Align
 keyset( {'n','v','x'}, "ga", "<Plug>(EasyAlign)", {silent= true} )
@@ -69,8 +70,6 @@ keyset( {'n','v','x'}, "ga", "<Plug>(EasyAlign)", {silent= true} )
 keyset( 'n', "<leader>s", "<CMD>ISwapNode<CR>", {silent= true} )
 keyset( 'n', "<leader>sw", "<CMD>ISwapWith<CR>", {silent= true} )
 
--- Tagbar
-keyset( 'n', "<F8>", "<CMD>Tagbar<CR>", {silent= true} )
 
 -- Telescope
 keyset( { 'n', 'v' }, "gs", "<CMD>Telescope grep_string<CR>", {silent= true} )
@@ -80,8 +79,6 @@ keyset( 'n', "<leader>T", "<CMD>Telescope builtin<CR>", {silent= true} )
 keyset("n", "<leader>S", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { silent= true })
 keyset( 'n', "<leader>fh", "<CMD>Telescope oldfiles<CR>", {silent= true} )
 keyset( 'n', "<leader>ff", "<CMD>Telescope find_files<CR>", {silent= true} )
-keyset( 'n', "<leader>ty", "<CMD>Telescope yabs current_language_tasks<CR>", {silent= true} )
-keyset( 'n', "<leader>tY", "<CMD>Telescope yabs global_tasks <CR>", {silent= true} )
 keyset( 'n', "<leader>tc", "<CMD>Telescope commands<CR>", {silent= true} )
 keyset( 'n', "<leader>tl", "<CMD>Telescope current_buffer_fuzzy_find<CR>", {silent= true} )
 keyset( 'n', "<leader>tg", "<CMD>Telescope git_bcommits<CR>", {silent= true} )
@@ -98,40 +95,24 @@ keyset( 'n', "<leader>\'", function() require('reach').marks() end, {silent= tru
 -- Lazygit
 keyset( 'n', "<leader>G", "<CMD>Lazygit<CR>", {silent= true} )
 
--- Sniprun
-keyset( {'n','v'}, "<leader>qr", "<CMD>SnipRun<CR>", {silent= true} )
-keyset( 'n', "<leader>qc", "<CMD>SnipClose<CR>", {silent= true} )
-
 -- Take screenshoot
 -- keyset( 'v', "<F10>", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
 
 -- Oil
 keyset("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
--- TrueZen
-keyset( 'n', "<leader>zn", "<CMD>TZNarrow<CR>", {silent= true} )
-keyset( 'v', "<leader>zn", ":'<,'>TZNarrow<CR>", {silent= true} )
-keyset( 'n', "<leader>zf", "<CMD>TZFocus<CR>", {silent= true} )
-
--- Yabs default
-keyset( 'n', "<leader>ry", "<CMD>YabsDefaultTask<CR>", {silent= true} )
-
 -- TSJT
 keyset('n', "<leader>st", "<CMD>TSJToggle<CR>", { silent = true })
 
--- Make
-keyset( 'n', "<leader>M", ":AsyncRun make ", {silent= true} )
-keyset( 'n', "<leader>mS", ":AsyncStop<CR>", {silent= true} )
-keyset( 'n', "<leader>ma", ":AsyncRun make all<CR>", {silent= true} )
-keyset( 'n', "<leader>mr", ":AsyncRun make run<CR>", {silent= true} )
-keyset( 'n', "<leader>md", ":FloatermNew make debug<CR>", {silent= true} )
-keyset( 'n', "<leader>mC", ":AsyncRun make clean<CR>", {silent= true} )
-keyset('n', "<leader>mq", "<CMD>AsyncRun make qrtl<CR>", { silent= true })
-keyset('n', "<leader>ms", "<CMD>AsyncRun make synth<CR>", { silent= true })
-keyset('n', "<leader>mv", "<CMD>AsyncRun make view<CR>", { silent= true })
+-- Noice
+keyset('n', "<leader>d", "<CMD>NoiceDemiss<CR>", { silent = true })
 
 -- Quickfix
 keyset("n", "<F7>", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 keyset("n", "<F6>", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist", })
 
+-- Overseer
+keyset("n", "<leader>or", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
+keyset("n", "<leader>ot", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
+keyset("n", "<leader>ol", "<CMD>OverseerRestartLast<CR>", { desc = "Rerun last task" })
 
