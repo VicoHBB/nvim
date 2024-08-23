@@ -6,7 +6,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-cmdline",
     "onsails/lspkind-nvim",
-    "dmitmel/cmp-cmdline-history",
+    -- "dmitmel/cmp-cmdline-history",
     {
       "kdheepak/cmp-latex-symbols",
       ft = { "tex", "org" },
@@ -131,7 +131,7 @@ return {
             fuzzy_path      = "",
             spell           = "󰓆",
             cmdline         = "",
-            cmdline_history = "",
+            -- cmdline_history = "",
             orgmode         = "",
             latex_symbols   = "",
           },
@@ -181,7 +181,7 @@ return {
       }, {
         { name = 'cmdline' },
         {
-          name = 'cmdline_history',
+          -- name = 'cmdline_history',
           keyword_length = 3,
         },
       })

@@ -1,4 +1,11 @@
 return {
-  "benmills/vimux",                                               -- Tmux
+  -- "benmills/vimux",                                               -- Tmux
   "christoomey/vim-tmux-navigator",
+  cmd = {
+    "TmuxNavigateLeft",
+    "TmuxNavigateDown",
+    "TmuxNavigateUp",
+    "TmuxNavigateRight",
+    "TmuxNavigatePrevious",
+  },
 }

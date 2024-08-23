@@ -5,7 +5,7 @@ keyset( 'n', "<leader>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
 keyset( 'n', "<leader><leader>", "<CMD>echo 'Think, Think...'<CR>",{ silent= true } )
 
 -- Tabnine Chat
--- keyset( 'n', "gpt", "<CMD>TabnineChat<CR>", {silent= true} )
+keyset( 'n', "gT", "<CMD>TabnineChat<CR>", {silent= true} )
 
 -- NvimTree
 keyset( 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>", {silent= true} )
@@ -37,14 +37,13 @@ keyset( 'n', "<leader>;", "$a;<ESC>", {silent= true} )
 keyset( 'n', "<leader>,", "$a,<ESC>", {silent= true} )
 
 -- Tabs on Bufferline
-keyset( 'n', "<leader>l", "<CMD>bnext<CR>", {silent= true} )
-keyset( 'n', "<leader>h", "<CMD>bprevious<CR>", {silent= true} )
+keyset( 'n', "<leader>k", "<CMD>bnext<CR>", {silent= true} )
+keyset( 'n', "<leader>j", "<CMD>bprevious<CR>", {silent= true} )
 keyset( 'n', "<leader>x", "<CMD>bdelete<CR>", {silent= true} )
 
 -- Split window
 keyset( 'n', "<leader>|", "<CMD>vsp<CR>", {silent= true} )
 keyset( 'n', "<leader>_", "<CMD>sp<CR>", {silent= true} )
-
 
 -- Tmux
 keyset( 'n', "<C-h>", "<CMD>TmuxNavigateLeft<CR>", {silent= true} )
@@ -52,10 +51,10 @@ keyset( 'n', "<C-j>", "<CMD>TmuxNavigateDown<CR>", {silent= true} )
 keyset( 'n', "<leader><C-j>", "<CMD>TmuxNavigateDown<CR>", {silent= true} )
 keyset( 'n', "<C-k>", "<CMD>TmuxNavigateUp<CR>", {silent= true} )
 keyset( 'n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", {silent= true} )
-keyset( 'n', "<C-p>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
+keyset( 'n', "<C-\\>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
 
 -- Toggleterm
-keyset('t', 'jk', "<C-\\><C-n>", {silent=true})
+-- keyset('t', 'jk', "<C-\\><C-n>", {silent=true})
 keyset('t', '<F3>', "<Cmd>2TermExec cmd='' <CR>", {silent=true})
 keyset('t', '<C-h>', "<Cmd>TmuxNavigateLeft<CR>", {silent=true})
 keyset('t', '<C-j>', "<Cmd>TmuxNavigateDown<CR>", {silent=true})
@@ -76,7 +75,12 @@ keyset( { 'n', 'v' }, "gs", "<CMD>Telescope grep_string<CR>", {silent= true} )
 keyset( 'n', "z=", "<CMD>Telescope spell_suggest<CR>", {silent= true} )
 keyset( 'n', "<leader>T", "<CMD>Telescope builtin<CR>", {silent= true} )
 -- keyset( 'n', "<leader>S", "<CMD>Telescope live_grep<CR>", {silent= true} )
-keyset("n", "<leader>S", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { silent= true })
+keyset(
+  "n",
+  "<leader>S",
+  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+  { silent= true }
+)
 keyset( 'n', "<leader>fh", "<CMD>Telescope oldfiles<CR>", {silent= true} )
 keyset( 'n', "<leader>ff", "<CMD>Telescope find_files<CR>", {silent= true} )
 keyset( 'n', "<leader>tc", "<CMD>Telescope commands<CR>", {silent= true} )
@@ -87,7 +91,11 @@ keyset( 'n', "<leader>tg", "<CMD>Telescope git_bcommits<CR>", {silent= true} )
 keyset( 'n', "<leader>tt", "<CMD>TodoQuickFix<CR>", {silent= true} )
 
 -- Buffers
-keyset('n', '<leader>b', function() require('reach').buffers() end, {silent=true})
+keyset('n', '<leader>b', function()
+  require('reach').buffers({
+    handle = 'dynamic',
+  })
+end, { silent = true })
 
 -- Marks
 keyset( 'n', "<leader>\'", function() require('reach').marks() end, {silent= true} )
@@ -105,11 +113,15 @@ keyset("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 keyset('n', "<leader>st", "<CMD>TSJToggle<CR>", { silent = true })
 
 -- Noice
-keyset('n', "<leader>d", "<CMD>NoiceDemiss<CR>", { silent = true })
+keyset('n', "<leader>d", "<CMD>NoiceDismiss<CR>", { silent = true })
 
 -- Quickfix
 keyset("n", "<F7>", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 keyset("n", "<F6>", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist", })
+
+-- CommandLine recall
+keyset('c', "<C-j>", "<Down>", {})
+keyset('c', "<C-k>", "<Up>", {})
 
 -- Overseer
 keyset("n", "<leader>or", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
