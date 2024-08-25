@@ -1,25 +1,59 @@
-# Neovim configuration files
+# Neovim Dotfiles
 
-These files are my configuration for Neovim, also using `Vim-Plug` as a plugin manager; it is a combination with `packer`(using two plugin managers is not recommended), being this the first attempt to migrate the configuration from `vimscript` to `lua`.
+This is my personal neovim configuration, fully set up with `lua` and using `lazy` as the plugin manager. This will also serve as a reference point for information about the installed plugins, as well as some notes on the `neovim` configuration.
 
-## To-DO
+<!--toc:start-->
+- [Neovim Dotfiles](#neovim-dotfiles)
+  - [To-Do](#to-do)
+  - [Dependencies](#dependencies)
+  - [Supported Languages and Development Environments](#supported-languages-and-development-environments)
+  - [Plugins](#plugins)
+    - [Installed](#installed)
+    - [Dependencies of the plugins](#dependencies-of-the-plugins)
+    - [To probe](#to-probe)
+    - [Maybe Remove?](#maybe-remove)
+    - [Related Projects](#related-projects)
+<!--toc:end-->
+
+---
+
+
+## To-Do
 * [ ] Review plugins
 * [ ] Clean plugins (There are to many, and don't even use)
 * [ ] Review keybindings
 * [ ] Add descriptions to keybindings
-* [-] Change `yabs` for `overseer`
 * [ ] Update `cmake-tools`
-* [-] Create a command for align tables in `makrdown` & `orgmode`
+* [ ] Configure `overseer` properly
+* [ ] Create a command for align tables in `makrdown` & `orgmode`
 * [X] Install a plugin for a terminal
 * [X] Creat a .txt for dependencies.
-* [ ] Review `vimtex`
+* [ ] Review why `vimtex` is running slow
+* [ ] Create a branch with a minimum configuration to be able to use it in `Windows`
 
 ## Dependencies
-For install dependencies install on `Arch` install []() run:
+For install dependencies install on `Arch` install [paru](https://github.com/Morganamilo/paru) & run:
 ```sh
 paru -S - < dependencies.txt
 ```
 
+## Supported Languages and Development Environments
+This configuration is primarily focused on **Embedded Systems** and supports the following languages and development environments:
+- `C`
+- `C++`
+- `Lua`
+- `Markdown`
+- `MicroPython`
+- `Org`
+- `Python`
+- `SystemVerilog`
+- `TeX`
+- `Verilog`
+
+Planned for future updates:
+- `Assembly`
+- `Rust`
+- `Bash`
 
 ## Plugins
 
@@ -70,9 +104,9 @@ These are the plugins that have been installed and configured.
 
 These are plugins that serve as dependencies for others and do not require additional configuration.
 
-### To probe.
+### To probe
 
-* [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode)
+`[vim-table-mode](https://github.com/dhruvasagar/vim-table-mod`
 * [overseer](https://github.com/stevearc/overseer.nvim)
 * [luasnip](https://github.com/L3MON4D3/LuaSnip)
 * [dooku](https://github.com/Zeioth/dooku.nvim)
@@ -81,3 +115,5 @@ These are plugins that serve as dependencies for others and do not require addit
 
 ### Maybe Remove?
 
+### Related Projects
+* [SystemVerilog Template](https://gitlab.com/HugoBec/sv-template.git)
