@@ -25,6 +25,8 @@ paru -S - < dependencies.txt
 
 ### Installed
 
+These are the plugins that have been installed and configured.
+
 | Plugin                                                                            | Last Review   |
 | --------------------------------------------------------------------------------- | ------------- |
 | [Comment](https://github.com/numToStr/Comment.nvim)                               | 2024-07-17    |
@@ -63,6 +65,10 @@ paru -S - < dependencies.txt
 | [vim-easy-align](https://github.com/junegunn/vim-easy-align)                      | 2024-06-19    |
 | [vim-verilog-instance](https://github.com/antoinemadec/vim-verilog-instance)      | 2024-07-20    |
 | [vimtex](https://github.com/lervag/vimtex)                                        | 2024-07-20    |
+
+### Dependencies of the plugins
+
+These are plugins that serve as dependencies for others and do not require additional configuration.
 
 ### To probe.
 
