@@ -1,6 +1,6 @@
 # Neovim Dotfiles
 
-This is my personal neovim configuration, fully set up with `lua` and using `lazy` as the plugin manager. This will also serve as a reference point for information about the installed plugins, as well as some notes on the `neovim` configuration.
+This is my personal neovim configuration, fully set up with `lua` and using `lazy` as the plugin manager. This will also serve as a reference point for information about the installed plugins, as well as some [notes](./docs/cheatsheet.md) on the `neovim` configuration.
 
 <!--toc:start-->
 - [Neovim Dotfiles](#neovim-dotfiles)
@@ -12,7 +12,7 @@ This is my personal neovim configuration, fully set up with `lua` and using `laz
     - [Dependencies of the plugins](#dependencies-of-the-plugins)
     - [To probe](#to-probe)
     - [Maybe Remove?](#maybe-remove)
-    - [Related Projects](#related-projects)
+  - [Related Projects](#related-projects)
 <!--toc:end-->
 
 ---
@@ -36,6 +36,8 @@ For install dependencies install on `Arch` install [paru](https://github.com/Mor
 ```sh
 paru -S - < dependencies.txt
 ```
+
+> **Note:** Working on it
 
 ## Supported Languages and Development Environments
 This configuration is primarily focused on **Embedded Systems** and supports the following languages and development environments:
@@ -115,5 +117,5 @@ These are plugins that serve as dependencies for others and do not require addit
 
 ### Maybe Remove?
 
-### Related Projects
+## Related Projects
 * [SystemVerilog Template](https://gitlab.com/HugoBec/sv-template.git)
