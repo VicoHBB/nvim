@@ -35,11 +35,19 @@ add_cmd('FileType', {
   end
 })
 
--- Define
+-- OverseerRestartLast
 add_cmd('FileType', {
   pattern = '*', -- Apply to all file types
   callback = function()
     commands.overseer_last_task()
+  end,
+})
+
+-- Toggle Lazygit
+add_cmd('FileType', {
+  pattern = '*', -- Apply to all file types
+  callback = function()
+    commands.lazygit_toggle()
   end,
 })
 

@@ -1,5 +1,6 @@
 -- Globals
 local cmd = vim.api.nvim_create_user_command
+local Terminal  = require('toggleterm.terminal').Terminal
 
 local M = {} -- Var for return
 
@@ -56,6 +57,7 @@ function M.overseer_last_task()
 end
 
 -- REPL for lua & python
+-- @TODO: Use Toggleterm api
 function M.start_repl()
   cmd("REPL", function()
     local ft = vim.bo.filetype
@@ -70,6 +72,21 @@ function M.start_repl()
   end, {
     nargs = 0,
     desc = "Start REPL"
+  })
+end
+
+function M.lazygit_toggle()
+  cmd("Lazygit", function()
+    local lazygit = Terminal:new({
+      name = "lazygit",
+      cmd = "lazygit",
+      hidden = true,
+      direction = "float",
+    })
+    lazygit:toggle()
+  end, {
+    nargs = 0,
+    desc = "Open Lazygit"
   })
 end
 
