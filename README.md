@@ -2,6 +2,9 @@
 
 This is my personal neovim configuration, fully set up with `lua` and using `lazy` as the plugin manager. This will also serve as a reference point for information about the installed plugins, as well as some [notes](./docs/cheatsheet.md) on the `neovim` configuration.
 
+
+---
+
 <!--toc:start-->
 - [Neovim Dotfiles](#neovim-dotfiles)
   - [To-Do](#to-do)
@@ -63,44 +66,49 @@ Planned for future updates:
 
 These are the plugins that have been installed and configured.
 
-| Plugin                                                                            | Last Review   |
-| --------------------------------------------------------------------------------- | ------------- |
-| [Comment](https://github.com/numToStr/Comment.nvim)                               | 2024-07-17    |
-| [alpha](https://github.com/goolord/alpha-nvim)                                    | 2024-08-11    |
-| [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)       | 2024-07-17    |
-| [cmp](https://github.com/hrsh7th/nvim-cmp)                                        | 2024-07-15    |
-| [codi](https://github.com/metakirby5/codi.vim)                                    | 2024-07-20    |
-| [colorful-winsep](https://github.com/nvim-zh/colorful-winsep.nvim)                | 2024-07-17    |
-| [flash](https://github.com/folke/flash.nvim)                                      | 2024-07-27    |
-| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                            | 2024-06-19    |
-| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                            | 2024-07-16    |
-| [gruvbox-material](https://github.com/sainnhe/gruvbox-material)                   | 2024-07-16    |
-| [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)                       | 2024-07-16    |
-| [headlines](https://github.com/lukas-reineke/headlines.nvim)                      | 2024-07-17    |
-| [lazy](https://github.com/folke/lazy.nvim)                                        | 2024-07-17    |
-| [ltex-client](https://github.com/icewind/ltex-client.nvim)                        | 2024-08-13    |
-| [lualine](https://github.com/nvim-lualine/lualine.nvim)                           | 2024-08-12    |
-| [noice](https://github.com/folke/noice.nvim)                                      | 2024-07-14    |
-| [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                              | 2024-08-11    |
-| [nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy.git)                    | 2024-06-19    |
-| [nvim-orgmode](https://github.com/nvim-orgmode/orgmode)                           | 2024-06-19    |
-| [nvim-peekup](https://github.com/gennaro-tedesco/nvim-peekup)                     | 2024-07-20    |
-| [nvim-recorder](https://github.com/chrisgrieser/nvim-recorder)                    | 2024-07-20    |
-| [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim)                | 2024-08-11    |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)             | 2024-07-16    |
-| [org-bullets](https://github.com/nvim-orgmode/org-bullets.nvim)                   | 2024-06-19    |
-| [org-modern](https://github.com/danilshvalov/org-modern.nvim)                     | 2024-06-19    |
-| [quicker](https://github.com/stevearc/quicker.nvim)                               | 2024-08-11    |
-| [reach](https://github.com/toppair/reach.nvim)                                    | 2024-06-23    |
-| [tabnine](https://github.com/codota/tabnine-nvim)                                 | 2024-07-14    |
-| [telescope-orgmode](https://github.com/nvim-orgmode/telescope-orgmode.nvim)       | 2024-06-19    |
-| [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim) | 2024-07-20    |
-| [toggleterm](https://github.com/akinsho/toggleterm.nvim)                          | 2024-08-12    |
-| [undotree](https://github.com/jiaoshijie/undotree)                     | 2024-06-22    |
-| [verilog_systemverilog](https://github.com/vhda/verilog_systemverilog.vim)        | 2024-07-20    |
-| [vim-easy-align](https://github.com/junegunn/vim-easy-align)                      | 2024-06-19    |
-| [vim-verilog-instance](https://github.com/antoinemadec/vim-verilog-instance)      | 2024-07-20    |
-| [vimtex](https://github.com/lervag/vimtex)                                        | 2024-07-20    |
+| Plugin                                                                                      | Last Review   |
+| ---------------------------------------------------------------------------------           | ------------- |
+| [Comment](https://github.com/numToStr/Comment.nvim)                                         | 2024-07-17    |
+| [alpha](https://github.com/goolord/alpha-nvim)                                              | 2024-08-11    |
+| [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)                 | 2024-07-17    |
+| [cmp](https://github.com/hrsh7th/nvim-cmp)                                                  | 2024-07-15    |
+| [codi](https://github.com/metakirby5/codi.vim)                                              | 2024-07-20    |
+| [colorful-winsep](https://github.com/nvim-zh/colorful-winsep.nvim)                          | 2024-07-17    |
+| [flash](https://github.com/folke/flash.nvim)                                                | 2024-07-27    |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                      | 2024-06-19    |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                      | 2024-07-16    |
+| [gruvbox-material](https://github.com/sainnhe/gruvbox-material)                             | 2024-07-16    |
+| [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)                                 | 2024-07-16    |
+| [headlines](https://github.com/lukas-reineke/headlines.nvim)                                | 2024-07-17    |
+| [lazy](https://github.com/folke/lazy.nvim)                                                  | 2024-07-17    |
+| [ltex-client](https://github.com/icewind/ltex-client.nvim)                                  | 2024-08-13    |
+| [lualine](https://github.com/nvim-lualine/lualine.nvim)                                     | 2024-08-12    |
+| [neogit](https://github.com/NeogitOrg/neogit)                                               | 2024-08-25    |
+| [noice](https://github.com/folke/noice.nvim)                                                | 2024-07-14    |
+| [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                                        | 2024-08-11    |
+| [nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy.git)                              | 2024-06-19    |
+| [nvim-orgmode](https://github.com/nvim-orgmode/orgmode)                                     | 2024-06-19    |
+| [nvim-peekup](https://github.com/gennaro-tedesco/nvim-peekup)                               | 2024-07-20    |
+| [nvim-recorder](https://github.com/chrisgrieser/nvim-recorder)                              | 2024-07-20    |
+| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                       | 2024-07-16    |
+| [org-bullets](https://github.com/nvim-orgmode/org-bullets.nvim)                             | 2024-06-19    |
+| [org-modern](https://github.com/danilshvalov/org-modern.nvim)                               | 2024-06-19    |
+| [project](https://github.com/ahmedkhalf/project.nvim)                                       | 2024-08-25    |
+| [quicker](https://github.com/stevearc/quicker.nvim)                                         | 2024-08-11    |
+| [reach](https://github.com/toppair/reach.nvim)                                              | 2024-08-25    |
+| [tabnine](https://github.com/codota/tabnine-nvim)                                           | 2024-07-14    |
+| [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)    | 2024-08-25    |
+| [telescope-live-grep-args](https://github.com/nvim-telescope/telescope-live-grep-args.nvim) | 2024-08-25    |
+| [telescope-orgmode](https://github.com/nvim-orgmode/telescope-orgmode.nvim)                 | 2024-06-19    |
+| [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)           | 2024-07-20    |
+| [telescope](https://github.com/nvim-telescope/telescope.nvim)                               | 2024-08-25    |
+| [tfm](https://github.com/Rolv-Apneseth/tfm.nvim)                                            | 2024-08-25    |
+| [toggleterm](https://github.com/akinsho/toggleterm.nvim)                                    | 2024-08-12    |
+| [undotree](https://github.com/jiaoshijie/undotree)                                          | 2024-06-22    |
+| [verilog_systemverilog](https://github.com/vhda/verilog_systemverilog.vim)                  | 2024-07-20    |
+| [vim-easy-align](https://github.com/junegunn/vim-easy-align)                                | 2024-06-19    |
+| [vim-verilog-instance](https://github.com/antoinemadec/vim-verilog-instance)                | 2024-07-20    |
+| [vimtex](https://github.com/lervag/vimtex)                                                  | 2024-07-20    |
 
 ### Dependencies of the plugins
 

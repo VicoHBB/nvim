@@ -1,5 +1,9 @@
 return {
-  'ThePrimeagen/vim-be-good',     -- Vim Be Good
+  {                                                              -- Vim Be Good
+    'ThePrimeagen/vim-be-good',
+    -- event = "VeryLazy",
+    cmd = "VimBeGood"
+  },
   {
     "kylechui/nvim-surround",
     version = "*",   -- Use for stability; omit to use `main` branch for the latest features

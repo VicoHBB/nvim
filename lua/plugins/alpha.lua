@@ -7,13 +7,12 @@ return {
       'nvim-lua/plenary.nvim'
     },
     config = function()
-
       local alpha = require('alpha')
       local theta = require('alpha.themes.theta')
 
       local path_ok, plenary_path = pcall(require, "plenary.path")
       if not path_ok then
-          return
+        return
       end
 
       local dashboard = require("alpha.themes.dashboard")
@@ -134,8 +133,8 @@ return {
       end
 
       local header = {
-          type = "text",
-          val = {
+        type = "text",
+        val = {
           [[                            ]],
           [[                                                        ]],
           [[ ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗ ]],
@@ -146,64 +145,73 @@ return {
           [[ ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝ ]],
           [[                        Welcome                       ]],
           [[                            ]],
-          },
-          opts = {
-              position = "center",
-              hl = "Type",
-              -- wrap = "overflow";
-          },
+        },
+        opts = {
+          position = "center",
+          hl = "Type",
+          -- wrap = "overflow";
+        },
       }
 
       local section_mru = {
-          type = "group",
-          val = {
-              {
-                  type = "text",
-                  val = "Recent files",
-                  opts = {
-                      hl = "SpecialComment",
-                      shrink_margin = false,
-                      position = "center",
-                  },
-              },
-          { type = "padding", val = 1 },
-              {
-                type = "group",
-                val = function()
-                  return { mru(0, cdir) }
-                end,
-                opts = { shrink_margin = false },
-              },
+        type = "group",
+        val = {
+          {
+            type = "text",
+            val = "Recent files",
+            opts = {
+              hl = "SpecialComment",
+              shrink_margin = false,
+              position = "center",
+            },
           },
+          { type = "padding", val = 1 },
+          {
+            type = "group",
+            val = function()
+              return { mru(0, cdir) }
+            end,
+            opts = { shrink_margin = false },
+          },
+        },
       }
 
       local buttons = {
-          type = "group",
-          val = {
-              { type = "text", val = "Comands", opts = { hl = "SpecialComment", position = "center" } },
-              { type = "padding", val = 1 },
-              dashboard.button("e", " -> New File", ":ene<CR>"),
-              dashboard.button("P", " -> Projects",":Telescope projects<CR>"),
-              dashboard.button("SPC f h", " -> Complete History",":Telescope oldfiles<CR>"),
-              dashboard.button("SPC f f", " -> Find File",":Telescope find_files<CR>"),
-              dashboard.button("SPC F"," -> File Browser",":Ranger<CR>"),
-              dashboard.button("SPC f s", " -> Find Word",":Telescope live_grep<CR>"),
-              dashboard.button("L","󰒲 -> Lazy", ":Lazy<CR>"),
-              dashboard.button("M","󰟾 -> Mason", ":Mason<CR>"),
-              dashboard.button("init.lua"," -> Configuration", ":e ~/.config/nvim/init.lua<CR>"),
-              dashboard.button("c h","󰀯 -> Checkhealth", ":checkhealth<CR>"),
-              dashboard.button("Q", " -> Quit",":q<CR>"),
-          },
-          position = "center",
+        type = "group",
+        val = {
+          { type = "text",    val = "Comands", opts = { hl = "SpecialComment", position = "center" } },
+          { type = "padding", val = 1 },
+          dashboard.button("e", " -> New File", "<CMD>ene<CR>"),
+          dashboard.button("P", " -> Projects", "<CMD>Telescope projects<CR>"),
+          dashboard.button("SPC f h", " -> Complete History", "<CMD>Telescope oldfiles<CR>"),
+          dashboard.button("SPC f f", " -> Find File", "<CMD>Telescope find_files<CR>"),
+          dashboard.button("SPC F", " -> File Browser",
+            function()
+              require("tfm").select_file_manager("yazi")
+              vim.cmd("Tfm")
+            end
+          ),
+          dashboard.button("SPC f s", " -> Find Word",
+            function()
+              require('telescope').extensions.live_grep_args.live_grep_args()
+            end
+          ),
+          dashboard.button("L", "󰒲 -> Lazy", "<CMD>Lazy<CR>"),
+          dashboard.button("M", "󰟾 -> Mason", "<CMD>Mason<CR>"),
+          dashboard.button("init.lua", " -> Configuration", "<CMD>e ~/.config/nvim/init.lua<CR>"),
+          dashboard.button("c h", "󰀯 -> Checkhealth", "<CMD>checkhealth<CR>"),
+          dashboard.button("Q", " -> Quit", "<CMD>q<CR>"),
+        },
+        position = "center",
       }
 
       local footer = {
-          type = "text",
-          val = {
-              [[                            ]],
-              [[I'm more what I think of my self, I really have to be...]],
-          },
-          opts = {
+        type = "text",
+        val = {
+          [[                            ]],
+          [[I'm more what I think of my self, I really have to be...]],
+        },
+        opts = {
           position = "center",
           hl = "Number",
         },
@@ -221,7 +229,6 @@ return {
       }
 
       alpha.setup(theta.config)
-
     end
   },
 }

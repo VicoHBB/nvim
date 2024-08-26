@@ -10,8 +10,8 @@ return {
       -- Setup orgmode
       local Menu = require("org-modern.menu")
       require('orgmode').setup({
-        org_agenda_files = '~/.nb/orgfiles/**/*',
-        org_default_notes_file = '~/.nb/orgfiles/refile.org',
+        org_agenda_files = '~/.nb/Org/**/*',
+        org_default_notes_file = '~/.nb/Org/refile.org',
         ui = {
           menu = {
             handler = function(data)

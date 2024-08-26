@@ -19,22 +19,25 @@ return {
       build =
       "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     },
-    {
-      'tsakirist/telescope-lazy.nvim',
-      event = "VeryLazy",
-    },
   },
   config = function()
     local actions = require("telescope.actions")
+    local lga_actions = require("telescope-live-grep-args.actions")
+    local action_state = require("telescope.actions.state")
+
     local function quote_prompt(prompt_bufnr)
       require("telescope-live-grep-args.actions").quote_prompt()(prompt_bufnr)
     end
-    local function quote_prompt_ignoredir(prompt_bufnr)
-      require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob '!**/ignoredir/**'" })(
-        prompt_bufnr)
-    end
-    local function quote_prompt_type(prompt_bufnr)
-      require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t " })(prompt_bufnr)
+
+    local function open_selection(prompt_bufnr)
+      local picker = action_state.get_current_picker(prompt_bufnr)
+      local multi = picker:get_multi_selection()
+      actions.select_default(prompt_bufnr)         -- the normal enter behaviour
+      for _, j in pairs(multi) do
+        if j.path ~= nil then            -- is it a file -> open it as well:
+          vim.cmd(string.format("%s %s", "edit", j.path))
+        end
+      end
     end
 
     require('telescope').setup {
@@ -71,56 +74,25 @@ return {
         },
         mappings = {
           i = {
-            ["<C-n>"] = actions.cycle_history_next,
-            ["<C-p>"] = actions.cycle_history_prev,
-
             ["<C-j>"] = actions.move_selection_next,
             ["<C-k>"] = actions.move_selection_previous,
 
-            ["<C-c>"] = actions.close,
+            ["<C-n>"] = actions.cycle_history_next,
+            ["<C-p>"] = actions.cycle_history_prev,
 
-            ["<Down>"] = actions.move_selection_next,
-            ["<Up>"] = actions.move_selection_previous,
+            ["<CR>"] = open_selection,
 
-            ["<CR>"] = actions.select_default,
-            ["<C-x>"] = actions.select_horizontal,
-            ["<C-v>"] = actions.select_vertical,
-            ["<C-t>"] = actions.select_tab,
+            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            ["<A-q>"] = actions.send_to_qflist + actions.open_qflist,
 
-            ["<C-u>"] = actions.preview_scrolling_up,
-            ["<C-d>"] = actions.preview_scrolling_down,
-
-            ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-            ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-
-            -- ["<C-\'>"] = lga_actions.quote_prompt(),
-            -- ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
           },
 
           n = {
-            ["<esc>"] = actions.close,
-            ["q"] = actions.close,
-            ["<CR>"] = actions.select_default,
-            ["<C-x>"] = actions.select_horizontal,
-            ["<C-v>"] = actions.select_vertical,
-            ["<C-t>"] = actions.select_tab,
 
-            ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-            ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+            ["<CR>"] = open_selection,
 
-            ["j"] = actions.move_selection_next,
-            ["k"] = actions.move_selection_previous,
-            ["H"] = actions.move_to_top,
-            ["M"] = actions.move_to_middle,
-            ["L"] = actions.move_to_bottom,
-
-            ["<Down>"] = actions.move_selection_next,
-            ["<Up>"] = actions.move_selection_previous,
-            ["gg"] = actions.move_to_top,
-            ["G"] = actions.move_to_bottom,
-
-            ["<C-u>"] = actions.preview_scrolling_up,
-            ["<C-d>"] = actions.preview_scrolling_down
+            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            ["<A-q>"] = actions.send_to_qflist + actions.open_qflist,
           },
         },
       },
@@ -156,32 +128,17 @@ return {
           -- the default case_mode is "smart_case"
         },
 
-        lazy = {
-          -- Optional theme (the extension doesn't set a default theme)
-          theme = "ivy",
-          -- Whether or not to show the icon in the first column
-          show_icon = true,
-          -- Mappings for the actions
-          mappings = {
-            open_in_browser = "<C-o>",
-            open_in_file_browser = "<M-b>",
-            open_in_find_files = "<C-f>",
-            open_in_live_grep = "<C-g>",
-            open_plugins_picker = "<C-b>",   -- Works only after having called first another action
-            open_lazy_root_find_files = "<C-r>f",
-            open_lazy_root_live_grep = "<C-r>g",
-          },
-          -- Other telescope configuration options
-        },
-
         live_grep_args = {
           auto_quoting = true,   -- enable/disable auto-quoting
           -- define mappings, e.g.
           mappings = {           -- extendmmappings
             i = {
+              ["<CR>"] = open_selection,
               ["<C-r>"] = quote_prompt,
-              ["<A-d>"] = quote_prompt_ignoredir,
-              ["<A-t>"] = quote_prompt_type,
+              ["<C-e>"] = lga_actions.quote_prompt({ postfix = " -g " }),
+              ["<C-space>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+              -- freeze the current list and start a fuzzy search in the frozen list
+              ["<C-f>"] = actions.to_fuzzy_refine,
             }
           },
         },
@@ -194,9 +151,7 @@ return {
       },
     }
 
-    require("telescope").load_extension "lazy"
     -- require('telescope').load_extension('orgmode')
-    -- require('telescope').load_extension('neoclip')
     require('telescope').load_extension('projects')
     require("telescope").load_extension("live_grep_args")
     require("telescope").load_extension("ui-select")

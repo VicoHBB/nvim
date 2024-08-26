@@ -5,7 +5,7 @@ return { -- Better quickfix
     config = function()
       require('bqf').setup({
         auto_enable = true,
-        auto_resize_height = false, --
+        auto_resize_height = true, --
         preview = {
           auto_preview = false,
         },

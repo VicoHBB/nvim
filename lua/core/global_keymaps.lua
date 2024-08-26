@@ -1,94 +1,106 @@
 local keyset = vim.keymap.set
 
+local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+
 -- Think
-keyset( 'n', "<leader>", "<CMD>echo 'What to do?'<CR>",{ silent= true } )
-keyset( 'n', "<leader><leader>", "<CMD>echo 'Think, Think...'<CR>",{ silent= true } )
+keyset('n', "<leader>", "<CMD>echo 'What to do?'<CR>", { silent = true })
+keyset('n', "<leader><leader>", "<CMD>echo 'Think, Think...'<CR>", { silent = true })
 
 -- Tabnine Chat
-keyset( 'n', "gT", "<CMD>TabnineChat<CR>", {silent= true} )
+keyset('n', "gT", "<CMD>TabnineChat<CR>", { silent = true })
 
 -- NvimTree
-keyset( 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>", {silent= true} )
+keyset('n', "<leader>n", "<CMD>NvimTreeToggle<CR>", { silent = true })
 
--- Ranger
-keyset( 'n', "<Leader>F", "<CMD>Ranger<CR>", {silent= true, desc="Open Ranger"} )
+-- Yazi
+keyset('n', "<Leader>F", function()
+  require("tfm").select_file_manager("yazi")
+  vim.cmd("Tfm")
+end, { silent = true, desc = "Open Ranger" }
+)
 
 -- Vifm
-keyset( 'n', "<Leader>fv", "<CMD>Vifm<CR>", {silent= true, desc="Open Ranger"} )
+keyset('n', "<Leader>fv", function()
+  require("tfm").select_file_manager("vifm")
+  vim.cmd("Tfm")
+end, { silent = true, desc = "Open Ranger" }
+)
 
 -- Quick Save
-keyset( 'n', "<leader>w", "<CMD>w<CR>", {silent= true, desc="Quick Save"} )
+keyset('n', "<leader>w", "<CMD>w<CR>", { silent = true, desc = "Quick Save" })
 
 -- Quick Quit
-keyset( 'n', "<leader>q", "<CMD>q<CR>", {silent= true, desc ="Quick Quit"} )
-keyset( 'n', "<leader>Q", "<CMD>qall!<CR>", {silent= true, desc = "Force Quit"} )
+keyset('n', "<leader>q", "<CMD>q<CR>", { silent = true, desc = "Quick Quit" })
+keyset('n', "<leader>Q", "<CMD>qall!<CR>", { silent = true, desc = "Force Quit" })
 
 -- Split resize
-keyset( 'n', "<A-l>", "2<C-w>>", {silent= true} )
-keyset( 'n', "<A-h>", "2<C-w><", {silent= true} )
-keyset( 'n', "<A-j>", "2<C-w>+", {silent= true} )
-keyset( 'n', "<A-k>", "2<C-w>-", {silent= true} )
-keyset( 'n', "<A-=>", "2<C-w>=", {silent= true} )
+keyset('n', "<A-l>", "2<C-w>>", { silent = true })
+keyset('n', "<A-h>", "2<C-w><", { silent = true })
+keyset('n', "<A-j>", "2<C-w>+", { silent = true })
+keyset('n', "<A-k>", "2<C-w>-", { silent = true })
+keyset('n', "<A-=>", "2<C-w>=", { silent = true })
 
 -- Fast ';'
-keyset( 'n', "<leader>;", "$a;<ESC>", {silent= true} )
+keyset('n', "<leader>;", "$a;<ESC>", { silent = true })
 
 -- Fast ',"
-keyset( 'n', "<leader>,", "$a,<ESC>", {silent= true} )
+keyset('n', "<leader>,", "$a,<ESC>", { silent = true })
 
 -- Tabs on Bufferline
-keyset( 'n', "<leader>k", "<CMD>bnext<CR>", {silent= true} )
-keyset( 'n', "<leader>j", "<CMD>bprevious<CR>", {silent= true} )
-keyset( 'n', "<leader>x", "<CMD>bdelete<CR>", {silent= true} )
+keyset('n', "<leader>k", "<CMD>bnext<CR>", { silent = true })
+keyset('n', "<leader>j", "<CMD>bprevious<CR>", { silent = true })
+keyset('n', "<leader>x", "<CMD>bdelete<CR>", { silent = true })
 
 -- Split window
-keyset( 'n', "<leader>|", "<CMD>vsp<CR>", {silent= true} )
-keyset( 'n', "<leader>_", "<CMD>sp<CR>", {silent= true} )
+keyset('n', "<leader>|", "<CMD>vsp<CR>", { silent = true })
+keyset('n', "<leader>_", "<CMD>sp<CR>", { silent = true })
 
 -- Tmux
-keyset( 'n', "<C-h>", "<CMD>TmuxNavigateLeft<CR>", {silent= true} )
-keyset( 'n', "<C-j>", "<CMD>TmuxNavigateDown<CR>", {silent= true} )
-keyset( 'n', "<leader><C-j>", "<CMD>TmuxNavigateDown<CR>", {silent= true} )
-keyset( 'n', "<C-k>", "<CMD>TmuxNavigateUp<CR>", {silent= true} )
-keyset( 'n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", {silent= true} )
-keyset( 'n', "<C-\\>", "<CMD>TmuxNavigatePrevious<CR>", {silent= true} )
+keyset('n', "<C-h>", "<CMD>TmuxNavigateLeft<CR>", { silent = true })
+keyset('n', "<C-j>", "<CMD>TmuxNavigateDown<CR>", { silent = true })
+keyset('n', "<leader><C-j>", "<CMD>TmuxNavigateDown<CR>", { silent = true })
+keyset('n', "<C-k>", "<CMD>TmuxNavigateUp<CR>", { silent = true })
+keyset('n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", { silent = true })
+keyset('n', "<C-\\>", "<CMD>TmuxNavigatePrevious<CR>", { silent = true })
 
 -- Toggleterm
 -- keyset('t', 'jk', "<C-\\><C-n>", {silent=true})
-keyset('t', '<F3>', "<Cmd>2TermExec cmd='' <CR>", {silent=true})
-keyset('t', '<C-h>', "<Cmd>TmuxNavigateLeft<CR>", {silent=true})
-keyset('t', '<C-j>', "<Cmd>TmuxNavigateDown<CR>", {silent=true})
-keyset('t', '<C-k>', "<Cmd>TmuxNavigateUp<CR>", {silent=true})
-keyset('t', '<C-l>', "<Cmd>TmuxNavigateRight<CR>", {silent=true})
+keyset('t', '<F3>', "<Cmd>2TermExec cmd='' <CR>", { silent = true })
+keyset('t', '<C-h>', "<Cmd>TmuxNavigateLeft<CR>", { silent = true })
+keyset('t', '<C-j>', "<Cmd>TmuxNavigateDown<CR>", { silent = true })
+keyset('t', '<C-k>', "<Cmd>TmuxNavigateUp<CR>", { silent = true })
+keyset('t', '<C-l>', "<Cmd>TmuxNavigateRight<CR>", { silent = true })
 keyset('t', '<F3>', "<CMD>2TermExec cmd=''<CR>", { silent = true })
 
 -- Align
-keyset( {'n','v','x'}, "ga", "<Plug>(EasyAlign)", {silent= true} )
+keyset({ 'n', 'v', 'x' }, "ga", "<Plug>(EasyAlign)", { silent = true })
 
 -- ISwuap
-keyset( 'n', "<leader>s", "<CMD>ISwapNode<CR>", {silent= true} )
-keyset( 'n', "<leader>sw", "<CMD>ISwapWith<CR>", {silent= true} )
-
+keyset('n', "<leader>s", "<CMD>ISwapNode<CR>", { silent = true })
+keyset('n', "<leader>sw", "<CMD>ISwapWith<CR>", { silent = true })
 
 -- Telescope
-keyset( { 'n', 'v' }, "gs", "<CMD>Telescope grep_string<CR>", {silent= true} )
-keyset( 'n', "z=", "<CMD>Telescope spell_suggest<CR>", {silent= true} )
-keyset( 'n', "<leader>T", "<CMD>Telescope builtin<CR>", {silent= true} )
--- keyset( 'n', "<leader>S", "<CMD>Telescope live_grep<CR>", {silent= true} )
-keyset(
-  "n",
-  "<leader>S",
-  ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-  { silent= true }
-)
-keyset( 'n', "<leader>fh", "<CMD>Telescope oldfiles<CR>", {silent= true} )
-keyset( 'n', "<leader>ff", "<CMD>Telescope find_files<CR>", {silent= true} )
-keyset( 'n', "<leader>tc", "<CMD>Telescope commands<CR>", {silent= true} )
-keyset( 'n', "<leader>tl", "<CMD>Telescope current_buffer_fuzzy_find<CR>", {silent= true} )
-keyset( 'n', "<leader>tg", "<CMD>Telescope git_bcommits<CR>", {silent= true} )
+keyset('n', "z=", "<CMD>Telescope spell_suggest<CR>", { silent = true })
+keyset('n', "<leader>T", "<CMD>Telescope builtin<CR>", { silent = true })
+keyset('n', "<leader>fh", "<CMD>Telescope oldfiles<CR>", { silent = true })
+keyset('n', "<leader>ff", "<CMD>Telescope find_files<CR>", { silent = true })
+keyset('n', "<leader>tc", "<CMD>Telescope commands<CR>", { silent = true })
+keyset('n', "<leader>tl", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { silent = true })
+keyset('n', "<leader>tg", "<CMD>Telescope git_bcommits<CR>", { silent = true })
+
+-- Telescope live_args
+keyset( "n", "<leader>S", function ()
+  require('telescope').extensions.live_grep_args.live_grep_args()
+end, { silent = true })
+keyset( "n", "gs", function ()
+    live_grep_args_shortcuts.grep_word_under_cursor()
+end, { silent = true })
+keyset( "v", "gs", function ()
+    live_grep_args_shortcuts.grep_visual_selection()
+end, { silent = true })
 
 -- ToDo
-keyset( 'n', "<leader>tt", "<CMD>TodoQuickFix<CR>", {silent= true} )
+keyset('n', "<leader>tt", "<CMD>TodoQuickFix<CR>", { silent = true })
 
 -- Buffers
 keyset('n', '<leader>b', function()
@@ -98,10 +110,15 @@ keyset('n', '<leader>b', function()
 end, { silent = true })
 
 -- Marks
-keyset( 'n', "<leader>\'", function() require('reach').marks() end, {silent= true} )
+keyset('n', "<leader>\'", function()
+  require('reach').marks()
+end, { silent = true })
 
 -- Lazygit
-keyset( 'n', "<leader>G", "<CMD>Lazygit<CR>", {silent= true} )
+keyset('n', "<leader>GG", "<CMD>Neogit<CR>", { silent = true })
+keyset('n', "<leader>Gc", "<CMD>Neogit commit<CR>", { silent = true })
+keyset('n', "<leader>Gp", "<CMD>Neogit pull<CR>", { silent = true })
+keyset('n', "<leader>GP", "<CMD>Neogit push<CR>", { silent = true })
 
 -- Take screenshoot
 -- keyset( 'v', "<F10>", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
@@ -127,4 +144,3 @@ keyset('c', "<C-k>", "<Up>", {})
 keyset("n", "<leader>or", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
 keyset("n", "<leader>ot", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
 keyset("n", "<leader>ol", "<CMD>OverseerRestartLast<CR>", { desc = "Rerun last task" })
-
