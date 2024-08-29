@@ -6,7 +6,6 @@ return {
     dependencies = {
       -- "m-demare/hlargs.nvim",
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "pleshevskiy/tree-sitter-d2",
       "andymass/vim-matchup",
       "nfrid/treesitter-utils",
     },
@@ -96,18 +95,6 @@ return {
       })
 
       vim.treesitter.language.register('sv', 'systemverilog') -- the someft filetype will use the python parser and queries.
-
-      parser_config.d2 = ({
-        {
-        install_info = {
-          url = 'https://github.com/pleshevskiy/tree-sitter-d2',
-          revision = 'main',
-          files = { 'src/parser.c', 'src/scanner.cc' },
-        },
-        filetype = 'd2',
-        }
-      })
-
 
     end,
   },
