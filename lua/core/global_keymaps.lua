@@ -4,7 +4,7 @@ local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
 -- Think
 keyset('n', "<leader>", "<CMD>echo 'What to do?'<CR>", { silent = true })
-keyset('n', "<leader><leader>", "<CMD>echo 'Think, Think...'<CR>", { silent = true })
+keyset('n', "<leader><leader>", "<CMD>NoiceDismiss<CR>", { silent = true })
 
 -- Tabnine Chat
 keyset('n', "gT", "<CMD>TabnineChat<CR>", { silent = true })
@@ -31,7 +31,7 @@ keyset('n', "<leader>w", "<CMD>w<CR>", { silent = true, desc = "Quick Save" })
 
 -- Quick Quit
 keyset('n', "<leader>q", "<CMD>q<CR>", { silent = true, desc = "Quick Quit" })
-keyset('n', "<leader>Q", "<CMD>qall!<CR>", { silent = true, desc = "Force Quit" })
+keyset('n', "<leader>Q", "<CMD>qall!<CR>", { silent = true, desc = "Force Quit All" })
 
 -- Split resize
 keyset('n', "<A-l>", "2<C-w>>", { silent = true })
@@ -65,12 +65,11 @@ keyset('n', "<C-\\>", "<CMD>TmuxNavigatePrevious<CR>", { silent = true })
 
 -- Toggleterm
 -- keyset('t', 'jk', "<C-\\><C-n>", {silent=true})
-keyset('t', '<F3>', "<Cmd>2TermExec cmd='' <CR>", { silent = true })
+keyset('n', '<F3>', "<Cmd>Telescope toggleterm_manager<CR>", { silent = true })
 keyset('t', '<C-h>', "<Cmd>TmuxNavigateLeft<CR>", { silent = true })
 keyset('t', '<C-j>', "<Cmd>TmuxNavigateDown<CR>", { silent = true })
 keyset('t', '<C-k>', "<Cmd>TmuxNavigateUp<CR>", { silent = true })
 keyset('t', '<C-l>', "<Cmd>TmuxNavigateRight<CR>", { silent = true })
-keyset('t', '<F3>', "<CMD>2TermExec cmd=''<CR>", { silent = true })
 
 -- Align
 keyset({ 'n', 'v', 'x' }, "ga", "<Plug>(EasyAlign)", { silent = true })
@@ -141,6 +140,6 @@ keyset('c', "<C-j>", "<Down>", {})
 keyset('c', "<C-k>", "<Up>", {})
 
 -- Overseer
-keyset("n", "<leader>or", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
+keyset("n", "<leader>or", "<CMD>OverseerRun<CR>", { desc = "Toggle Overseer" })
 keyset("n", "<leader>ot", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
 keyset("n", "<leader>ol", "<CMD>OverseerRestartLast<CR>", { desc = "Rerun last task" })

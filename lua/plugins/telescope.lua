@@ -12,7 +12,6 @@ return {
       -- This "ill not install any breaking changes.
       -- For major updates, this must be adjusted manually.
       version = "^1.0.0",
-      event = "VeryLazy",
     },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -24,6 +23,7 @@ return {
     local actions = require("telescope.actions")
     local lga_actions = require("telescope-live-grep-args.actions")
     local action_state = require("telescope.actions.state")
+    local layout_actions = require("telescope.actions.layout")
 
     local function quote_prompt(prompt_bufnr)
       require("telescope-live-grep-args.actions").quote_prompt()(prompt_bufnr)
@@ -45,33 +45,11 @@ return {
         prompt_prefix = " ",
         selection_caret = " ",
         path_display = { "truncate" },
-        inblend = 0,
-        color_devicons = true,
-        layout_strategy = "horizontal",
+        sorting_strategy = "ascending",
         layout_config = {
-          width = 0.87,
-          height = 0.80,
           prompt_position = "top",
-          vertical = {
-            width = 0.5,
-            height = 100,
-          },
-          horizontal = {
-            preview_width = 0.5,
-            results_width = 0.5,
-            preview_cutoff = 0,
-          },
         },
         set_env = { ["COLORTERM"] = "truecolor" },
-        vimgrep_arguments = {
-          "rg",
-          "--color=never",
-          "--no-heading",
-          "--with-filename",
-          "--line-number",
-          "--column",
-          "--smart-case",
-        },
         mappings = {
           i = {
             ["<C-j>"] = actions.move_selection_next,
@@ -84,6 +62,8 @@ return {
 
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             ["<A-q>"] = actions.send_to_qflist + actions.open_qflist,
+
+            ["<C-i>"] = layout_actions.toggle_preview
 
           },
 
@@ -98,17 +78,27 @@ return {
       },
 
       pickers = {
+        find_files = {
+          previewer = false,
+        },
         spell_suggest = {
+          prompt_title = "Spell",
           theme = "cursor",
-          prompt_title = "Spell"
+          layout_config = {
+            height = 0.35,
+            width = 0.15
+          },
         },
         commands = {
-          theme = "dropdown",
-          prompt_title = "Commands"
+          prompt_title = "Commands",
+          theme = "dropdown"
         },
         current_buffer_fuzzy_find = {
-          theme = "dropdown",
           prompt_title = "Current Buffer Lines",
+          layout_strategy = "vertical",
+          layout_config = {
+            width = 0.5
+          },
         },
       },
 
@@ -136,7 +126,7 @@ return {
               ["<CR>"] = open_selection,
               ["<C-r>"] = quote_prompt,
               ["<C-e>"] = lga_actions.quote_prompt({ postfix = " -g " }),
-              ["<C-space>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+              ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
               -- freeze the current list and start a fuzzy search in the frozen list
               ["<C-f>"] = actions.to_fuzzy_refine,
             }
@@ -144,8 +134,6 @@ return {
         },
 
         projects = {
-          -- theme = "drop",
-          theme = "ivy",
         }
 
       },
