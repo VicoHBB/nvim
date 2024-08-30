@@ -1,5 +1,6 @@
 return {
   "numToStr/Comment.nvim",                                        -- Commentaries
+  event = "VeryLazy",
   config = function()
     local ft = require('Comment.ft')
 
