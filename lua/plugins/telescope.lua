@@ -12,6 +12,7 @@ return {
       -- This "ill not install any breaking changes.
       -- For major updates, this must be adjusted manually.
       version = "^1.0.0",
+      event = "VeryLazy",
     },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -63,7 +64,7 @@ return {
             ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
             ["<A-q>"] = actions.send_to_qflist + actions.open_qflist,
 
-            ["<C-i>"] = layout_actions.toggle_preview
+            ["<C-h>"] = layout_actions.toggle_preview
 
           },
 
@@ -80,6 +81,7 @@ return {
       pickers = {
         find_files = {
           previewer = false,
+          theme = "dropdown"
         },
         spell_suggest = {
           prompt_title = "Spell",
@@ -125,8 +127,7 @@ return {
             i = {
               ["<CR>"] = open_selection,
               ["<C-r>"] = quote_prompt,
-              ["<C-e>"] = lga_actions.quote_prompt({ postfix = " -g " }),
-              ["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+              ["<C-g>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
               -- freeze the current list and start a fuzzy search in the frozen list
               ["<C-f>"] = actions.to_fuzzy_refine,
             }
