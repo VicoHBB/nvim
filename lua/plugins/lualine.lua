@@ -31,47 +31,29 @@ return {
         lualine_c = {
           {
             'filename',
-            file_status = true, -- Displays file status (readonly status, modified status)
+            file_status = true,    -- Displays file status (readonly status, modified status)
             newfile_status = true, -- Display new file status (new file means no write after created)
-            path = 1,       -- 0: Just the filename
-            -- 1: Relative path
-            -- 2: Absolute path
-            -- 3: Absolute path, with tilde as the home directory
-            shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+            path = 1,              -- 1: Relative path
+            shorting_target = 40,  -- Shortens path to leave 40 spaces in the window
             -- for other components. (terrible name, any suggestions?)
             symbols = {
-              modified = '[+]', -- Text to show when the file is modified.
-              readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
-              unnamed = '[No Name]', -- Text to show for unnamed buffers.
-              newfile = '[New]', -- Text to show for new created file before first writting
+              modified = ' ', -- Text to show when the file is modified.
+              readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
+              unnamed = '{}', -- Text to show for unnamed buffers.
+              newfile = ' ', -- Text to show for new created file before first writting
             },
           },
         },
         lualine_x = {
           'tabnine',
+          'encoding',
+          'filetype'
+        },
+        lualine_y = {
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
           },
-          'filetype',
-          'encoding'
-        },
-        lualine_y = {
-          {
-            'fileformat',
-            symbols = {
-              unix = '', -- e712
-              dos = '', -- e70f
-              mac = '', -- e711
-            },
-          },
-          -- "searchcount",
-        },
-        lualine_z = {
-          -- '%p%%',
-          'progress',
-          '%l/%L',
-          '%c',
           {
             'diagnostics',
             -- Table of diagnostic sources, available sources are:
@@ -88,18 +70,54 @@ return {
             --   info  = 'DiagnosticInfo',  -- Changes diagnostics' info color.
             --   hint  = 'DiagnosticHint',  -- Changes diagnostics' hint color.
             -- },
-            symbols = { error = ' ', warn = ' ', info = 'Ξ ', hint = 'H' },
-            colored = true,    -- Displays diagnostics status in color if set to true.
+            symbols = {
+              error = " ",
+              warn = " ",
+              hint = "󰌶 ",
+              hnfo = " ",
+            },
+            colored = true,           -- Displays diagnostics status in color if set to true.
             update_in_insert = false, -- Update diagnostics in insert mode.
-            always_visible = false, -- Show diagnostics even if there are none.
+            always_visible = false,   -- Show diagnostics even if there are none.
+          },
+        },
+        lualine_z = {
+          -- 'progress',
+          '%c',
+          '%l/%L',
+          {
+            'fileformat',
+            symbols = {
+              unix = ' ', -- e712
+              dos = '', -- e70f
+              mac = '', -- e711
+            },
           },
         },
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
+        lualine_c = {
+          {
+            'filename',
+            file_status = true,  -- Displays file status (readonly status, modified status)
+            newfile_status = true, -- Display new file status (new file means no write after created)
+            path = 1,            -- 1: Relative path
+            shorting_target = 50, -- Shortens path to leave 40 spaces in the window
+            -- for other components. (terrible name, any suggestions?)
+            symbols = {
+              modified = ' ', -- Text to show when the file is modified.
+              readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
+              unnamed = '{}', -- Text to show for unnamed buffers.
+              newfile = ' ', -- Text to show for new created file before first writting
+            },
+          }
+        },
+        lualine_x = {
+          '%c',
+          '%l/%L',
+        },
         lualine_y = {},
         lualine_z = {}
       },
