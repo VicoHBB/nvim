@@ -3,14 +3,11 @@ return {
   "hrsh7th/nvim-cmp",
   event = "VeryLazy",
   dependencies = {
+    "folke/lazydev.nvim",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-cmdline",
     "onsails/lspkind-nvim",
-    -- "dmitmel/cmp-cmdline-history",
-    {
-      "kdheepak/cmp-latex-symbols",
-      ft = { "tex", "org" },
-    },
+    "kdheepak/cmp-latex-symbols",
     "f3fora/cmp-spell",
     "lukas-reineke/cmp-under-comparator",
     {
@@ -36,7 +33,7 @@ return {
     local select_opts = {behavior = cmp.SelectBehavior.Select}
 
     -- UltiSnips
-    require("cmp_nvim_ultisnips").setup {}
+    require("cmp_nvim_ultisnips").setup({})
 
     cmp.setup({
 
@@ -57,7 +54,7 @@ return {
         ['<C-f>']     = cmp.mapping.scroll_docs(6),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>']     = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>']      = cmp.mapping.confirm({ select = true }),
         ['<Tab>']     = cmp.mapping(function(fallback)
           local col = vim.fn.col('.') - 1
 
@@ -79,9 +76,11 @@ return {
 
       },
 
+      -- Global sources
       sources = {
         { name = 'nvim_lsp',  keyword_length = 1 },
         { name = 'ultisnips', keyword_length = 2 }, -- For ultisnips users.
+        { name = "lazydev",   group_index = 0 },
         { name = "orgmode" },
         {
           name = "latex_symbols",
@@ -91,7 +90,7 @@ return {
         },
         {
           name = 'spell',
-          keyword_length = 2,
+          keyword_length = 3,
           option = {
             keep_all_entries = false,
             enable_in_context = function()
@@ -106,10 +105,10 @@ return {
             -- This config use all opened buffers
             get_bufnrs = function()
               local bufs = {}
-              for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-                local buftype = vim.api.nvim_buf_get_option(buf, 'buftype')
+              for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+                local buftype = vim.api.nvim_get_option_value('buftype', { buf = bufnr })
                 if buftype ~= 'nofile' and buftype ~= 'prompt' then
-                  bufs[#bufs + 1] = buf
+                  bufs[#bufs + 1] = bufnr
                 end
               end
               return bufs
@@ -120,27 +119,23 @@ return {
       },
 
       formatting = {
+        expandable_indicator = true,
+        fields = { 'kind', 'abbr', 'menu' },
         format = lspkind.cmp_format({
           mode = 'symbol',           -- show only symbol annotations
           maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
           ellipsis_char = '...',     -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
           show_labelDetails = false, -- show labelDetails in menu. Disabled by default
           menu = {
-            fuzzy_buffer    = "󰦨",
-            nvim_lsp        = "[LSP]",
-            fuzzy_path      = "",
-            spell           = "󰓆",
-            cmdline         = "",
-            -- cmdline_history = "",
-            orgmode         = "",
-            latex_symbols   = "",
+            nvim_lsp      = " ",
+            ultisnips     = "",
+            fuzzy_path    = "",
+            fuzzy_buffer  = "",
+            spell         = "󰓆",
+            cmdline       = "",
+            orgmode       = "",
+            latex_symbols = "",
           },
-          -- menu = source_mapping,
-          -- The function below will be called before any actual modifications from lspkind
-          -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-          -- before = function (entry, vim_item)
-          --   return vim_item
-          -- end
         })
       },
 
@@ -162,7 +157,17 @@ return {
 
     })
 
-    -- Set configuration for specific filetype.
+    -- Set configuration for specific note taking languages.
+    cmp.setup.filetype({ 'markdown', 'org', 'txt', 'text' }, {
+      sources = cmp.config.sources({
+        { name = 'git' }, -- You can specify the `cmp_git` source if you were installed it.
+      }, {
+        { name = 'fuzzy_buffer' },
+        { name = 'fuzzy_path' }
+      })
+    })
+
+    -- Set configuration for git
     -- git
     cmp.setup.filetype({ 'gitcommit', 'gitignore' }, {
       sources = cmp.config.sources({
@@ -177,14 +182,11 @@ return {
     cmp.setup.cmdline(':', {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
-        { name = 'fuzzy_path' }
-      }, {
-        { name = 'cmdline' },
-        {
-          -- name = 'cmdline_history',
-          keyword_length = 3,
+          { name = 'fuzzy_path' }
         },
-      })
+        { { name = 'cmdline' },
+          { keyword_length = 3 } }
+      )
     })
 
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).

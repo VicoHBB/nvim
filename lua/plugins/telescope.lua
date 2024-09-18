@@ -83,13 +83,17 @@ return {
           previewer = false,
           theme = "dropdown"
         },
+        git_files = {
+          previewer = false,
+          theme = "dropdown"
+        },
+        oldfiles = {
+          previewer = false,
+          theme = "dropdown"
+        },
         spell_suggest = {
           prompt_title = "Spell",
           theme = "cursor",
-          layout_config = {
-            height = 0.35,
-            width = 0.15
-          },
         },
         commands = {
           prompt_title = "Commands",
@@ -98,9 +102,6 @@ return {
         current_buffer_fuzzy_find = {
           prompt_title = "Current Buffer Lines",
           layout_strategy = "vertical",
-          layout_config = {
-            width = 0.5
-          },
         },
       },
 

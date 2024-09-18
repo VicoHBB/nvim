@@ -37,13 +37,13 @@ keyset("n", "<F10>", "<CMD>2TermExec cmd='dofile(%)'<CR>", { silent = true })
 
 -- Utilities
 
-keyset("v", "<space>r", function()
-    -- require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
-    require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = 1 })
-end)
+-- keyset("v", "<space>rl", function()
+--     -- require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
+--     require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = 1 })
+-- end)
 
 
-keyset("n", "<leader>r", function()
-    require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 1 })
-end)
+-- keyset("n", "<leader>rl", function()
+--     require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 1 })
+-- end)
 

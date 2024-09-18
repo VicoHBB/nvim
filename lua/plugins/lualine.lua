@@ -47,7 +47,7 @@ return {
         lualine_x = {
           'tabnine',
           'encoding',
-          'filetype'
+          'tfiletype'
         },
         lualine_y = {
           {

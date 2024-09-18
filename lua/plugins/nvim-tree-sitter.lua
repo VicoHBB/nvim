@@ -27,6 +27,7 @@ return {
           "latex",
           "markdown",
           "markdown_inline",
+          "regex",
           "make",
           "cmake",
           "bash",

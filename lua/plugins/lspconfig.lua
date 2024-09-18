@@ -2,7 +2,6 @@ return {
   'neovim/nvim-lspconfig', -- Config
   dependencies = {
     "williamboman/mason.nvim",
-    "folke/neodev.nvim",
     {
       "SmiteshP/nvim-navbuddy",
       dependencies = {
@@ -28,24 +27,44 @@ return {
       -- LSPSaga
       keyset( "n", "K", "<CMD>Lspsaga hover_doc<CR>",
         {
-          desc   = "Hover",
-          silent = true,
           buffer = bufnr,
+          silent = true,
+          desc   = "Hover Documentation",
         }
       )
       -- Rename
-      keyset( 'n', "<leader>R", "<CMD>Lspsaga rename<CR>", {silent = true} )
+      keyset('n', "<leader>R", "<CMD>Lspsaga rename<CR>",
+        {
+          silent = true,
+          desc   = "Rename var",
+        }
+      )
       -- Code Action Menu
-      keyset( 'n', "<leader>a", "<CMD>Lspsaga code_action<CR>", {silent= true} )
+      keyset('n', "<leader>a", "<CMD>Lspsaga code_action<CR>",
+        {
+          silent = true,
+          desc   = "Code Action",
+        }
+      )
       -- LSPSAGA Dx
-      keyset( 'n', "<leader>[", "<CMD>Lspsaga diagnostic_jump_prev<CR>", {silent= true} )
-      keyset( 'n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>", {silent= true} )
+      keyset( 'n', "<leader>[", "<CMD>Lspsaga diagnostic_jump_prev<CR>",
+        {
+          silent = true,
+          desc   = "Previous Dx",
+        }
+      )
+      keyset( 'n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>",
+        {
+          silent = true,
+          desc   = "Next Dx",
+        }
+      )
       keyset(
         'n',
         '<leader>?',
         function() vim.diagnostic.setqflist() end,
         {
-          desc   = "Show diagnostics",
+          desc   = "Show Dx",
           silent=true,
         }
       )
@@ -76,48 +95,58 @@ return {
       -- LSP with noice
       keyset( "n", "gK", require("noice.lsp").hover,
         {
-          desc = "Hover",
+          desc = "Hover Doc (Noice)",
           silent = true,
           buffer=bufnr,
         }
       )
-      keyset( { "i" }, "<C-K>", require("noice.lsp").signature,
+      keyset( "n", "<C-k>", require("noice.lsp").signature,
         {
-          desc = "toggle signature",
+          buffer  = bufnr,
           noremap = true,
-          silent = true,
-          buffer=bufnr,
+          silent  = true,
+          desc    = "Show Signature",
         }
       )
       keyset({ "n", "i", "s" }, "<c-f>", function()
         if not require("noice.lsp").scroll(4) then
           return "<c-f>"
         end
-      end, { silent = true, expr = true })
+      end, {
+          silent = true,
+          expr = true,
+          desc = "Scroll down",
+        }
+      )
 
       keyset({ "n", "i", "s" }, "<c-b>", function()
         if not require("noice.lsp").scroll(-4) then
           return "<c-b>"
         end
-      end, { silent = true, expr = true })
+      end, {
+          silent = true,
+          expr   = true,
+          desc   = "Scroll up",
+        }
+      )
 
       -- Navbudy
-      keyset(
-        'n',
-        "<leader>N",
-        "<CMD>Navbuddy<CR>",
-        {silent= true}
+      keyset('n', "<leader>N", "<CMD>Navbuddy<CR>",
+        {
+          silent = true,
+          desc   = "Open NavBuddy",
+        }
       )
 
       -- Lsp simple
       -- Format
-      vim.keymap.set('v', '<space>f', function()
+     keyset('v', '<space>f', function()
           vim.lsp.buf.format { async = true }
         end,
         {
-          desc   = "Format",
-          silent = true,
           buffer = bufnr,
+          silent = true,
+          desc   = "Format",
         }
       )
 
@@ -129,17 +158,6 @@ return {
       filetypes    = { "c", "cpp" },
     }
 
-    -- require('lspconfig').ccls.setup {
-    --   init_options = {
-    --     compilationDatabaseDirectory = "build";
-    --     index = {
-    --       threads = 0;
-    --     };
-    --     clang = {
-    --       excludeArgs = { "-frounding-math"} ;
-    --     };
-    --   }
-    -- }
 
     require('lspconfig').cmake.setup{
       on_attach = on_attach,
@@ -215,16 +233,6 @@ return {
       cmd = { "marksman", "server" },
     }
 
-    -- require('lspconfig').markdown_oxide.setup{
-    --   on_attach = on_attach,
-    --   cmd = { "marksman", "server" },
-    --   capabilities = capabilities,
-    -- }
-
-    -- require('lspconfig').grammarly.setup{
-    -- 	filetypes = {"markdown"}
-    -- }
-
     require('lspconfig').asm_lsp.setup{
       on_attach = on_attach,
       capabilities = capabilities,
@@ -267,27 +275,7 @@ return {
     require('lspconfig').lua_ls.setup {
       on_attach = on_attach,
       capabilities = capabilities,
-      settings = {
-        Lua = {
-          runtime = {
-            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT',
-          },
-          diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = {'vim'},
-          },
-          workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
-          },
-          -- Do not send telemetry data containing a randomized but
-          -- unique identifier
-          telemetry = {
-            enable = true,
-          },
-        },
-      },
+      settings = {},
     }
 
     require('lspconfig')['rust_analyzer'].setup{

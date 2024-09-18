@@ -83,6 +83,7 @@ keyset('n', "z=", "<CMD>Telescope spell_suggest<CR>", { silent = true })
 keyset('n', "<leader>T", "<CMD>Telescope builtin<CR>", { silent = true })
 keyset('n', "<leader>fh", "<CMD>Telescope oldfiles<CR>", { silent = true })
 keyset('n', "<leader>ff", "<CMD>Telescope find_files<CR>", { silent = true })
+keyset('n', "<leader>fg", "<CMD>Telescope git_files<CR>", { silent = true })
 keyset('n', "<leader>tc", "<CMD>Telescope commands<CR>", { silent = true })
 keyset('n', "<leader>tl", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { silent = true })
 keyset('n', "<leader>tg", "<CMD>Telescope git_bcommits<CR>", { silent = true })
@@ -114,10 +115,10 @@ keyset('n', "<leader>\'", function()
 end, { silent = true })
 
 -- Lazygit
-keyset('n', "<leader>GG", "<CMD>Neogit<CR>", { silent = true })
-keyset('n', "<leader>Gc", "<CMD>Neogit commit<CR>", { silent = true })
-keyset('n', "<leader>Gp", "<CMD>Neogit pull<CR>", { silent = true })
-keyset('n', "<leader>GP", "<CMD>Neogit push<CR>", { silent = true })
+keyset('n', "<leader>gg", "<CMD>Neogit<CR>", { silent = true })
+keyset('n', "<leader>gc", "<CMD>Neogit commit<CR>", { silent = true })
+keyset('n', "<leader>gp", "<CMD>Neogit pull<CR>", { silent = true })
+keyset('n', "<leader>gP", "<CMD>Neogit push<CR>", { silent = true })
 
 -- Take screenshoot
 -- keyset( 'v', "<F10>", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
@@ -128,9 +129,6 @@ keyset("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- TSJT
 keyset('n', "<leader>st", "<CMD>TSJToggle<CR>", { silent = true })
 
--- Noice
-keyset('n', "<leader>d", "<CMD>NoiceDismiss<CR>", { silent = true })
-
 -- Quickfix
 keyset("n", "<F7>", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
 keyset("n", "<F6>", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist", })
@@ -139,7 +137,8 @@ keyset("n", "<F6>", function() require("quicker").toggle({ loclist = true }) end
 keyset('c', "<C-j>", "<Down>", {})
 keyset('c', "<C-k>", "<Up>", {})
 
--- Overseer
-keyset("n", "<leader>or", "<CMD>OverseerRun<CR>", { desc = "Toggle Overseer" })
-keyset("n", "<leader>ot", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
-keyset("n", "<leader>ol", "<CMD>OverseerRestartLast<CR>", { desc = "Rerun last task" })
+-- -- Overseer
+-- keyset("n", "<F4>", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
+-- keyset("n", "<leader>rt", "<CMD>OverseerRun<CR>", { desc = "Toggle Overseer" })
+-- keyset("n", "<leader>rl", "<CMD>OverseerRestartLast<CR>", { desc = "Rerun last task" })
+
