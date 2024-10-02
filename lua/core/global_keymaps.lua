@@ -114,7 +114,8 @@ keyset('n', "<leader>\'", function()
   require('reach').marks()
 end, { silent = true })
 
--- Lazygit
+-- Git (Neogit, Gitsigns & Lazygit)
+keyset('n', "<leader>GG", "<CMD>Lazygit<CR>", { silent = true })
 keyset('n', "<leader>gg", "<CMD>Neogit<CR>", { silent = true })
 keyset('n', "<leader>gc", "<CMD>Neogit commit<CR>", { silent = true })
 keyset('n', "<leader>gp", "<CMD>Neogit pull<CR>", { silent = true })

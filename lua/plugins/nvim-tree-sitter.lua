@@ -27,6 +27,7 @@ return {
           "latex",
           "markdown",
           "markdown_inline",
+          "mermaid",
           "regex",
           "make",
           "cmake",

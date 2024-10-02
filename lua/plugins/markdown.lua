@@ -1,66 +1,104 @@
 return {
-  "tadmccorkle/markdown.nvim",
-  ft = "markdown", -- or 'event = "VeryLazy"'
-  opts = {
-    -- configuration here or empty for defaults
-    --   -- Disable all keymaps by setting mappings field to 'false'.
-    -- Selectively disable keymaps by setting corresponding field to 'false'.
-    mappings = {
-      inline_surround_toggle = "ys",     -- (string|boolean) toggle inline style
-      inline_surround_toggle_line = "yss", -- (string|boolean) line-wise toggle inline style
-      inline_surround_delete = "ds",     -- (string|boolean) delete emphasis surrounding cursor
-      inline_surround_change = "cs",     -- (string|boolean) change emphasis surrounding cursor
-      link_add = "gl",                   -- (string|boolean) add link
-      link_follow = "gx",                -- (string|boolean) follow link
-      go_curr_heading = "]c",            -- (string|boolean) set cursor to current section heading
-      go_parent_heading = "]p",          -- (string|boolean) set cursor to parent section heading
-      go_next_heading = "]]",            -- (string|boolean) set cursor to next section heading
-      go_prev_heading = "[[",            -- (string|boolean) set cursor to previous section heading
-    },
-    inline_surround = {
-      -- For the emphasis, strong, strikethrough, and code fields:
-      -- * 'key': used to specify an inline style in toggle, delete, and change operations
-      -- * 'txt': text inserted when toggling or changing to the corresponding inline style
-      emphasis = {
-        key = "i",
-        txt = "*",
+  {  -- markdown
+    "tadmccorkle/markdown.nvim",
+    ft = {
+      "markdown",
+    }, -- or 'event = "VeryLazy"'
+    opts = {
+      -- configuration here or empty for defaults
+      --   -- Disable all keymaps by setting mappings field to 'false'.
+      -- Selectively disable keymaps by setting corresponding field to 'false'.
+      mappings = {
+        inline_surround_toggle = "\\s",     -- (string|boolean) toggle inline style
+        inline_surround_toggle_line = "\\ss", -- (string|boolean) line-wise toggle inline style
+        inline_surround_delete = "\\ds",    -- (string|boolean) delete emphasis surrounding cursor
+        inline_surround_change = "\\cs",    -- (string|boolean) change emphasis surrounding cursor
+        link_add = "\\l",                   -- (string|boolean) add link
+        link_follow = "gx",                 -- (string|boolean) follow link
+        go_curr_heading = "]c",             -- (string|boolean) set cursor to current section heading
+        go_parent_heading = "]p",           -- (string|boolean) set cursor to parent section heading
+        go_next_heading = "]]",             -- (string|boolean) set cursor to next section heading
+        go_prev_heading = "[[",             -- (string|boolean) set cursor to previous section heading
       },
-      strong = {
-        key = "b",
-        txt = "**",
+      inline_surround = {
+        -- For the emphasis, strong, strikethrough, and code fields:
+        -- * 'key': used to specify an inline style in toggle, delete, and change operations
+        -- * 'txt': text inserted when toggling or changing to the corresponding inline style
+        emphasis = {
+          key = "i",
+          txt = "*",
+        },
+        strong = {
+          key = "b",
+          txt = "**",
+        },
+        strikethrough = {
+          key = "s",
+          txt = "~~",
+        },
+        code = {
+          key = "c",
+          txt = "`",
+        },
       },
-      strikethrough = {
-        key = "s",
-        txt = "~~",
+      link = {
+        paste = {
+          enable = true, -- whether to convert URLs to links on paste
+        },
       },
-      code = {
-        key = "c",
-        txt = "`",
+      toc = {
+        -- Comment text to flag headings/sections for omission in table of contents.
+        omit_heading = "toc omit heading",
+        omit_section = "toc omit section",
+        -- Cycling list markers to use in table of contents.
+        -- Use '.' and ')' for ordered lists.
+        markers = { "-" },
       },
-    },
-    link = {
-      paste = {
-        enable = true, -- whether to convert URLs to links on paste
+      -- Hook functions allow for overriding or extending default behavior.
+      -- Called with a table of options and a fallback function with default behavior.
+      -- Signature: fun(opts: table, fallback: fun())
+      hooks = {
+        -- Called when following links. Provided the following options:
+        -- * 'dest' (string): the link destination
+        -- * 'use_default_app' (boolean|nil): whether to open the destination with default application
+        --   (refer to documentation on <Plug> mappings for explanation of when this option is used)
+        follow_link = nil,
       },
+      on_attach = nil, -- (fun(bufnr: integer)) callback when plugin attaches to a buffer
     },
-    toc = {
-      -- Comment text to flag headings/sections for omission in table of contents.
-      omit_heading = "toc omit heading",
-      omit_section = "toc omit section",
-      -- Cycling list markers to use in table of contents.
-      -- Use '.' and ')' for ordered lists.
-      markers = { "-" },
+  },
+  { -- markdown-preview
+    "iamcco/markdown-preview.nvim",
+    ft = {
+      "markdown",
     },
-    -- Hook functions allow for overriding or extending default behavior.
-    -- Called with a table of options and a fallback function with default behavior.
-    -- Signature: fun(opts: table, fallback: fun())
-    hooks = {
-      -- Called when following links. Provided the following options:
-      -- * 'dest' (string): the link destination
-      -- * 'use_default_app' (boolean|nil): whether to open the destination with default application
-      --   (refer to documentation on <Plug> mappings for explanation of when this option is used)
-      follow_link = nil,
+    cmd = {
+      "MarkdownPreviewToggle",
+      "MarkdownPreview",
+      "MarkdownPreviewStop",
     },
-    on_attach = nil, -- (fun(bufnr: integer)) callback when plugin attaches to a buffer
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    config = function()
+
+      vim.cmd [[
+        function OpenMarkdownPreview (url)
+          execute "silent ! firefox --new-window " . a:url
+        endfunction
+      ]]
+
+      vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
+    end
+  },
+  {  -- render-markdown ( Use with a good PC lol )
+  --   'MeanderingProgrammer/render-markdown.nvim',
+  --   dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+  --   ft = {
+  --     "markdown",
+  --   },
+  --   opts = {
+  --   },
   },
 }

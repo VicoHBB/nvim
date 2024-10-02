@@ -69,8 +69,9 @@ These are the plugins that have been installed and configured.
 | ------------------------------------------------------------------------------------------- | ------------- |
 | [Comment](https://github.com/numToStr/Comment.nvim)                                         | 2024-07-17    |
 | [alpha](https://github.com/goolord/alpha-nvim)                                              | 2024-08-11    |
+| [autopairs](https://github.com/windwp/nvim-autopairs)                                       | 2024-10-01    |
 | [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)                 | 2024-08-31    |
-| [cmp](https://github.com/hrsh7th/nvim-cmp)                                                  | 2024-07-15    |
+| [cmp](https://github.com/hrsh7th/nvim-cmp)                                                  | 2024-10-01    |
 | [codi](https://github.com/metakirby5/codi.vim)                                              | 2024-07-20    |
 | [flash](https://github.com/folke/flash.nvim)                                                | 2024-07-27    |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                      | 2024-06-19    |
@@ -78,9 +79,14 @@ These are the plugins that have been installed and configured.
 | [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)                                 | 2024-07-16    |
 | [headlines](https://github.com/lukas-reineke/headlines.nvim)                                | 2024-07-17    |
 | [lazy](https://github.com/folke/lazy.nvim)                                                  | 2024-07-17    |
-| [lspconfig](https://github.com/neovim/nvim-lspconfig/tree/master)                           | 2024-08-31    |
+| [lsp-timeout](https://github.com/hinell/lsp-timeout.nvim.git)                               | 2024-10-01    |
+| [lspconfig](https://github.com/neovim/nvim-lspconfig/tree/master)                           | 2024-10-01    |
+| [lspsaga](https://nvimdev.github.io/lspsaga/)                                               | 2024-10-01    |
 | [ltex-client](https://github.com/icewind/ltex-client.nvim)                                  | 2024-08-13    |
 | [lualine](https://github.com/nvim-lualine/lualine.nvim)                                     | 2024-08-31    |
+| [markdown-preview](https://github.com/iamcco/markdown-preview.nvim.git)                     | 2024-10-01    |
+| [markdown-render](https://github.com/MeanderingProgrammer/render-markdown.nvim.git)         | 2024-10-01    |
+| [markdown](https://github.com/tadmccorkle/markdown.nvim)                                    | 2024-10-01    |
 | [neogit](https://github.com/NeogitOrg/neogit)                                               | 2024-08-25    |
 | [noice](https://github.com/folke/noice.nvim)                                                | 2024-08-31    |
 | [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                                        | 2024-08-11    |
@@ -115,6 +121,7 @@ These are plugins that serve as dependencies for others and do not require addit
 ### To probe
 
 * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mod)
+* [none-ls](https://github.com/nvimtools/none-ls.nvim)
 * [overseer](https://github.com/stevearc/overseer.nvim)
 * [luasnip](https://github.com/L3MON4D3/LuaSnip)
 * [dooku](https://github.com/Zeioth/dooku.nvim)
