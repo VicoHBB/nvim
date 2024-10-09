@@ -93,7 +93,7 @@ return {
           }
         )
 
-        LSP with noice
+        -- LSP with noice
         keyset("n", "gK", require("noice.lsp").hover,
           {
             desc = "Hover Doc (Noice)",
