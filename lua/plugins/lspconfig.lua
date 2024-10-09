@@ -93,7 +93,7 @@ return {
           }
         )
 
-        -- LSP with noice
+        LSP with noice
         keyset("n", "gK", require("noice.lsp").hover,
           {
             desc = "Hover Doc (Noice)",
@@ -101,14 +101,16 @@ return {
             buffer = bufnr,
           }
         )
-        keyset("n", "<C-k>", require("noice.lsp").signature,
-          {
-            buffer  = bufnr,
-            noremap = true,
-            silent  = true,
-            desc    = "Show Signature",
-          }
-        )
+
+        -- keyset("n", "<C-k>", require("noice.lsp").signature,
+        --   {
+        --     buffer  = bufnr,
+        --     noremap = true,
+        --     silent  = true,
+        --     desc    = "Show Signature",
+        --   }
+        -- )
+
         keyset({ "n", "i", "s" }, "<c-f>", function()
           if not require("noice.lsp").scroll(4) then
             return "<c-f>"
