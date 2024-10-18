@@ -45,56 +45,51 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Compilation & Simulation
 
-keyset('n', "<F1>", function()
-  print([[
-  Compilation & Simulation:
-    <F1> -> (make help) Show this info
-    <F8> -> (make clean) Clean project
-    <F9> -> (make all) Build project
-    <F10> -> (make run) Run simulation
-    <F11> -> (make synth) Synthesize project"
-    <F12> -> (make qrtl) Synthesize and view RTL
-    <leader> ->vq (make view) View RTL schematic diagram
-    <leader> ->vy (make ys) View simple RTL diagram with Yosys
-  ]])
-end
-, {
-  silent = true,
-  desc = "Make help",
-})
-
-
 keyset('n', "<F8>", "<CMD>OverseerRunCmd make clean<CR>", {
+  buffer = 0,
+  noremap = true,
   silent = true,
   desc = "Clean project",
 })
 
 keyset('n', "<F9>", ":OverseerRunCmd make all<CR>", {
+  buffer = 0,
+  noremap = true,
   silent = true,
   desc = "Build project",
 })
 
 keyset('n', "<F10>", ":OverseerRunCmd make run<CR>", {
+  buffer = 0,
+  noremap = true,
   silent = true,
   desc = "Run simulation",
 })
 
 keyset('n', "<F11>", "<CMD>OverseerRunCmd make synth<CR>", {
+  buffer = 0,
+  noremap = true,
   silent = true,
   desc = "Synthesize project",
 })
 
 keyset('n', "<F12>", ":OverseerRunCmd make qrtl<CR>", {
+  buffer = 0,
+  noremap = true,
   silent = true,
   desc = "Synthesize and view RTL",
 })
 
 keyset('n', "<leader>vq", "<CMD>OverseerRunCmd make view<CR>", {
+  buffer = 0,
+  noremap = true,
   silent = true,
   desc = "View RTL schematic diagram",
 })
 
 keyset('n', "<leader>vy", "<CMD>OverseerRunCmd make ys<CR>", {
+  buffer = 0,
+  noremap = true,
   silent = true,
   desc = "View simple RTL diagram with Yosys",
 })
@@ -102,26 +97,36 @@ keyset('n', "<leader>vy", "<CMD>OverseerRunCmd make ys<CR>", {
 
 -- Utilities
 keyset('n', 'gi', '<CMD>VerilogFollowInstance<CR>', {
+  buffer = 0,
+  noremap = true,
   silent= true,
   desc = "Follow Instance",
 })
 
 keyset('n', 'gp', '<CMD>VerilogFollowPort<CR>', {
+  buffer = 0,
+  noremap = true,
   silent= true,
   desc = "Follow Port",
 })
 
 keyset('n', 'gI', '<CMD>VerilogGotoInstanceStart<CR>', {
+  buffer = 0,
+  noremap = true,
   silent= true,
   desc = "Go to Instance Start",
 })
 
 keyset('n', '<leader>V', '<CMD>VerilogErrorFormat Verilator 1<CR>', {
+  buffer = 0,
+  noremap = true,
   silent= true,
   desc = "Set Verilator Error format",
 })
 
 keyset('n', '<leader>O', '<CMD>Tagbar<CR>', {
-  silent= true,
+  buffer = 0,
+  noremap = true,
+  silent = true,
   desc = "Outline symbols",
 })

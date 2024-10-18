@@ -20,7 +20,9 @@ keyset(
   '<F9>',
   '<CMD>MarkdownPreviewToggle<CR>',
   {
-    silent= true,
+    buffer = 0,
+    noremap = true,
+    silent = true,
     desc = "Toggle Preview"
   }
 )
@@ -30,6 +32,8 @@ keyset(
   '\\x',
   '<CMD>MDTaskToggle<CR>',
   {
+    buffer = 0,
+    noremap = true,
     silent= true,
     desc = "Toggle Checkbox"
   }
@@ -40,6 +44,8 @@ keyset(
   '\\o',
   '<CMD>MDListItemBelow<CR>',
   {
+    buffer = 0,
+    noremap = true,
     silent= true,
     desc = "Add list item below"
   }
@@ -50,6 +56,8 @@ keyset(
   '\\O',
   '<CMD>MDListItemAbove<CR>',
   {
+    buffer = 0,
+    noremap = true,
     silent= true,
     desc = "Add list item below"
   }
@@ -59,5 +67,10 @@ keyset(
   'n',
   "||",
   "vip:'<,'> EasyAlign *|<CR>",
-  {silent= true}
+  {
+    buffer = 0,
+    noremap = true,
+    silent= true,
+    desc = "Align Table"
+  }
 )

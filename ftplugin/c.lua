@@ -23,17 +23,23 @@ vim.wo.colorcolumn = "80"
 
 -- Compilation & Execution
 keyset('n', "<F9>", "<CMD>CMakeBuild<CR>", {
+  buffer = 0,
+  noremap = true,
   silent = true,
   desc = "Build project",
 })
 
 keyset('n', "<F10>", "<CMD>CMakeRun<CR>", {
+  buffer = 0,
+  noremap = true,
   silent = true,
   desc = "Run project",
 })
 
 -- Utilities
 keyset('n', '<leader>O', '<CMD>Lspsaga outline<CR>', {
+  buffer = 0,
+  noremap = true,
   silent= true,
   desc = "Outline symbols",
 })
