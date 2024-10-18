@@ -28,8 +28,19 @@ add_cmd('FileType', {
 
 -- Compilation & Simulation
 
-vim.keymap.set("n", "<F9>", "<CMD>REPL<CR>", {silent = true})
-vim.keymap.set("n", "<F10>", "<CMD>TermExec cmd='run %'<CR>", {silent = true})
+keyset("n", "<F9>", "<CMD>REPL<CR> name='REPL'", {
+  buffer = 0,
+  noremap = true,
+  silent = true,
+  desc = "REPL",
+})
+
+keyset("n", "<F10>", "<CMD>2TermExec cmd='dofile(%)'<CR>", {
+  buffer = 0,
+  noremap = true,
+  silent = true,
+  desc = "REPL",
+})
 
 -- Utilities
 
