@@ -35,6 +35,13 @@ keyset('n', "<F10>", "<CMD>CMakeRun<CR>", {
   desc = "Run project",
 })
 
+keyset('n', "<leader>vr", "<CMD>OverseerRunCmd make run<CR>", {
+  buffer = 0,
+  noremap = true,
+  silent = true,
+  desc = "Run simulation with Verilator",
+})
+
 -- Utilities
 keyset('n', '<leader>O', '<CMD>Lspsaga outline<CR>', {
   buffer = 0,

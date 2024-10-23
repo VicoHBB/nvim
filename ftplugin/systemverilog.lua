@@ -45,13 +45,6 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Compilation & Simulation
 
-keyset('n', "<F8>", "<CMD>OverseerRunCmd make clean<CR>", {
-  buffer = 0,
-  noremap = true,
-  silent = true,
-  desc = "Clean project",
-})
-
 keyset('n', "<F9>", ":OverseerRunCmd make all<CR>", {
   buffer = 0,
   noremap = true,
@@ -80,11 +73,32 @@ keyset('n', "<F12>", ":OverseerRunCmd make qrtl<CR>", {
   desc = "Synthesize and view RTL",
 })
 
-keyset('n', "<leader>vq", "<CMD>OverseerRunCmd make view<CR>", {
+keyset('n', "<leader>mc", "<CMD>OverseerRunCmd make clean<CR>", {
+  buffer = 0,
+  noremap = true,
+  silent = true,
+  desc = "Clean project",
+})
+
+keyset('n', "<leader>vv", "<CMD>OverseerRunCmd make view<CR>", {
   buffer = 0,
   noremap = true,
   silent = true,
   desc = "View RTL schematic diagram",
+})
+
+keyset('n', "<leader>vf", "<CMD>OverseerRunCmd make qfull<CR>", {
+  buffer = 0,
+  noremap = true,
+  silent = true,
+  desc = "View RTL schematic diagram",
+})
+
+keyset('n', "<leader>vr", "<CMD>OverseerRunCmd make run<CR>", {
+  buffer = 0,
+  noremap = true,
+  silent = true,
+  desc = "Run simulation",
 })
 
 keyset('n', "<leader>vy", "<CMD>OverseerRunCmd make ys<CR>", {
@@ -93,7 +107,6 @@ keyset('n', "<leader>vy", "<CMD>OverseerRunCmd make ys<CR>", {
   silent = true,
   desc = "View simple RTL diagram with Yosys",
 })
-
 
 -- Utilities
 keyset('n', 'gi', '<CMD>VerilogFollowInstance<CR>', {

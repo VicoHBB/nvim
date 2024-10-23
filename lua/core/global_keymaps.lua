@@ -139,7 +139,7 @@ keyset('c', "<C-j>", "<Down>", {})
 keyset('c', "<C-k>", "<Up>", {})
 
 -- -- Overseer
--- keyset("n", "<F4>", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
--- keyset("n", "<leader>rt", "<CMD>OverseerRun<CR>", { desc = "Toggle Overseer" })
--- keyset("n", "<leader>rl", "<CMD>OverseerRestartLast<CR>", { desc = "Rerun last task" })
+keyset("n", "<F8>", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
+keyset("n", "<leader>rt", "<CMD>OverseerRun<CR>", { desc = "Toggle Overseer" })
+keyset("n", "<leader>rr", "<CMD>OverseerRestartLast<CR>", { desc = "Rerun last task" })
 
