@@ -74,3 +74,15 @@ keyset(
     desc = "Align Table"
   }
 )
+
+keyset(
+  'n',
+  "\\t",
+  "100lbi<CR><ESC>0",
+  {
+    buffer = 0,
+    noremap = true,
+    silent= true,
+    desc = "Align Table"
+  }
+)

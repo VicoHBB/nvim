@@ -37,3 +37,15 @@ vim.wo.colorcolumn = "100"
 --   "<CMD>TableModeToggle<CR>",
 --   {silent= true}
 -- )
+
+keyset(
+  'n',
+  "\\t",
+  "100lbi<CR><ESC>0",
+  {
+    buffer = 0,
+    noremap = true,
+    silent= true,
+    desc = "Align Table"
+  }
+)
