@@ -32,14 +32,14 @@ add_cmd('FileType', {
 
 -- Compilation & Simulation
 
-keyset("n", "<F9>", "<CMD>REPL<CR> name='REPL'", {
+keyset("n", "<F9>", "<CMD>2TermExec cmd='dofile(%)'<CR>", {
   buffer = 0,
   noremap = true,
   silent = true,
   desc = "REPL",
 })
 
-keyset("n", "<F10>", "<CMD>2TermExec cmd='dofile(%)'<CR>", {
+keyset("n", "<F10>", "<CMD>REPL<CR> name='REPL'", {
   buffer = 0,
   noremap = true,
   silent = true,
@@ -58,3 +58,11 @@ keyset("n", "<F10>", "<CMD>2TermExec cmd='dofile(%)'<CR>", {
 --     require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 1 })
 -- end)
 
+-- Utilities
+keyset('n', '<leader>O', '<CMD>Lspsaga outline<CR>', {
+  buffer = 0,
+  noremap = true,
+  silent= true,
+
+  desc = "Outline symbols",
+})

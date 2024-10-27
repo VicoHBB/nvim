@@ -47,6 +47,7 @@ return {
       },
       outline = {
         auto_preview = false,
+        auto_close = true,
       },
     })
   end,
