@@ -25,7 +25,12 @@ vim.cmd([[ set runtimepath+=. ]])
 vim.o.termguicolors = true
 
 -- Ruby Host
-vim.g.ruby_host_prog = '~/.local/share/gem/ruby/3.2.0/bin/neovim-ruby-host'
+vim.g.ruby_host_prog = '~/.local/share/gem/ruby/3.3.0/bin/neovim-ruby-host'
+
+-- Perl Host
+-- vim.g.perl_host_prog = '/usr/bin/perl'
+
+-- Lua Host
 
 -- [[ COC ]]
 -- Some servers have issues with backup files, see #649

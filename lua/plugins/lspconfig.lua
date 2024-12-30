@@ -9,7 +9,11 @@ return {
           "SmiteshP/nvim-navic",
           "MunifTanjim/nui.nvim"
         },
-        opts = { lsp = { auto_attach = true } }
+        opts = {
+          lsp = {
+            auto_attach = true,
+          },
+        }
       }
     },
     priority = 1000,
@@ -233,6 +237,10 @@ return {
         on_attach = on_attach,
         capabilities = capabilities,
         cmd = { "marksman", "server" },
+      }
+
+      require('lspconfig').textlsp.setup{
+
       }
 
       require('lspconfig').asm_lsp.setup {

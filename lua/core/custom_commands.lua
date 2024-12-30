@@ -90,4 +90,25 @@ function M.lazygit_toggle()
   })
 end
 
+function M.clear_cmake_cache()
+  cmd("PurgeCMake", function()
+    local home = vim.fn.expand('~')
+    local cmake_cache_dir = home .. "/.cache/cmake_tools_nvim"
+
+    -- Check if directory exists
+    if vim.fn.isdirectory(cmake_cache_dir) > 0 then
+      -- Delete directory
+      vim.fn.delete(cmake_cache_dir, "rf")
+      print("CMake cache purged")
+    else
+      print("CMake cache directory not found")
+      print(cmake_cache_dir)
+    end
+
+  end, {
+      nargs = 0,
+      desc = "Clear CMake Cache"
+  })
+end
+
 return M

@@ -109,6 +109,13 @@ keyset('n', '<leader>b', function()
   })
 end, { silent = true })
 
+keyset('n', '<leader>B', '<CMD>%bd|e#|bd#<CR>',
+  {
+    silent = true,
+    desc = "Close the other buffrers"
+  }
+)
+
 -- Marks
 keyset('n', "<leader>\'", function()
   require('reach').marks()

@@ -1,6 +1,20 @@
 return {
   "nvim-tree/nvim-tree.lua",
   dependencies = 'nvim-tree/nvim-web-devicons',
+  cmd = {
+    "NvimTreeHiTest",
+    "NvimTreeCollapseKeepBuffers",
+    "NvimTreeFindFileToggle",
+    "NvimTreeOpen",
+    -- "NvimTreeClose",
+    "NvimTreeFocus",
+    "NvimTreeResize",
+    "NvimTreeToggle",
+    "NvimTreeRefresh",
+    "NvimTreeCollapse",
+    "NvimTreeFindFile",
+    "NvimTreeClipboard",
+  },
   config = function()
     -- disable netrw at the very start of your init.lua (strongly advised)
     vim.g.loaded_netrw       = 1

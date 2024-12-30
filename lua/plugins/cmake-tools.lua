@@ -40,7 +40,7 @@ return {
         console = "integratedTerminal",
       },
       cmake_executor = {                -- executor to use
-        name = "quickfix",              -- name of the executor
+        name = "overseer",              -- name of the executor
         opts = {},                      -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
         default_opts = {                -- a list of default and possible values for executors
           quickfix = {
@@ -53,22 +53,39 @@ return {
           overseer = {
             new_task_opts = {
               strategy = {
-                "toggleterm",
-                direction = "horizontal",
-                autos_croll = true,
-                quit_on_exit = "success"
+                "jobstart",
+              },
+              component_aliases = {
+                { "display_duration", detail_level = 1 },
+                "on_output_summarize",
+                "on_exit_set_status",
+                "on_complete_notify",
+                {
+                  "on_complete_dispose",
+                  require_view = {
+                    "SUCCESS",
+                    "FAILURE",
+                    "CANCELED",
+                  },
+                },
+                {
+                  "on_output_quickfix",
+                  open_on_exit = "failure",
+                  close = true,
+                  set_diagnostics = true,
+                },
               }
             }, -- options to pass into the `overseer.new_task` command
-            on_new_task = function(task)
-              require("overseer").open(
-                { enter = false, direction = "right" }
-              )
-            end, -- a function that gets overseer.Task when it is created, before calling `task:start`
+            -- on_new_task = function(task)
+            --   require("overseer").open(
+            --     { enter = false, direction = "right" }
+            --   )
+            -- end, -- a function that gets overseer.Task when it is created, before calling `task:start`
           },
         },
       },
       cmake_runner = {           -- runner to use
-        name = "toggleterm",       -- name of the runner
+        name = "overseer",       -- name of the runner
         opts = {},               -- the options the runner will get, possible values depend on the runner type. See `default_opts` for possible values.
         default_opts = {         -- a list of default and possible values for runners
           toggleterm = {
@@ -80,14 +97,31 @@ return {
           overseer = {
             new_task_opts = {
               strategy = {
-                "toggleterm",
-                direction = "horizontal",
-                autos_croll = true,
-                quit_on_exit = "success"
+                "jobstart",
+              },
+              component_aliases = {
+                { "display_duration", detail_level = 1 },
+                "on_output_summarize",
+                "on_exit_set_status",
+                "on_complete_notify",
+                {
+                  "on_complete_dispose",
+                  require_view = {
+                    "SUCCESS",
+                    "FAILURE",
+                    "CANCELED",
+                  },
+                },
+                {
+                  "on_output_quickfix",
+                  open_on_exit = "failure",
+                  close = true,
+                  set_diagnostics = true,
+                },
               }
             }, -- options to pass into the `overseer.new_task` command
-            on_new_task = function(task)
-            end, -- a function that gets overseer.Task when it is created, before calling `task:start`
+            -- on_new_task = function(task)
+            -- end, -- a function that gets overseer.Task when it is created, before calling `task:start`
           },
         },
       },

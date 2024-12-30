@@ -35,6 +35,14 @@ add_cmd('FileType', {
   end
 })
 
+-- Clean CMake Cache
+add_cmd('FileType', {
+  pattern = { 'c', 'cpp', 'cmake'},
+  callback = function()
+    commands.clear_cmake_cache()
+  end
+})
+
 -- OverseerRestartLast
 add_cmd('FileType', {
   pattern = '*', -- Apply to all file types

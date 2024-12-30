@@ -41,11 +41,11 @@ vim.wo.colorcolumn = "100"
 keyset(
   'n',
   "\\t",
-  "100lbi<CR><ESC>0",
+  "0100lbi<CR><ESC>0",
   {
     buffer = 0,
     noremap = true,
     silent= true,
-    desc = "Align Table"
+    desc = "Limit text to 100 columns"
   }
 )
