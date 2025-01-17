@@ -143,14 +143,14 @@ return {
 
     },
   },
-  {
-    'p10/fuzzy-oil.nvim',
-    event = "VeryLazy",
-    dependencies = {
-      'stevearc/oil.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
-    cmd = 'FuzzyOil',
-    opts = {},
-  },
+  -- {
+  --   'p10/fuzzy-oil.nvim',
+  --   event = "VeryLazy",
+  --   dependencies = {
+  --     'stevearc/oil.nvim',
+  --     'nvim-telescope/telescope.nvim',
+  --   },
+  --   cmd = 'FuzzyOil',
+  --   opts = {},
+  -- },
 }

@@ -98,26 +98,8 @@ return {
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = {
-          {
-            'filename',
-            file_status = true,  -- Displays file status (readonly status, modified status)
-            newfile_status = true, -- Display new file status (new file means no write after created)
-            path = 1,            -- 1: Relative path
-            shorting_target = 50, -- Shortens path to leave 40 spaces in the window
-            -- for other components. (terrible name, any suggestions?)
-            symbols = {
-              modified = ' ', -- Text to show when the file is modified.
-              readonly = ' ', -- Text to show when the file is non-modifiable or readonly.
-              unnamed = '{}', -- Text to show for unnamed buffers.
-              newfile = ' ', -- Text to show for new created file before first writting
-            },
-          }
-        },
-        lualine_x = {
-          '%c',
-          '%l/%L',
-        },
+        lualine_c = {},
+        lualine_x = {},
         lualine_y = {},
         lualine_z = {}
       },

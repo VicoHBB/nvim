@@ -25,7 +25,7 @@ This is my personal neovim configuration, fully set up with `lua` and using `laz
 * [ ] Review plugins
 * [ ] Clean plugins (There are to many, and don't even use)
 * [ ] Review keybindings
-    - [ ] Improve keybindings for git acctions
+    - [ ] Improve keybindings for git actions
     - [ ] Add descriptions to keybindings
 * [ ] Update `cmake-tools` configuration
 * [ ] Configure `overseer` properly
@@ -120,15 +120,18 @@ These are plugins that serve as dependencies for others and do not require addit
 
 ### To probe
 
+* [snacks](https://github.com/folke/snacks.nvim)
+* [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mod)
 * [none-ls](https://github.com/nvimtools/none-ls.nvim)
-* [overseer](https://github.com/stevearc/overseer.nvim)
 * [luasnip](https://github.com/L3MON4D3/LuaSnip)
 * [dooku](https://github.com/Zeioth/dooku.nvim)
 * [formatter](https://github.com/mhartington/formatter.nvim)
 * https://vonheikemen.github.io/devlog/es/tools/setup-nvim-lspconfig-plus-nvim-cmp/
 
 ### Maybe Remove?
+- [codi](https://github.com/metakirby5/codi.vim)
+- [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
 
 ## Related Projects
 * [SystemVerilog Template](https://gitlab.com/HugoBec/sv-template.git)
