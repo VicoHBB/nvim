@@ -121,6 +121,7 @@ These are plugins that serve as dependencies for others and do not require addit
 ### To probe
 
 * [snacks](https://github.com/folke/snacks.nvim)
+* [mini](https://github.com/echasnovski/mini.nvim.git)
 * [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mod)
 * [none-ls](https://github.com/nvimtools/none-ls.nvim)
