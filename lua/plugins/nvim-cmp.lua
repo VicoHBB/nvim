@@ -230,7 +230,7 @@ return {
                 end
               end
               return bufs
-            end
+            end,
           },
         },
         {
@@ -289,13 +289,13 @@ return {
           keyword_length = 2,
         },
         {
-          name = 'fuzzy_buffer',
-          keyword_length = 1,
-        },
-        {
           name = 'fuzzy_path',
           keyword_length = 2,
         }
+        -- {
+        --   name = 'fuzzy_buffer',
+        --   keyword_length = 1,
+        -- },
       })
     })
 

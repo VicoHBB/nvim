@@ -11,7 +11,7 @@ return {
     },
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      require('nvim-treesitter.configs').setup ({
+      require('nvim-treesitter.configs').setup({
       -- A list of parser names, or "all"
         ensure_installed = {
           "c",

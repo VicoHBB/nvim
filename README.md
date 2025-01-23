@@ -31,6 +31,7 @@ This is my personal neovim configuration, fully set up with `lua` and using `laz
 * [ ] Configure `overseer` properly
 * [ ] Create a command for align tables in `makrdown` & `orgmode`
 * [ ] Review why `vimtex` is running slow
+* [ ] Improve configuration of snacks
 * [ ] Create a branch with a minimum configuration to be able to use it in `Windows`
 
 ## Dependencies
@@ -68,11 +69,9 @@ These are the plugins that have been installed and configured.
 | Plugin                                                                                      | Last Review   |
 | ------------------------------------------------------------------------------------------- | ------------- |
 | [Comment](https://github.com/numToStr/Comment.nvim)                                         | 2024-07-17    |
-| [alpha](https://github.com/goolord/alpha-nvim)                                              | 2024-08-11    |
 | [autopairs](https://github.com/windwp/nvim-autopairs)                                       | 2024-10-01    |
 | [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)                 | 2024-08-31    |
 | [cmp](https://github.com/hrsh7th/nvim-cmp)                                                  | 2024-10-01    |
-| [codi](https://github.com/metakirby5/codi.vim)                                              | 2024-07-20    |
 | [flash](https://github.com/folke/flash.nvim)                                                | 2024-07-27    |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                      | 2024-06-19    |
 | [gruvbox-material](https://github.com/sainnhe/gruvbox-material)                             | 2024-07-16    |
@@ -100,6 +99,7 @@ These are the plugins that have been installed and configured.
 | [project](https://github.com/ahmedkhalf/project.nvim)                                       | 2024-08-25    |
 | [quicker](https://github.com/stevearc/quicker.nvim)                                         | 2024-08-11    |
 | [reach](https://github.com/toppair/reach.nvim)                                              | 2024-08-25    |
+| [snacks](https://github.com/folke/snacks.nvim)                                              | 2025-01-23    |
 | [tabnine](https://github.com/codota/tabnine-nvim)                                           | 2024-07-14    |
 | [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)    | 2024-08-31    |
 | [telescope-live-grep-args](https://github.com/nvim-telescope/telescope-live-grep-args.nvim) | 2024-08-31    |
@@ -120,7 +120,6 @@ These are plugins that serve as dependencies for others and do not require addit
 
 ### To probe
 
-* [snacks](https://github.com/folke/snacks.nvim)
 * [mini](https://github.com/echasnovski/mini.nvim.git)
 * [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mod)

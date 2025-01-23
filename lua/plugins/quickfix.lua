@@ -26,7 +26,7 @@ return { -- Better quickfix
       opts = {
         buflisted = false,
         number = true,
-        relativenumber = false,
+        relativenumber = true,
         signcolumn = "auto",
         winfixheight = true,
         wrap = false,

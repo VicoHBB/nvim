@@ -4,7 +4,6 @@ local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
 -- Think
 keyset('n', "<leader>", "<CMD>echo 'What to do?'<CR>", { silent = true })
-keyset('n', "<leader><leader>", "<CMD>NoiceDismiss<CR>", { silent = true })
 
 -- Tabnine Chat
 keyset('n', "gT", "<CMD>TabnineChat<CR>", { silent = true })
@@ -127,6 +126,16 @@ keyset('n', "<leader>gg", "<CMD>Neogit<CR>", { silent = true })
 keyset('n', "<leader>gc", "<CMD>Neogit commit<CR>", { silent = true })
 keyset('n', "<leader>gp", "<CMD>Neogit pull<CR>", { silent = true })
 keyset('n', "<leader>gP", "<CMD>Neogit push<CR>", { silent = true })
+
+keyset( "n", "<leader>gb",
+  function()
+    Snacks.git.blame_line()
+  end,
+  {
+    silent = true,
+    desc =  "Git Blame Line",
+  }
+)
 
 -- Take screenshoot
 -- keyset( 'v', "<F10>", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
