@@ -63,17 +63,18 @@ keyset(
   }
 )
 
-keyset(
-  'n',
-  "||",
-  "vip:'<,'> EasyAlign *|<CR>",
-  {
-    buffer = 0,
-    noremap = true,
-    silent= true,
-    desc = "Align Table"
-  }
-)
+-- keyset( 'n', "||",
+--   function ()
+--     -- vim.cmd("normal vip")
+--     print("Need to check")
+--   end,
+--   {
+--     buffer = 0,
+--     noremap = true,
+--     silent= true,
+--     desc = "Align Table(Need to check)"
+--   }
+-- )
 
 keyset(
   'n',

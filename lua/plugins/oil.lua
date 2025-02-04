@@ -2,7 +2,10 @@ return {
   {
     'stevearc/oil.nvim',
     -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      -- "echasnovski/mini.icons",
+    },
     opts = {
       -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
       -- Set to false if you still want to use netrw.

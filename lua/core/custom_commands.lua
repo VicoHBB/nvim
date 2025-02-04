@@ -61,13 +61,23 @@ end
 function M.start_repl()
   cmd("REPL", function()
     local ft = vim.bo.filetype
+    local cmd
 
-    if "lua" == ft then
-      vim.cmd("TermExec cmd='croissant'")
-    elseif "python" == ft then
-      vim.cmd("TermExec cmd='ipython --no-autoindent'")
+    if 'lua' == ft then
+      -- cmd = "lua"
+      cmd = "croissant"
+    elseif 'python' == ft then
+      cmd = "ipython --no-autoindent"
     else
+      print("Dunno")
     end
+
+    local repl = Terminal:new({
+      name = "REPL",
+      cmd = cmd,
+    })
+
+    repl:toggle()
 
   end, {
     nargs = 0,

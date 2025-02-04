@@ -16,15 +16,6 @@ vim.wo.colorcolumn = "80"
 -- Autocommands
 -- ============================================================================
 
--- REPL
-add_cmd('FileType', {
-  pattern = { 'lua', 'python' },
-  once = true,
-  callback = function()
-    commands.start_repl()
-  end
-})
-
 -- ============================================================================
 -- Keymaps
 -- ============================================================================
@@ -47,14 +38,28 @@ keyset("n", "<F10>", "<CMD>REPL<CR>", {
 
 -- Utilities
 
-vim.keymap.set("v", "<space>rl", function()
+keyset("v", "<space>rl", function()
     -- require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
     require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = 1 })
-end)
+  end,
+  {
+    buffer = 0,
+    noremap = true,
+    silent = true,
+    desc = "Run lines on REPL",
+  }
+)
 
-vim.keymap.set("n", "<leader>rl", function()
+keyset("n", "<leader>rl", function()
     require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 1 })
-end)
+  end,
+  {
+    buffer = 0,
+    noremap = true,
+    silent = true,
+    desc = "Run lines on REPL",
+  }
+)
 
 -- Utilities
 keyset('n', '<leader>O', '<CMD>Lspsaga outline<CR>', {

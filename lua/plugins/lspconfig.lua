@@ -82,7 +82,7 @@ return {
             buffer = bufnr,
           }
         )
-        keyset("n", "gr", "<CMD>Lspsaga finder<CR>",
+        keyset("n", "gR", "<CMD>Lspsaga finder<CR>",
           {
             desc   = "Go to References",
             silent = true,
@@ -188,7 +188,21 @@ return {
         ),
       }
 
-      require('lspconfig').pyright.setup {
+      -- @TODO: Check Ruff
+      -- require('lspconfig').ruff.setup{
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      --   root_dir     = require('lspconfig').util.root_pattern(
+      --     '.git',
+      --     '.ruff.toml',
+      --     'ruff.toml',
+      --     'pyproject.toml'
+      --   ),
+      --   settings = {
+      --   }
+      -- }
+
+      require('lspconfig').pyright.setup{
         on_attach = on_attach,
         capabilities = capabilities,
       }
@@ -218,20 +232,39 @@ return {
         )
       }
 
-      -- To support org files
-      vim.cmd [[
-      autocmd BufRead,BufNewFile *.org set filetype=org
-    ]]
 
       require('lspconfig').ltex.setup {
         on_attach = on_attach,
         capabilities = capabilities,
+        filetypes = {
+          "bib",
+          "gitcommit",
+          "markdown",
+          "org",
+          "plaintex",
+          "rst",
+          "rnoweb",
+          "tex",
+          "pandoc",
+          "quarto",
+          "rmd",
+          "context",
+          "html",
+          "xhtml",
+          "mail",
+          "text"
+        },
         settings = {
           ltex = {
             language = "en-US",
           },
         },
       }
+
+      -- To support org files
+      vim.cmd [[
+      autocmd BufRead,BufNewFile *.org set filetype=org
+      ]]
 
       require('lspconfig').marksman.setup {
         on_attach = on_attach,
@@ -317,11 +350,19 @@ return {
       }
     end,
   },
-  { -- lsp-timeout
-    "hinell/lsp-timeout.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-    },
-    event = "LspAttach",
-  }
+  {
+    "zeioth/garbage-day.nvim",
+    dependencies = "neovim/nvim-lspconfig",
+    event = "VeryLazy",
+    opts = {
+      -- your options here
+    }
+  },
+  -- { -- lsp-timeout
+  --   "hinell/lsp-timeout.nvim",
+  --   dependencies = {
+  --     "neovim/nvim-lspconfig",
+  --   },
+  --   event = "LspAttach",
+  -- },
 }

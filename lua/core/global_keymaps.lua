@@ -1,5 +1,4 @@
 local keyset = vim.keymap.set
-
 local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
 -- Think
@@ -9,20 +8,27 @@ keyset('n', "<leader>", "<CMD>echo 'What to do?'<CR>", { silent = true })
 keyset('n', "gT", "<CMD>TabnineChat<CR>", { silent = true })
 
 -- NvimTree
-keyset('n', "<leader>n", "<CMD>NvimTreeToggle<CR>", { silent = true })
+keyset('n', "<leader>n", function ()
+  MiniFiles.open()
+end,
+  {
+    silent = true,
+    desc = "Open MiniFiles"
+  }
+)
 
 -- Yazi
 keyset('n', "<Leader>F", function()
   require("tfm").select_file_manager("yazi")
   vim.cmd("Tfm")
-end, { silent = true, desc = "Open Ranger" }
+end, { silent = true, desc = "Open Yazi" }
 )
 
 -- Vifm
 keyset('n', "<Leader>fv", function()
   require("tfm").select_file_manager("vifm")
   vim.cmd("Tfm")
-end, { silent = true, desc = "Open Ranger" }
+end, { silent = true, desc = "Open ViFm" }
 )
 
 -- Quick Save
@@ -44,6 +50,9 @@ keyset('n', "<leader>;", "$a;<ESC>", { silent = true })
 
 -- Fast ',"
 keyset('n', "<leader>,", "$a,<ESC>", { silent = true })
+
+-- Fast 'noh"
+keyset('n', "<leader>H", "<CMD>noh<CR>", { silent = true })
 
 -- Tabs on Bufferline
 keyset('n', "<leader>k", "<CMD>bnext<CR>", { silent = true })
@@ -70,11 +79,8 @@ keyset('t', '<C-j>', "<Cmd>TmuxNavigateDown<CR>", { silent = true })
 keyset('t', '<C-k>', "<Cmd>TmuxNavigateUp<CR>", { silent = true })
 keyset('t', '<C-l>', "<Cmd>TmuxNavigateRight<CR>", { silent = true })
 
--- Align
-keyset({ 'n', 'v', 'x' }, "ga", "<Plug>(EasyAlign)", { silent = true })
-
 -- ISwuap
-keyset('n', "<leader>s", "<CMD>ISwapNode<CR>", { silent = true })
+keyset('n', "<leader>sn", "<CMD>ISwapNode<CR>", { silent = true })
 keyset('n', "<leader>sw", "<CMD>ISwapWith<CR>", { silent = true })
 
 -- Telescope
@@ -86,6 +92,7 @@ keyset('n', "<leader>fg", "<CMD>Telescope git_files<CR>", { silent = true })
 keyset('n', "<leader>tc", "<CMD>Telescope commands<CR>", { silent = true })
 keyset('n', "<leader>tl", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { silent = true })
 keyset('n', "<leader>tg", "<CMD>Telescope git_bcommits<CR>", { silent = true })
+keyset('n', "<leader>\"", "<CMD>Telescope registers<CR>", { silent = true })
 
 -- Telescope live_args
 keyset( "n", "<leader>S", function ()
@@ -127,8 +134,7 @@ keyset('n', "<leader>gc", "<CMD>Neogit commit<CR>", { silent = true })
 keyset('n', "<leader>gp", "<CMD>Neogit pull<CR>", { silent = true })
 keyset('n', "<leader>gP", "<CMD>Neogit push<CR>", { silent = true })
 
-keyset( "n", "<leader>gb",
-  function()
+keyset( "n", "<leader>gb", function()
     Snacks.git.blame_line()
   end,
   {
@@ -143,12 +149,26 @@ keyset( "n", "<leader>gb",
 -- Oil
 keyset("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
--- TSJT
-keyset('n', "<leader>st", "<CMD>TSJToggle<CR>", { silent = true })
-
 -- Quickfix
-keyset("n", "<F7>", function() require("quicker").toggle() end, { desc = "Toggle quickfix" })
-keyset("n", "<F6>", function() require("quicker").toggle({ loclist = true }) end, { desc = "Toggle loclist", })
+keyset("n", "<F7>", function()
+    require("quicker").toggle()
+  end,
+  {
+    silent = true,
+    desc = "Toggle quickfix"
+  }
+)
+
+keyset("n", "<F6>", function()
+    require("quicker").toggle({
+      loclist = true
+    })
+  end,
+  {
+    silent = true,
+    desc = "Toggle loclist",
+  }
+)
 
 -- CommandLine recall
 keyset('c', "<C-j>", "<Down>", {})

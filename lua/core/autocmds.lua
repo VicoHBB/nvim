@@ -59,6 +59,14 @@ add_cmd('FileType', {
   end,
 })
 
+-- REPL
+add_cmd('FileType', {
+  pattern = { 'lua', 'python' },
+  callback = function()
+    commands.start_repl()
+  end
+})
+
 vim.cmd([[
   augroup matchup_matchparen_highlight
     autocmd!

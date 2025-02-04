@@ -36,6 +36,12 @@ return {
           "org"
         },
 
+        ignore_install = {},
+
+        modules = {},
+
+        auto_install = true,
+
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
 
@@ -73,8 +79,8 @@ return {
               ["if"] = "@function.inner",
               ["ac"] = "@conditional.outer",
               ["ic"] = "@conditional.inner",
-              ["al"] = "@loop.outer",
-              ["il"] = "@loop.inner",
+              ["aL"] = "@loop.outer",
+              ["iL"] = "@loop.inner",
             }
           }
         }
