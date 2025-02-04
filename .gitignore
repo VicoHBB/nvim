@@ -2,5 +2,5 @@ tags
 .local-history
 lua/.luarc.json
 spell/
-lazy_lock.json
+lazy-lock.json
 

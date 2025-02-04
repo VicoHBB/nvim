@@ -69,16 +69,15 @@ These are the plugins that have been installed and configured.
 | Plugin                                                                                      | Last Review   |
 | ------------------------------------------------------------------------------------------- | ------------- |
 | [Comment](https://github.com/numToStr/Comment.nvim)                                         | 2024-07-17    |
-| [autopairs](https://github.com/windwp/nvim-autopairs)                                       | 2024-10-01    |
 | [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)                 | 2024-08-31    |
 | [cmp](https://github.com/hrsh7th/nvim-cmp)                                                  | 2024-10-01    |
 | [flash](https://github.com/folke/flash.nvim)                                                | 2024-07-27    |
+| [garbage-day](https://github.com/Zeioth/garbage-day.nvim)                                   | 2025-02-03    |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                      | 2024-06-19    |
 | [gruvbox-material](https://github.com/sainnhe/gruvbox-material)                             | 2024-07-16    |
 | [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)                                 | 2024-07-16    |
 | [headlines](https://github.com/lukas-reineke/headlines.nvim)                                | 2024-07-17    |
 | [lazy](https://github.com/folke/lazy.nvim)                                                  | 2024-07-17    |
-| [lsp-timeout](https://github.com/hinell/lsp-timeout.nvim.git)                               | 2024-10-01    |
 | [lspconfig](https://github.com/neovim/nvim-lspconfig/tree/master)                           | 2024-10-01    |
 | [lspsaga](https://nvimdev.github.io/lspsaga/)                                               | 2024-10-01    |
 | [ltex-client](https://github.com/icewind/ltex-client.nvim)                                  | 2024-08-13    |
@@ -86,12 +85,12 @@ These are the plugins that have been installed and configured.
 | [markdown-preview](https://github.com/iamcco/markdown-preview.nvim.git)                     | 2024-10-01    |
 | [markdown-render](https://github.com/MeanderingProgrammer/render-markdown.nvim.git)         | 2024-10-01    |
 | [markdown](https://github.com/tadmccorkle/markdown.nvim)                                    | 2024-10-01    |
+| [mini](https://github.com/echasnovski/mini.nvim.git)                                        | 2025-02-03    |
 | [neogit](https://github.com/NeogitOrg/neogit)                                               | 2024-08-25    |
 | [noice](https://github.com/folke/noice.nvim)                                                | 2024-08-31    |
 | [nvim-bqf](https://github.com/kevinhwang91/nvim-bqf)                                        | 2024-08-11    |
 | [nvim-navbuddy](https://github.com/SmiteshP/nvim-navbuddy.git)                              | 2024-06-19    |
 | [nvim-orgmode](https://github.com/nvim-orgmode/orgmode)                                     | 2024-06-19    |
-| [nvim-peekup](https://github.com/gennaro-tedesco/nvim-peekup)                               | 2024-07-20    |
 | [nvim-recorder](https://github.com/chrisgrieser/nvim-recorder)                              | 2024-07-20    |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                       | 2024-08-31    |
 | [org-bullets](https://github.com/nvim-orgmode/org-bullets.nvim)                             | 2024-06-19    |
@@ -110,7 +109,6 @@ These are the plugins that have been installed and configured.
 | [toggleterm](https://github.com/akinsho/toggleterm.nvim)                                    | 2024-08-12    |
 | [undotree](https://github.com/jiaoshijie/undotree)                                          | 2024-06-22    |
 | [verilog_systemverilog](https://github.com/vhda/verilog_systemverilog.vim)                  | 2024-07-20    |
-| [vim-easy-align](https://github.com/junegunn/vim-easy-align)                                | 2024-06-19    |
 | [vim-verilog-instance](https://github.com/antoinemadec/vim-verilog-instance)                | 2024-07-20    |
 | [vimtex](https://github.com/lervag/vimtex)                                                  | 2024-07-20    |
 
@@ -120,13 +118,13 @@ These are plugins that serve as dependencies for others and do not require addit
 
 ### To probe
 
-* [mini](https://github.com/echasnovski/mini.nvim.git)
 * [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 * [vim-table-mode](https://github.com/dhruvasagar/vim-table-mod)
 * [none-ls](https://github.com/nvimtools/none-ls.nvim)
 * [luasnip](https://github.com/L3MON4D3/LuaSnip)
 * [dooku](https://github.com/Zeioth/dooku.nvim)
 * [formatter](https://github.com/mhartington/formatter.nvim)
+* [nvim-peekup](https://github.com/gennaro-tedesco/nvim-peekup)
 * https://vonheikemen.github.io/devlog/es/tools/setup-nvim-lspconfig-plus-nvim-cmp/
 
 ### Maybe Remove?
