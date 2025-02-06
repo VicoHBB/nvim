@@ -3,11 +3,18 @@ return {
   version = '*',
   config = function()
     -- require('mini.icons').setup()
-    -- require('mini.comment').setup()
     require('mini.ai').setup()
     require('mini.files').setup()
     require('mini.pairs').setup()
     require('mini.sessions').setup()
+    require('mini.comment').setup({
+      mappings = {
+        comment = '<leader>c',
+        comment_line = '<leader>cc',
+        comment_visual = '<leader>c',
+        textobject = '<leader>c',
+      },
+    })
     require('mini.operators').setup({
       replace = {
         prefix = 'gr',
