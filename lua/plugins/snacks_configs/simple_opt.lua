@@ -31,8 +31,4 @@ M.scope = {
   enabled = true,
 }
 
-M.picker = {
-  enabled = false,
-}
-
 return M

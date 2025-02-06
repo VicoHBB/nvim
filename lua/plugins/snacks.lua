@@ -2,6 +2,37 @@ local simple_opts = require('plugins.snacks_configs.simple_opt')
 local bigfile_opt = require('plugins.snacks_configs.bigfile').opt
 local dashboard_opt = require('plugins.snacks_configs.dashboard').opt
 local statuscolumn_opt = require('plugins.snacks_configs.statuscolumn').opt
+local picker_opt = require('plugins.snacks_configs.picker').opt
+
+
+local function set_web_devicons(name, cat)
+  local try = {
+    function()
+      if cat == "directory" then
+        return "󰉋 ", "Directory"
+      end
+      local Icons = require("nvim-web-devicons")
+      if cat == "filetype" then
+        return Icons.get_icon_by_filetype(name, { default = false })
+      elseif cat == "file" then
+        local ext = name:match("%.(%w+)$")
+        return Icons.get_icon(name, ext, { default = false }) --[[@as string, string]]
+      elseif cat == "extension" then
+        return Icons.get_icon(nil, name, { default = false }) --[[@as string, string]]
+      end
+    end,
+    function()
+      return require("mini.icons").get(cat or "file", name)
+    end,
+  }
+  for _, fn in ipairs(try) do
+    local ret = { pcall(fn) }
+    if ret[1] and ret[2] then
+      return ret[2], ret[3]
+    end
+  end
+  return "󰈔 "
+end
 
 return {
   "folke/snacks.nvim",
@@ -21,7 +52,7 @@ return {
     input = simple_opts.input,
     scroll = simple_opts.scroll,
     words = simple_opts.words,
-    picker = simple_opts.picker,
+    picker = picker_opt,
     scope = simple_opts.scope,
   },
   init = function()
@@ -36,7 +67,8 @@ return {
         end
         vim.print = _G.dd -- Override print to use snacks for `:=` command
 
-        -- Snacks.util.icon = "nvim-web-devicons"
+        -- Set web devicons
+        Snacks.util.icon = set_web_devicons
 
         -- Create some toggle mappings
         Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
@@ -64,7 +96,7 @@ return {
       desc = "Toggle Zoom",
     },
     {
-      "<leader>db",
+      "<leader>x",
       function()
         Snacks.bufdelete()
       end,

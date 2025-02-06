@@ -1,7 +1,9 @@
 -- minimal config for lazy-loading with lazy.nvim
 return {
   "chrisgrieser/nvim-recorder",
-  dependencies = "rcarriga/nvim-notify",
+  dependencies = {
+    "rcarriga/nvim-notify"
+  },
   event = "VeryLazy",
   keys = {
     -- these must match the keys in the mapping config below

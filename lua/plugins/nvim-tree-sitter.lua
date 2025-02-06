@@ -11,6 +11,7 @@ return {
     },
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
       require('nvim-treesitter.configs').setup({
       -- A list of parser names, or "all"
         ensure_installed = {
@@ -21,7 +22,7 @@ return {
           "python",
           "vim",
           "verilog",
-          "systemverilog",
+          -- "systemverilog",
           "asm",
           "json",
           "latex",
@@ -55,6 +56,8 @@ return {
           disable = {
             "latex",
             "make",
+            "verilog",
+            "systemverilog"
             -- "org"
           },
          -- additional_vim_regex_highlighting = true,
@@ -87,22 +90,21 @@ return {
 
       })
 
+      vim.treesitter.language.register('verilog', 'systemverilog') -- the someft filetype will use the python parser and queries.
 
-      -- This parser look better
-      parser_config.sv = ({
-        install_info = {
-          url = "/home/vico/Repos/tree-sitter/tree-sitter-sv", -- local path or git repo
-          -- url = "https://github.com/rfdonnelly/tree-sitter-sv",
-          files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
-          -- optional entries:
-          branch = "main", -- default branch in case of git repo if different from master
-          generate_requires_npm = true, -- if stand-alone parser without npm dependencies
-          requires_generate_from_grammar = true, -- if folder contains pre-generated src/parser.c
-        },
-        filetype = "systemverilog", -- if filetype does not match the parser name
-      })
-
-      vim.treesitter.language.register('sv', 'systemverilog') -- the someft filetype will use the python parser and queries.
+      -- @TODO: Check how to install parsers properly
+      -- parser_config.systemverilog = {
+      --   install_info = {
+      --     -- url = "https://github.com/gmlarumbe/tree-sitter-systemverilog",
+      --     url = "/home/vico/Repos/parsers/tree-sitter-systemverilog",
+      --     files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+      --     -- optional entries:
+      --     branch = "main", -- default branch in case of git repo if different from master
+      --     generate_requires_npm = true, -- if stand-alone parser without npm dependencies
+      --     requires_generate_from_grammar = true, -- if folder contains pre-generated src/parser.c
+      --   },
+      --   filetype = "systemverilog", -- if filetype does not match the parser name
+      -- }
 
     end,
   },

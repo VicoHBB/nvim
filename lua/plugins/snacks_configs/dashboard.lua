@@ -4,8 +4,13 @@ local M = {}
 local function set_web_devicons(name, cat)
   -- stylua: ignore
   local try = {
-    function() return require("nvim-web-devicons").get_icon(name) end,
-    function() return require("mini.icons").get(cat or "file", name) end,
+    function()
+      if cat == "directory" then
+        return "󰉋 ", "Directory"
+      end
+      return require("nvim-web-devicons").get_icon(name)
+    end,
+    -- function() return require("mini.icons").get(cat or "file", name) end,
   }
   for _, fn in ipairs(try) do
     local ok, icon, hl = pcall(fn)

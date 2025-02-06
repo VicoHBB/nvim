@@ -7,6 +7,7 @@ return {
     require('mini.ai').setup()
     require('mini.files').setup()
     require('mini.pairs').setup()
+    require('mini.sessions').setup()
     require('mini.operators').setup({
       replace = {
         prefix = 'gr',
@@ -34,15 +35,15 @@ return {
 
     require('mini.surround').setup({
       mappings = {
-        add = 'ys',        -- Add surrounding in Normal and Visual modes
-        delete = 'ds',     -- Delete surrounding
-        find = '<leader>fs',       -- Find surrounding (to the right)
-        find_left = '<leader>fS',  -- Find surrounding (to the left)
-        highlight = '<leader>ys',  -- Highlight surrounding
-        replace = 'cs',    -- Replace surrounding
+        add = 'ys',                    -- Add surrounding in Normal and Visual modes
+        delete = 'ds',                 -- Delete surrounding
+        find = '<leader>fs',           -- Find surrounding (to the right)
+        find_left = '<leader>fS',      -- Find surrounding (to the left)
+        highlight = '<leader>ys',      -- Highlight surrounding
+        replace = 'cs',                -- Replace surrounding
         update_n_lines = '<leader>yn', -- Update `n_lines`
-        suffix_last = 'L', -- Suffix to search with "prev" method
-        suffix_next = 'N', -- Suffix to search with "next" method
+        suffix_last = 'L',             -- Suffix to search with "prev" method
+        suffix_next = 'N',             -- Suffix to search with "next" method
       },
     })
   end,
