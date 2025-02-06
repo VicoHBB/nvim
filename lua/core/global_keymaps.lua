@@ -1,11 +1,17 @@
 local keyset = vim.keymap.set
+local telescope_builtin = require("telescope.builtin")
 local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
 -- Think
 keyset('n', "<leader>", "<CMD>echo 'What to do?'<CR>", { silent = true })
 
 -- Tabnine Chat
-keyset('n', "gT", "<CMD>TabnineChat<CR>", { silent = true })
+keyset('n', "gT", "<CMD>TabnineChat<CR>",
+  {
+    silent = true,
+    desc = "Open Tabnine Chat",
+  }
+)
 
 -- NvimTree
 keyset('n', "<leader>n", function ()
@@ -19,24 +25,47 @@ end,
 
 -- Yazi
 keyset('n', "<Leader>F", function()
-  require("tfm").select_file_manager("yazi")
-  vim.cmd("Tfm")
-end, { silent = true, desc = "Open Yazi" }
+    require("tfm").select_file_manager("yazi")
+    vim.cmd("Tfm")
+  end,
+  {
+    silent = true,
+    desc = "Open Yazi"
+  }
 )
 
 -- Vifm
 keyset('n', "<Leader>fv", function()
-  require("tfm").select_file_manager("vifm")
-  vim.cmd("Tfm")
-end, { silent = true, desc = "Open ViFm" }
+    require("tfm").select_file_manager("vifm")
+    vim.cmd("Tfm")
+  end,
+  {
+    silent = true,
+    desc = "Open ViFm"
+  }
 )
 
 -- Quick Save
-keyset('n', "<leader>w", "<CMD>w<CR>", { silent = true, desc = "Quick Save" })
+keyset('n', "<leader>w", "<CMD>w<CR>",
+  {
+    silent = true,
+    desc = "Quick Save"
+  }
+)
 
 -- Quick Quit
-keyset('n', "<leader>q", "<CMD>q<CR>", { silent = true, desc = "Quick Quit" })
-keyset('n', "<leader>Q", "<CMD>qall!<CR>", { silent = true, desc = "Force Quit All" })
+keyset('n', "<leader>q", "<CMD>q<CR>",
+  {
+    silent = true,
+    desc = "Quick Quit"
+  }
+)
+keyset('n', "<leader>Q", "<CMD>qall!<CR>",
+  {
+    silent = true,
+    desc = "Force Quit All"
+  }
+)
 
 -- Split resize
 keyset('n', "<A-l>", "2<C-w>>", { silent = true })
@@ -57,7 +86,6 @@ keyset('n', "<leader>H", "<CMD>noh<CR>", { silent = true })
 -- Tabs on Bufferline
 keyset('n', "<leader>k", "<CMD>bnext<CR>", { silent = true })
 keyset('n', "<leader>j", "<CMD>bprevious<CR>", { silent = true })
-keyset('n', "<leader>x", "<CMD>bdelete<CR>", { silent = true })
 
 -- Split window
 keyset('n', "<leader>|", "<CMD>vsp<CR>", { silent = true })
@@ -66,7 +94,7 @@ keyset('n', "<leader>_", "<CMD>sp<CR>", { silent = true })
 -- Tmux
 keyset('n', "<C-h>", "<CMD>TmuxNavigateLeft<CR>", { silent = true })
 keyset('n', "<C-j>", "<CMD>TmuxNavigateDown<CR>", { silent = true })
-keyset('n', "<leader><C-j>", "<CMD>TmuxNavigateDown<CR>", { silent = true })
+-- keyset('n', "<leader><C-j>", "<CMD>TmuxNavigateDown<CR>", { silent = true })
 keyset('n', "<C-k>", "<CMD>TmuxNavigateUp<CR>", { silent = true })
 keyset('n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", { silent = true })
 keyset('n', "<C-\\>", "<CMD>TmuxNavigatePrevious<CR>", { silent = true })
@@ -84,15 +112,79 @@ keyset('n', "<leader>sn", "<CMD>ISwapNode<CR>", { silent = true })
 keyset('n', "<leader>sw", "<CMD>ISwapWith<CR>", { silent = true })
 
 -- Telescope
-keyset('n', "z=", "<CMD>Telescope spell_suggest<CR>", { silent = true })
-keyset('n', "<leader>T", "<CMD>Telescope builtin<CR>", { silent = true })
-keyset('n', "<leader>fh", "<CMD>Telescope oldfiles<CR>", { silent = true })
-keyset('n', "<leader>ff", "<CMD>Telescope find_files<CR>", { silent = true })
-keyset('n', "<leader>fg", "<CMD>Telescope git_files<CR>", { silent = true })
-keyset('n', "<leader>tc", "<CMD>Telescope commands<CR>", { silent = true })
-keyset('n', "<leader>tl", "<CMD>Telescope current_buffer_fuzzy_find<CR>", { silent = true })
-keyset('n', "<leader>tg", "<CMD>Telescope git_bcommits<CR>", { silent = true })
-keyset('n', "<leader>\"", "<CMD>Telescope registers<CR>", { silent = true })
+keyset( 'n', "z=", function ()
+    telescope_builtin.spell_suggest()
+end,
+  {
+    silent = true,
+    desc = "Spell Suggest"
+  }
+)
+keyset( 'n', "<leader>T", function ()
+    telescope_builtin.builtin()
+end,
+  {
+    silent = true,
+    desc = "Telescope Builtin"
+  }
+)
+keyset( 'n', "<leader>ff", function ()
+  telescope_builtin.find_files()
+end,
+  {
+    silent = true,
+    desc = "Telescope Find Files"
+  }
+)
+keyset( 'n', "<leader>fh", function ()
+  telescope_builtin.oldfiles()
+end,
+  {
+    silent = true,
+    desc = "Telescope Old Files"
+  }
+)
+keyset( 'n', "<leader>fg", function ()
+  telescope_builtin.git_files()
+end,
+  {
+    silent = true,
+    desc = "Telescope Git Files"
+  }
+)
+keyset( 'n', "<leader>tc", function ()
+  telescope_builtin.commands()
+end,
+  {
+    silent = true,
+    desc = "Telescope Commands"
+  }
+)
+keyset( 'n', "<leader>tl", function ()
+  telescope_builtin.current_buffer_fuzzy_find()
+end,
+  {
+    silent = true,
+    desc = "Telescope Lines(Buffer Fuzzy Find)"
+  }
+)
+keyset( 'n', "<leader>tg", function ()
+  telescope_builtin.git_bcommits()
+end,
+  {
+    silent = true,
+    desc = "Telescope Buffer Commits"
+  }
+)
+keyset( 'n', "<leader>\"", function ()
+  telescope_builtin.registers()
+end,
+  {
+    silent = true,
+    desc = "Telescope Registers"
+  }
+)
+
 
 -- Telescope live_args
 keyset( "n", "<leader>S", function ()
@@ -115,7 +207,7 @@ keyset('n', '<leader>b', function()
   })
 end, { silent = true })
 
-keyset('n', '<leader>B', '<CMD>%bd|e#|bd#<CR>',
+keyset('n', '<leader>X', '<CMD>%bd|e#|bd#<CR>',
   {
     silent = true,
     desc = "Close the other buffrers"
@@ -127,14 +219,21 @@ keyset('n', "<leader>\'", function()
   require('reach').marks()
 end, { silent = true })
 
--- Git (Neogit, Gitsigns & Lazygit)
-keyset('n', "<leader>GG", "<CMD>Lazygit<CR>", { silent = true })
+-- Git (Neogit, Gitsigns & LazyGit)
 keyset('n', "<leader>gg", "<CMD>Neogit<CR>", { silent = true })
 keyset('n', "<leader>gc", "<CMD>Neogit commit<CR>", { silent = true })
 keyset('n', "<leader>gp", "<CMD>Neogit pull<CR>", { silent = true })
 keyset('n', "<leader>gP", "<CMD>Neogit push<CR>", { silent = true })
 
-keyset( "n", "<leader>gb", function()
+keyset( { "n", "v" }, "<leader>GG", function()
+    Snacks.lazygit()
+  end,
+  {
+    silent = true,
+    desc =  "Open LazyGit",
+  }
+)
+keyset( { "n", "v" }, "<leader>gb", function()
     Snacks.git.blame_line()
   end,
   {
@@ -174,8 +273,22 @@ keyset("n", "<F6>", function()
 keyset('c', "<C-j>", "<Down>", {})
 keyset('c', "<C-k>", "<Up>", {})
 
--- -- Overseer
+-- Overseer
 keyset("n", "<F8>", "<CMD>OverseerToggle<CR>", { desc = "Toggle Overseer" })
 keyset("n", "<leader>rt", "<CMD>OverseerRun<CR>", { desc = "Toggle Overseer" })
 keyset("n", "<leader>rr", "<CMD>OverseerRestartLast<CR>", { desc = "Rerun last task" })
 
+-- Sessions
+keyset("n", "<leader>ms", "<CMD>mksession<CR>",
+  {
+    desc = "Save session"
+  }
+)
+
+keyset("n", "<leader>rs", function ()
+  MiniSessions.read()
+end,
+  {
+    desc = "Read Session"
+  }
+)

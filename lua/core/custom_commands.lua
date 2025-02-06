@@ -85,21 +85,6 @@ function M.start_repl()
   })
 end
 
-function M.lazygit_toggle()
-  cmd("Lazygit", function()
-    local lazygit = Terminal:new({
-      name = "lazygit",
-      cmd = "lazygit",
-      hidden = true,
-      direction = "float",
-    })
-    lazygit:toggle()
-  end, {
-    nargs = 0,
-    desc = "Open Lazygit"
-  })
-end
-
 function M.clear_cmake_cache()
   cmd("PurgeCMake", function()
     local home = vim.fn.expand('~')

@@ -51,13 +51,6 @@ add_cmd('FileType', {
   end,
 })
 
--- Toggle Lazygit
-add_cmd('FileType', {
-  pattern = '*', -- Apply to all file types
-  callback = function()
-    commands.lazygit_toggle()
-  end,
-})
 
 -- REPL
 add_cmd('FileType', {
