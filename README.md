@@ -68,7 +68,6 @@ These are the plugins that have been installed and configured.
 
 | Plugin                                                                                      | Last Review   |
 | ------------------------------------------------------------------------------------------- | ------------- |
-| [Comment](https://github.com/numToStr/Comment.nvim)                                         | 2024-07-17    |
 | [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)                 | 2024-08-31    |
 | [cmp](https://github.com/hrsh7th/nvim-cmp)                                                  | 2024-10-01    |
 | [flash](https://github.com/folke/flash.nvim)                                                | 2024-07-27    |
@@ -118,18 +117,19 @@ These are plugins that serve as dependencies for others and do not require addit
 
 ### To probe
 
-* [nvim-dap](https://github.com/mfussenegger/nvim-dap)
-* [vim-table-mode](https://github.com/dhruvasagar/vim-table-mod)
-* [none-ls](https://github.com/nvimtools/none-ls.nvim)
-* [luasnip](https://github.com/L3MON4D3/LuaSnip)
+* [LazyDo](https://github.com/Dan7h3x/LazyDo)
+* [c.vim](https://github.com/vim-scripts/c.vim)
 * [dooku](https://github.com/Zeioth/dooku.nvim)
 * [formatter](https://github.com/mhartington/formatter.nvim)
+* [helpview](https://github.com/OXY2DEV/helpview.nvim)
+* [luasnip](https://github.com/L3MON4D3/LuaSnip)
+* [none-ls](https://github.com/nvimtools/none-ls.nvim)
+* [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 * [nvim-peekup](https://github.com/gennaro-tedesco/nvim-peekup)
+* [vim-table-mode](https://github.com/dhruvasagar/vim-table-mod)
 * https://vonheikemen.github.io/devlog/es/tools/setup-nvim-lspconfig-plus-nvim-cmp/
 
 ### Maybe Remove?
-- [codi](https://github.com/metakirby5/codi.vim)
-- [nvim-tree](https://github.com/nvim-tree/nvim-tree.lua)
 
 ## Related Projects
 * [SystemVerilog Template](https://gitlab.com/HugoBec/sv-template.git)

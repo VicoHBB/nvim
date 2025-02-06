@@ -1,6 +1,6 @@
 local M = {}
 
-M = {
+M.opt = {
   enabled = true,
   left = { "sign", "mark" }, -- priority of signs on the left (high to low)
   right = { "fold", "git" }, -- priority of signs on the right (high to low)
