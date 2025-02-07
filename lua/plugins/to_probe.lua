@@ -1,5 +1,6 @@
 return {
   -- "othree/xml.vim",
+  -- "p00f/clangd_extensions.nvim",
   -- "vim-scripts/c.vim", -- For C
   -- {
   --   "gennaro-tedesco/nvim-peekup",

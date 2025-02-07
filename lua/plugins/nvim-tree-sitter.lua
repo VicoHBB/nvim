@@ -4,10 +4,8 @@ return {
     build = ":TSUpdate",
     event = "VeryLazy",
     dependencies = {
-      -- "m-demare/hlargs.nvim",
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "andymass/vim-matchup",
-      "nfrid/treesitter-utils",
+      -- "nfrid/treesitter-utils",  -- Maybe use latter
     },
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
@@ -15,26 +13,27 @@ return {
       require('nvim-treesitter.configs').setup({
       -- A list of parser names, or "all"
         ensure_installed = {
-          "c",
-          "cpp",
-          "lua",
-          "rust",
-          "python",
-          "vim",
-          "verilog",
-          -- "systemverilog",
           "asm",
+          "bash",
+          "c",
+          "cmake",
+          "cpp",
+          "diff",
+          "gitignore",
           "json",
           "latex",
+          "lua",
+          "make",
           "markdown",
           "markdown_inline",
           "mermaid",
+          "org",
+          "python",
           "regex",
-          "make",
-          "cmake",
-          "bash",
-          "gitignore",
-          "org"
+          "rust",
+          "verilog",
+          "vim",
+          -- "systemverilog"
         },
 
         ignore_install = {},
@@ -56,6 +55,7 @@ return {
           disable = {
             "latex",
             "make",
+            "cmake",
             "verilog",
             "systemverilog"
             -- "org"
@@ -63,6 +63,10 @@ return {
          -- additional_vim_regex_highlighting = true,
         },
         indent = {
+          enable = true,
+        },
+
+        fold = {
           enable = true,
         },
 

@@ -7,7 +7,6 @@ local add_cmd = vim.api.nvim_create_autocmd
 -- ============================================================================
 -- Buffer variables
 -- ============================================================================
-vim.o.syntax="off"
 vim.bo.tabstop     = 4
 vim.bo.softtabstop = 4
 vim.bo.expandtab   = true

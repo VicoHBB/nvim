@@ -27,6 +27,11 @@ add_cmd("FileType", {
   end,
 })
 
+add_cmd("FileType", {
+  pattern = "help",
+  command = "wincmd H",  -- Mueve la ventana de ayuda a la derecha
+})
+
 -- Define autocommands to enable the command for specific file types
 add_cmd('FileType', {
   pattern = { 'txt', 'markdown', 'org' },
