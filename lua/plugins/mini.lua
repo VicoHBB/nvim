@@ -5,8 +5,8 @@ return {
     -- require('mini.icons').setup()
     require('mini.ai').setup()
     require('mini.files').setup()
-    require('mini.pairs').setup()
     require('mini.sessions').setup()
+    require('mini.pairs').setup()
     require('mini.comment').setup({
       mappings = {
         comment = '<leader>c',
