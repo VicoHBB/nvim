@@ -11,6 +11,7 @@ local trim_spaces = false
 -- Buffer variables
 -- ============================================================================
 vim.wo.colorcolumn = "80"
+vim.bo.autoindent  = true
 
 -- ============================================================================
 -- Autocommands
