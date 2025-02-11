@@ -14,9 +14,7 @@ keyset('n', "gT", "<CMD>TabnineChat<CR>",
 )
 
 -- NvimTree
-keyset('n', "<leader>n", function ()
-  MiniFiles.open()
-end,
+keyset('n', "<leader>n", MiniFiles.open,
   {
     silent = true,
     desc = "Open MiniFiles"
@@ -120,92 +118,97 @@ end,
     desc = "Spell Suggest"
   }
 )
-keyset( 'n', "<leader>T", function ()
-    telescope_builtin.builtin()
-end,
+keyset( 'n', "<leader>T", telescope_builtin.builtin,
   {
     silent = true,
     desc = "Telescope Builtin"
   }
 )
-keyset( 'n', "<leader>ff", function ()
-  telescope_builtin.find_files()
-end,
+keyset( 'n', "<leader>ff", telescope_builtin.find_files,
   {
     silent = true,
     desc = "Telescope Find Files"
   }
 )
-keyset( 'n', "<leader>fh", function ()
-  telescope_builtin.oldfiles()
-end,
+keyset( 'n', "<leader>fh", telescope_builtin.oldfiles,
   {
     silent = true,
     desc = "Telescope Old Files"
   }
 )
-keyset( 'n', "<leader>fg", function ()
-  telescope_builtin.git_files()
-end,
+keyset( 'n', "<leader>fg", telescope_builtin.git_files,
   {
     silent = true,
     desc = "Telescope Git Files"
   }
 )
-keyset( 'n', "<leader>tc", function ()
-  telescope_builtin.commands()
-end,
+keyset( 'n', "<leader>tc", telescope_builtin.commands,
   {
     silent = true,
     desc = "Telescope Commands"
   }
 )
-keyset( 'n', "<leader>tl", function ()
-  telescope_builtin.current_buffer_fuzzy_find()
-end,
+keyset( 'n', "<leader>tl", telescope_builtin.current_buffer_fuzzy_find,
   {
     silent = true,
     desc = "Telescope Lines(Buffer Fuzzy Find)"
   }
 )
-keyset( 'n', "<leader>tg", function ()
-  telescope_builtin.git_bcommits()
-end,
+keyset( 'n', "<leader>tg", telescope_builtin.git_bcommits,
   {
     silent = true,
     desc = "Telescope Buffer Commits"
   }
 )
-keyset( 'n', "<leader>\"", function ()
-  telescope_builtin.registers()
-end,
+
+keyset( 'n', "<leader>\"", telescope_builtin.registers,
   {
     silent = true,
     desc = "Telescope Registers"
   }
 )
 
+keyset( 'n', "<leader>tv", telescope_builtin.vim_options,
+  {
+    silent = true,
+    desc = "Telescope vim_options"
+  }
+)
+
 
 -- Telescope live_args
-keyset( "n", "<leader>S", function ()
-  require('telescope').extensions.live_grep_args.live_grep_args()
-end, { silent = true })
-keyset( "n", "gs", function ()
-    live_grep_args_shortcuts.grep_word_under_cursor()
-end, { silent = true })
-keyset( "v", "gs", function ()
-    live_grep_args_shortcuts.grep_visual_selection()
-end, { silent = true })
+keyset("n", "<leader>S",
+  require('telescope').extensions.live_grep_args.live_grep_args,
+  {
+    silent = true
+  }
+)
+keyset("n", "gs", live_grep_args_shortcuts.grep_word_under_cursor,
+  {
+    silent = true
+  }
+)
+keyset("v", "gs",
+  live_grep_args_shortcuts.grep_visual_selection,
+  {
+    silent = true
+  }
+)
 
 -- ToDo
 keyset('n', "<leader>tt", "<CMD>TodoQuickFix<CR>", { silent = true })
 
 -- Buffers
 keyset('n', '<leader>b', function()
-  require('reach').buffers({
-    handle = 'dynamic',
-  })
-end, { silent = true })
+    require('reach').buffers({
+      handle = 'dynamic',
+    })
+  end,
+  {
+    silent = true,
+    desc = "Switch Buffer"
+  }
+)
 
 keyset('n', '<leader>X', '<CMD>%bd|e#|bd#<CR>',
   {
@@ -215,9 +218,12 @@ keyset('n', '<leader>X', '<CMD>%bd|e#|bd#<CR>',
 )
 
 -- Marks
-keyset('n', "<leader>\'", function()
-  require('reach').marks()
-end, { silent = true })
+keyset('n', "<leader>\'", require('reach').marks,
+  {
+    silent = true,
+    desc = "Move to mark"
+  }
+)
 
 -- Git (Neogit, Gitsigns & LazyGit)
 keyset('n', "<leader>gg", "<CMD>Neogit<CR>", { silent = true })
@@ -225,17 +231,15 @@ keyset('n', "<leader>gc", "<CMD>Neogit commit<CR>", { silent = true })
 keyset('n', "<leader>gp", "<CMD>Neogit pull<CR>", { silent = true })
 keyset('n', "<leader>gP", "<CMD>Neogit push<CR>", { silent = true })
 
-keyset( { "n", "v" }, "<leader>GG", function()
-    Snacks.lazygit()
-  end,
+keyset( { "n", "v" }, "<leader>GG", Snacks.lazygit.open,
   {
     silent = true,
     desc =  "Open LazyGit",
   }
 )
-keyset( { "n", "v" }, "<leader>gb", function()
-    Snacks.git.blame_line()
-  end,
+
+keyset( { "n", "v" }, "<leader>gb",
+    Snacks.git.blame_line,
   {
     silent = true,
     desc =  "Git Blame Line",
@@ -249,9 +253,7 @@ keyset( { "n", "v" }, "<leader>gb", function()
 keyset("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- Quickfix
-keyset("n", "<F7>", function()
-    require("quicker").toggle()
-  end,
+keyset("n", "<F7>", require("quicker").toggle,
   {
     silent = true,
     desc = "Toggle quickfix"
@@ -281,14 +283,14 @@ keyset("n", "<leader>rr", "<CMD>OverseerRestartLast<CR>", { desc = "Rerun last t
 -- Sessions
 keyset("n", "<leader>ms", "<CMD>mksession<CR>",
   {
+    silent = true,
     desc = "Save session"
   }
 )
 
-keyset("n", "<leader>rs", function ()
-  MiniSessions.read()
-end,
+keyset("n", "<leader>rs", MiniSessions.read,
   {
+    silent = true,
     desc = "Read Session"
   }
 )

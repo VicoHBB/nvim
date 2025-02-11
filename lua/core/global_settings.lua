@@ -10,7 +10,10 @@ vim.opt.encoding = "UTF-8"         -- Set file encoding to UTF-8
 vim.opt.showmatch = true           -- Highlight matching parentheses
 vim.opt.shiftwidth = 2             -- Set indentation width to 2 spaces
 vim.opt.spell = true               -- Enable spell check
-vim.opt.spelllang = "en_us"        -- Set spell check language to English (US)
+vim.opt.spelllang = {              -- Set spell to support ES & EN
+  "en_us",
+  "es_mx"
+}        -- Set spell check language to English (US) & Spanish (MX)
 
 -- [[ UI and Visual Settings ]]
 vim.o.termguicolors = true         -- Enable 24-bit color support in the terminal
@@ -34,7 +37,12 @@ vim.opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"  -- Undo history d
 
 -- [[ Status Line and Shell ]]
 vim.opt.laststatus = 2      -- Always show the status line
-vim.opt.shell = "/bin/zsh"  -- Set default shell to ZSH (if needed)
+-- Set shell
+if vim.fn.has("win32") == 1 then
+    vim.opt.shell = "powershell"
+elseif vim.fn.has("unix") == 1 or vim.fn.has("mac") == 1 then
+    vim.opt.shell = "/bin/zsh"
+end
 
 -- [[ Filetype and Plugin Settings ]]
 vim.cmd([[ filetype plugin indent on ]])  -- Enable filetype-specific plugins and indentation

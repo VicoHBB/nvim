@@ -24,11 +24,28 @@ add_cmd("FileType", {
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>",
+    keyset("n", "q", "<cmd>close<cr>",
     {
       buffer = event.buf,
       silent = true
     })
+  end,
+})
+
+-- close Diffviews
+add_cmd("FileType", {
+  pattern = {
+    "DiffviewFiles",
+    "DiffviewFileHistory",
+  },
+  callback = function()
+    keyset("n","q", function()
+      require("diffview").close()
+      end,
+      {
+        silent = true
+      }
+    )
   end,
 })
 
@@ -46,12 +63,12 @@ add_cmd("FileType", {
 })
 
 -- Define autocommands to enable the command for specific file types
-add_cmd('FileType', {
-  pattern = { 'txt', 'markdown', 'org', 'tex' },
-  callback = function()
-    commands.ltexedit()
-  end
-})
+-- add_cmd('FileType', {
+--   pattern = { 'txt', 'markdown', 'org', 'tex' },
+--   callback = function()
+--     commands.ltexedit()
+--   end
+-- })
 
 -- Set "/*" for comments
 add_cmd("FileType", {
