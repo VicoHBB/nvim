@@ -4,6 +4,12 @@ local txt_node = ls.text_node          -- Text node
 local ins_node = ls.insert_node        -- Insert node
 local func_node = ls.function_node     -- Function node
 
+-- args is a table, where 1 is the text in Placeholder 1, 2 the text in
+-- placeholder 2,...
+local function copy(args)
+	return args[1]
+end
+
 local snippets = {
 
   -- posedge
@@ -31,6 +37,14 @@ local snippets = {
     txt_node({"","end",})
   }),
 
+  -- define
+  snip("df",{
+    txt_node("`define "),
+    ins_node(1, "/* Macro name */"),
+    txt_node(" "),
+    ins_node(2, "/* Macro arguments */"),
+  }),
+
   -- typedef struct packed
   snip("tsp", {
     txt_node({ "/*", "" }),
@@ -44,8 +58,27 @@ local snippets = {
     txt_node({ "", "} " }),
     ins_node(1, "/* Put structure name here */"),
     txt_node("_t;"),
-  })
-}
+  }),
 
+  -- typedef enum logic
+  snip("tel", {
+    txt_node({ "/*", "" }),
+    txt_node(  "* @brief:           "), func_node(copy, 1),
+    txt_node({ " enum definition", "" }),
+    txt_node(  "* @description:     "), ins_node(3, "Put description here"),
+    txt_node({ "", "*/", "" }),
+    txt_node({ "typedef enum " }),
+    ins_node(2, "type" ),
+    txt_node({ " " }),
+    ins_node(3, "[ N : 0 ]" ),
+    txt_node({ " {", "" }),
+    txt_node(  "\t"),
+    ins_node(4, "/* Put ENUMS here */"),
+    txt_node({ "", "} " }),
+    ins_node(1, "/* Put structure name here */"),
+    txt_node("_t;"),
+  }),
+
+}
 
 return snippets

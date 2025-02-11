@@ -7,7 +7,7 @@ local func_node = ls.function_node     -- Function node
 local snippets = {
 
   snip("mna", {
-    txt_node({"int main( void )",""}),
+    txt_node({"int main( int argc, char *argv[] )",""}),
     txt_node({ "{", "\t" }),
     ins_node(1, "/* Put you code here */"),
     txt_node({ "", "\t" }),
