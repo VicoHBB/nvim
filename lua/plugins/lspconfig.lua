@@ -1,5 +1,5 @@
 return {
-  {  -- lspconfig
+  {                          -- lspconfig
     'neovim/nvim-lspconfig', -- Config
     dependencies = {
       "williamboman/mason.nvim",
@@ -18,25 +18,30 @@ return {
     },
     priority = 1000,
     config = function()
+      local lsp = require("lspconfig")
+      local lspconfig_defaults = require('lspconfig').util.default_config
       local cmp_lsp = require("cmp_nvim_lsp")
       local keyset = vim.keymap.set
+
       -- Set up cmp.
       -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
+        lspconfig_defaults.capabilities,
         vim.lsp.protocol.make_client_capabilities(),
         cmp_lsp.default_capabilities()
       )
+      -- local capabilities = require('blink.cmp').get_lsp_capabilities()
       local on_attach = function(_, bufnr)
         -- LSPSaga
-        keyset("n", "K", "<CMD>Lspsaga hover_doc<CR>",
-          {
-            buffer = bufnr,
-            silent = true,
-            desc   = "Hover Documentation",
-          }
-        )
+        -- keyset("n", "K", "<CMD>Lspsaga hover_doc<CR>",
+        --   {
+        --     buffer = bufnr,
+        --     silent = true,
+        --     desc   = "Hover Documentation",
+        --   }
+        -- )
         -- Rename
         keyset('n', "<leader>R", "<CMD>Lspsaga rename<CR>",
           {
@@ -73,7 +78,6 @@ return {
             silent = true,
           }
         )
-
         -- GoTo
         keyset("n", "gd", "<CMD>Lspsaga goto_definition<CR>",
           {
@@ -98,22 +102,30 @@ return {
         )
 
         -- LSP with noice
-        keyset("n", "gK", require("noice.lsp").hover,
+        -- keyset("n", "gK", require("noice.lsp").hover,
+        --   {
+        --     desc = "Hover Doc (Noice)",
+        --     silent = true,
+        --     buffer = bufnr,
+        --   }
+        -- )
+
+        keyset("n", "K", require("noice.lsp").hover,
           {
-            desc = "Hover Doc (Noice)",
-            silent = true,
             buffer = bufnr,
+            silent = true,
+            desc   = "Hover Documentation",
           }
         )
 
-        -- keyset("n", "<C-k>", require("noice.lsp").signature,
-        --   {
-        --     buffer  = bufnr,
-        --     noremap = true,
-        --     silent  = true,
-        --     desc    = "Show Signature",
-        --   }
-        -- )
+        keyset("n", "gK", require("noice.lsp").signature,
+          {
+            buffer  = bufnr,
+            noremap = true,
+            silent  = true,
+            desc    = "Show Signature",
+          }
+        )
 
         keyset({ "n", "i", "s" }, "<c-f>", function()
           if not require("noice.lsp").scroll(4) then
@@ -158,17 +170,23 @@ return {
         )
       end
 
-      require('lspconfig').clangd.setup {
+      lsp.lua_ls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {},
+      })
+
+
+      lsp.clangd.setup({
         on_attach    = on_attach,
         capabilities = capabilities,
         filetypes    = { "c", "cpp" },
-      }
+      })
 
-
-      require('lspconfig').cmake.setup {
+      lsp.cmake.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-        root_dir = require('lspconfig').util.root_pattern(
+        root_dir = lsp.util.root_pattern(
           'CMakePresets.json',
           'CTestConfig.cmake',
           '.git',
@@ -176,23 +194,55 @@ return {
           'cmake',
           'compile_commands.json'
         )
-      }
+      })
 
-      require('lspconfig').neocmake.setup {
+      lsp.neocmake.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-        root_dir = require('lspconfig').util.root_pattern(
+        root_dir = lsp.util.root_pattern(
           '.git',
           'cmake',
           'compile_commands.json'
         ),
-      }
+      })
+
+      lsp.svlangserver.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = { "vhdl", "verilog", "systemverilog" },
+        root_dir = lsp.util.root_pattern(
+          '.git',
+          '.gitignore',
+          '.svlint.toml',
+          '.svls.toml',
+          'rtl'
+        )
+      })
+
+      lsp.svls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        cmd = { "svls", "-d" },
+        filetypes = { "vhdl", "verilog", "systemverilog" },
+        root_dir = lsp.util.root_pattern(
+          '.git',
+          '.gitignore',
+          '.svlint.toml',
+          '.svls.toml',
+          'rtl'
+        )
+      })
+
+      lsp.pyright.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
 
       -- @TODO: Check Ruff
-      -- require('lspconfig').ruff.setup{
+      -- lsp.ruff.setup{
       --   on_attach = on_attach,
       --   capabilities = capabilities,
-      --   root_dir     = require('lspconfig').util.root_pattern(
+      --   root_dir     = lsp.util.root_pattern(
       --     '.git',
       --     '.ruff.toml',
       --     'ruff.toml',
@@ -202,12 +252,8 @@ return {
       --   }
       -- }
 
-      require('lspconfig').pyright.setup{
-        on_attach = on_attach,
-        capabilities = capabilities,
-      }
 
-      require('lspconfig').pylsp.setup {
+      lsp.pylsp.setup({
         on_attach = on_attach,
         capabilities = capabilities,
         settings = {
@@ -220,20 +266,58 @@ return {
             }
           }
         }
-      }
+      })
 
-      require('lspconfig').texlab.setup {
+      lsp.marksman.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        cmd = { "marksman", "server" },
+      })
+
+      -- To support org files
+      vim.cmd [[
+      autocmd BufRead,BufNewFile *.org set filetype=org
+      ]]
+
+      lsp.texlab.setup({
         capabilities = capabilities,
         on_attach    = on_attach,
         filetypes    = { "tex", "plaintex", "bib" },
-        root_dir     = require('lspconfig').util.root_pattern(
+        root_dir     = lsp.util.root_pattern(
           'References',
           'main'
         )
-      }
+      })
 
+      -- lsp.ltex.setup({
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      --   filetypes = {
+      --     "bib",
+      --     "gitcommit",
+      --     "markdown",
+      --     "org",
+      --     "plaintex",
+      --     "rst",
+      --     "rnoweb",
+      --     "tex",
+      --     "pandoc",
+      --     "quarto",
+      --     "rmd",
+      --     "context",
+      --     "html",
+      --     "xhtml",
+      --     "mail",
+      --     "text"
+      --   },
+      --   settings = {
+      --     ltex = {
+      --       language = "en-US",
+      --     },
+      --   },
+      -- })
 
-      require('lspconfig').ltex.setup {
+      lsp.textlsp.setup({
         on_attach = on_attach,
         capabilities = capabilities,
         filetypes = {
@@ -241,113 +325,85 @@ return {
           "gitcommit",
           "markdown",
           "org",
-          "plaintex",
-          "rst",
-          "rnoweb",
           "tex",
-          "pandoc",
-          "quarto",
-          "rmd",
-          "context",
-          "html",
-          "xhtml",
-          "mail",
           "text"
         },
         settings = {
-          ltex = {
-            language = "en-US",
+          textDocument = {
+            analysers = {
+              languagetool = {
+                check_text = {
+                  on_change = true,
+                  on_open = true,
+                  on_save = true
+                },
+                enabled = true
+              }
+            },
+            documents = {
+              language = "auto:en",
+              org = {
+                org_todo_keywords = { "TODO", "IN_PROGRESS", "DONE" }
+              }
+            }
           },
         },
-      }
+      })
 
-      -- To support org files
-      vim.cmd [[
-      autocmd BufRead,BufNewFile *.org set filetype=org
-      ]]
-
-      require('lspconfig').marksman.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        cmd = { "marksman", "server" },
-      }
-
-      require('lspconfig').textlsp.setup{
-
-      }
-
-      require('lspconfig').asm_lsp.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-      }
-
-      require('lspconfig').svlangserver.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        filetypes = { "vhdl", "verilog", "systemverilog" },
-        root_dir = require('lspconfig').util.root_pattern(
-          '.git',
-          '.gitignore',
-          '.svlint.toml',
-          '.svls.toml',
-          'rtl'
-        )
-      }
-
-      require('lspconfig').svls.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        cmd = { "svls", "-d" },
-        filetypes = { "vhdl", "verilog", "systemverilog" },
-        root_dir = require('lspconfig').util.root_pattern(
-          '.git',
-          '.gitignore',
-          '.svlint.toml',
-          '.svls.toml',
-          'rtl'
-        )
-      }
-
-      require('lspconfig').vimls.setup {
+      lsp.vimls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
         cmd = { "vim-language-server", "--stdio" },
         filetypes = { "vim" }
-      }
+      })
 
-      require('lspconfig').lua_ls.setup {
+
+      -- ============================================================================
+      -- Not use to much
+      -- ============================================================================
+
+      lsp.jsonls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-        settings = {},
-      }
+      })
 
-      require('lspconfig')['rust_analyzer'].setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = lsp_flags,
-        -- Server-specific settings...
-        settings = {
-          ["rust-analyzer"] = {
-            assist = {
-              importEnforceGranularity = true,
-              importPrefix = "crate"
-            },
-            cargo = {
-              allFeatures = true
-            },
-            checkOnSave = {
-              -- default: `cargo check`
-              command = "cargo check"
-            },
-            inlayHints = {
-              lifetimeElisionHints = {
-                enable = true,
-                useParameterNames = true
-              },
-            },
-          }
-        }
-      }
+      -- lsp.asm_lsp.setup({
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      -- })
+
+      -- lsp.lemminx.setup({
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      -- })
+
+      -- lsp['rust_analyzer'].setup({
+      --   capabilities = capabilities,
+      --   on_attach = on_attach,
+      --   flags = lsp_flags,
+      --   -- Server-specific settings...
+      --   settings = {
+      --     ["rust-analyzer"] = {
+      --       assist = {
+      --         importEnforceGranularity = true,
+      --         importPrefix = "crate"
+      --       },
+      --       cargo = {
+      --         allFeatures = true
+      --       },
+      --       checkOnSave = {
+      --         -- default: `cargo check`
+      --         command = "cargo check"
+      --       },
+      --       inlayHints = {
+      --         lifetimeElisionHints = {
+      --           enable = true,
+      --           useParameterNames = true
+      --         },
+      --       },
+      --     }
+      --   }
+      -- })
     end,
   },
   {

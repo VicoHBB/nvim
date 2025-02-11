@@ -54,6 +54,8 @@ return {
     words = simple_opts.words,
     picker = picker_opt,
     scope = simple_opts.scope,
+    explorer = simple_opts.explorer,
+    image = simple_opts.image,
   },
   init = function()
     vim.api.nvim_create_autocmd("User", {
@@ -116,5 +118,12 @@ return {
       end,
       desc = "Notification History",
     },
+    {
+      "<leader>U",
+      function ()
+        Snacks.picker.undo()
+      end,
+      desc = "Toggle UndoTree",
+    }
   },
 }

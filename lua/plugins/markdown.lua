@@ -80,17 +80,13 @@ return {
     build = "cd app && yarn install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
+      -- vim.cmd [[
+      --   function OpenMarkdownPreview (url)
+      --     execute "silent ! firefox --new-window " . a:url
+      --   endfunction
+      --   let g:mkdp_browserfunc = 'OpenMarkdownPreview'
+      -- ]]
     end,
-    config = function()
-
-      vim.cmd [[
-        function OpenMarkdownPreview (url)
-          execute "silent ! firefox --new-window " . a:url
-        endfunction
-      ]]
-
-      vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
-    end
   },
   {  -- render-markdown ( Use with a good PC lol )
   --   'MeanderingProgrammer/render-markdown.nvim',

@@ -7,6 +7,11 @@ return {
     require('mini.files').setup()
     require('mini.sessions').setup()
     require('mini.pairs').setup()
+    require('mini.files').setup({
+      mappings = {
+        synchronize = '<leader>w',
+      }
+    })
     require('mini.comment').setup({
       mappings = {
         comment = '<leader>c',

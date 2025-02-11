@@ -31,4 +31,12 @@ M.scope = {
   enabled = true,
 }
 
+M.explorer = {
+  enabled = true,
+}
+
+M.image = {
+  enable = true,
+}
+
 return M

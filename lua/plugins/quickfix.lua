@@ -2,6 +2,13 @@ return { -- Better quickfix
   {                                                                 -- nvim-bqf
     'kevinhwang91/nvim-bqf',
     ft = { 'qf' },
+    dependencies = {
+      {
+        "junegunn/fzf",
+        dir = "~/.fzf",
+        build = "./install --all",
+      },
+    },
     config = function()
       require('bqf').setup({
         auto_enable = true,

@@ -100,6 +100,10 @@ return {
           prompt_title = "Commands",
           theme = "dropdown"
         },
+        vim_options = {
+          prompt_title = "NVIM Opts",
+          theme = "dropdown"
+        },
         current_buffer_fuzzy_find = {
           prompt_title = "Current Buffer Lines",
           layout_strategy = "vertical",
@@ -136,8 +140,7 @@ return {
           },
         },
 
-        projects = {
-        }
+        projects = {}
 
       },
     }
