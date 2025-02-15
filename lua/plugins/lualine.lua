@@ -30,7 +30,17 @@ return {
           require("recorder").displaySlots,
           require("recorder").recordingStatus,
         },
-        lualine_b = { 'branch', 'diff' },
+        lualine_b = {
+          'branch',
+          {
+            'diff',
+            symbols = {
+              added = "+",
+              modified = "!",
+              removed = "-",
+            },
+          }
+        },
         lualine_c = {
           {
             'filename',
@@ -48,9 +58,14 @@ return {
           },
         },
         lualine_x = {
-          'tabnine',
-          'encoding',
-          'tfiletype'
+          -- {
+          --   'tabnine',
+          --   on_click = function ()
+          --     vim.cmd("TabnineChat")
+          --   end
+          -- },
+          'filetype',
+          'encoding'
         },
         lualine_y = {
           {
