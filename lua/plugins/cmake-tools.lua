@@ -29,7 +29,7 @@ return {
       cmake_kits_path = nil,                     -- this is used to specify global cmake kits path, see CMakeKits for detailed usage
       cmake_variants_message = {
         short = { show = true },                 -- whether to show short message
-        long = { show = true, max_length = 40 }, -- whether to show long message
+        long = { show = false, max_length = 40 }, -- whether to show long message
       },
       cmake_dap_configuration = {                -- debug settings for cmake
         name = "cpp",
@@ -43,44 +43,10 @@ return {
         name = "overseer",              -- name of the executor
         opts = {},                      -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
         default_opts = {                -- a list of default and possible values for executors
-          quickfix = {
-            show = "always",            -- "always", "only_on_error"
-            position = "belowright",    -- "vertical", "horizontal", "leftabove", "aboveleft", "rightbelow", "belowright", "topleft", "botright", use `:h vertical` for example to see help on them
-            size = 10,
-            encoding = "utf-8",         -- if encoding is not "utf-8", it will be converted to "utf-8" using `vim.fn.iconv`
-            auto_close_when_success = true, -- typically, you can use it with the "always" option; it will auto-close the quickfix buffer if the execution is successful.
-          },
-          overseer = {
-            new_task_opts = {
-              strategy = {
-                "jobstart",
-              },
-              component_aliases = {
-                { "display_duration", detail_level = 1 },
-                "on_output_summarize",
-                "on_exit_set_status",
-                "on_complete_notify",
-                {
-                  "on_complete_dispose",
-                  require_view = {
-                    "SUCCESS",
-                    "FAILURE",
-                    "CANCELED",
-                  },
-                },
-                {
-                  "on_output_quickfix",
-                  open_on_exit = "failure",
-                  close = true,
-                  set_diagnostics = true,
-                },
-              }
-            }, -- options to pass into the `overseer.new_task` command
-            -- on_new_task = function(task)
-            --   require("overseer").open(
-            --     { enter = false, direction = "right" }
-            --   )
-            -- end, -- a function that gets overseer.Task when it is created, before calling `task:start`
+          overseer = {   -- take defaults from over seer
+            on_new_task = function(task)
+              -- Do not open
+            end, -- a function that gets overseer.Task when it is created, before calling `task:start`
           },
         },
       },
@@ -88,50 +54,22 @@ return {
         name = "overseer",       -- name of the runner
         opts = {},               -- the options the runner will get, possible values depend on the runner type. See `default_opts` for possible values.
         default_opts = {         -- a list of default and possible values for runners
-          toggleterm = {
-            direction = "horizontal", -- 'vertical' | 'horizontal' | 'tab' | 'float'
-            close_on_exit = false, -- whether close the terminal when exit
-            auto_scroll = true, -- whether auto scroll to the bottom
-            singleton = true,  -- single instance, autocloses the opened one, if present
-          },
-          overseer = {
-            new_task_opts = {
-              strategy = {
-                "jobstart",
-              },
-              component_aliases = {
-                { "display_duration", detail_level = 1 },
-                "on_output_summarize",
-                "on_exit_set_status",
-                "on_complete_notify",
+          overseer = { -- Take defaults from overseer
+            on_new_task = function(task)  -- Open Runner
+              require("overseer").open(
                 {
-                  "on_complete_dispose",
-                  require_view = {
-                    "SUCCESS",
-                    "FAILURE",
-                    "CANCELED",
-                  },
-                },
-                {
-                  "on_output_quickfix",
-                  open_on_exit = "failure",
-                  close = true,
-                  set_diagnostics = true,
-                },
-              }
-            }, -- options to pass into the `overseer.new_task` command
-            -- on_new_task = function(task)
-            -- end, -- a function that gets overseer.Task when it is created, before calling `task:start`
+                  enter = false,
+                }
+              ) -- Open the runner???
+            end, -- a function that gets overseer.Task when it is created, before calling `task:start`
           },
         },
       },
-      cmake_notifications = {
-        runner = { enabled = true },
-        executor = { enabled = true },
-        spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }, -- icons used for progress display
-        refresh_rate_ms = 100, -- how often to iterate icons
+      cmake_notifications = { -- With this options goes slow
+        runner = { enabled = false },
+        executor = { enabled = false },
       },
-      cmake_virtual_text_support = true, -- Show the target related to current file using virtual text (at right corner)
+      cmake_virtual_text_support = false, -- Show the target related to current file using virtual text (at right corner)
 
     })
   end
