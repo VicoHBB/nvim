@@ -20,17 +20,18 @@ return {
     config = function()
       local lsp = require("lspconfig")
       local lspconfig_defaults = require('lspconfig').util.default_config
-      local cmp_lsp = require("cmp_nvim_lsp")
+      -- local cmp_lsp = require("cmp_nvim_lsp")
+      local blink_cmp = require('blink.cmp')
       local keyset = vim.keymap.set
 
       -- Set up cmp.
-      -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
         lspconfig_defaults.capabilities,
         vim.lsp.protocol.make_client_capabilities(),
-        cmp_lsp.default_capabilities()
+        -- cmp_lsp.default_capabilities()
+        blink_cmp.get_lsp_capabilities()
       )
       -- local capabilities = require('blink.cmp').get_lsp_capabilities()
       local on_attach = function(_, bufnr)
@@ -69,10 +70,7 @@ return {
             desc   = "Next Dx",
           }
         )
-        keyset(
-          'n',
-          '<leader>?',
-          function() vim.diagnostic.setqflist() end,
+        keyset( 'n', '<leader>?', vim.diagnostic.setqflist,
           {
             desc   = "Show Dx",
             silent = true,
@@ -159,7 +157,7 @@ return {
 
         -- Lsp simple
         -- Format
-        keyset('v', '<space>f', function()
+        keyset({ 'v', 'x' }, '<space>f', function()
             vim.lsp.buf.format { async = true }
           end,
           {

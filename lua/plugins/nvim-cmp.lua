@@ -2,6 +2,7 @@ return {
   -- [[ CMP ]
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     event = {
       -- "VeryLazy",
       "InsertEnter",
@@ -26,9 +27,6 @@ return {
           'tzachar/fuzzy.nvim'
         }
       },
-      -- "honza/vim-snippets", -- Snippets
-      -- "SirVer/ultisnips", -- Ultisnips
-      -- "quangnguyen30192/cmp-nvim-ultisnips",
     },
     config = function()
       local cmp         = require('cmp')          -- Set up nvim-cmp
