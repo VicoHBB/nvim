@@ -24,7 +24,7 @@ keyset('n', "<leader>n", MiniFiles.open,
 -- Yazi
 keyset('n', "<Leader>F", function()
     require("tfm").select_file_manager("yazi")
-    vim.cmd("Tfm")
+    require("tfm").open()
   end,
   {
     silent = true,
@@ -35,7 +35,7 @@ keyset('n', "<Leader>F", function()
 -- Vifm
 keyset('n', "<Leader>fv", function()
     require("tfm").select_file_manager("vifm")
-    vim.cmd("Tfm")
+    require("tfm").open()
   end,
   {
     silent = true,
@@ -250,7 +250,12 @@ keyset( { "n", "v" }, "<leader>gb",
 -- keyset( 'v', "<F10>", "<CMD>TakeScreenShot<CR><CMD>echo 'SCREENSHOT'<CR>", {silent= true} )
 
 -- Oil
-keyset("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+keyset("n", "-", require("oil").open,
+  {
+    silent = true,
+    desc = "Open Oil"
+  }
+)
 
 -- Quickfix
 keyset("n", "<F7>", require("quicker").toggle,
