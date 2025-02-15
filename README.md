@@ -27,8 +27,6 @@ This is my personal neovim configuration, fully set up with `lua` and using `laz
 * [ ] Review keybindings
     - [ ] Improve keybindings for git actions
     - [ ] Add descriptions to keybindings
-* [ ] Update `cmake-tools` configuration
-* [ ] Configure `overseer` properly
 * [ ] Create a command for align tables in `makrdown` & `orgmode`
 * [ ] Review why `vimtex` is running slow
 * [ ] Improve configuration of snacks
@@ -68,8 +66,10 @@ These are the plugins that have been installed and configured.
 
 | Plugin                                                                                      | Last Review   |
 | ------------------------------------------------------------------------------------------- | ------------- |
+| [blink.cmp](https://github.com/Saghen/blink.cmp)                                            | 2025-02-15    |
 | [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)                 | 2024-08-31    |
 | [cmp](https://github.com/hrsh7th/nvim-cmp)                                                  | 2024-10-01    |
+| [cmake-tools](https://github.com/Civitasv/cmake-tools.nvim)                                 | 2025-02-15    |
 | [flash](https://github.com/folke/flash.nvim)                                                | 2024-07-27    |
 | [garbage-day](https://github.com/Zeioth/garbage-day.nvim)                                   | 2025-02-03    |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                      | 2024-06-19    |
@@ -81,6 +81,7 @@ These are the plugins that have been installed and configured.
 | [lspsaga](https://nvimdev.github.io/lspsaga/)                                               | 2024-10-01    |
 | [ltex-client](https://github.com/icewind/ltex-client.nvim)                                  | 2024-08-13    |
 | [lualine](https://github.com/nvim-lualine/lualine.nvim)                                     | 2024-08-31    |
+| [luasnip](https://github.com/L3MON4D3/LuaSnip)                                              | 2025-02-15    |
 | [markdown-preview](https://github.com/iamcco/markdown-preview.nvim.git)                     | 2024-10-01    |
 | [markdown-render](https://github.com/MeanderingProgrammer/render-markdown.nvim.git)         | 2024-10-01    |
 | [markdown](https://github.com/tadmccorkle/markdown.nvim)                                    | 2024-10-01    |
@@ -94,6 +95,7 @@ These are the plugins that have been installed and configured.
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                       | 2024-08-31    |
 | [org-bullets](https://github.com/nvim-orgmode/org-bullets.nvim)                             | 2024-06-19    |
 | [org-modern](https://github.com/danilshvalov/org-modern.nvim)                               | 2024-06-19    |
+| [overseer](https://github.com/stevearc/overseer.nvim)                                       | 2025-02-15    |
 | [project](https://github.com/ahmedkhalf/project.nvim)                                       | 2024-08-25    |
 | [quicker](https://github.com/stevearc/quicker.nvim)                                         | 2024-08-11    |
 | [reach](https://github.com/toppair/reach.nvim)                                              | 2024-08-25    |
@@ -122,7 +124,6 @@ These are plugins that serve as dependencies for others and do not require addit
 * [dooku](https://github.com/Zeioth/dooku.nvim)
 * [formatter](https://github.com/mhartington/formatter.nvim)
 * [helpview](https://github.com/OXY2DEV/helpview.nvim)
-* [luasnip](https://github.com/L3MON4D3/LuaSnip)
 * [none-ls](https://github.com/nvimtools/none-ls.nvim)
 * [nvim-dap](https://github.com/mfussenegger/nvim-dap)
 * [nvim-peekup](https://github.com/gennaro-tedesco/nvim-peekup)

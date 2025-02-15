@@ -148,17 +148,42 @@ return {
       sources = {
         default = {
           'lsp',
-          'path',
-          'snippets',
-          'buffer',
           'lazydev',
+          'snippets',
+          'path',
+          'buffer',
         },
         providers = {
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-            -- make lazydev completions top priority (see `:h blink.cmp`)
+          lsp = {
+            name = " ",
+            module = "blink.cmp.sources.lsp",
             score_offset = 100,
+          },
+          lazydev = {
+            name = " ",
+            module = "lazydev.integrations.blink",
+            score_offset = 100,
+          },
+          snippets = {
+            name = " ",
+            module = "blink.cmp.sources.snippets",
+            min_keyword_length = 2,
+            score_offset = 50,
+          },
+          path = {
+            name = " ",
+            module = "blink.cmp.sources.path",
+            min_keyword_length = 2,
+          },
+          buffer = {
+            name = " ",
+            module = "blink.cmp.sources.buffer",
+            min_keyword_length = 1,
+            score_offset = -10,
+          },
+          cmdline = {
+            name = " ",
+            module = "blink.cmp.sources.cmdline",
           },
         },
       },
