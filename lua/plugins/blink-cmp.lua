@@ -58,17 +58,19 @@ return {
         -- Manage by noice
         -- ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
 
-        cmdline = {
+      },
+
+      cmdline = {
+        keymap =
+        {
           ['<C-e>'] = { 'hide' },
           ['<CR>'] = { 'select_and_accept', 'fallback' },
-
-          ['<Tab>'] = { 'show','select_next', 'fallback' },
-          ['<S-Tab>'] = { 'show','select_prev', 'fallback' },
-
+          ['<Tab>'] = { 'show', 'select_next', 'fallback' },
+          ['<S-Tab>'] = { 'show', 'select_prev', 'fallback' },
           ['C-Space'] = { 'show_documentation', 'hide_documentation' }
         }
-
       },
+
 
       signature = { -- This is manage by Noice
         enabled = false,
