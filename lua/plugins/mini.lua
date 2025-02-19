@@ -22,7 +22,7 @@ return {
     })
     require('mini.operators').setup({
       replace = {
-        prefix = 'gr',
+        prefix = '<leader>mr',
       },
       exchange = {
         prefix = '<leader>e',

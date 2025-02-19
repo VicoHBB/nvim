@@ -14,7 +14,7 @@ keyset('n', "gT", "<CMD>TabnineChat<CR>",
 )
 
 -- NvimTree
-keyset('n', "<leader>n", MiniFiles.open,
+keyset('n', "<leader>mf", MiniFiles.open,
   {
     silent = true,
     desc = "Open MiniFiles"

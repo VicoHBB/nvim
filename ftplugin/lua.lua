@@ -65,10 +65,3 @@ keyset("n", "<leader>rl", function()
 )
 
 -- Utilities
-keyset('n', '<leader>O', '<CMD>Lspsaga outline<CR>', {
-  buffer = 0,
-  noremap = true,
-  silent= true,
-
-  desc = "Outline symbols",
-})

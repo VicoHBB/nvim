@@ -1,5 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
+  enabled = true,
   -- tag = '0.1.1',
   branch = '0.1.x',
   dependencies = {
@@ -12,7 +13,6 @@ return {
       -- This "ill not install any breaking changes.
       -- For major updates, this must be adjusted manually.
       version = "^1.0.0",
-      event = "VeryLazy",
     },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -25,6 +25,16 @@ return {
     local lga_actions = require("telescope-live-grep-args.actions")
     local action_state = require("telescope.actions.state")
     local layout_actions = require("telescope.actions.layout")
+
+    local lsp_pickers_opt = {
+      previewer = false,
+      theme = "cursor",
+      layout_config = {
+        width = 100,
+        height = 10,
+      },
+    }
+
 
     local function quote_prompt(prompt_bufnr)
       require("telescope-live-grep-args.actions").quote_prompt()(prompt_bufnr)
@@ -108,6 +118,16 @@ return {
           prompt_title = "Current Buffer Lines",
           layout_strategy = "vertical",
         },
+        lsp_definitions = {
+        },
+        lsp_references = lsp_pickers_opt,
+        lsp_incoming_calls = lsp_pickers_opt,
+        lsp_outgoing_calls = lsp_pickers_opt,
+        lsp_implementations = lsp_pickers_opt,
+        lsp_document_symbols = lsp_pickers_opt,
+        lsp_type_definitions = lsp_pickers_opt,
+        lsp_workspace_symbols = lsp_pickers_opt,
+        lsp_dynamic_workspace_symbols = lsp_pickers_opt,
       },
 
       extensions = {

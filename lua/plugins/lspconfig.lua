@@ -35,36 +35,28 @@ return {
       )
       -- local capabilities = require('blink.cmp').get_lsp_capabilities()
       local on_attach = function(_, bufnr)
-        -- LSPSaga
-        -- keyset("n", "K", "<CMD>Lspsaga hover_doc<CR>",
-        --   {
-        --     buffer = bufnr,
-        --     silent = true,
-        --     desc   = "Hover Documentation",
-        --   }
-        -- )
         -- Rename
-        keyset('n', "<leader>R", "<CMD>Lspsaga rename<CR>",
+        keyset('n', "<leader>R", vim.lsp.buf.rename,
           {
             silent = true,
-            desc   = "Rename var",
+            desc   = "Rename",
           }
         )
-        -- Code Action Menu
-        keyset('n', "<leader>a", "<CMD>Lspsaga code_action<CR>",
+        -- Code Action
+        keyset('n', "<leader>a", vim.lsp.buf.code_action,
           {
             silent = true,
             desc   = "Code Action",
           }
         )
-        -- LSPSAGA Dx
-        keyset('n', "<leader>[", "<CMD>Lspsaga diagnostic_jump_prev<CR>",
+        -- Move diag shortcut
+        keyset('n', "<leader>[", "[d",
           {
             silent = true,
             desc   = "Previous Dx",
           }
         )
-        keyset('n', "<leader>]", "<CMD>Lspsaga diagnostic_jump_next<CR>",
+        keyset('n', "<leader>]", "]d",
           {
             silent = true,
             desc   = "Next Dx",
@@ -77,37 +69,41 @@ return {
           }
         )
         -- GoTo
-        keyset("n", "gd", "<CMD>Lspsaga goto_definition<CR>",
+        keyset("n", "gd", require("telescope.builtin").lsp_definitions,
           {
-            desc   = "Go to Definition",
+            desc   = "Go to definitions",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gR", "<CMD>Lspsaga finder<CR>",
+        keyset("n", "gD", vim.lsp.buf.declaration,
+          {
+            desc   = "Go to Declaration",
+            silent = true,
+            buffer = bufnr,
+          }
+        )
+        keyset("n", "gr", require("telescope.builtin").lsp_references,
           {
             desc   = "Go to References",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gpd", "<CMD>Lspsaga peek_definition<CR>",
+        keyset("n", "gt", require("telescope.builtin").lsp_type_definitions,
           {
-            desc   = "Peek definition",
+            desc   = "Go to Type Definitions",
             silent = true,
             buffer = bufnr,
           }
         )
-
-        -- LSP with noice
-        -- keyset("n", "gK", require("noice.lsp").hover,
-        --   {
-        --     desc = "Hover Doc (Noice)",
-        --     silent = true,
-        --     buffer = bufnr,
-        --   }
-        -- )
-
+        keyset("n", "gI", require("telescope.builtin").lsp_implementations,
+          {
+            desc   = "Go to Implementataion",
+            silent = true,
+            buffer = bufnr,
+          }
+        )
         keyset("n", "K", require("noice.lsp").hover,
           {
             buffer = bufnr,
@@ -148,10 +144,18 @@ return {
         )
 
         -- Navbudy
-        keyset('n', "<leader>N", "<CMD>Navbuddy<CR>",
+        keyset('n', "<leader>n", function()
+            local ft = vim.bo.filetype
+
+            if 'verilog' == ft or 'systemverilog' == ft then
+              vim.cmd("Tagbar")
+            else
+              require("nvim-navbuddy").open()
+            end
+          end,
           {
             silent = true,
-            desc   = "Open NavBuddy",
+            desc   = "Navigate trough symbols",
           }
         )
 
