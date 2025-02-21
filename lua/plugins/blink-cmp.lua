@@ -12,6 +12,11 @@ return {
   {
     'saghen/blink.cmp',
     enabled = true,
+    event = {
+      -- "VeryLazy",
+      "InsertEnter",
+      "CmdlineEnter"
+    },
     -- optional: provides snippets for the snippet source
     dependencies = { },
     -- use a release tag to download pre-built binaries
@@ -155,6 +160,16 @@ return {
           'path',
           'buffer',
         },
+        per_filetype = {
+          org = {
+            'orgmode',
+            'lsp',
+            'lazydev',
+            'snippets',
+            'path',
+            'buffer',
+          }
+        },
         providers = {
           lsp = {
             name = " ",
@@ -164,6 +179,12 @@ return {
           lazydev = {
             name = " ",
             module = "lazydev.integrations.blink",
+            score_offset = 100,
+          },
+          orgmode = {
+            name = " ",
+            module = "orgmode.org.autocompletion.blink",
+            fallbacks = { 'buffer' },
             score_offset = 100,
           },
           snippets = {

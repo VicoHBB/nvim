@@ -112,7 +112,7 @@ return {
       desc = "Dismiss All Notifications",
     },
     {
-      "<leader>un",
+      "<leader>N",
       function()
         Snacks.notifier.show_history()
       end,

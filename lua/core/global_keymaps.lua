@@ -98,12 +98,39 @@ keyset('n', "<C-l>", "<CMD>TmuxNavigateRight<CR>", { silent = true })
 keyset('n', "<C-\\>", "<CMD>TmuxNavigatePrevious<CR>", { silent = true })
 
 -- Toggleterm
+keyset('n', '<F3>', "<CMD>TermSelect<CR>",
+  {
+    silent = true,
+    desc = "Select Terminal",
+  }
+)
+
+-- Navigate trow splits
 -- keyset('t', 'jk', "<C-\\><C-n>", {silent=true})
-keyset('n', '<F3>', "<Cmd>Telescope toggleterm_manager<CR>", { silent = true })
-keyset('t', '<C-h>', "<Cmd>TmuxNavigateLeft<CR>", { silent = true })
-keyset('t', '<C-j>', "<Cmd>TmuxNavigateDown<CR>", { silent = true })
-keyset('t', '<C-k>', "<Cmd>TmuxNavigateUp<CR>", { silent = true })
-keyset('t', '<C-l>', "<Cmd>TmuxNavigateRight<CR>", { silent = true })
+keyset('t', '<C-h>', "<Cmd>TmuxNavigateLeft<CR>",
+  {
+    silent = true,
+    desc = "Navigate Left",
+  }
+)
+keyset('t', '<C-j>', "<Cmd>TmuxNavigateDown<CR>",
+  {
+    silent = true,
+    desc = "Navigate Down",
+  }
+)
+keyset('t', '<C-k>', "<Cmd>TmuxNavigateUp<CR>",
+  {
+    silent = true,
+    desc = "Navigate Up",
+  }
+)
+keyset('t', '<C-l>', "<Cmd>TmuxNavigateRight<CR>",
+  {
+    silent = true,
+    desc = "Navigate Right",
+  }
+)
 
 -- ISwuap
 keyset('n', "<leader>sn", "<CMD>ISwapNode<CR>", { silent = true })

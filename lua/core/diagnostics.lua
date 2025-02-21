@@ -25,7 +25,9 @@ local function show_code_action_sign()
   local params = vim.lsp.util.make_range_params()
   params.context = { diagnostics = vim.diagnostic.get(bufnr) }
 
-  -- Llama al servidor LSP para obtener code actions
+  -- Clear signs
+  vim.fn.sign_unplace("CodeActionGroup", { buffer = bufnr })
+
   -- Call the LSP server to get code actions
   vim.lsp.buf_request_all(bufnr, "textDocument/codeAction", params,
     function(results)
@@ -60,6 +62,15 @@ vim.diagnostic.config({
 })
 
 -- AutoCommand to update the sign when the cursor changes
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorMoved" }, {
-  callback = show_code_action_sign,
+vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+  callback = function()
+    local ft = vim.bo.filetype
+
+    if ft == "systemverilog" or "verilog" == ft  then
+      return  -- Disable for this
+    else
+      show_code_action_sign()
+    end
+
+    end
 })

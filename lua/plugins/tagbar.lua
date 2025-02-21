@@ -1,6 +1,5 @@
 return {
   "preservim/tagbar",                                             -- Tagbar
-  event = "VeryLazy",
   ft = {
     'verilog',
     'systemverilog',

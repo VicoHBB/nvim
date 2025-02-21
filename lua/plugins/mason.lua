@@ -1,6 +1,7 @@
 return {
   "williamboman/mason.nvim",
   build = ":MasonUpdate",   -- :MasonUpdate updates registry contents
+  cmd = { "Mason", "MasonUpdate" },
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
   },
