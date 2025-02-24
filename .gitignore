@@ -4,3 +4,4 @@ lua/.luarc.json
 spell/
 lazy-lock.json
 
+Session.vim
