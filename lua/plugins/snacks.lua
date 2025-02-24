@@ -119,6 +119,18 @@ return {
       desc = "Notification History",
     },
     {
+      "<leader>}",
+      function() Snacks.words.jump(vim.v.count1) end,
+      desc = "Next Reference",
+      mode = { "n", "t" }
+    },
+    {
+      "<leader>{",
+      function() Snacks.words.jump(-vim.v.count1) end,
+      desc = "Prev Reference",
+      mode = { "n", "t" }
+    },
+    {
       "<leader>U",
       function ()
         Snacks.picker.undo()

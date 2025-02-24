@@ -104,6 +104,20 @@ return {
 
     config.defaults.builtin.winopts = winopts_files_default
 
+    config.defaults.blines.winopts = {
+      layout = "vertical",
+      preview = {
+        hidden = true,
+      }
+    }
+
+    config.defaults.registers.winopts = {
+      layout = "vertical",
+      preview = {
+        hidden = true,
+      }
+    }
+
     -- Neovim Pickers
     -- config.defaults.commands.winopts         = winopts_nvim_default
     -- config.defaults.commands_history.winopts = winopts_nvim_default
@@ -137,7 +151,6 @@ return {
         }
       }
     }
-
 
     -- Spell Suggest
     config.defaults.spell_suggest.winopts = {

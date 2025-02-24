@@ -1,6 +1,6 @@
 return {
   {                          -- lspconfig
-    'neovim/nvim-lspconfig', -- Config
+    'neovim/nvim-lspconfig',
     dependencies = {
       "williamboman/mason.nvim",
       {
@@ -23,6 +23,7 @@ return {
       -- local cmp_lsp = require("cmp_nvim_lsp")
       local blink_cmp = require('blink.cmp')
       local keyset = vim.keymap.set
+      local fzf = require("fzf-lua")
 
       -- Set up cmp.
       local capabilities = vim.tbl_deep_extend(
@@ -36,27 +37,30 @@ return {
       -- local capabilities = require('blink.cmp').get_lsp_capabilities()
       local on_attach = function(_, bufnr)
         -- Rename
-        keyset('n', "<leader>R", vim.lsp.buf.rename,
+        keyset('n', "<leader>R", function ()
+          vim.lsp.buf.rename()
+          vim.cmd("wall")
+        end,
           {
             silent = true,
             desc   = "Rename",
           }
         )
         -- Code Action
-        keyset('n', "<leader>a", vim.lsp.buf.code_action,
+        keyset('n', "<leader>a", fzf.lsp_code_actions,
           {
             silent = true,
             desc   = "Code Action",
           }
         )
         -- Move diag shortcut
-        keyset('n', "<leader>[", "[d",
+        keyset('n', "<leader>[", vim.diagnostic.goto_prev,
           {
             silent = true,
             desc   = "Previous Dx",
           }
         )
-        keyset('n', "<leader>]", "]d",
+        keyset('n', "<leader>]", vim.diagnostic.goto_next,
           {
             silent = true,
             desc   = "Next Dx",
@@ -69,7 +73,7 @@ return {
           }
         )
         -- GoTo
-        keyset("n", "gd", require("telescope.builtin").lsp_definitions,
+        keyset("n", "gd", fzf.lsp_definitions,
           {
             desc   = "Go to definitions",
             silent = true,
@@ -83,23 +87,44 @@ return {
             buffer = bufnr,
           }
         )
-        keyset("n", "gr", require("telescope.builtin").lsp_references,
+        keyset("n", "gr", fzf.lsp_references,
           {
             desc   = "Go to References",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gt", require("telescope.builtin").lsp_type_definitions,
+        keyset("n", "gt", fzf.lsp_typedefs,
           {
             desc   = "Go to Type Definitions",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gI", require("telescope.builtin").lsp_implementations,
+        keyset("n", "gI", fzf.lsp_implementations,
           {
             desc   = "Go to Implementataion",
+            silent = true,
+            buffer = bufnr,
+          }
+        )
+        keyset("n", "gF", fzf.lsp_finder,
+          {
+            desc   = "Go to Finder",
+            silent = true,
+            buffer = bufnr,
+          }
+        )
+        keyset("n", "gci", fzf.lsp_incoming_calls,
+          {
+            desc   = "Go to Incoming Calls",
+            silent = true,
+            buffer = bufnr,
+          }
+        )
+        keyset("n", "gco", fzf.lsp_outgoing_calls,
+          {
+            desc   = "Go to Outgoing Calls",
             silent = true,
             buffer = bufnr,
           }
@@ -374,10 +399,10 @@ return {
       --   capabilities = capabilities,
       -- })
 
-      -- lsp.lemminx.setup({
-      --   on_attach = on_attach,
-      --   capabilities = capabilities,
-      -- })
+      lsp.lemminx.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
 
       -- lsp['rust_analyzer'].setup({
       --   capabilities = capabilities,
@@ -416,6 +441,7 @@ return {
       -- your options here
     }
   },
+
   -- { -- lsp-timeout
   --   "hinell/lsp-timeout.nvim",
   --   dependencies = {
@@ -423,4 +449,5 @@ return {
   --   },
   --   event = "LspAttach",
   -- },
+
 }

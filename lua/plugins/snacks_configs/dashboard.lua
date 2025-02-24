@@ -1,5 +1,5 @@
 local M = {}
-
+local fzf = require('fzf-lua')
 
 local function set_web_devicons(name, cat)
   -- stylua: ignore
@@ -46,15 +46,15 @@ M.opt = {
       -- },
       {
         icon = " ",
-        key = "<Space>fh",
+        key = "<Space>fo",
         desc = "Complete History",
-        action = "<CMD>Telescope oldfiles<CR>",
+        action = fzf.oldfiles,
       },
       {
         icon = " ",
         key = "<Space>ff",
         desc = "Find Files",
-        action = "<CMD>Telescope find_files<CR>",
+        action = fzf.files,
       },
       {
         icon = " ",
@@ -69,9 +69,7 @@ M.opt = {
         icon = " ",
         key = "<Space>S",
         desc = "Find Text",
-        action = function()
-          require('telescope').extensions.live_grep_args.live_grep_args()
-        end,
+        action = fzf.live_grep,
       },
       {
         icon = " ",
@@ -116,7 +114,7 @@ M.opt = {
         key = "cc",
         desc = "Config",
         action = function()
-          require("telescope.builtin").find_files({
+          fzf.files({
             cwd = vim.fn.stdpath('config'),
           })
         end

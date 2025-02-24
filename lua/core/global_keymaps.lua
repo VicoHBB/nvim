@@ -1,3 +1,4 @@
+local fzf = require("fzf-lua")
 local keyset = vim.keymap.set
 local telescope_builtin = require("telescope.builtin")
 local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
@@ -13,7 +14,7 @@ keyset('n', "gT", "<CMD>TabnineChat<CR>",
   }
 )
 
--- NvimTree
+-- MiniFiles
 keyset('n', "<leader>mf", MiniFiles.open,
   {
     silent = true,
@@ -33,7 +34,7 @@ keyset('n', "<Leader>F", function()
 )
 
 -- Vifm
-keyset('n', "<Leader>fv", function()
+keyset('n', "<Leader>fV", function()
     require("tfm").select_file_manager("vifm")
     require("tfm").open()
   end,
@@ -136,89 +137,92 @@ keyset('t', '<C-l>', "<Cmd>TmuxNavigateRight<CR>",
 keyset('n', "<leader>sn", "<CMD>ISwapNode<CR>", { silent = true })
 keyset('n', "<leader>sw", "<CMD>ISwapWith<CR>", { silent = true })
 
--- Telescope
-keyset( 'n', "z=", function ()
-    telescope_builtin.spell_suggest()
-end,
+-- FZF lua
+keyset( 'n', "z=", fzf.spell_suggest,
   {
     silent = true,
     desc = "Spell Suggest"
   }
 )
-keyset( 'n', "<leader>T", telescope_builtin.builtin,
+keyset( 'n', "<leader>fz", fzf.builtin,
   {
     silent = true,
-    desc = "Telescope Builtin"
+    desc = "FZFLua Builtin"
   }
 )
-keyset( 'n', "<leader>ff", telescope_builtin.find_files,
+keyset( 'n', "<leader>ff", fzf.files,
   {
     silent = true,
-    desc = "Telescope Find Files"
+    desc = "FZFLua Find Files"
   }
 )
-keyset( 'n', "<leader>fh", telescope_builtin.oldfiles,
+keyset( 'n', "<leader>fo", fzf.oldfiles,
   {
     silent = true,
-    desc = "Telescope Old Files"
+    desc = "FZFLua Old Files"
   }
 )
-keyset( 'n', "<leader>fg", telescope_builtin.git_files,
+keyset( 'n', "<leader>fg", fzf.git_files,
   {
     silent = true,
-    desc = "Telescope Git Files"
+    desc = "FZFLua Git Files"
   }
 )
-keyset( 'n', "<leader>tc", telescope_builtin.commands,
+keyset( 'n', "<leader>fc", fzf.commands,
   {
     silent = true,
-    desc = "Telescope Commands"
+    desc = "FZFLua Commands"
   }
 )
-keyset( 'n', "<leader>tl", telescope_builtin.current_buffer_fuzzy_find,
+keyset( 'n', "<leader>fl", fzf.blines,
   {
     silent = true,
-    desc = "Telescope Lines(Buffer Fuzzy Find)"
+    desc = "FZFLua Lines"
   }
 )
-keyset( 'n', "<leader>tg", telescope_builtin.git_bcommits,
+keyset( 'n', "<leader>fh", fzf.git_bcommits,
   {
     silent = true,
-    desc = "Telescope Buffer Commits"
-  }
-)
-
-keyset( 'n', "<leader>\"", telescope_builtin.registers,
-  {
-    silent = true,
-    desc = "Telescope Registers"
+    desc = "FZFLua Buffer Commits"
   }
 )
 
-keyset( 'n', "<leader>tv", telescope_builtin.vim_options,
+keyset( 'n', "<leader>\"", fzf.registers,
   {
     silent = true,
-    desc = "Telescope vim_options"
+    desc = "FZFLua Registers"
   }
 )
 
+keyset( 'n', "<leader>fv", fzf.nvim_options,
+  {
+    silent = true,
+    desc = "FZFLua vim_options"
+  }
+)
 
--- Telescope live_args
-keyset("n", "<leader>S",
-  require('telescope').extensions.live_grep_args.live_grep_args,
+-- FZFLua grep
+keyset("n", "<leader>S", fzf.live_grep,
   {
     silent = true
   }
 )
-keyset("n", "gs", live_grep_args_shortcuts.grep_word_under_cursor,
+keyset("n", "gs", fzf.grep_cword,
   {
-    silent = true
+    silent = true,
+    desc = "Serach exact word"
   }
 )
-keyset("v", "gs",
-  live_grep_args_shortcuts.grep_visual_selection,
+keyset("n", "gS", fzf.grep_cWORD,
   {
-    silent = true
+    silent = true,
+    desc = "Serach word"
+  }
+)
+keyset("v", "gs", fzf.grep_visual,
+  {
+    silent = true,
+    desc = "Serach visual selection"
   }
 )
 
