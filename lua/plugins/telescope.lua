@@ -2,18 +2,21 @@ return {
   'nvim-telescope/telescope.nvim',
   enabled = true,
   -- tag = '0.1.1',
+  cmd = {
+    "Tele",
+    "Telescope"
+  },
   branch = '0.1.x',
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-lua/popup.nvim",
-    "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
-    {
-      "nvim-telescope/telescope-live-grep-args.nvim",
-      -- This "ill not install any breaking changes.
-      -- For major updates, this must be adjusted manually.
-      version = "^1.0.0",
-    },
+    -- {
+    --   "nvim-telescope/telescope-live-grep-args.nvim",
+    --   -- This "ill not install any breaking changes.
+    --   -- For major updates, this must be adjusted manually.
+    --   version = "^1.0.0",
+    -- },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build =
@@ -22,7 +25,7 @@ return {
   },
   config = function()
     local actions = require("telescope.actions")
-    local lga_actions = require("telescope-live-grep-args.actions")
+    -- local lga_actions = require("telescope-live-grep-args.actions")
     local action_state = require("telescope.actions.state")
     local layout_actions = require("telescope.actions.layout")
 
@@ -146,19 +149,19 @@ return {
           -- the default case_mode is "smart_case"
         },
 
-        live_grep_args = {
-          auto_quoting = true,   -- enable/disable auto-quoting
-          -- define mappings, e.g.
-          mappings = {           -- extendmmappings
-            i = {
-              ["<CR>"] = open_selection,
-              ["<C-r>"] = quote_prompt,
-              ["<C-g>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
-              -- freeze the current list and start a fuzzy search in the frozen list
-              ["<C-f>"] = actions.to_fuzzy_refine,
-            }
-          },
-        },
+        -- live_grep_args = {
+        --   auto_quoting = true,   -- enable/disable auto-quoting
+        --   -- define mappings, e.g.
+        --   mappings = {           -- extendmmappings
+        --     i = {
+        --       ["<CR>"] = open_selection,
+        --       ["<C-r>"] = quote_prompt,
+        --       ["<C-g>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+        --       -- freeze the current list and start a fuzzy search in the frozen list
+        --       ["<C-f>"] = actions.to_fuzzy_refine,
+        --     }
+        --   },
+        -- },
 
         projects = {}
 
@@ -167,7 +170,7 @@ return {
 
     -- require('telescope').load_extension('orgmode')
     require('telescope').load_extension('projects')
-    require("telescope").load_extension("live_grep_args")
+    -- require("telescope").load_extension("live_grep_args")
     require("telescope").load_extension("ui-select")
   end,
 }

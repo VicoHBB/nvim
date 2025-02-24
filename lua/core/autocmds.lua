@@ -1,16 +1,16 @@
 local commands = require('core.custom_commands')
-local add_cmd = vim.api.nvim_create_autocmd
+local autocmd = vim.api.nvim_create_autocmd
 local keyset = vim.keymap.set
 
 -- Remove spaces in the final of the line after write a file
-add_cmd({ "BufWritePre" }, {
+autocmd({ "BufWritePre" }, {
   callback = function()
     vim.cmd([[%s/\s\+$//e]])
   end,
 })
 
 -- close some filetypes with <q>
-add_cmd("FileType", {
+autocmd("FileType", {
   pattern = {
     "qf",
     "help",
@@ -33,7 +33,7 @@ add_cmd("FileType", {
 })
 
 -- close Diffviews
-add_cmd("FileType", {
+autocmd("FileType", {
   pattern = {
     "DiffviewFiles",
     "DiffviewFileHistory",
@@ -49,13 +49,13 @@ add_cmd("FileType", {
   end,
 })
 
-add_cmd("FileType", {
+autocmd("FileType", {
   pattern = "help",
   command = "wincmd H",  -- Mueve la ventana de ayuda a la derecha
 })
 
 -- Set MiniPairs for "$" in TeX equations
-add_cmd("FileType", {
+autocmd("FileType", {
   pattern = { 'tex', 'markdown', 'org' },
   callback = function ()
     MiniPairs.map_buf(0, 'i', '$', { action = 'closeopen', pair = '$$' })
@@ -71,7 +71,7 @@ add_cmd("FileType", {
 -- })
 
 -- Set "/*" for comments
-add_cmd("FileType", {
+autocmd("FileType", {
   pattern = { 'c', 'cpp', 'verilog', 'systemverilog' },
   callback = function()
     local opts = { noremap = true, buffer = true, silent = true }
@@ -81,7 +81,7 @@ add_cmd("FileType", {
 })
 
 -- Clean CMake Cache
-add_cmd('FileType', {
+autocmd('FileType', {
   pattern = { 'c', 'cpp', 'cmake'},
   callback = function()
     commands.clear_cmake_cache()
@@ -89,7 +89,7 @@ add_cmd('FileType', {
 })
 
 -- OverseerRestartLast
-add_cmd('FileType', {
+autocmd('FileType', {
   pattern = '*', -- Apply to all file types
   callback = function()
     commands.overseer_last_task()
@@ -98,7 +98,7 @@ add_cmd('FileType', {
 
 
 -- REPL
-add_cmd('FileType', {
+autocmd('FileType', {
   pattern = { 'lua', 'python' },
   callback = function()
     commands.start_repl()

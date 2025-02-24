@@ -57,13 +57,25 @@ return {
         keyset('n', "<leader>[", vim.diagnostic.goto_prev,
           {
             silent = true,
-            desc   = "Previous Dx",
+            desc   = "Jump the to Previous Dx",
           }
         )
         keyset('n', "<leader>]", vim.diagnostic.goto_next,
           {
             silent = true,
-            desc   = "Next Dx",
+            desc   = "Jump the to Next Dx",
+          }
+        )
+        keyset('n', "[d", vim.diagnostic.goto_prev,
+          {
+            silent = true,
+            desc   = "Jump the to Previous Dx",
+          }
+        )
+        keyset('n', "]d", vim.diagnostic.goto_next,
+          {
+            silent = true,
+            desc   = "Jump the to Next Dx",
           }
         )
         keyset( 'n', '<leader>?', vim.diagnostic.setqflist,
@@ -183,7 +195,6 @@ return {
             desc   = "Navigate trough symbols",
           }
         )
-
         -- Lsp simple
         -- Format
         keyset({ 'v', 'x' }, '<space>f', function()
@@ -195,6 +206,7 @@ return {
             desc   = "Format",
           }
         )
+
       end
 
       lsp.lua_ls.setup({

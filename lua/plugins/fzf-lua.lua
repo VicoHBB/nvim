@@ -26,8 +26,8 @@ return {
     }
 
     local winopts_files_default = {
-      height   = 0.40,
-      width    = 0.60,
+      height  = 0.40,
+      width   = 0.60,
       preview = {
         layout = "vertical",
         vertical = "down:75%",
@@ -36,8 +36,9 @@ return {
     }
 
     local winopts_nvim_default = {
-      height   = 0.40,
-      width    = 0.60,
+      row     = 0.15,
+      height  = 0.55,
+      width   = 0.35,
       preview = {
         layout = "vertical",
         vertical = "down:75%",
@@ -119,8 +120,17 @@ return {
     }
 
     -- Neovim Pickers
-    -- config.defaults.commands.winopts         = winopts_nvim_default
-    -- config.defaults.commands_history.winopts = winopts_nvim_default
+    config.defaults.commands.winopts = winopts_nvim_default
+    config.defaults.command_history.winopts = winopts_nvim_default
+    config.defaults.search_history.winopts = winopts_nvim_default
+    config.defaults.nvim_options.winopts = winopts_nvim_default
+    config.defaults.helptags.winopts ={
+      preview = {
+        layout = "vertical",
+        vertical = "down:80%",
+        wrap = true,
+      }
+    }
 
     -- LSP
     config.defaults.lsp.winopts = {

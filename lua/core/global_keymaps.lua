@@ -1,13 +1,13 @@
 local fzf = require("fzf-lua")
 local keyset = vim.keymap.set
-local telescope_builtin = require("telescope.builtin")
-local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+-- local telescope_builtin = require("telescope.builtin")
+-- local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 
 -- Think
 keyset('n', "<leader>", "<CMD>echo 'What to do?'<CR>", { silent = true })
 
 -- Tabnine Chat
-keyset('n', "gT", "<CMD>TabnineChat<CR>",
+keyset('n', "T", "<CMD>TabnineChat<CR>",
   {
     silent = true,
     desc = "Open Tabnine Chat",
@@ -138,10 +138,22 @@ keyset('n', "<leader>sn", "<CMD>ISwapNode<CR>", { silent = true })
 keyset('n', "<leader>sw", "<CMD>ISwapWith<CR>", { silent = true })
 
 -- FZF lua
+keyset( 'n', "<F1>", fzf.help_tags,
+  {
+    silent = true,
+    desc = "Help Tags"
+  }
+)
 keyset( 'n', "z=", fzf.spell_suggest,
   {
     silent = true,
     desc = "Spell Suggest"
+  }
+)
+keyset( 'n', "<leader>fr", fzf.resume,
+  {
+    silent = true,
+    desc = "FZFLua Resume Last Builtin"
   }
 )
 keyset( 'n', "<leader>fz", fzf.builtin,
@@ -304,6 +316,34 @@ keyset("n", "<F6>", function()
   {
     silent = true,
     desc = "Toggle loclist",
+  }
+)
+
+keyset("n", "<leader>(", "<CMD>cprevious<CR>zz",
+  {
+    silent = true,
+    desc = "Go to Preview item on Quickfix",
+  }
+)
+
+keyset("n", "<leader>)", "<CMD>cnext<CR>zz",
+  {
+    silent = true,
+    desc = "Go to Next item on Quickfix",
+  }
+)
+
+keyset("n", "<leader>cp", "<CMD>cprevious<CR>zz",
+  {
+    silent = true,
+    desc = "Go to Preview item on Quickfix",
+  }
+)
+
+keyset("n", "<leader>cn", "<CMD>cnext<CR>zz",
+  {
+    silent = true,
+    desc = "Go to Next item on Quickfix",
   }
 )
 

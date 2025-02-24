@@ -1,8 +1,29 @@
+local autocmd = vim.api.nvim_create_autocmd
+
 local signs = {
   Error = " ",
   Warn = " ",
   Hint = "󰌶 ",
   Info = " ",
+}
+
+local severity_to_sign = {
+  [vim.diagnostic.severity.ERROR] = {
+    sign = signs.Error,
+    hl_group = "DiagnosticSignError"
+  },
+  [vim.diagnostic.severity.WARN]  = {
+    sign = signs.Warn,
+    hl_group = "DiagnosticSignWarn"
+  },
+  [vim.diagnostic.severity.INFO]  = {
+    sign = signs.Info,
+    hl_group = "DiagnosticSignInfo"
+  },
+  [vim.diagnostic.severity.HINT]  = {
+    sign = signs.Hint,
+    hl_group = "DiagnosticSignHint"
+  }
 }
 
 -- Define sings
@@ -41,7 +62,7 @@ local function show_code_action_sign()
 
       -- If there are actions, place the sign; otherwise, remove it
       if has_actions then
-        vim.fn.sign_place(0, "CodeActionGroup", "LspCodeActionSign", bufnr,
+       vim.fn.sign_place(0, "CodeActionGroup", "LspCodeActionSign", bufnr,
           {
             lnum = vim.fn.line("."),
             priority = 10
@@ -56,21 +77,33 @@ end
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
-  underline = true,        -- Sube líneas para los diagnósticos
-  update_in_insert = true, -- No actualiza diagnósticos en modo insert
-  severity_sort = true,    -- Ordena los diagnósticos por severidad
+  underline = true,
+  update_in_insert = true,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = true,
+    header = "",
+    prefix = function(diagnostic)
+      local severity = severity_to_sign[diagnostic.severity] or {
+        sign = "",
+        hl_group = ""
+      }
+      return severity.sign, severity.hl_group
+    end,
+  }
 })
 
 -- AutoCommand to update the sign when the cursor changes
-vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+autocmd({ "CursorMoved" }, {
   callback = function()
     local ft = vim.bo.filetype
 
-    if ft == "systemverilog" or "verilog" == ft  then
-      return  -- Disable for this
-    else
+    if not ( ft == "systemverilog" or "verilog" == ft ) then
       show_code_action_sign()
+    else
     end
 
-    end
+  end
 })
+
