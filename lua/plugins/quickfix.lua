@@ -1,5 +1,5 @@
 return { -- Better quickfix
-  {                                                                 -- nvim-bqf
+  {      -- nvim-bqf
     'kevinhwang91/nvim-bqf',
     ft = { 'qf' },
     dependencies = {
@@ -16,15 +16,16 @@ return { -- Better quickfix
         preview = {
           auto_preview = false,
         },
-        filter = {
-          fzf = {
-            extra_opts = { '--bind', 'ctrl-o:toggle-all', '--delimiter', '│' }
+        fzf = {
+          extra_opts = {
+            description = 'Extra options for fzf',
+            default = { '--bind', '--border', 'ctrl-o:toggle-all' }
           }
         }
       })
     end,
   },
-  {                                                                 -- quicker
+  { -- quicker
     'stevearc/quicker.nvim',
     event = "FileType qf",
     ---@module "quicker"
@@ -94,5 +95,62 @@ return { -- Better quickfix
         return vim.o.columns - start_col
       end,
     },
+    keys = {
+      {
+        "<F7>",
+        function ()
+          require('quicker').toggle()
+        end,
+        silent = true,
+        mode = { 'n' },
+        desc = 'Toggle quickfix',
+      },
+      {
+        "<F6>",
+        function ()
+          require('quicker').toggle({
+            loclist = true
+          })
+        end,
+        mode = { 'n' },
+        silent = true,
+        desc = 'Toggle loclist',
+      },
+      {
+        '<leader>cp',
+        function ()
+          vim.cmd("cprevious")
+          vim.cmd("normal zz")
+        end,
+        mode = { 'n' },
+        silent = true,
+        desc = 'Go to Previous item on Quickfix',
+      },
+      {
+        '<leader>(',
+        '<CMD>cprevious<CR>zz',
+        mode = { 'n' },
+        silent = true,
+        desc = 'Go to Previous item on Quickfix',
+      },
+      {
+        '<leader>cn',
+        -- '<CMD>cnext<CR>zz',
+        function ()
+          vim.cmd("cnext")
+          vim.cmd("normal zz")
+        end,
+        mode = { 'n' },
+        silent = true,
+        desc = 'Go to Next item on Quickfix',
+      },
+      {
+        '<leader>)',
+        '<CMD>cnext<CR>zz',
+        mode = { 'n' },
+        silent = true,
+        desc = 'Go to Next item on Quickfix',
+      },
+    }
   }
 }

@@ -10,7 +10,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-lua/popup.nvim",
-    "nvim-telescope/telescope-ui-select.nvim",
+    -- "nvim-telescope/telescope-ui-select.nvim",
     -- {
     --   "nvim-telescope/telescope-live-grep-args.nvim",
     --   -- This "ill not install any breaking changes.
@@ -135,12 +135,6 @@ return {
 
       extensions = {
 
-        ["ui-select"] = {
-          require("telescope.themes").get_dropdown {
-            -- even more opts
-          }
-        },
-
         fzf = {
           fuzzy = true,                     -- false will only do exact matching
           override_generic_sorter = true,   -- override the generic sorter
@@ -148,6 +142,12 @@ return {
           case_mode = "smart_case",         -- or "ignore_case" or "respect_case"
           -- the default case_mode is "smart_case"
         },
+
+        -- ["ui-select"] = {
+        --   require("telescope.themes").get_dropdown {
+        --     -- even more opts
+        --   }
+        -- },
 
         -- live_grep_args = {
         --   auto_quoting = true,   -- enable/disable auto-quoting
@@ -171,6 +171,6 @@ return {
     -- require('telescope').load_extension('orgmode')
     require('telescope').load_extension('projects')
     -- require("telescope").load_extension("live_grep_args")
-    require("telescope").load_extension("ui-select")
+    -- require("telescope").load_extension("ui-select")
   end,
 }

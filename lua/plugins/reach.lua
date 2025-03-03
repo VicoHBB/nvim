@@ -7,4 +7,28 @@ return {
       notifications = true,
     })
   end,
+  keys ={
+
+    {
+      '<leader>b',
+      function()
+        require('reach').buffers({
+          handle = 'dynamic',
+        })
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = 'Switch Buffer',
+    },
+    {
+      '<leader>\'',
+      function()
+        require('reach').marks()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = 'Marks',
+    },
+
+  }
 }

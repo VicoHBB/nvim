@@ -46,6 +46,17 @@ return {
       }
     }
 
+    local winopts_cursor_default = {
+      relative = "cursor",
+      height   = 0.40,
+      width    = 0.50,
+      preview  = {
+        layout = "flex",
+        vertical = "down:75%",
+        hidden = true,
+      }
+    }
+
     -- [[ winoptes ]]
 
     -- All win
@@ -63,6 +74,9 @@ return {
     config.defaults.winopts.on_create = function ()
       keyset({ "t", 'i' }, "<C-j>", "<Down>", { silent = true, buffer = true })
       keyset({ "t", "i" }, "<C-k>", "<Up>", { silent = true, buffer = true })
+      -- @NOTE: This prevent to move to an split, need to check(Need review)
+      keyset({ "t", 'i' }, "<C-h>", "", { silent = true, buffer = true })
+      keyset({ "t", "i" }, "<C-l>", "", { silent = true, buffer = true })
     end
 
     -- [[ keymaps ]]
@@ -132,17 +146,14 @@ return {
       }
     }
 
+    -- TAGS
+    config.defaults.tags.winopts = winopts_cursor_default
+
+    -- [[ Integrations ]]
+
     -- LSP
-    config.defaults.lsp.winopts = {
-      relative = "cursor",
-      height   = 0.40,
-      width    = 0.50,
-      preview = {
-        layout = "flex",
-        vertical = "down:75%",
-        hidden = true,
-      }
-    }
+    config.defaults.lsp.winopts = winopts_cursor_default
+
     -- Code Actions
     config.defaults.lsp.code_actions.winopts = {
       relative = "cursor",
@@ -171,5 +182,8 @@ return {
       width    = 0.25,
     }
 
+    require('fzf-lua').register_ui_select({
+      winopts = winopts_nvim_default
+    })
   end
 }

@@ -14,7 +14,7 @@ return {
 
         -- The border to use for the UI window.
         -- Accepts same border values as |nvim_open_win()|.
-        border = "double",
+        border = "rounded",
 
         -- Width of the window. Accepts:
         -- - Integer greater than 1 for fixed width.

@@ -73,7 +73,18 @@ return {
           ['<Tab>'] = { 'show', 'select_next', 'fallback' },
           ['<S-Tab>'] = { 'show', 'select_prev', 'fallback' },
           ['C-Space'] = { 'show_documentation', 'hide_documentation' }
-        }
+        },
+        completion = {
+          ghost_text = {
+            enabled = false
+          },
+        },
+        -- sources = {
+        --   'cmdline',
+        --   'lazydev',
+        --   'path',
+        --   'buffer',
+        -- }
       },
 
 
@@ -118,7 +129,7 @@ return {
             treesitter = {
               'lsp'
             },
-          }
+          },
         },
         -- Show documentation when selecting a completion item
         documentation = {
@@ -168,7 +179,13 @@ return {
             'snippets',
             'path',
             'buffer',
-          }
+          },
+          -- cmdline = {
+          --   'cmdline',
+          --   'lazydev',
+          --   'path',
+          --   'buffer',
+          -- }
         },
         providers = {
           lsp = {

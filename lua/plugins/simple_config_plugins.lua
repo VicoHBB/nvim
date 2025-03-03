@@ -1,7 +1,12 @@
 return {
+  {
+    'mrjones2014/smart-splits.nvim',
+    -- build = './kitty/install-kittens.bash',
+    opt = {}
+  },
   {                                                              -- Vim Be Good
-    enabled = false,
     'ThePrimeagen/vim-be-good',
+    enabled = false,
     -- event = "VeryLazy",
     cmd = "VimBeGood"
   },

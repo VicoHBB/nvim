@@ -84,6 +84,24 @@ return {
   end,
   keys = {
     {
+      "<leader>GG",
+      function()
+        Snacks.lazygit.open()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "Open LazyGit"
+    },
+    {
+      "<leader>gb",
+      function()
+        Snacks.git.blame_line()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "Git Blame Line"
+    },
+    {
       "<leader>z",
       function()
         Snacks.zen()
