@@ -1,5 +1,6 @@
 return {
   "nvim-lualine/lualine.nvim",
+  enabled = true,
   dependencies = {
     'nvim-tree/nvim-web-devicons',
     -- "echasnovski/mini.icons",
@@ -121,7 +122,15 @@ return {
         lualine_y = {},
         lualine_z = {}
       },
-      tabline = {},
+      -- tabline = {},
+      tabline = {
+        -- lualine_a = { 'buffers' },
+        -- lualine_b = {},
+        -- lualine_c = {},
+        -- lualine_x = {},
+        -- lualine_y = {},
+        -- lualine_z = { 'tabs' }
+      },
       winbar = {},
       inactive_winbar = {},
       extensions = {

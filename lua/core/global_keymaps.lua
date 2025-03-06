@@ -374,3 +374,10 @@ keyset("n", "<leader>ms", "<CMD>mksession<CR>",
     desc = "Save session"
   }
 )
+
+keyset("n", "<leader>rs", MiniSessions.read,
+  {
+    silent = true,
+    desc = "Save session"
+  }
+)

@@ -18,14 +18,6 @@ vim.bo.commentstring = "/* %s */"
 -- ============================================================================
 -- Autocommands
 -- ============================================================================
--- @TODO: Review workflow with this
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'verilog', 'systemverilog' },
-  callback = function()
-    vim.cmd('VerilogErrorFormat Verilator 1')
-  end,
-  once = true,
-})
 
 -- ============================================================================
 -- Keymaps

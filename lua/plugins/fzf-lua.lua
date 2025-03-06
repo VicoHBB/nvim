@@ -126,13 +126,6 @@ return {
       }
     }
 
-    config.defaults.registers.winopts = {
-      layout = "vertical",
-      preview = {
-        hidden = true,
-      }
-    }
-
     -- Neovim Pickers
     config.defaults.commands.winopts = winopts_nvim_default
     config.defaults.command_history.winopts = winopts_nvim_default
@@ -153,6 +146,9 @@ return {
 
     -- LSP
     config.defaults.lsp.winopts = winopts_cursor_default
+
+    -- LSP finder
+    config.defaults.lsp.finder.winopts = winopts_cursor_default
 
     -- Code Actions
     config.defaults.lsp.code_actions.winopts = {

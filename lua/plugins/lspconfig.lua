@@ -37,10 +37,10 @@ return {
       -- local capabilities = require('blink.cmp').get_lsp_capabilities()
       local on_attach = function(_, bufnr)
         -- Rename
-        keyset('n', "<leader>R", function ()
-          vim.lsp.buf.rename()
-          vim.cmd("wall")
-        end,
+        keyset('n', "<leader>R", function()
+            vim.lsp.buf.rename()
+            vim.cmd("wall")
+          end,
           {
             silent = true,
             desc   = "Rename",
@@ -78,63 +78,87 @@ return {
             desc   = "Jump the to Next Dx",
           }
         )
-        keyset( 'n', '<leader>?', vim.diagnostic.setqflist,
+        keyset('n', '<leader>?', vim.diagnostic.setqflist,
           {
             desc   = "Show Dx",
             silent = true,
           }
         )
         -- GoTo
-        keyset("n", "gd", fzf.lsp_definitions,
+        keyset("n", "gd", function()
+            fzf.lsp_definitions()
+            vim.cmd("normal zz")
+          end,
           {
             desc   = "Go to definitions",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gD", vim.lsp.buf.declaration,
+        keyset("n", "gD", function()
+            vim.lsp.buf.declaration()
+            vim.cmd("normal zz")
+          end,
           {
             desc   = "Go to Declaration",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gr", fzf.lsp_references,
+        keyset("n", "gr", function()
+            fzf.lsp_references()
+            vim.cmd("normal zz")
+          end,
           {
             desc   = "Go to References",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gt", fzf.lsp_typedefs,
+        keyset("n", "gt", function()
+            fzf.lsp_typedefs()
+            vim.cmd("normal zz")
+          end,
           {
             desc   = "Go to Type Definitions",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gI", fzf.lsp_implementations,
+        keyset("n", "gI", function()
+            fzf.lsp_implementations()
+            vim.cmd("normal zz")
+          end,
           {
             desc   = "Go to Implementataion",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gF", fzf.lsp_finder,
+        keyset("n", "gF", function()
+            fzf.lsp_finder()
+            vim.cmd("normal zz")
+          end,
           {
             desc   = "Go to Finder",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gci", fzf.lsp_incoming_calls,
+        keyset("n", "gci", function()
+            fzf.lsp_incoming_calls()
+            vim.cmd("normal zz")
+          end,
           {
             desc   = "Go to Incoming Calls",
             silent = true,
             buffer = bufnr,
           }
         )
-        keyset("n", "gco", fzf.lsp_outgoing_calls,
+        keyset("n", "gco", function()
+            fzf.lsp_outgoing_calls()
+            vim.cmd("normal zz")
+          end,
           {
             desc   = "Go to Outgoing Calls",
             silent = true,
@@ -181,15 +205,7 @@ return {
         )
 
         -- Navbudy
-        keyset('n', "<leader>n", function()
-            local ft = vim.bo.filetype
-
-            if 'verilog' == ft or 'systemverilog' == ft then
-              vim.cmd("Tagbar")
-            else
-              require("nvim-navbuddy").open()
-            end
-          end,
+        keyset('n', "<leader>n", require('nvim-navbuddy').open,
           {
             silent = true,
             desc   = "Navigate trough symbols",
@@ -245,18 +261,34 @@ return {
         ),
       })
 
-      lsp.svlangserver.setup({
+      lsp.verible.setup({
         on_attach = on_attach,
         capabilities = capabilities,
+        cmd = {
+          'verible-verilog-ls',
+          '--rules_config_search',
+          '--indentation_spaces=4'
+        },
         filetypes = { "vhdl", "verilog", "systemverilog" },
         root_dir = lsp.util.root_pattern(
           '.git',
           '.gitignore',
-          '.svlint.toml',
-          '.svls.toml',
-          'rtl'
+          '.rules.verible_lint',
+          'verible.filelist'
         )
       })
+
+      -- lsp.svlangserver.setup({
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      --   filetypes = { "vhdl", "verilog", "systemverilog" },
+      --   root_dir = lsp.util.root_pattern(
+      --     '.git',
+      --     '.gitignore',
+      --     '.svlint.toml',
+      --     '.svls.toml'
+      --   )
+      -- })
 
       lsp.svls.setup({
         on_attach = on_attach,
@@ -267,8 +299,7 @@ return {
           '.git',
           '.gitignore',
           '.svlint.toml',
-          '.svls.toml',
-          'rtl'
+          '.svls.toml'
         )
       })
 
@@ -310,7 +341,6 @@ return {
       lsp.marksman.setup({
         on_attach = on_attach,
         capabilities = capabilities,
-        cmd = { "marksman", "server" },
       })
 
       -- To support org files
@@ -361,7 +391,7 @@ return {
         capabilities = capabilities,
         filetypes = {
           "bib",
-          "gitcommit",
+          -- "gitcommit",
           "markdown",
           "org",
           "tex",
@@ -372,8 +402,8 @@ return {
             analysers = {
               languagetool = {
                 check_text = {
-                  on_change = true,
-                  on_open = true,
+                  on_change = false,
+                  on_open = false,
                   on_save = true
                 },
                 enabled = true
@@ -389,32 +419,35 @@ return {
         },
       })
 
-      lsp.vimls.setup({
-        on_attach = on_attach,
-        capabilities = capabilities,
-        cmd = { "vim-language-server", "--stdio" },
-        filetypes = { "vim" }
-      })
-
-
       -- ============================================================================
       -- Not use to much
       -- ============================================================================
+
+      lsp.vimls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
 
       lsp.jsonls.setup({
         on_attach = on_attach,
         capabilities = capabilities,
       })
 
-      -- lsp.asm_lsp.setup({
-      --   on_attach = on_attach,
-      --   capabilities = capabilities,
-      -- })
-
       lsp.lemminx.setup({
         on_attach = on_attach,
         capabilities = capabilities,
       })
+
+      -- lsp.bashls.setup({
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      --   filetypes = { "sh", "bash", "zsh" },
+      -- })
+
+      -- lsp.asm_lsp.setup({
+      --   on_attach = on_attach,
+      --   capabilities = capabilities,
+      -- })
 
       -- lsp['rust_analyzer'].setup({
       --   capabilities = capabilities,

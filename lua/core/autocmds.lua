@@ -65,9 +65,7 @@ autocmd("FileType", {
 -- Define autocommands to enable the command for specific file types
 -- add_cmd('FileType', {
 --   pattern = { 'txt', 'markdown', 'org', 'tex' },
---   callback = function()
---     commands.ltexedit()
---   end
+--   callback = commands.ltexedit
 -- })
 
 -- Set "/*" for comments
@@ -83,26 +81,28 @@ autocmd("FileType", {
 -- Clean CMake Cache
 autocmd('FileType', {
   pattern = { 'c', 'cpp', 'cmake'},
+  callback = commands.clear_cmake_cache
+})
+
+-- @TODO: Review workflow with this
+autocmd('FileType', {
+  pattern = { 'verilog', 'systemverilog' },
   callback = function()
-    commands.clear_cmake_cache()
-  end
+    vim.cmd('VerilogErrorFormat Verilator 1')
+  end,
+  once = true,
 })
 
 -- OverseerRestartLast
 autocmd('FileType', {
   pattern = '*', -- Apply to all file types
-  callback = function()
-    commands.overseer_last_task()
-  end,
+  callback = commands.overseer_last_task
 })
-
 
 -- REPL
 autocmd('FileType', {
   pattern = { 'lua', 'python' },
-  callback = function()
-    commands.start_repl()
-  end
+  callback = commands.start_repl
 })
 
 vim.cmd([[
