@@ -29,20 +29,29 @@ local snippets = {
     txt_node('"')
   }),
 
+  -- define
+  snip("df",{
+    txt_node("`define "),
+    ins_node(1, "/* NAME */"),
+    txt_node(" "),
+    ins_node(2, "/* ARGUMENTS */"),
+  }),
+
+  -- define macro
+  snip("dfm",{
+    txt_node("`define "),
+    ins_node(1, "/* MACRO NAME */"),
+    txt_node(" ( "),
+    ins_node(2, "/* MACRO ARGUMENTS */"),
+    txt_node(" )"),
+  }),
+
   -- begin end
   snip("bg",{
     txt_node({"begin", ""}),
     txt_node({"\t"}),
     ins_node(1, "/* Put your code here */"),
     txt_node({"","end",})
-  }),
-
-  -- define
-  snip("df",{
-    txt_node("`define "),
-    ins_node(1, "/* Macro name */"),
-    txt_node(" "),
-    ins_node(2, "/* Macro arguments */"),
   }),
 
   -- typedef struct packed

@@ -1,8 +1,10 @@
 return {
   {                          -- lspconfig
     'neovim/nvim-lspconfig',
+    enabled = true,
     dependencies = {
       "williamboman/mason.nvim",
+      enabled = true,
       {
         "SmiteshP/nvim-navbuddy",
         dependencies = {
@@ -44,6 +46,7 @@ return {
           {
             silent = true,
             desc   = "Rename",
+            buffer = bufnr,
           }
         )
         -- Code Action
@@ -51,6 +54,7 @@ return {
           {
             silent = true,
             desc   = "Code Action",
+            buffer = bufnr,
           }
         )
         -- Move diag shortcut
@@ -58,35 +62,40 @@ return {
           {
             silent = true,
             desc   = "Jump the to Previous Dx",
+            buffer = bufnr,
           }
         )
         keyset('n', "<leader>]", vim.diagnostic.goto_next,
           {
             silent = true,
             desc   = "Jump the to Next Dx",
+            buffer = bufnr,
           }
         )
         keyset('n', "[d", vim.diagnostic.goto_prev,
           {
             silent = true,
             desc   = "Jump the to Previous Dx",
+            buffer = bufnr,
           }
         )
         keyset('n', "]d", vim.diagnostic.goto_next,
           {
             silent = true,
             desc   = "Jump the to Next Dx",
+            buffer = bufnr,
           }
         )
         keyset('n', '<leader>?', vim.diagnostic.setqflist,
           {
             desc   = "Show Dx",
             silent = true,
+            buffer = bufnr,
           }
         )
         -- GoTo
         keyset("n", "gd", function()
-            fzf.lsp_definitions()
+            local definitions = fzf.lsp_definitions()
             vim.cmd("normal zz")
           end,
           {
@@ -194,14 +203,15 @@ return {
         )
 
         keyset({ "n", "i", "s" }, "<c-b>", function()
-          if not require("noice.lsp").scroll(-4) then
-            return "<c-b>"
-          end
-        end, {
-          silent = true,
-          expr   = true,
-          desc   = "Scroll up",
-        }
+            if not require("noice.lsp").scroll(-4) then
+              return "<c-b>"
+            end
+          end,
+          {
+            silent = true,
+            expr   = true,
+            desc   = "Scroll up",
+          }
         )
 
         -- Navbudy

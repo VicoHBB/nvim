@@ -88,32 +88,3 @@ keyset('n', "<leader>vy", "<CMD>OverseerRunCmd make ys<CR>", {
   silent = true,
   desc = "View simple RTL diagram with Yosys",
 })
-
--- Utilities
-keyset('n', 'gi', '<CMD>VerilogFollowInstance<CR>', {
-  buffer = 0,
-  noremap = true,
-  silent= true,
-  desc = "Follow Instance",
-})
-
-keyset('n', 'gp', '<CMD>VerilogFollowPort<CR>', {
-  buffer = 0,
-  noremap = true,
-  silent= true,
-  desc = "Follow Port",
-})
-
-keyset('n', 'gI', '<CMD>VerilogGotoInstanceStart<CR>', {
-  buffer = 0,
-  noremap = true,
-  silent= true,
-  desc = "Go to Instance Start",
-})
-
-keyset('n', '<leader>V', '<CMD>VerilogErrorFormat Verilator 1<CR>', {
-  buffer = 0,
-  noremap = true,
-  silent= true,
-  desc = "Set Verilator Error format",
-})
