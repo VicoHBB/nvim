@@ -1,5 +1,6 @@
 return {
   'Civitasv/cmake-tools.nvim',
+  enabled = true,
   ft = {
     "c",
     "cpp",
@@ -72,5 +73,27 @@ return {
       cmake_virtual_text_support = false, -- Show the target related to current file using virtual text (at right corner)
 
     })
-  end
+  end,
+  keys = {
+    {
+      "<F9>",
+      "<CMD>CMakeBuild<CR>",
+      mode = { 'n' },
+      ft = { "c", "cpp", "cmake" },
+      noremap = true,
+      silent = true,
+      desc = "Build C/C++ Project",
+    },
+    {
+      "<F10>",
+      function ()
+        vim.cmd("CMakeRun")
+      end,
+      mode = { "n" },
+      ft = { "c", "cpp", "cmake"},
+      noremap = true,
+      silent = true,
+      desc = "Build C/C++ Project",
+    },
+  }
 }
