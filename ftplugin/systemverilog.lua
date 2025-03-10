@@ -25,12 +25,11 @@ vim.bo.commentstring = "/* %s */"
 -- ============================================================================
 
 -- Compilation & Simulation
-
 keyset('n', "<F9>", ":OverseerRunCmd make all<CR>", {
   buffer = 0,
   noremap = true,
   silent = true,
-  desc = "Build project",
+  desc = "Build Verilator Project",
 })
 
 keyset('n', "<F10>", ":OverseerRunCmd make run<CR>", {

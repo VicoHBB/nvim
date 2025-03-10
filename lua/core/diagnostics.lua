@@ -43,7 +43,7 @@ vim.fn.sign_define("LspCodeActionSign",
 -- Function to check and place the sign
 local function show_code_action_sign()
   local bufnr = vim.api.nvim_get_current_buf()
-  local params = vim.lsp.util.make_range_params()
+  local params = vim.lsp.util.make_range_params(0,"utf-8")
   params.context = { diagnostics = vim.diagnostic.get(bufnr) }
 
   -- Clear signs

@@ -1,6 +1,5 @@
 -- Globals
 local cmd = vim.api.nvim_create_user_command
-local Terminal  = require('toggleterm.terminal').Terminal
 
 local M = {} -- Var for return
 
@@ -58,9 +57,10 @@ end
 
 -- REPL for lua & python
 -- @TODO: Use Toggleterm api
-function M.start_repl()
+function M.set_repl()
   cmd("REPL", function()
-    local ft = vim.bo.filetype
+    local Terminal = require('toggleterm.terminal').Terminal
+    local ft       = vim.bo.filetype
     local cmd
 
     if 'lua' == ft then
@@ -78,7 +78,6 @@ function M.start_repl()
     })
 
     repl:toggle()
-
   end, {
     nargs = 0,
     desc = "Start REPL"

@@ -101,8 +101,9 @@ autocmd('FileType', {
 
 -- REPL
 autocmd('FileType', {
+  -- @TODO: Find the way to executen when run "nvim fiel.py" or "file.lua"
   pattern = { 'lua', 'python' },
-  callback = commands.start_repl
+  callback = commands.set_repl
 })
 
 vim.cmd([[
