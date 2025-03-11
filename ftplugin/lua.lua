@@ -13,7 +13,6 @@ vim.bo.tabstop     = 2
 vim.bo.softtabstop = 2
 vim.bo.expandtab   = true
 vim.bo.shiftwidth  = 2
-vim.wo.colorcolumn = "80"
 
 -- ============================================================================
 -- Autocommands
@@ -64,4 +63,31 @@ keyset("n", "<leader>rl", function()
   }
 )
 
--- Utilities
+keyset("n", "<leader>xf", function()
+    vim.cmd("source %")
+  end,
+  {
+    buffer = 0,
+    noremap = true,
+    silent = true,
+    desc = "Source File on NVIM",
+  }
+)
+
+keyset("n", "<leader>xl", ":.lua<CR>",
+  {
+    buffer = 0,
+    noremap = true,
+    silent = true,
+    desc = "Source File on NVIM",
+  }
+)
+
+keyset("v", "<leader>xl", ":lua<CR>",
+  {
+    buffer = 0,
+    noremap = true,
+    silent = true,
+    desc = "Source File on NVIM",
+  }
+)
