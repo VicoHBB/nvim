@@ -1,5 +1,6 @@
 return {
   "haringsrob/nvim_context_vt",
+  enabled = true,
   event = "VeryLazy",
   config = function()
     require('nvim_context_vt').setup({

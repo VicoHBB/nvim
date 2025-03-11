@@ -1,6 +1,7 @@
 return {
   -- Project
   "ahmedkhalf/project.nvim",
+  enabled = true,
   event = "VeryLazy",
   config = function()
     require("project_nvim").setup {
@@ -18,7 +19,6 @@ return {
       -- detection_methods
       patterns = {
         ".git",
-        "makefile",
         "Makefile",
         "app",
         "compile_commands.json",

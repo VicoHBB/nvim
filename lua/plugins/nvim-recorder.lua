@@ -1,6 +1,6 @@
--- minimal config for lazy-loading with lazy.nvim
 return {
   "chrisgrieser/nvim-recorder",
+  enabled = true,
   dependencies = {
     "rcarriga/nvim-notify"
   },
@@ -11,7 +11,6 @@ return {
     { "@", desc = " Play Recording" },
   },
   config = function()
-
     require("recorder").setup({
       slots = { "a", "s", "d" },
       mapping = {
@@ -28,7 +27,6 @@ return {
       -- Clears all macros-slots on startup.
       clear = true,
     })
-
   end,
 }
 

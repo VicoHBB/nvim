@@ -1,11 +1,12 @@
 return {
   'lukas-reineke/headlines.nvim',
+  enabled = true,
   dependencies = {
     "nvim-treesitter/nvim-treesitter"
   },
   ft = {
     "markdown",
-    "org"
+    -- "org"
   },
   opts = {
     vim.cmd [[highlight Dash guibg=#1d2021 guifg=#83a598 gui=bold]],
