@@ -63,7 +63,7 @@ keyset("n", "<leader>rl", function()
   }
 )
 
-keyset("n", "<leader>xf", function()
+keyset("n", "<leader>lf", function()
     vim.cmd("source %")
   end,
   {
@@ -74,20 +74,20 @@ keyset("n", "<leader>xf", function()
   }
 )
 
-keyset("n", "<leader>xl", ":.lua<CR>",
+keyset("n", "<leader>ll", ":.lua<CR>",
   {
     buffer = 0,
     noremap = true,
     silent = true,
-    desc = "Source File on NVIM",
+    desc = "Run line on NVIM",
   }
 )
 
-keyset("v", "<leader>xl", ":lua<CR>",
+keyset("v", "<leader>ll", ":lua<CR>",
   {
     buffer = 0,
     noremap = true,
     silent = true,
-    desc = "Source File on NVIM",
+    desc = "Run Visual Selection on NVIM",
   }
 )
