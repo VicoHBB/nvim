@@ -12,7 +12,8 @@ vim.opt.shiftwidth = 2             -- Set indentation width to 2 spaces
 vim.opt.spell = true               -- Enable spell check
 vim.opt.spelllang = {              -- Set spell to support ES & EN
   "en_us",
-  "es_mx"
+  -- @TODO: Review why is not working
+  -- "es_mx"
 }        -- Set spell check language to English (US) & Spanish (MX)
 
 -- [[ UI and Visual Settings ]]
@@ -63,4 +64,8 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 
 -- [[ Leader Key ]]
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "  -- Set the leader key to space
+vim.g.maplocalleader = "\\"
