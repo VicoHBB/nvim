@@ -1,6 +1,7 @@
 return {
-  "mizlan/iswap.nvim",                                            -- ISwap
-  event = "VeryLazy",
+  "mizlan/iswap.nvim",
+  enabled = true,
+  -- event = "VeryLazy",
   config = function()
     require('iswap').setup{
       -- The keys that will be used as a selection, in order
@@ -45,4 +46,20 @@ return {
       hl_grey_priority = '1000',
     }
   end,
+  keys = {
+    {
+      '<leader>sn',
+      function ()
+        require('iswap').imove_node()
+      end,
+      desc = 'Swap with character under the cursor'
+    },
+    {
+      '<leader>sw',
+      function ()
+        require('iswap').imove_node_with()
+      end,
+      desc = 'Swap with character under the cursor'
+    },
+  }
 }

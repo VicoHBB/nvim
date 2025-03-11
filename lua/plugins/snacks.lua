@@ -36,6 +36,7 @@ end
 
 return {
   "folke/snacks.nvim",
+  enabled = true,
   priority = 1000,
   lazy = false,
   ---@type snacks.Config
@@ -150,7 +151,7 @@ return {
     },
     {
       "<leader>U",
-      function ()
+      function()
         Snacks.picker.undo()
       end,
       desc = "Toggle UndoTree",

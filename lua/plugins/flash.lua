@@ -1,7 +1,11 @@
 return {
   "folke/flash.nvim",
-  event = "VeryLazy",
+  enabled = true,
+  -- event = "VeryLazy",
   -- stylua: ignore
+  opts = {
+  },
+  ---@type Flash.Config
   keys = {
     {
       "s",
@@ -33,8 +37,5 @@ return {
       function() require("flash").toggle() end,
       desc = "Toggle Flash Search",
     },
-  },
-  ---@type Flash.Config
-  opts = {
   },
 }
