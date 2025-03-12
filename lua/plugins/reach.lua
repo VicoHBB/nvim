@@ -1,6 +1,7 @@
 return {
   'toppair/reach.nvim',
-  event = "VeryLazy",
+  enabled = true,
+  -- event = "VeryLazy",
   config = function()
     -- default config
     require('reach').setup({
@@ -8,7 +9,6 @@ return {
     })
   end,
   keys ={
-
     {
       '<leader>b',
       function()
@@ -27,8 +27,16 @@ return {
       end,
       mode = { 'n' },
       silent = true,
-      desc = 'Marks',
+      desc = 'Open Marks',
     },
-
+    {
+      '<leader>tb',
+      function()
+        require('reach').tabpages()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = 'Switch Tabs',
+    }
   }
 }

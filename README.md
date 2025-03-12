@@ -29,16 +29,28 @@ This is my personal neovim configuration, fully set up with `lua` and using `laz
     - [ ] Add descriptions to keybindings
 * [ ] Create a command for align tables in `makrdown` & `orgmode`
 * [ ] Review why `vimtex` is running slow
-* [ ] Improve configuration of snacks
-* [ ] Create a branch with a minimum configuration to be able to use it in `Windows`
+* [ ] Improve documentation
+* [ ] Disable some plugins for`Windows`
 
 ## Dependencies
-For install dependencies install on `Arch` install [paru](https://github.com/Morganamilo/paru) & run:
+
+For install dependencies install on `Arch` install [paru](https://github.com/Morganamilo/paru) or [yay](https://github.com/Jguer/yay) & run:
 ```sh
 paru -S - < dependencies.txt
 ```
 
-> **Note:** Working on it
+For `nvim `providers run:
+```sh
+gem intall neovim
+npm install -g neovim # Maybe run with sudo
+cargo install --locked tree-sitter-cli # tree-sitter-cli
+```
+
+For some plugins run:
+```sh
+# Snacks
+npm install -g @mermaid-js/mermaid-cli # Maybe run with sudo
+```
 
 ## Supported Languages and Development Environments
 This configuration is primarily focused on **Embedded Systems** and supports the following languages and development environments:
@@ -68,9 +80,11 @@ These are the plugins that have been installed and configured.
 | ------------------------------------------------------------------------------------------- | ------------- |
 | [blink.cmp](https://github.com/Saghen/blink.cmp)                                            | 2025-02-15    |
 | [bufferline](https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file)                 | 2024-08-31    |
-| [cmp](https://github.com/hrsh7th/nvim-cmp)                                                  | 2024-10-01    |
 | [cmake-tools](https://github.com/Civitasv/cmake-tools.nvim)                                 | 2025-02-15    |
+| [cmp](https://github.com/hrsh7th/nvim-cmp)                                                  | 2024-10-01    |
+| [dial](https://github.com/monaqa/dial.nvim)                                                 | 2025-03-07    |
 | [flash](https://github.com/folke/flash.nvim)                                                | 2024-07-27    |
+| [fzf-lua](https://github.com/ibhagwan/fzf-lua)                                              | 2024-08-31    |
 | [garbage-day](https://github.com/Zeioth/garbage-day.nvim)                                   | 2025-02-03    |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                      | 2024-06-19    |
 | [gruvbox-material](https://github.com/sainnhe/gruvbox-material)                             | 2024-07-16    |
@@ -100,11 +114,9 @@ These are the plugins that have been installed and configured.
 | [quicker](https://github.com/stevearc/quicker.nvim)                                         | 2024-08-11    |
 | [reach](https://github.com/toppair/reach.nvim)                                              | 2024-08-25    |
 | [snacks](https://github.com/folke/snacks.nvim)                                              | 2025-01-23    |
+| [smart-splits](https://github.com/mrjones2014/smart-splits.nvim)                            | 2025-03-07    |
 | [tabnine](https://github.com/codota/tabnine-nvim)                                           | 2024-07-14    |
-| [telescope-fzf-native.nvim](https://github.com/nvim-telescope/telescope-fzf-native.nvim)    | 2024-08-31    |
-| [telescope-live-grep-args](https://github.com/nvim-telescope/telescope-live-grep-args.nvim) | 2024-08-31    |
 | [telescope-orgmode](https://github.com/nvim-orgmode/telescope-orgmode.nvim)                 | 2024-06-19    |
-| [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)           | 2024-07-31    |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                               | 2024-08-31    |
 | [tfm](https://github.com/Rolv-Apneseth/tfm.nvim)                                            | 2024-08-25    |
 | [toggleterm](https://github.com/akinsho/toggleterm.nvim)                                    | 2024-08-12    |

@@ -1,5 +1,8 @@
 return {
   'echasnovski/mini.nvim',
+  enabled = true,
+  -- lazy = false,
+  event ="VeryLazy",
   version = '*',
   config = function()
     -- require('mini.icons').setup()
@@ -59,4 +62,24 @@ return {
       },
     })
   end,
+  keys = {
+    {
+      "<leader>mf",
+      function()
+        MiniFiles.open()
+      end,
+      mode = { "n" },
+      silent = true,
+      desc = "Open MiniFiles"
+    },
+    {
+      "<leader>rs",
+      function()
+        MiniSessions.read()
+      end,
+      mode = { "n" },
+      silent = true,
+      desc = "Read session"
+    },
+  }
 }

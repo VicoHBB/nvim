@@ -1,6 +1,7 @@
 return {
   "rolv-apneseth/tfm.nvim",
-  lazy = false,
+  enabled = true,
+  lazy = false, -- Recommended
   opts = {
     -- TFM to use
     -- Possible choices: "ranger" | "nnn" | "lf" | "vifm" | "yazi" (default)
@@ -35,5 +36,26 @@ return {
       y      = 0.5,
     },
   },
-  keys = {}, -- Config on global_keymaps
+  keys = {
+    {
+      "<leader>F",
+      function()
+        require("tfm").select_file_manager("yazi")
+        require("tfm").open()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "Open Yazi",
+    },
+    {
+      "<leader>fV",
+      function()
+        require("tfm").select_file_manager("vifm")
+        require("tfm").open()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "Open ViFm",
+    },
+  },
 }

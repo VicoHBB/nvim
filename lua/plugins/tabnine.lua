@@ -1,5 +1,6 @@
 return {
   'codota/tabnine-nvim',
+  enabled = true,
   build = "./dl_binaries.sh",
   event = "VeryLazy",
   config = function()
@@ -14,5 +15,16 @@ return {
       log_file_path = os.getenv("HOME") .. "/.cache/nvim/tabnine",
       ignore_certificate_errors = false,
     })
-  end
+  end,
+  keys = {
+    {
+      "<leader>T",
+      function ()
+        vim.cmd("TabnineChat")
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "Tabnine: Open Chat"
+    },
+  }
 }

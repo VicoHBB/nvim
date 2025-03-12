@@ -1,10 +1,12 @@
-
 return {
   "ibhagwan/fzf-lua",
+  enbled = true,
+  lazy = true,
   cmd = "FzfLua",
+  -- evvent = "VeryLazy",
   -- optional for icon support
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
+    -- "nvim-tree/nvim-web-devicons",
   -- "echasnovski/mini.icons",
   },
   opts = function (_, opts)
@@ -181,5 +183,178 @@ return {
     require('fzf-lua').register_ui_select({
       winopts = winopts_nvim_default
     })
-  end
+  end,
+  keys = {
+    {
+      "<F1>",
+      function()
+        require('fzf-lua').help_tags()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "Help Tags",
+    },
+    {
+      "z=",
+      function()
+        require('fzf-lua').spell_suggest()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "Spell Suggest",
+    },
+    {
+      "<leader>fr",
+      function()
+        require('fzf-lua').resume()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Resume Last Builtin",
+    },
+    {
+      "<leader>fz",
+      function()
+        require('fzf-lua').builtin()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Builtin",
+    },
+    {
+      "<leader>ff",
+      function()
+        require('fzf-lua').files()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Find Files",
+    },
+    {
+      "<leader>fo",
+      function()
+        require('fzf-lua').oldfiles()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Old Files",
+    },
+    {
+      "<leader>fg",
+      function()
+        require('fzf-lua').git_files()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Git Files",
+    },
+    {
+      "<leader>fc",
+      function()
+        require('fzf-lua').commands()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Commands",
+    },
+    {
+      "<leader>fl",
+      function()
+        require('fzf-lua').blines()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Lines",
+    },
+    {
+      "<leader>fh",
+      function()
+        require('fzf-lua').git_bcommits()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Buffer Commits",
+    },
+    {
+      "<leader>\"",
+      function()
+        require('fzf-lua').registers()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Registers",
+    },
+    {
+      "<leader>fv",
+      function()
+        require('fzf-lua').nvim_options()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua nvim_options",
+    },
+    {
+      "<leader>S",
+      function()
+        require('fzf-lua').live_grep()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Search (live grep)",
+    },
+    {
+      "gs",
+      function()
+        require('fzf-lua').grep_cword()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Search Exact Word under cursor",
+    },
+    {
+      "gS",
+      function()
+        require('fzf-lua').grep_cWORD()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Search Word under cursor",
+    },
+    {
+      "gs",
+      function()
+        require('fzf-lua').grep_visual()
+      end,
+      mode = { 'v' },
+      silent = true,
+      desc = "FZFLua Search (Visual Selection)",
+    },
+    {
+      "<leader>ft",
+      function()
+        require('fzf-lua').tags()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Tags",
+    },
+    {
+      "g]",
+      function()
+        require('fzf-lua').tags_grep_cword()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "FZFLua Tag under cursor",
+    },
+    {
+      "g]",
+      function()
+        require('fzf-lua').tags_grep_visual()
+      end,
+      mode = { 'v' },
+      silent = true,
+      desc = "FZFLua Tag (Visual Selection)",
+    },
+  }
 }

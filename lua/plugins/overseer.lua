@@ -1,6 +1,22 @@
 return { -- The task runner we use
   "stevearc/overseer.nvim",
-  event = "VeryLazy",
+  enabled = true,
+  -- event = "VeryLazy",
+  cmd = {
+    "OverseerOpen",
+    "OverseerClose",
+    "OverseerToggle",
+    "OverseerSaveBundle",
+    "OverseerLoadBundle",
+    "OverseerDeleteBundle",
+    "OverseerRunCmd",
+    "OverseerRun",
+    "OverseerInfo",
+    "OverseerBuild",
+    "OverseerQuickAction",
+    "OverseerTaskAction",
+    "OverseerClearCache",
+  },
   opts = {
     strategy = {
       "jobstart",
@@ -58,4 +74,34 @@ return { -- The task runner we use
       },
     },
   },
+  keys = {
+    {
+      "<F8>",
+      function()
+        require("overseer").toggle()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "Toggle Overseer",
+    },
+    {
+      "<leader>rt",
+      function()
+        -- @TODO: Chamges vim.cmd for lua function
+        vim.cmd("OverseerRun")
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "Run Task",
+    },
+    {
+      "<leader>rr",
+      function()
+        require('core.custom_functions').overseer_last_task()
+      end,
+      mode = { 'n' },
+      silent = true,
+      desc = "ReRun Task",
+    },
+  }
 }
