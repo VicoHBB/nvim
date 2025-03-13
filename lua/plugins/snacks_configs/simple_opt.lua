@@ -1,42 +1,43 @@
 local M = {}
 
 M.notifier = {
-  enabled = true,
+    enabled = true,
+    timeout = 2000,
 }
 
 M.quickfile = {
-  enabled = true,
-  exclude = {
-    -- Files to exclude
-  },
+    enabled = true,
+    exclude = {
+        -- Files to exclude
+    },
 }
 
 M.indent = {
-  enabled = true,
+    enabled = true,
 }
 
 M.input = {
-  enabled = true,
+    enabled = true,
 }
 
 M.scroll = {
-  enabled = true,
+    enabled = true,
 }
 
 M.words = {
-  enabled = true,
+    enabled = true,
 }
 
 M.scope = {
-  enabled = true,
+    enabled = true,
 }
 
 M.explorer = {
-  enabled = true,
+    enabled = true,
 }
 
 M.image = {
-  enable = true,
+    enable = false,
 }
 
 return M

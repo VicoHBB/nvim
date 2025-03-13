@@ -29,8 +29,14 @@ ruby
 rust
 sh
 tar
+texlive-basic
 texlive-binextra
+texlive-fontsextra
+texlive-fontsrecommended
 texlive-latex
+texlive-latexrecommended
+texlive-mathscience
+texlive-xetex
 uebe
 ueberzugpp
 unzip
@@ -39,5 +45,6 @@ wget
 yarn
 yazi
 zathura
+zathura-pdf-mupdf
 zoxide
 zsh

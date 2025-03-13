@@ -1,4 +1,4 @@
-local keyset = vim.keymap.set
+local keyset       = vim.keymap.set
 
 -- Set local leader
 -- vim.g.maplocalleader = "\\"
@@ -7,7 +7,7 @@ vim.bo.tabstop     = 2
 vim.bo.softtabstop = 2
 vim.bo.expandtab   = true
 vim.bo.shiftwidth  = 2
-vim.wo.colorcolumn = "100"
+vim.wo.colorcolumn = "120"
 
 vim.cmd [[highlight Headline guibg=#3C3836]]
 vim.cmd [[highlight CodeBlock guibg=#282828]]
@@ -16,51 +16,51 @@ vim.cmd [[highlight Quote guibg=#282828]]
 
 -- Keymaps
 keyset(
-  'n',
-  '<F9>',
-  '<CMD>MarkdownPreviewToggle<CR>',
-  {
-    buffer = 0,
-    noremap = true,
-    silent = true,
-    desc = "Toggle Preview"
-  }
+    'n',
+    '<F9>',
+    '<CMD>MarkdownPreviewToggle<CR>',
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Toggle Preview"
+    }
 )
 
 keyset(
-  'n',
-  '\\x',
-  '<CMD>MDTaskToggle<CR>',
-  {
-    buffer = 0,
-    noremap = true,
-    silent= true,
-    desc = "Toggle Checkbox"
-  }
+    'n',
+    '<localleader>x',
+    '<CMD>MDTaskToggle<CR>',
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Toggle Checkbox"
+    }
 )
 
 keyset(
-  'n',
-  '\\o',
-  '<CMD>MDListItemBelow<CR>',
-  {
-    buffer = 0,
-    noremap = true,
-    silent= true,
-    desc = "Add list item below"
-  }
+    'n',
+    '<localleader>o',
+    '<CMD>MDListItemBelow<CR>',
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Add list item below"
+    }
 )
 
 keyset(
-  'n',
-  '\\O',
-  '<CMD>MDListItemAbove<CR>',
-  {
-    buffer = 0,
-    noremap = true,
-    silent= true,
-    desc = "Add list item below"
-  }
+    'n',
+    '<localleader>O',
+    '<CMD>MDListItemAbove<CR>',
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Add list item below"
+    }
 )
 
 -- keyset( 'n', "||",
@@ -77,13 +77,13 @@ keyset(
 -- )
 
 keyset(
-  'n',
-  "\\t",
-  "0100lbi<CR><ESC>0",
-  {
-    buffer = 0,
-    noremap = true,
-    silent= true,
-    desc = "Limit text to 100 columns"
-  }
+    'n',
+    "\\t",
+    "0120lbi<CR><ESC>0",
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Limit text to 100 columns"
+    }
 )

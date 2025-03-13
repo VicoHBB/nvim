@@ -1,7 +1,7 @@
 -- ============================================================================
 -- Local variables
 -- ============================================================================
-local keyset = vim.keymap.set
+local keyset       = vim.keymap.set
 
 -- ============================================================================
 -- Buffer variables
@@ -22,12 +22,26 @@ vim.bo.smartindent = true
 -- Keymaps
 -- ============================================================================
 
+-- Toggle src & header
+keyset('n', "<leader>ch", function()
+        vim.cmd("ClangdSwitchSourceHeader")
+    end,
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Clangd Switch Source Header"
+    }
+)
+
 -- This is for Verilator tests
-keyset('n', "<leader>vr", "<CMD>OverseerRunCmd make run<CR>", {
-  buffer = 0,
-  noremap = true,
-  silent = true,
-  desc = "Run simulation with Verilator",
-})
+keyset('n', "<leader>vr", "<CMD>OverseerRunCmd make run<CR>",
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Run simulation with Verilator",
+    }
+)
 
 -- Utilities

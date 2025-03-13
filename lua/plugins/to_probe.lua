@@ -1,41 +1,69 @@
 return {
-  -- "othree/xml.vim",
-  -- "p00f/clangd_extensions.nvim",
-  -- "vim-scripts/c.vim", -- For C
-  -- {
-  --   "gennaro-tedesco/nvim-peekup",
-  --   event = "VeryLazy",
-  --   init = function()
-  --     vim.g.peekup_open = "<leader>\""
-  --   end
-  -- }
-  -- {
-  --   "Dan7h3x/LazyDo",
-  --   branch = "main",
-  --   keys = { -- recommended keymap for easy toggle LazyDo in normal and insert modes (arbitrary)
-  --     {
-  --       "<F5>",
-  --       "<ESC><CMD>LazyDoToggle<CR>",
-  --       mode = { "n", "i" },
-  --     },
-  --   },
-  --   event = "VeryLazy",
-  --   opts = {
-  --     -- your config here
-  --   },
-  -- },
-  -- {                          -- Table Mode
-  --   'dhruvasagar/vim-table-mode',
-  --   ft = {
-  --     "markdown",
-  --     "org"
-  --   },
-  --   config = function()
-  --     vim.g.table_mode_map_prefix = '|'
-  --   end,
-  -- },
-  -- {
-  --   "OXY2DEV/helpview.nvim",
-  --   lazy = false
-  -- },
+    -- "othree/xml.vim",
+    -- "p00f/clangd_extensions.nvim",
+    -- "vim-scripts/c.vim", -- For C
+    -- {
+    --     'MeanderingProgrammer/render-markdown.nvim',
+    --     dependencies = {
+    --         'nvim-treesitter/nvim-treesitter',
+    --         'nvim-tree/nvim-web-devicons'
+    --     }, -- if you prefer nvim-web-devicons
+    --     ft = {
+    --         "markdown",
+    --     },
+    --     opts = {
+    --     },
+    -- },
+    -- {
+    --     "gennaro-tedesco/nvim-peekup",
+    --     event = "VeryLazy",
+    --     init = function()
+    --         vim.g.peekup_open = "<leader>\""
+    --     end
+    -- }
+    -- {
+    --     "Dan7h3x/LazyDo",
+    --     branch = "main",
+    --     keys = { -- recommended keymap for easy toggle LazyDo in normal and insert modes (arbitrary)
+    --         {
+    --             "<F5>",
+    --             "<ESC><CMD>LazyDoToggle<CR>",
+    --             mode = { "n", "i" },
+    --         },
+    --     },
+    --     event = "VeryLazy",
+    --     opts = {
+    --         -- your config here
+    --     },
+    -- },
+    -- { -- Table Mode
+    --     'dhruvasagar/vim-table-mode',
+    --     ft = {
+    --         "markdown",
+    --         "org"
+    --     },
+    --     config = function()
+    --         vim.g.table_mode_map_prefix = '|'
+    --     end,
+    -- },
+    -- {
+    --     "OXY2DEV/helpview.nvim",
+    --     lazy = false
+    -- },
+    -- {
+    --     "nvim-orgmode/telescope-orgmode.nvim",
+    --     event = "VeryLazy",
+    --     ft = "org",
+    --     dependencies = {
+    --         "nvim-orgmode/orgmode",
+    --         "nvim-telescope/telescope.nvim",
+    --     },
+    --     config = function()
+    --         require("telescope").load_extension("orgmode")
+    --
+    --         vim.keymap.set("n", "<leader>r", require("telescope").extensions.orgmode.refile_heading)
+    --         vim.keymap.set("n", "<leader>n", require("telescope").extensions.orgmode.search_headings)
+    --         vim.keymap.set("n", "<leader>li", require("telescope").extensions.orgmode.insert_link)
+    --     end,
+    -- },
 }

@@ -1,15 +1,15 @@
 -- [[Orgmode]]
-local keyset = vim.keymap.set
-local cmp = require('cmp')                    -- Set up nvim-cmp
+local keyset          = vim.keymap.set
+local cmp             = require('cmp') -- Set up nvim-cmp
 
-vim.opt.conceallevel = 2
+vim.opt.conceallevel  = 2
 vim.opt.concealcursor = 'nc'
 
-vim.bo.tabstop     = 2
-vim.bo.softtabstop = 2
-vim.bo.expandtab   = true
-vim.bo.shiftwidth  = 2
-vim.wo.colorcolumn = "100"
+vim.bo.tabstop        = 2
+vim.bo.softtabstop    = 2
+vim.bo.expandtab      = true
+vim.bo.shiftwidth     = 2
+vim.wo.colorcolumn    = "120"
 
 -- vim.cmd [[highlight Headline guibg=#3C3836]]
 -- vim.cmd [[highlight CodeBlock guibg=#282828]]
@@ -39,13 +39,13 @@ vim.wo.colorcolumn = "100"
 -- )
 
 keyset(
-  'n',
-  "\\t",
-  "0100lbi<CR><ESC>0",
-  {
-    buffer = 0,
-    noremap = true,
-    silent= true,
-    desc = "Limit text to 100 columns"
-  }
+    'n',
+    "\\t",
+    "0120lbi<CR><ESC>0",
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Limit text to 100 columns"
+    }
 )

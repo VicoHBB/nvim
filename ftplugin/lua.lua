@@ -1,18 +1,18 @@
 -- ============================================================================
 -- Local variables
 -- ============================================================================
-local keyset = vim.keymap.set
-local add_cmd = vim.api.nvim_create_autocmd
-local commands = require('core.custom_commands')
-local trim_spaces = true
+local keyset       = vim.keymap.set
+local add_cmd      = vim.api.nvim_create_autocmd
+local trim_spaces  = true
 
 -- ============================================================================
 -- Buffer variables
 -- ============================================================================
-vim.bo.tabstop     = 2
-vim.bo.softtabstop = 2
+vim.bo.tabstop     = 4
+vim.bo.softtabstop = 4
 vim.bo.expandtab   = true
-vim.bo.shiftwidth  = 2
+vim.bo.shiftwidth  = 4
+vim.wo.colorcolumn = "120"
 
 -- ============================================================================
 -- Autocommands
@@ -25,17 +25,17 @@ vim.bo.shiftwidth  = 2
 -- Compilation & Simulation
 
 keyset("n", "<F9>", "<CMD>TermExec cmd='dofile(\"%\")'<CR>", {
-  buffer = 0,
-  noremap = true,
-  silent = true,
-  desc = "Run file",
+    buffer = 0,
+    noremap = true,
+    silent = true,
+    desc = "Run file",
 })
 
 keyset("n", "<F10>", "<CMD>REPL<CR>", {
-  buffer = 0,
-  noremap = true,
-  silent = true,
-  desc = "REPL",
+    buffer = 0,
+    noremap = true,
+    silent = true,
+    desc = "REPL",
 })
 
 -- Utilities
@@ -53,41 +53,41 @@ keyset("n", "<F10>", "<CMD>REPL<CR>", {
 -- )
 
 keyset("n", "<leader>rl", function()
-    require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 1 })
-  end,
-  {
-    buffer = 0,
-    noremap = true,
-    silent = true,
-    desc = "Run lines on REPL",
-  }
+        require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 1 })
+    end,
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Run lines on REPL",
+    }
 )
 
 keyset("n", "<leader>lf", function()
-    vim.cmd("source %")
-  end,
-  {
-    buffer = 0,
-    noremap = true,
-    silent = true,
-    desc = "Source File on NVIM",
-  }
+        vim.cmd("source %")
+    end,
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Source File on NVIM",
+    }
 )
 
 keyset("n", "<leader>ll", ":.lua<CR>",
-  {
-    buffer = 0,
-    noremap = true,
-    silent = true,
-    desc = "Run line on NVIM",
-  }
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Run line on NVIM",
+    }
 )
 
 keyset("v", "<leader>ll", ":lua<CR>",
-  {
-    buffer = 0,
-    noremap = true,
-    silent = true,
-    desc = "Run Visual Selection on NVIM",
-  }
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Run Visual Selection on NVIM",
+    }
 )
