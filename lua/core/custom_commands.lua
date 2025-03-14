@@ -1,5 +1,6 @@
 -- Variables
 local cmd = vim.api.nvim_create_user_command
+local buf_cmd = vim.api.nvim_buf_create_user_command
 
 local M = {} -- Var for return
 
@@ -43,30 +44,35 @@ local M = {} -- Var for return
 -- REPL for lua & python
 -- @TODO: Use Toggleterm api
 function M.set_repl()
-    cmd("REPL", function()
-        local Terminal = require('toggleterm.terminal').Terminal
-        local ft       = vim.bo.filetype
-        local cmd
+    local ft = vim.bo.filetype
 
-        if 'lua' == ft then
-            -- cmd = "lua"
-            cmd = "croissant"
-        elseif 'python' == ft then
-            cmd = "ipython --no-autoindent"
-        else
-            print("Dunno")
-        end
+    if 'lua' == ft or 'python' == ft then
+        buf_cmd(0, "REPL", function()
+                local Terminal = require('toggleterm.terminal').Terminal
+                local interpreter
 
-        local repl = Terminal:new({
-            name = "REPL",
-            cmd = cmd,
-        })
+                if 'lua' == ft then
+                    -- cmd = "lua"
+                    interpreter = "croissant"
+                elseif 'python' == ft then
+                    interpreter = "ipython --no-autoindent"
+                else
+                    print("Dunno")
+                end
 
-        repl:toggle()
-    end, {
-        nargs = 0,
-        desc = "Start REPL"
-    })
+                local repl = Terminal:new({
+                    name = "REPL",
+                    cmd = interpreter,
+                })
+
+                repl:toggle()
+            end,
+            {
+                nargs = 0,
+                desc = "Start REPL"
+            }
+        )
+    end
 end
 
 function M.clear_cmake_cache()

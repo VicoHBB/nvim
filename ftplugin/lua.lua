@@ -2,7 +2,6 @@
 -- Local variables
 -- ============================================================================
 local keyset       = vim.keymap.set
-local add_cmd      = vim.api.nvim_create_autocmd
 local trim_spaces  = true
 
 -- ============================================================================

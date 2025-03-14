@@ -1,176 +1,173 @@
 return {
-  'nvim-telescope/telescope.nvim',
-  enabled = true,
-  -- tag = '0.1.1',
-  cmd = {
-    "Tele",
-    "Telescope"
-  },
-  branch = '0.1.x',
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-lua/popup.nvim",
-    -- "nvim-telescope/telescope-ui-select.nvim",
-    -- {
-    --   "nvim-telescope/telescope-live-grep-args.nvim",
-    --   -- This "ill not install any breaking changes.
-    --   -- For major updates, this must be adjusted manually.
-    --   version = "^1.0.0",
-    -- },
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build =
-      "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+    'nvim-telescope/telescope.nvim',
+    enabled = false,
+    -- tag = '0.1.1',
+    cmd = {
+        "Tele",
+        "Telescope"
     },
-  },
-  config = function()
-    local actions = require("telescope.actions")
-    -- local lga_actions = require("telescope-live-grep-args.actions")
-    local action_state = require("telescope.actions.state")
-    local layout_actions = require("telescope.actions.layout")
+    branch = '0.1.x',
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-lua/popup.nvim",
+        -- "nvim-telescope/telescope-ui-select.nvim",
+        -- {
+        --   "nvim-telescope/telescope-live-grep-args.nvim",
+        --   -- This "ill not install any breaking changes.
+        --   -- For major updates, this must be adjusted manually.
+        --   version = "^1.0.0",
+        -- },
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            build =
+            "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+        },
+    },
+    config = function()
+        local actions = require("telescope.actions")
+        -- local lga_actions = require("telescope-live-grep-args.actions")
+        local action_state = require("telescope.actions.state")
+        local layout_actions = require("telescope.actions.layout")
 
-    local lsp_pickers_opt = {
-      previewer = false,
-      theme = "cursor",
-      layout_config = {
-        width = 100,
-        height = 10,
-      },
-    }
+        local lsp_pickers_opt = {
+            previewer = false,
+            theme = "cursor",
+            layout_config = {
+                width = 100,
+                height = 10,
+            },
+        }
 
 
-    local function quote_prompt(prompt_bufnr)
-      require("telescope-live-grep-args.actions").quote_prompt()(prompt_bufnr)
-    end
-
-    local function open_selection(prompt_bufnr)
-      local picker = action_state.get_current_picker(prompt_bufnr)
-      local multi = picker:get_multi_selection()
-      actions.select_default(prompt_bufnr)         -- the normal enter behaviour
-      for _, j in pairs(multi) do
-        if j.path ~= nil then            -- is it a file -> open it as well:
-          vim.cmd(string.format("%s %s", "edit", j.path))
+        local function quote_prompt(prompt_bufnr)
+            require("telescope-live-grep-args.actions").quote_prompt()(prompt_bufnr)
         end
-      end
-    end
 
-    require('telescope').setup {
-      defaults = {
-        prompt_prefix = " ",
-        selection_caret = " ",
-        multi_icon = " ",
-        path_display = { "truncate" },
-        sorting_strategy = "ascending",
-        layout_config = {
-          prompt_position = "top",
-        },
-        set_env = { ["COLORTERM"] = "truecolor" },
-        mappings = {
-          i = {
-            ["<C-j>"] = actions.move_selection_next,
-            ["<C-k>"] = actions.move_selection_previous,
+        local function open_selection(prompt_bufnr)
+            local picker = action_state.get_current_picker(prompt_bufnr)
+            local multi = picker:get_multi_selection()
+            actions.select_default(prompt_bufnr) -- the normal enter behaviour
+            for _, j in pairs(multi) do
+                if j.path ~= nil then      -- is it a file -> open it as well:
+                    vim.cmd(string.format("%s %s", "edit", j.path))
+                end
+            end
+        end
 
-            ["<C-n>"] = actions.cycle_history_next,
-            ["<C-p>"] = actions.cycle_history_prev,
+        require('telescope').setup {
+            defaults = {
+                prompt_prefix = " ",
+                selection_caret = " ",
+                multi_icon = " ",
+                path_display = { "truncate" },
+                sorting_strategy = "ascending",
+                layout_config = {
+                    prompt_position = "top",
+                },
+                set_env = { ["COLORTERM"] = "truecolor" },
+                mappings = {
+                    i = {
+                        ["<C-j>"] = actions.move_selection_next,
+                        ["<C-k>"] = actions.move_selection_previous,
 
-            ["<CR>"] = open_selection,
+                        ["<C-n>"] = actions.cycle_history_next,
+                        ["<C-p>"] = actions.cycle_history_prev,
 
-            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-            ["<A-q>"] = actions.send_to_qflist + actions.open_qflist,
+                        ["<CR>"] = open_selection,
 
-            ["<C-h>"] = layout_actions.toggle_preview
+                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                        ["<A-q>"] = actions.send_to_qflist + actions.open_qflist,
 
-          },
+                        ["<C-h>"] = layout_actions.toggle_preview
 
-          n = {
+                    },
 
-            ["<CR>"] = open_selection,
+                    n = {
 
-            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-            ["<A-q>"] = actions.send_to_qflist + actions.open_qflist,
-          },
-        },
-      },
+                        ["<CR>"] = open_selection,
 
-      pickers = {
-        find_files = {
-          previewer = false,
-          theme = "dropdown"
-        },
-        git_files = {
-          previewer = false,
-          theme = "dropdown"
-        },
-        oldfiles = {
-          previewer = false,
-          theme = "dropdown"
-        },
-        spell_suggest = {
-          prompt_title = "Spell",
-          theme = "cursor",
-        },
-        commands = {
-          prompt_title = "Commands",
-          theme = "dropdown"
-        },
-        vim_options = {
-          prompt_title = "NVIM Opts",
-          theme = "dropdown"
-        },
-        current_buffer_fuzzy_find = {
-          prompt_title = "Current Buffer Lines",
-          layout_strategy = "vertical",
-        },
-        lsp_definitions = {
-        },
-        lsp_references = lsp_pickers_opt,
-        lsp_incoming_calls = lsp_pickers_opt,
-        lsp_outgoing_calls = lsp_pickers_opt,
-        lsp_implementations = lsp_pickers_opt,
-        lsp_document_symbols = lsp_pickers_opt,
-        lsp_type_definitions = lsp_pickers_opt,
-        lsp_workspace_symbols = lsp_pickers_opt,
-        lsp_dynamic_workspace_symbols = lsp_pickers_opt,
-      },
+                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                        ["<A-q>"] = actions.send_to_qflist + actions.open_qflist,
+                    },
+                },
+            },
 
-      extensions = {
+            pickers = {
+                find_files = {
+                    previewer = false,
+                    theme = "dropdown"
+                },
+                git_files = {
+                    previewer = false,
+                    theme = "dropdown"
+                },
+                oldfiles = {
+                    previewer = false,
+                    theme = "dropdown"
+                },
+                spell_suggest = {
+                    prompt_title = "Spell",
+                    theme = "cursor",
+                },
+                commands = {
+                    prompt_title = "Commands",
+                    theme = "dropdown"
+                },
+                vim_options = {
+                    prompt_title = "NVIM Opts",
+                    theme = "dropdown"
+                },
+                current_buffer_fuzzy_find = {
+                    prompt_title = "Current Buffer Lines",
+                    layout_strategy = "vertical",
+                },
+                lsp_definitions = {
+                },
+                lsp_references = lsp_pickers_opt,
+                lsp_incoming_calls = lsp_pickers_opt,
+                lsp_outgoing_calls = lsp_pickers_opt,
+                lsp_implementations = lsp_pickers_opt,
+                lsp_document_symbols = lsp_pickers_opt,
+                lsp_type_definitions = lsp_pickers_opt,
+                lsp_workspace_symbols = lsp_pickers_opt,
+                lsp_dynamic_workspace_symbols = lsp_pickers_opt,
+            },
 
-        fzf = {
-          fuzzy = true,                     -- false will only do exact matching
-          override_generic_sorter = true,   -- override the generic sorter
-          override_file_sorter = true,      -- override the file sorter
-          case_mode = "smart_case",         -- or "ignore_case" or "respect_case"
-          -- the default case_mode is "smart_case"
-        },
+            extensions = {
 
-        -- ["ui-select"] = {
-        --   require("telescope.themes").get_dropdown {
-        --     -- even more opts
-        --   }
-        -- },
+                fzf = {
+                    fuzzy = true,         -- false will only do exact matching
+                    override_generic_sorter = true, -- override the generic sorter
+                    override_file_sorter = true, -- override the file sorter
+                    case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+                    -- the default case_mode is "smart_case"
+                },
 
-        -- live_grep_args = {
-        --   auto_quoting = true,   -- enable/disable auto-quoting
-        --   -- define mappings, e.g.
-        --   mappings = {           -- extendmmappings
-        --     i = {
-        --       ["<CR>"] = open_selection,
-        --       ["<C-r>"] = quote_prompt,
-        --       ["<C-g>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
-        --       -- freeze the current list and start a fuzzy search in the frozen list
-        --       ["<C-f>"] = actions.to_fuzzy_refine,
-        --     }
-        --   },
-        -- },
+                -- ["ui-select"] = {
+                --   require("telescope.themes").get_dropdown {
+                --     -- even more opts
+                --   }
+                -- },
 
-        projects = {}
+                -- live_grep_args = {
+                --   auto_quoting = true,   -- enable/disable auto-quoting
+                --   -- define mappings, e.g.
+                --   mappings = {           -- extendmmappings
+                --     i = {
+                --       ["<CR>"] = open_selection,
+                --       ["<C-r>"] = quote_prompt,
+                --       ["<C-g>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+                --       -- freeze the current list and start a fuzzy search in the frozen list
+                --       ["<C-f>"] = actions.to_fuzzy_refine,
+                --     }
+                --   },
+                -- },
 
-      },
-    }
+            },
+        }
 
-    -- require('telescope').load_extension('orgmode')
-    require('telescope').load_extension('projects')
-    -- require("telescope").load_extension("live_grep_args")
-    -- require("telescope").load_extension("ui-select")
-  end,
+        -- require('telescope').load_extension('orgmode')
+        -- require("telescope").load_extension("live_grep_args")
+        -- require("telescope").load_extension("ui-select")
+    end,
 }

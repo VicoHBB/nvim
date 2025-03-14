@@ -1,12 +1,12 @@
 return {
     'echasnovski/mini.nvim',
     enabled = true,
-    -- lazy = false,
-    -- event = "VeryLazy",
+    -- lazy = true,
+    event = "VeryLazy",
     version = '*',
     config = function()
         -- require('mini.icons').setup()
-        require('mini.ai').setup()
+        -- require('mini.ai').setup()
         require('mini.files').setup()
         require('mini.sessions').setup()
         require('mini.pairs').setup()
