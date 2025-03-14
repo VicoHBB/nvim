@@ -493,20 +493,20 @@ return {
         -- Not use to much
         -- ============================================================================
 
-        lsp.vimls.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-        })
+        -- lsp.vimls.setup({
+        --     on_attach = on_attach,
+        --     capabilities = capabilities,
+        -- })
 
-        lsp.jsonls.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-        })
+        -- lsp.jsonls.setup({
+        --     on_attach = on_attach,
+        --     capabilities = capabilities,
+        -- })
 
-        lsp.lemminx.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-        })
+        -- lsp.lemminx.setup({
+        --     on_attach = on_attach,
+        --     capabilities = capabilities,
+        -- })
 
         -- lsp.bashls.setup({
         --   on_attach = on_attach,

@@ -7,6 +7,41 @@ return {
         "williamboman/mason-lspconfig.nvim",
     },
     config = function()
+        local function package_list()
+            local packages
+
+            local packages_win32 = {
+                "lua_ls",
+                "clangd",
+                "pyright",
+                "pylsp",
+                "marksman",
+                "lemminx",
+                "ltex-ls"
+            }
+
+            local packages_unix = {
+                "lua_ls",
+                "clangd",
+                "cmake",
+                "neocmake",
+                "pyright",
+                "pylsp",
+                "marksman",
+                "verible",
+                "svls",
+                "textlsp"
+            }
+
+            if Is_Not_Win32 then
+                packages = packages_unix
+            else
+                packages = packages_win32
+            end
+
+            return packages
+        end
+
         require("mason").setup({
             ui = {
                 -- Whether to automatically check for new versions
@@ -36,17 +71,7 @@ return {
         })
 
         require("mason-lspconfig").setup({
-            ensure_installed = {
-                "lua_ls",
-                "clangd",
-                "cmake",
-                "neocmake",
-                "pyright",
-                "pylsp",
-                "marksman",
-                "verible",
-                "svls",
-            },
+            ensure_installed = package_list(),
             automatic_installation = false,
         })
     end,

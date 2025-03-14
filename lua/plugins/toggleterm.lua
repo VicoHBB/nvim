@@ -1,6 +1,7 @@
 return {
     'akinsho/toggleterm.nvim',
-    enabled = true,
+    enabled = Is_Not_Win32, -- @TODO: Review this
+    -- lazy = true,
     -- event = "VeryLazy",
     cmd = {
         "ToggleTerm",

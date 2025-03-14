@@ -84,6 +84,6 @@ keyset(
         buffer = 0,
         noremap = true,
         silent = true,
-        desc = "Limit text to 100 columns"
+        desc = "Limit text to 120 columns"
     }
 )
