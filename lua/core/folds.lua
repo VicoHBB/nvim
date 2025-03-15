@@ -1,8 +1,8 @@
 function _G.FoldFormat()
-  local line = vim.fn.getline(vim.v.foldstart) -- Toma la primera línea del fold
-  local lines = vim.v.foldend - vim.v.foldstart + 1 -- Cuenta las líneas del fold
+    local line = vim.fn.getline(vim.v.foldstart)    -- Toma la primera línea del fold
+    local lines = vim.v.foldend - vim.v.foldstart + 1 -- Cuenta las líneas del fold
 
-  return line .. "    (" .. lines .. " lines) "
+    return line .. "    (" .. lines .. " lines) "
 end
 
 -- [[ Folding Configuration (Treesitter) ]]

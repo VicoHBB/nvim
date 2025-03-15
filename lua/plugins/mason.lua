@@ -17,7 +17,7 @@ return {
                 "pylsp",
                 "marksman",
                 "lemminx",
-                "ltex-ls"
+                "ltex"
             }
 
             local packages_unix = {

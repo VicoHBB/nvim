@@ -1,7 +1,7 @@
 local M = {}
 
 M.opt = {
-  enabled = false,
+    enabled = false,
 }
 
 return M

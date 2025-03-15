@@ -1,6 +1,7 @@
 return {
     "lervag/vimtex",
-    enabled = Is_Not_Win32,
+    enabled = false,
+    -- enabled = Is_Not_Win32,
     lazy = false,    -- we don't want to lazy load VimTeX
     config = function()
         vim.g.tex_flavor             = 'latex'
