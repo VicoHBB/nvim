@@ -14,7 +14,7 @@ return {
                 "lua_ls",
                 "clangd",
                 "pyright",
-                "pylsp",
+                "ruff",
                 "marksman",
                 "lemminx",
                 "ltex"
@@ -26,7 +26,7 @@ return {
                 "cmake",
                 "neocmake",
                 "pyright",
-                "pylsp",
+                "ruff",
                 "marksman",
                 "verible",
                 "svls",

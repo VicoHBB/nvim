@@ -55,7 +55,7 @@ function M.set_repl()
                     -- cmd = "lua"
                     interpreter = "croissant"
                 elseif 'python' == ft then
-                    interpreter = "ipython --no-autoindent"
+                    interpreter = "uv run ipython --no-autoindent"
                 else
                     print("Dunno")
                 end

@@ -36,7 +36,7 @@ return {
             desc = "Select Terminal",
         },
         {
-            '<F10>',
+            '<F12>',
             function()
                 vim.cmd("REPL")
             end,
