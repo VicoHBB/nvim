@@ -76,7 +76,14 @@ end
 -- Configura la apariencia de los diagnósticos
 vim.diagnostic.config({
     virtual_text = true,
-    signs = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN]  = " ",
+            [vim.diagnostic.severity.INFO]  = "󰌶 ",
+            [vim.diagnostic.severity.HINT]  = " "
+        }
+    },
     underline = true,
     update_in_insert = true,
     severity_sort = true,
@@ -99,7 +106,7 @@ autocmd({ "CursorMoved" }, {
     callback = function()
         local ft = vim.bo.filetype
 
-        if not (ft == "systemverilog" or "verilog" == ft) then
+        if not (ft == "systemverilog" or "verilog" == ft or "tex" == ft) then
             show_code_action_sign()
         else
         end
