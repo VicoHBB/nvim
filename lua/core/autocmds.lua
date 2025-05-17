@@ -84,12 +84,12 @@ autocmd('FileType', {
 -- })
 
 -- Set error Format
-autocmd({ "BufWrite" }, {
-    pattern = { '*.v', '*.sv','*.vh', '*.svh' },
-    callback = function()
-        vim.cmd('VerilogErrorFormat Verilator 1')
-    end,
-})
+-- autocmd({ "BufWrite" }, {
+--     pattern = { '*.v', '*.sv','*.vh', '*.svh' },
+--     callback = function()
+--         vim.cmd('VerilogErrorFormat Verilator 1')
+--     end,
+-- })
 
 -- Show CWD
 autocmd({ "DirChanged" }, {

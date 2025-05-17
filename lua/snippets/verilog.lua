@@ -14,12 +14,14 @@ local snippets = {
 
     -- posedge
     snip("pe", {
-        txt_node("posedge")
+        txt_node("posedge "),
+        ins_node(1, "/* Signal Name */"),
     }),
 
     -- negedge
     snip("ne", {
-        txt_node("negedge")
+        txt_node("negedge "),
+        ins_node(1, "/* Signal Name */"),
     }),
 
     -- include

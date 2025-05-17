@@ -16,8 +16,8 @@ return {
             paths = vim.fn.stdpath("config") .. "/lua/snippets"
         })
         -- Use C snippets on CPP
-        require("luasnip").filetype_extend("cpp", { "c" })
+        require("luasnip").filetype_extend("cpp", { "c", "comments_c_style" })
         -- Use Verilog snippets on Systemverilog
-        require("luasnip").filetype_extend("systemverilog", { "verilog" })
+        require("luasnip").filetype_extend("systemverilog", { "verilog", "comments_c_style" })
     end,
 }

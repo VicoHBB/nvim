@@ -24,14 +24,19 @@ vim.bo.commentstring = "/* %s */"
 -- ============================================================================
 
 -- Compilation & Simulation
-keyset('n', "<F9>", ":OverseerRunCmd make all<CR>", {
-    buffer = 0,
-    noremap = true,
-    silent = true,
-    desc = "Build Verilator Project",
-})
+keyset('n', "<F9>", function()
+        vim.cmd('VerilogErrorFormat Verilator 1')
+        vim.cmd("OverseerRunCmd make all")
+    end,
+    {
+        buffer = 0,
+        noremap = true,
+        silent = true,
+        desc = "Build Verilator Project",
+    }
+)
 
-keyset('n', "<F10>", ":OverseerRunCmd make run<CR>", {
+keyset('n', "<F10>", "<CMD>OverseerRunCmd make run<CR>", {
     buffer = 0,
     noremap = true,
     silent = true,
