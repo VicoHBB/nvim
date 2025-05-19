@@ -3,7 +3,6 @@ biber
 chafa
 ctags
 curl
-exlive-latexextra
 fd
 ffmpegthumbnailer
 fzf
@@ -11,11 +10,11 @@ git
 git-delt
 gzip
 imagemagick
-ipython
 jq
 lazygit
 luarocks
 mercurial
+neovim-git
 node
 nodejs
 nodejs
@@ -34,6 +33,7 @@ texlive-binextra
 texlive-fontsextra
 texlive-fontsrecommended
 texlive-latex
+texlive-latexextra
 texlive-latexrecommended
 texlive-mathscience
 texlive-xetex

@@ -1,7 +1,7 @@
 return {
     'mrjones2014/smart-splits.nvim',
     enabled = true,
-    -- lazy = false, -- Recommend (@TODO: Check this)
+    lazy = true, -- Recommend (@TODO: Check this)
     -- build = './kitty/install-kittens.bash',
     opts = function()
         return {
