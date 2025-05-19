@@ -5,10 +5,15 @@ return {
         "williamboman/mason.nvim",
         enabled = true,
         {
-            "SmiteshP/nvim-navbuddy",
+            "hasansujon786/nvim-navbuddy",
             dependencies = {
                 "SmiteshP/nvim-navic",
-                "MunifTanjim/nui.nvim"
+                -- "MunifTanjim/nui.nvim"
+                {
+                    -- @TODO: This is a partial solution
+                    "pynappo/nui.nvim",
+                    branch = "support-winborder"
+                },
             },
             opts = {
                 lsp = {
@@ -58,6 +63,7 @@ return {
         local on_attach = function(_, bufnr)
             local fzf = require("fzf-lua")
             local keyset = vim.keymap.set
+
             -- Rename
             keyset('n', "<leader>R", function()
                     vim.lsp.buf.rename()
@@ -376,37 +382,28 @@ return {
         lsp.pyright.setup({
             on_attach = on_attach,
             capabilities = capabilities,
+            settings = {
+                python = {
+                    -- @TODO: Check this, I think is not the best way to do it
+                    pythonPath = vim.fn.getcwd() .. "/.venv/bin/python",
+                    analysis = {
+                        extraPaths = { "src", "tests" },
+                        autoSearchPaths = true,
+                        diagnosticMode = "openFilesOnly",
+                        useLibraryCodeForTypes = true
+                    }
+                }
+            },
         })
 
         -- @TODO: Check Ruff
-        -- lsp.ruff.setup{
-        --   on_attach = on_attach,
-        --   capabilities = capabilities,
-        --   root_dir     = lsp.util.root_pattern(
-        --     '.git',
-        --     '.ruff.toml',
-        --     'ruff.toml',
-        --     'pyproject.toml'
-        --   ),
-        --   settings = {
-        --   }
-        -- }
+        lsp.ruff.setup{
+          on_attach = on_attach,
+          capabilities = capabilities,
+          settings = {
+          }
+        }
 
-
-        lsp.pylsp.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-            settings = {
-                pylsp = {
-                    plugins = {
-                        pycodestyle = {
-                            --ignore = {'W391'},
-                            maxLineLength = 120
-                        }
-                    }
-                }
-            }
-        })
 
         lsp.marksman.setup({
             on_attach = on_attach,
@@ -456,38 +453,38 @@ return {
         --   },
         -- })
 
-        lsp.textlsp.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-            filetypes = {
-                "bib",
-                -- "gitcommit",
-                "markdown",
-                "org",
-                "tex",
-                "text"
-            },
-            settings = {
-                textDocument = {
-                    analysers = {
-                        languagetool = {
-                            check_text = {
-                                on_change = false,
-                                on_open = false,
-                                on_save = true
-                            },
-                            enabled = true
-                        }
-                    },
-                    documents = {
-                        language = "auto:en",
-                        org = {
-                            org_todo_keywords = { "TODO", "IN_PROGRESS", "DONE" }
-                        }
-                    }
-                },
-            },
-        })
+        -- lsp.textlsp.setup({
+        --     on_attach = on_attach,
+        --     capabilities = capabilities,
+        --     filetypes = {
+        --         "bib",
+        --         -- "gitcommit",
+        --         "markdown",
+        --         "org",
+        --         "tex",
+        --         "text"
+        --     },
+        --     settings = {
+        --         textDocument = {
+        --             analysers = {
+        --                 languagetool = {
+        --                     check_text = {
+        --                         on_change = false,
+        --                         on_open = false,
+        --                         on_save = true
+        --                     },
+        --                     enabled = true
+        --                 }
+        --             },
+        --             documents = {
+        --                 language = "auto:en",
+        --                 org = {
+        --                     org_todo_keywords = { "TODO", "IN_PROGRESS", "DONE" }
+        --                 }
+        --             }
+        --         },
+        --     },
+        -- })
 
         -- ============================================================================
         -- Not use to much
@@ -498,10 +495,10 @@ return {
         --     capabilities = capabilities,
         -- })
 
-        -- lsp.jsonls.setup({
-        --     on_attach = on_attach,
-        --     capabilities = capabilities,
-        -- })
+        lsp.jsonls.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+        })
 
         -- lsp.lemminx.setup({
         --     on_attach = on_attach,
