@@ -28,7 +28,7 @@ keyset('n', "<leader>w", "<CMD>w<CR>",
 keyset('n', "<leader>W", "<CMD>wall<CR>",
     {
         silent = true,
-        desc = "Quick Save"
+        desc = "Quick Save All"
     }
 )
 

@@ -74,24 +74,30 @@ return {
                 Snacks.util.icon = set_web_devicons
 
                 -- Create some toggle mappings
+                Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
                 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
                 Snacks.toggle.diagnostics():map("<leader>ud")
                 Snacks.toggle.treesitter():map("<leader>uT")
                 Snacks.toggle.inlay_hints():map("<leader>uh")
                 Snacks.toggle.dim():map("<leader>uD")
+                Snacks.toggle.option("conceallevel", {
+                    off = 0,
+                    on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2
+                }):map("<leader>uc")
+
             end,
             pattern = "VeryLazy",
         })
     end,
     keys = {
         {
-            "<localleader>s",
+            "<localleader>S",
             function()
                 Snacks.picker.pickers()
             end,
             mode = { 'n' },
             silent = true,
-            desc = "Open LazyGit"
+            desc = "Open Snacks pickers"
         },
         {
             "<leader>GG",

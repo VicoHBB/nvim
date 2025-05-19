@@ -122,9 +122,9 @@ M.opt = {
             },
             {
                 icon = " ",
-                key = "Q",
+                key = "q",
                 desc = "Quit",
-                action = "<CMD>qa<CR>",
+                action = "<CMD>qall!<CR>",
             },
         },
         -- Used by the `header` section

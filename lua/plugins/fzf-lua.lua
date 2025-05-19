@@ -59,7 +59,10 @@ return {
             }
         }
 
-        -- [[ winoptes ]]
+        -- [[ globlas ]]
+        -- config.defaults.fzf_bin = 'sk'
+
+        -- [[ winopts ]]
 
         -- All win
         config.defaults.winopts.height = 0.85
@@ -88,10 +91,10 @@ return {
         config.defaults.keymap.builtin["<c-b>"] = "preview-up"
         config.defaults.keymap.builtin["<c-u>"] = "preview-page-up"
         config.defaults.keymap.builtin["<c-d>"] = "preview-page-down"
-        config.defaults.keymap.builtin["<c-h>"] = "toggle-preview"
+        config.defaults.keymap.builtin["<c-space>"] = "toggle-preview"
         config.defaults.keymap.builtin["<a-m>"] = "toggle-fullscreen"
-        config.defaults.keymap.builtin["<c-l>"] = "toggle-preview-ccw"
-        config.defaults.keymap.builtin["<a-l>"] = "toggle-preview-cw"
+        config.defaults.keymap.builtin["<c-r>"] = "toggle-preview-cw"
+        config.defaults.keymap.builtin["<a-r>"] = "toggle-preview-ccw"
         config.defaults.keymap.builtin["<c-w>"] = "toggle-preview-wrap"
 
         -- fzf
@@ -99,7 +102,7 @@ return {
         config.defaults.keymap.fzf["ctrl-b"] = "preview-up"
         config.defaults.keymap.fzf["ctrl-u"] = "preview-page-up"
         config.defaults.keymap.fzf["ctrl-d"] = "preview-page-down"
-        config.defaults.keymap.fzf["ctrl-h"] = "toggle-preview"
+        config.defaults.keymap.fzf["ctrl-space"] = "toggle-preview"
         config.defaults.keymap.fzf["ctrl-w"] = "toggle-preview-wrap"
 
         -- [[ actions ]]
