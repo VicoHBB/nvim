@@ -74,39 +74,12 @@ autocmd('FileType', {
     callback = commands.clear_cmake_cache
 })
 
--- -- @TODO: Review workflow with this
--- autocmd('FileType', {
---     pattern = { 'verilog', 'systemverilog' },
---     callback = function()
---         vim.cmd('VerilogErrorFormat Verilator 1')
---     end,
---     once = true,
--- })
-
--- Set error Format
--- autocmd({ "BufWrite" }, {
---     pattern = { '*.v', '*.sv','*.vh', '*.svh' },
---     callback = function()
---         vim.cmd('VerilogErrorFormat Verilator 1')
---     end,
--- })
-
 -- Show CWD
 autocmd({ "DirChanged" }, {
     callback = function()
         vim.cmd('pwd')
     end,
 })
-
-
--- -- REPL
--- autocmd("UIEnter", {
---     -- @TODO: Find the way to executen when run "nvim file.py/file.lua"
---     -- pattern = { "lua", "python" },
---     pattern = { "*.py", "*.lua" },
---     callback = commands.set_repl
--- })
-
 
 vim.cmd([[
   augroup matchup_matchparen_highlight
@@ -122,3 +95,9 @@ vim.cmd([[
     autocmd FileType qf set nobuflisted
   augroup END
 ]])
+
+-- @TODO: Check if this steel need it
+-- To support org files
+vim.cmd [[
+  autocmd BufRead,BufNewFile *.org set filetype=org
+]]

@@ -60,6 +60,21 @@ overseer.register_template({
     }
 })
 
+-- Start Virtual Environment
+overseer.register_template({
+    name = 'UVenv',
+    builder = function(opts)
+        return {
+            name = opts.name or 'Init venv',
+            cmd = {'uv',},
+            args = {'venv'},
+        }
+    end,
+    condition = {
+        filetype = { "python" }
+    }
+})
+
 -- ============================================================================
 -- Autocommands
 -- ============================================================================

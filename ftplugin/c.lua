@@ -24,7 +24,7 @@ vim.bo.smartindent = true
 
 -- Toggle src & header
 keyset('n', "<leader>ch", function()
-        vim.cmd("ClangdSwitchSourceHeader")
+        vim.cmd("LspClangdSwitchSourceHeader")
     end,
     {
         buffer = 0,
