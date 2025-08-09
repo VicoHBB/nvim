@@ -2,7 +2,6 @@ return {
     'saghen/blink.cmp',
     enabled = true,
     event = {
-        -- "VeryLazy",
         "InsertEnter",
         "CmdlineEnter"
     },
@@ -165,7 +164,6 @@ return {
                 'snippets',
                 'path',
                 'buffer',
-                'omni'
             },
             per_filetype = {
                 org = {

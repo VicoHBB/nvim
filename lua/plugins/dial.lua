@@ -58,6 +58,15 @@ return {
             cyclic = true
         })
 
+        local logical_edges = augend.constant.new({
+            elements = {
+                "posedge",
+                "negedge"
+            },
+            word = false,
+            cyclic = true
+        })
+
         return {
             dials_by_ft = {},
             groups = {
@@ -76,7 +85,8 @@ return {
                     logical_alias,
                     logical_words,
                     logical_states,
-                    control_states
+                    control_states,
+                    logical_edges
                 },
             }
         }

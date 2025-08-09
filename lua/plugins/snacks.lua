@@ -76,6 +76,7 @@ return {
                 -- Create some toggle mappings
                 Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
                 Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+                Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>ur")
                 Snacks.toggle.diagnostics():map("<leader>ud")
                 Snacks.toggle.treesitter():map("<leader>uT")
                 Snacks.toggle.inlay_hints():map("<leader>uh")

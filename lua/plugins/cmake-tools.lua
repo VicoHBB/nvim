@@ -77,7 +77,9 @@ return {
     keys = {
         {
             "<F9>",
-            "<CMD>CMakeBuild<CR>",
+            function()
+                vim.cmd("CMakeBuild")
+            end,
             mode = { 'n' },
             ft = { "c", "cpp", "cmake" },
             noremap = true,
@@ -94,6 +96,17 @@ return {
             noremap = true,
             silent = true,
             desc = "Build C/C++ Project",
+        },
+        {
+            "<F12>",
+            function()
+                vim.cmd("CMakeDebug")
+            end,
+            mode = { "n" },
+            ft = { "c", "cpp", "cmake" },
+            noremap = true,
+            silent = true,
+            desc = "Debug C/C++ Project",
         },
     }
 }

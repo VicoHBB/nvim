@@ -18,9 +18,9 @@ vim.bo.autoindent  = true
 -- Run UV project
 overseer.register_template({
     name = 'UVRun',
-    builder = function()
+    builder = function(opts)
         return {
-            name = 'Run UV Project',
+            name = opts.name or 'Run UV Project',
             cmd = { 'uv' },
             args = { 'run', 'src/main.py' }
         }

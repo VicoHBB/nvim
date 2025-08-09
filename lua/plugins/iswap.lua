@@ -1,6 +1,6 @@
 return {
     "mizlan/iswap.nvim",
-    enabled = true,
+    enabled = false,
     -- event = "VeryLazy",
     config = function()
         require('iswap').setup {

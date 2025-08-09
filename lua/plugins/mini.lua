@@ -7,6 +7,7 @@ return {
     config = function()
         -- require('mini.icons').setup()
         -- require('mini.ai').setup()
+        -- require('mini.animate').setup()
         require('mini.files').setup()
         require('mini.sessions').setup()
         require('mini.pairs').setup()

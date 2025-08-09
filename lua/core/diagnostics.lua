@@ -1,5 +1,3 @@
-local autocmd = vim.api.nvim_create_autocmd
-
 local signs = {
     Error = " ",
     Warn = " ",
@@ -32,47 +30,6 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- Define Code Actions sign
-vim.fn.sign_define("LspCodeActionSign",
-    {
-        text = "",
-        texthl = "LspDiagnosticsSignHint"
-    }
-)
-
--- Function to check and place the sign
-local function show_code_action_sign()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local params = vim.lsp.util.make_range_params(0, "utf-8")
-    params.context = { diagnostics = vim.diagnostic.get(bufnr) }
-
-    -- Clear signs
-    vim.fn.sign_unplace("CodeActionGroup", { buffer = bufnr })
-
-    -- Call the LSP server to get code actions
-    vim.lsp.buf_request_all(bufnr, "textDocument/codeAction", params,
-        function(results)
-            local has_actions = false
-            for _, res in pairs(results) do
-                if res.result and #res.result > 0 then
-                    has_actions = true
-                    break
-                end
-            end
-
-            -- If there are actions, place the sign; otherwise, remove it
-            if has_actions then
-                vim.fn.sign_place(0, "CodeActionGroup", "LspCodeActionSign", bufnr,
-                    {
-                        lnum = vim.fn.line("."),
-                        priority = 10
-                    })
-            else
-                vim.fn.sign_unplace("CodeActionGroup", { buffer = bufnr })
-            end
-        end)
-end
-
 -- Configura la apariencia de los diagnósticos
 vim.diagnostic.config({
     virtual_text = true,
@@ -99,16 +56,4 @@ vim.diagnostic.config({
             return severity.sign, severity.hl_group
         end,
     }
-})
-
--- AutoCommand to update the sign when the cursor changes
-autocmd({ "CursorMoved" }, {
-    callback = function()
-        local ft = vim.bo.filetype
-
-        if not (ft == "systemverilog" or "verilog" == ft or "tex" == ft) then
-            show_code_action_sign()
-        else
-        end
-    end
 })

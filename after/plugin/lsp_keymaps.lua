@@ -3,6 +3,12 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
     callback = function(event)
+
+        -- Set capabilities when LSP attaches for autocompletion
+        vim.lsp.config("*", {
+            capabilities = require("blink.cmp").get_lsp_capabilities(),
+        })
+
         local keyset = function(mode, keys, func, desc)
             vim.keymap.set(
                 mode,
@@ -218,7 +224,6 @@ autocmd("LspAttach", {
         --     end,
         --     "Restart all lsp client attached to the buffer"
         -- )
-
 
         -- @NOTE: Check this
         -- will be done with conform
