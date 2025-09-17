@@ -10,6 +10,7 @@ local overseer     = require('overseer')
 -- ============================================================================
 vim.wo.colorcolumn = "120"
 vim.bo.autoindent  = true
+vim.opt_local.wrap = true
 
 -- ============================================================================
 -- Overseer Tasks

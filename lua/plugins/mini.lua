@@ -1,8 +1,8 @@
 return {
-    'echasnovski/mini.nvim',
+    'nvim-mini/mini.nvim',
     enabled = true,
-    -- lazy = true,
-    event = "VeryLazy",
+    lazy = false,
+    -- event = "VeryLazy",
     version = '*',
     config = function()
         -- require('mini.icons').setup()

@@ -14,6 +14,7 @@ vim.wo.colorcolumn   = "120"
 vim.bo.autoindent    = true
 vim.bo.smartindent   = true
 vim.bo.commentstring = "/* %s */"
+vim.opt_local.wrap   = true
 
 -- ============================================================================
 -- Autocommands

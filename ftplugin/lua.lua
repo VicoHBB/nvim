@@ -12,6 +12,7 @@ vim.bo.softtabstop = 4
 vim.bo.expandtab   = true
 vim.bo.shiftwidth  = 4
 vim.wo.colorcolumn = "120"
+vim.opt_local.wrap = true
 
 -- ============================================================================
 -- Autocommands

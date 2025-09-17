@@ -53,7 +53,7 @@ vim.opt.conceallevel = 1                 -- Set conceal level to hide certain La
 
 -- [[ Providers (Ruby, Perl, etc.) ]]
 -- Ruby Host path
-vim.g.ruby_host_prog = '~/.local/share/gem/ruby/3.3.0/bin/neovim-ruby-host'
+vim.g.ruby_host_prog = '~/.local/share/gem/ruby/3.4.0/bin/neovim-ruby-host'
 vim.g.loaded_perl_provider = 0 -- Disable Perl provider (not needed)
 
 -- [[ Miscellaneous Settings ]]

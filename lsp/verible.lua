@@ -9,15 +9,15 @@
 ---
 --- See https://github.com/chipsalliance/verible/tree/master/verilog/tools/ls/README.md for options.
 return {
-  cmd = {
+    cmd = {
         'verible-verilog-ls',
         '--rules_config_search',
         '--indentation_spaces=4'
-  },
-  filetypes = { 'systemverilog', 'verilog' },
-  root_markers = {
-      '.git',
-      '.rules.verible_lint',
-     'verible.filelist'
-  },
+    },
+    filetypes = { 'systemverilog', 'verilog' },
+    root_markers = {
+        '.git',
+        '.rules.verible_lint',
+        'verible.filelist'
+    },
 }

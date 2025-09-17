@@ -13,6 +13,7 @@ vim.bo.expandtab   = true
 vim.bo.shiftwidth  = 2
 vim.wo.colorcolumn = "80"
 vim.bo.autoindent  = true
+vim.opt_local.wrap = true
 
 -- ============================================================================
 -- Overseer Tasks

@@ -37,7 +37,6 @@ texlive-latexextra
 texlive-latexrecommended
 texlive-mathscience
 texlive-xetex
-uebe
 ueberzugpp
 unzip
 viu
