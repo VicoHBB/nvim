@@ -2,50 +2,81 @@ return {
     'lewis6991/gitsigns.nvim',
     enabled = true,
     event = "VeryLazy",
-    config = function()
-        require('gitsigns').setup({
-            signs                        = {
-                add          = { text = '+' },
-                change       = { text = '!' },
-                delete       = { text = '_' },
-                topdelete    = { text = '‾' },
-                changedelete = { text = '~' },
-                untracked    = { text = '┆' },
-            },
-            signcolumn                   = true,  -- Toggle with `:Gitsigns toggle_signs`
-            numhl                        = false, -- Toggle with `:Gitsigns toggle_numhl`
-            linehl                       = false, -- Toggle with `:Gitsigns toggle_linehl`
-            word_diff                    = false, -- Toggle with `:Gitsigns toggle_word_diff`
-            watch_gitdir                 = {
-                interval = 1000,
-                follow_files = true
-            },
-            attach_to_untracked          = true,
-            current_line_blame           = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
-            current_line_blame_opts      = {
-                virt_text = true,
-                virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
-                delay = 1000,
-                ignore_whitespace = false,
-            },
-            current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-            sign_priority                = 6,
-            update_debounce              = 100,
-            status_formatter             = nil,   -- Use default
-            max_file_length              = 40000, -- Disable if file is longer than this (in lines)
-            preview_config               = {
-                -- Options passed to nvim_open_win
-                border = 'rounded',
-                style = 'minimal',
-                relative = 'cursor',
-                row = 0,
-                col = 1
-            },
-        })
-    end,
+    opts = {
+        signs = {
+            add          = { text = '+' },
+            change       = { text = '!' },
+            delete       = { text = '_' },
+            topdelete    = { text = '‾' },
+            changedelete = { text = '~' },
+            untracked    = { text = '┆' },
+        },
+        signs_staged = {
+            add          = { text = '┃' },
+            change       = { text = '┃' },
+            delete       = { text = '_' },
+            topdelete    = { text = '‾' },
+            changedelete = { text = '~' },
+            untracked    = { text = '┆' },
+        },
+    },
     keys = {
         {
-            "<leader>gh",
+            "<leader>hs",
+            function()
+                require('gitsigns').stage_hunk()
+            end,
+            mode = { "n" },
+            desc = "Git Toggle Stage Hunk",
+        },
+        {
+            "<leader>hs",
+            function()
+                local gitsigns = require('gitsigns')
+                require('gitsigns').stage_hunk()
+                gitsigns.stage_hunk({
+                    vim.fn.line('.'),
+                    vim.fn.line('v')
+                })
+            end,
+            mode = { "v" },
+            desc = "Git Toggle Stage Hunk",
+        },
+        {
+            "<leader>hr",
+            function()
+                require('gitsigns').reset_hunk()
+            end,
+            mode = { "n" },
+            desc = "Git Reset Hunk",
+        },
+        {
+            "<leader>hr",
+            function()
+                local gitsigns = require('gitsigns')
+                gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+            end,
+            mode = { "v" },
+            desc = "Git Reset Hunk",
+        },
+        {
+            "<leader>hS",
+            function()
+                require('gitsigns').stage_buffer()
+            end,
+            mode = { "n" },
+            desc = "Git Stage Buffer",
+        },
+        {
+            "<leader>hR",
+            function()
+                require('gitsigns').reset_buffer()
+            end,
+            mode = { "n" },
+            desc = "Git Reset Buffer",
+        },
+        {
+            "<leader>hp",
             function()
                 require('gitsigns').preview_hunk()
             end,
@@ -53,7 +84,55 @@ return {
             desc = "Git Preview Hunk",
         },
         {
-            "[g",
+            "<leader>hi",
+            function()
+                require('gitsigns').preview_hunk_inline()
+            end,
+            mode = { "n" },
+            desc = "Git Preview Hunk Inline",
+        },
+        {
+            "<leader>hb",
+            function()
+                require('gitsigns').blame_line({ full = true })
+            end,
+            mode = { "n" },
+            desc = "Git Hunk Blame line",
+        },
+        {
+            "<leader>hd",
+            function()
+                require('gitsigns').diffthis()
+            end,
+            mode = { "n" },
+            desc = "Git Diff This Buffer",
+        },
+        {
+            "<leader>hD",
+            function()
+                require('gitsigns').diffthis("~")
+            end,
+            mode = { "n" },
+            desc = "Git Diff This Selection",
+        },
+        {
+            "<leader>hw",
+            function()
+                require('gitsigns').toggle_word_diff()
+            end,
+            mode = { "n" },
+            desc = "Hinks Togglw Words Diff",
+        },
+        {
+            "ih",
+            function()
+                require('gitsigns').select_hunk()
+            end,
+            mode = { "o",  "x" },
+            desc = "Select Inner Hunk",
+        },
+        {
+            "[h",
             function()
                 require('gitsigns').nav_hunk('prev')
             end,
@@ -61,7 +140,7 @@ return {
             desc = "Git Previous Hunk",
         },
         {
-            "]g",
+            "]h",
             function()
                 require('gitsigns').nav_hunk('next')
             end,

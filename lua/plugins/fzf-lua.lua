@@ -6,7 +6,7 @@ return {
     -- evvent = "VeryLazy",
     -- optional for icon support
     dependencies = {
-        -- "nvim-tree/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
         -- "echasnovski/mini.icons",
     },
     opts = function(_, opts)
@@ -232,6 +232,37 @@ return {
             mode = { 'n' },
             silent = true,
             desc = "FZFLua Find Files",
+        },
+        {
+            "<leader>fu",
+            function()
+                local filename = vim.fn.expand("<cword>")
+                require('fzf-lua').files({
+                    query = filename,
+                })
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "FZFLua Find File Under Cursor",
+        },
+        {
+            "<leader>fu",
+            function()
+
+                local reg, visual_selection
+
+                reg = vim.fn.getreg('"')
+                vim.cmd('normal! "vy')
+                visual_selection = vim.fn.getreg('"')
+                vim.fn.setreg('v', reg)
+
+                require('fzf-lua').files({
+                    query = visual_selection,
+                })
+            end,
+            mode = { 'v' },
+            silent = true,
+            desc = "FZFLua Find File Visual Selection",
         },
         {
             "<leader>fo",

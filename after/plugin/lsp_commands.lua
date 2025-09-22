@@ -12,18 +12,6 @@ local complete_config = function(arg)
         :totable()
 end
 
-local complete_client = function(arg)
-    return vim
-        .iter(vim.lsp.get_clients())
-        :map(function(client)
-            return client.name
-        end)
-        :filter(function(name)
-            return name:sub(1, #arg) == arg
-        end)
-        :totable()
-end
-
 autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
     callback = function(event)
@@ -74,169 +62,62 @@ cmd("LspInfo", function()
 
 -- @TODO: Is not working properly the following code:
 
--- Custom Command: LspStart
--- Starts a language server based on its configured name.
--- It checks if the server process is already active.
 cmd('LspStart', function(info)
-        local server_name = info.args -- The name of the server to start (e.g., 'pyright', 'tsserver')
+    local clients = info.fargs
 
-        -- Get all active LSP clients to check if the server is already running
-        local active_clients = vim.lsp.get_clients()
-        local server_is_already_running = false
-        for _, client in ipairs(active_clients) do
-            if client.name == server_name then
-                server_is_already_running = true
-                break
-            end
+    -- Default to enabling all servers matching the filetype of the current buffer.
+    -- This assumes that they've been explicitly configured through `vim.lsp.config`,
+    -- otherwise they won't be present in the private `vim.lsp.config._configs` table.
+    if #clients == 0 then
+      local filetype = vim.bo.filetype
+      for name, _ in pairs(vim.lsp.config._configs) do
+        local filetypes = vim.lsp.config[name].filetypes
+        if filetypes and vim.tbl_contains(filetypes, filetype) then
+          table.insert(clients, name)
         end
+      end
+    end
 
-        if server_is_already_running then
-            vim.notify(("LSP '%s' running, attaching."):format(server_name), vim.log.levels.INFO)
-        else
-            vim.notify(("Starting LSP '%s'."):format(server_name), vim.log.levels.INFO)
-        end
-
-        -- Attempt to start/attach the LSP client.
-        -- vim.lsp.start will either launch a new server or attach an existing one.
-        local success, err = pcall(vim.lsp.start, { name = server_name })
-        if not success then
-            vim.notify(("Failed to start/attach '%s': %s"):format(server_name, err), vim.log.levels.ERROR)
-        else
-            vim.notify(("LSP '%s' successful."):format(server_name), vim.log.levels.INFO)
-            -- Always reload the buffer after attempting to start/attach for consistency
-            vim.schedule_wrap(function()
-                vim.cmd('edit!')
-                vim.notify("Buffer reloaded.", vim.log.levels.INFO)
-            end)()
-        end
+    vim.lsp.enable(clients)
+    vim.notify(('LSP -> %s started.'):format(table.concat(clients, ', ')), vim.log.levels.INFO)
     end,
     {
-        desc = 'Start a language server by its configured name', -- Description for the command
-        nargs = '?',                                         -- Allows the command to be called with zero or one argument
-        complete = complete_config,                          -- Uses the complete_config helper for tab completion
+        desc = 'Start a language server by its configured name',
+        nargs = '?',
+        complete = complete_config,
     }
 )
 
--- Custom Command: LspStop
--- Stops one or more specified active LSP clients.
--- It correctly terminates the client process.
-cmd('LspStop', function(info)
-        local clients_to_stop = {}
-        local invalid_names = {}
-
-        -- Iterate through the arguments (server names) provided by the user
-        for _, name in ipairs(info.fargs) do
-            local found_client = nil
-            -- Find the client object by its name among all active LSP clients
-            for _, client in ipairs(vim.lsp.get_clients()) do
-                if client.name == name then
-                    found_client = client
-                    break
-                end
-            end
-
-            if found_client then
-                table.insert(clients_to_stop, found_client)
-            else
-                table.insert(invalid_names, name)
-            end
+cmd('LspStop', function()
+        local clients = vim.lsp.get_clients()
+        vim.lsp.stop_client(clients, true)
+        for _, client in ipairs(clients) do
+            vim.notify(('LSP -> %s stopped.'):format(client.name), vim.log.levels.INFO)
         end
-
-        if #invalid_names > 0 then
-            vim.notify(("Invalid client(s): %s"):format(table.concat(invalid_names, ", ")), vim.log.levels.WARN)
-        end
-
-        if #clients_to_stop == 0 then
-            vim.notify("No clients to stop.", vim.log.levels.INFO)
-            return
-        end
-
-
-        -- Stop all selected clients.
-        -- client.stop() will detach the client from all buffers and terminate its process.
-        for _, client in ipairs(clients_to_stop) do
-            client.stop()
-        end
-
-        vim.notify(
-        ("Cliente(s) stopped: %s"):format(table.concat(
-        vim.iter(clients_to_stop):map(function(c) return c.name end):totable(), ", ")), vim.log.levels.INFO)
-
     end,
     {
-        desc = 'Stop the given client(s)', -- Description for the command
-        nargs = '+',                   -- Requires one or more arguments (client names)
-        complete = complete_client,    -- Uses the complete_client helper for tab completion
+        desc = 'Stop all active language servers',
     }
 )
 
--- Custom Command: LspRestart
--- Restarts one or more specified active LSP clients.
--- It directly stops and restarts clients, and reloads the current buffer.
-cmd('LspRestart', function(info)
-        local clients_to_restart = {}
-        local invalid_names = {}
+cmd('LspRestart', function()
+        local clients = vim.lsp.get_clients()
 
-        -- Find the active client objects based on provided names
-        for _, name in ipairs(info.fargs) do
-            local found_client = nil
-            for _, client in ipairs(vim.lsp.get_clients()) do
-                if client.name == name then
-                    found_client = client
-                    break
-                end
-            end
-
-            if found_client then
-                table.insert(clients_to_restart, found_client)
-            else
-                table.insert(invalid_names, name)
+        if #clients == 0 then
+            vim.notify('No active LSP clients found.', vim.log.levels.WARN)
+        else
+            vim.notify('Restarting LSP clients...', vim.log.levels.INFO)
+            vim.lsp.stop_client(clients)
+            vim.cmd('e') -- use insted of e! to avoid lost changes
+            for _, client in ipairs(clients) do
+                -- @TODO: check how to fix this
+                -- vim.lsp.enable(client.name)
+                vim.notify(('LSP -> %s restarted.'):format(client.name), vim.log.levels.INFO)
             end
         end
 
-        if #invalid_names > 0 then
-            vim.notify(("Invalid client(s): %s"):format(table.concat(invalid_names, ", ")), vim.log.levels.WARN)
-        end
-
-        if #clients_to_restart == 0 then
-            vim.notify("No clients to restart.", vim.log.levels.INFO)
-            return
-        end
-
-        vim.notify(
-        ("Stopping client(s) for restart: %s"):format(table.concat(
-        vim.iter(clients_to_restart):map(function(c) return c.name end):totable(), ", ")), vim.log.levels.INFO)
-
-        -- Stop all selected clients directly
-        for _, client in ipairs(clients_to_restart) do
-            client.stop()
-        end
-
-        -- Use a timer to introduce a small delay after stopping clients.
-        -- This gives the processes time to fully terminate.
-        local timer = assert(vim.uv.new_timer())
-        timer:start(300, 0, function() -- Delay after stopping
-            -- Reload the current buffer to ensure a clean state for LSP re-attachment.
-            -- This is now handled by LspStart itself.
-            -- We still ensure the call to LspStart is scheduled.
-            vim.notify("Initiating client restart sequence.", vim.log.levels.INFO)
-
-            -- Add another small delay before restarting clients.
-            vim.uv.new_timer():start(300, 0, function()
-                for _, client_obj in ipairs(clients_to_restart) do
-                    -- Restart the client using its name.
-                    -- LspStart will handle the actual start and buffer reload.
-                    vim.schedule_wrap(function()
-                        vim.cmd('LspStart ' .. client_obj.name)
-                    end)()
-                end
-                timer:close() -- Close the main timer resource
-            end)
-        end)
     end,
     {
         desc = 'Restart the given client(s)', -- Description for the command
-        nargs = '+',                      -- Requires one or more arguments (client names)
-        complete = complete_client,       -- Uses the complete_client helper for tab completion
     }
 )

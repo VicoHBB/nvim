@@ -48,5 +48,23 @@ return {
             silent = true,
             desc = "Git Push"
         },
+        {
+            "<leader>gd",
+            function()
+                vim.cmd("Neogit diff")
+            end,
+            mode = { "n" },
+            silent = true,
+            desc = "Git Diff"
+        },
+        {
+            "<leader>gD",
+            function()
+                vim.cmd("DiffviewOpen --untracked-files")
+            end,
+            mode = { "n" },
+            silent = true,
+            desc = "Git Diff"
+        },
     }
 }

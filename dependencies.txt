@@ -39,6 +39,7 @@ texlive-mathscience
 texlive-xetex
 ueberzugpp
 unzip
+vifm
 viu
 wget
 yarn

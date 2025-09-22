@@ -198,22 +198,22 @@ autocmd("LspAttach", {
         )
 
             -- Restart lsp stop
-        keyset({ 'n' }, '<leader>LS', function()
-                lsp_action("LspStop")
+        keyset({ 'n' }, '<leader>Lk', function()
+                vim.cmd("LspStop")
             end,
             "Stop all lsp client attached to the buffer"
         )
 
-        -- Restart lsp start
+        --  Start all lsp on the buffer
         keyset({ 'n' }, '<Space>Ls', function()
                 lsp_action("LspStart")
             end,
             "Stop all lsp client attached to the buffer"
         )
 
-        -- Restart lsp manually
+        -- Restart all lsp
         keyset({ 'n' }, '<Space>Lr', function()
-                lsp_action("LspRestart")
+            vim.cmd("LspRestart")
             end,
             "Restart all lsp client attached to the buffer"
         )
