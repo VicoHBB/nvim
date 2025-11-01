@@ -17,7 +17,7 @@ keyset('n', "<leader>lc", ":lua ",
 )
 
 -- Quick Save
-keyset('n', "<leader>w", "<CMD>w<CR>",
+keyset('n', "<leader>w", ":w<CR>",
     {
         silent = true,
         desc = "Quick Save"
@@ -33,7 +33,7 @@ keyset('n', "<leader>W", "<CMD>wall<CR>",
 )
 
 -- Quick Quit
-keyset('n', "<leader>q", "<CMD>q<CR>",
+keyset('n', "<leader>q", ":q<CR>",
     {
         silent = true,
         desc = "Quick Quit"

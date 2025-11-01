@@ -60,12 +60,12 @@ return {
                     custom_filename
                 },
                 lualine_x = {
-                    {
-                      'tabnine',
-                      -- on_click = function ()
-                      --   vim.cmd("TabnineChat")
-                      -- end
-                    },
+                    -- {
+                    --   'tabnine',
+                    --   -- on_click = function ()
+                    --   --   vim.cmd("TabnineChat")
+                    --   -- end
+                    -- },
                     'filetype',
                     'encoding'
                 },
