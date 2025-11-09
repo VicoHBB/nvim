@@ -17,11 +17,6 @@ vim.opt_local.wrap = false
 -- ============================================================================
 -- Autocommands
 -- ============================================================================
-vim.cmd [[highlight Headline guibg=#3C3836]]
-vim.cmd [[highlight CodeBlock guibg=#282828]]
-vim.cmd [[highlight Dash guibg=#3C3836]]
-vim.cmd [[highlight Quote guibg=#282828]]
-
 
 -- ============================================================================
 -- Keymaps

@@ -59,6 +59,10 @@ return {
             }
         }
 
+        local function fast_move(direction, times)
+            return string.rep( direction, times)
+        end
+
         -- [[ globlas ]]
         -- config.defaults.fzf_bin = 'sk'
 
@@ -79,6 +83,8 @@ return {
         config.defaults.winopts.on_create              = function()
             keyset({ "t", 'i' }, "<C-j>", "<Down>", { silent = true, buffer = true })
             keyset({ "t", "i" }, "<C-k>", "<Up>", { silent = true, buffer = true })
+            keyset({ "t", 'i' }, "<C-d>", fast_move("<Down>", 5), { silent = true, buffer = true })
+            keyset({ "t", "i" }, "<C-u>", fast_move("<Up>", 5), { silent = true, buffer = true })
             -- @NOTE: This prevent to move to an split, need to check(Need review)
             keyset({ "t", 'i' }, "<C-h>", "", { silent = true, buffer = true })
             keyset({ "t", "i" }, "<C-l>", "", { silent = true, buffer = true })
@@ -87,10 +93,8 @@ return {
         -- [[ keymaps ]]
 
         -- builtin
-        config.defaults.keymap.builtin["<c-f>"] = "preview-down"
-        config.defaults.keymap.builtin["<c-b>"] = "preview-up"
-        config.defaults.keymap.builtin["<c-u>"] = "preview-page-up"
-        config.defaults.keymap.builtin["<c-d>"] = "preview-page-down"
+        config.defaults.keymap.builtin["<c-f>"] = "preview-page-down"
+        config.defaults.keymap.builtin["<c-b>"] = "preview-page-up"
         config.defaults.keymap.builtin["<c-space>"] = "toggle-preview"
         config.defaults.keymap.builtin["<a-m>"] = "toggle-fullscreen"
         config.defaults.keymap.builtin["<c-r>"] = "toggle-preview-cw"
@@ -98,10 +102,8 @@ return {
         config.defaults.keymap.builtin["<c-w>"] = "toggle-preview-wrap"
 
         -- fzf
-        config.defaults.keymap.fzf["ctrl-f"] = "preview-down"
-        config.defaults.keymap.fzf["ctrl-b"] = "preview-up"
-        config.defaults.keymap.fzf["ctrl-u"] = "preview-page-up"
-        config.defaults.keymap.fzf["ctrl-d"] = "preview-page-down"
+        config.defaults.keymap.fzf["ctrl-f"] = "preview-page-down"
+        config.defaults.keymap.fzf["ctrl-b"] = "preview-page-up"
         config.defaults.keymap.fzf["ctrl-space"] = "toggle-preview"
         config.defaults.keymap.fzf["ctrl-w"] = "toggle-preview-wrap"
 

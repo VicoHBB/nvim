@@ -21,6 +21,7 @@ autocmd("FileType", {
         "startuptime",
         "tsplayground",
         "PlenaryTestPopup",
+        "marker-groups"
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false

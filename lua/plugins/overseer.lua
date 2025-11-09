@@ -1,8 +1,7 @@
 return { -- The task runner we use
     "stevearc/overseer.nvim",
     enabled = Is_Not_Win32, -- @TODO: Review this
-    -- lazy = true,
-    -- event = "VeryLazy",
+    version = "v1.6.0",   -- @NOTE: To prevent errors
     cmd = {
         "OverseerOpen",
         "OverseerClose",
