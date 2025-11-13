@@ -1,4 +1,5 @@
 local simple_opts = require('plugins.snacks_configs.simple_opt')
+
 local bigfile_opt = require('plugins.snacks_configs.bigfile').opt
 local dashboard_opt = require('plugins.snacks_configs.dashboard').opt
 local statuscolumn_opt = require('plugins.snacks_configs.statuscolumn').opt
@@ -108,6 +109,15 @@ return {
             mode = { 'n' },
             silent = true,
             desc = "Open LazyGit"
+        },
+        {
+            "<leader>GL",
+            function()
+                Snacks.lazygit.log()
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "Open LazyGit Log"
         },
         {
             "<leader>gb",

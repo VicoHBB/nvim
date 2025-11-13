@@ -1,7 +1,12 @@
 return {
     "NeogitOrg/neogit",
     enabled = true,
-    cmd = "Neogit",
+    cmd = {
+        "Neogit",
+        "NeogitCommit",
+        "DiffviewOpen",
+        "DiffviewFileHistory"
+    },
     dependencies = {
         "nvim-lua/plenary.nvim",  -- required
         "sindrets/diffview.nvim", -- optional - Diff integration
@@ -31,9 +36,27 @@ return {
             desc = "Git Commit"
         },
         {
+            "<leader>gC",
+            function()
+                vim.cmd("NeogitCommit")
+            end,
+            mode = { "n" },
+            silent = true,
+            desc = "Git Show Last Commit"
+        },
+        {
+            "<leader>gl",
+            function()
+                vim.cmd("Neogit log")
+            end,
+            mode = { "n" },
+            silent = true,
+            desc = "Git Log"
+        },
+        {
             "<leader>gp",
             function()
-                vim.cmd("Neogit commit")
+                vim.cmd("Neogit pull")
             end,
             mode = { "n" },
             silent = true,
@@ -65,6 +88,15 @@ return {
             mode = { "n" },
             silent = true,
             desc = "Git Diff"
+        },
+        {
+            "<leader>gh",
+            function()
+                vim.cmd("DiffviewFileHistory %")
+            end,
+            mode = { "n" },
+            silent = true,
+            desc = "Git Diff File History"
         },
     }
 }
