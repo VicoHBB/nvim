@@ -28,9 +28,9 @@ return {
             "python",
             "regex",
             "rust",
-            -- "systemverilog",
+            "systemverilog",
             "toml",
-            -- "verilog",
+            "verilog",
             "vim",
             "vimdoc",
             "zsh"
@@ -39,29 +39,39 @@ return {
     config = function(_, opts)
         local TS = require('nvim-treesitter')
 
-        -- Install parsers from custom ensured_install opt
-        if opts.languages and #opts.languages > 0 then
-            TS.install(opts.languages)
-            -- register and start parsers for ft
-            for _, parser in ipairs(opts.languages) do
-                vim.treesitter.language.register(parser, parser)
-            end
-            vim.api.nvim_create_autocmd('FileType', {
-                group = vim.api.nvim_create_augroup("TreeSitterLazyLoader", { clear = true }),
-                pattern = opts.languages,
-                callback = function(event)
-                    -- if event.match == "verilog" or event.match == "systemverilog" then
-                    --     -- vim.treesitter.start(event.buf, "systemverilog")
-                    -- else
-                    --     vim.treesitter.start(event.buf, event.match)
-                    --     vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                    -- end
-                    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                    vim.treesitter.start(event.buf, event.match)
-                    vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                end,
-            })
-        end
+        TS.install(opts.languages)
+
+        vim.api.nvim_create_autocmd('FileType', {
+            group = vim.api.nvim_create_augroup('treesitter.setup', {}),
+            callback = function(args)
+                local buf = args.buf
+                local filetype = args.match
+
+                -- you need some mechanism to avoid running on buffers that do not
+                -- correspond to a language (like oil.nvim buffers), this implementation
+                -- checks if a parser exists for the current language
+                local language = vim.treesitter.language.get_lang(filetype) or filetype
+                if not vim.treesitter.language.add(language) then
+                    return
+                end
+
+                -- replicate `fold = { enable = true }`
+                vim.wo.foldmethod = 'expr'
+                vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
+                -- replicate `highlight = { enable = true }`
+                vim.treesitter.start(buf, language)
+
+                -- replicate `indent = { enable = true }`
+                if filetype == "verilog" or filetype == "systemverilog" then
+                    vim.bo[buf].indentexpr = ""
+                    return
+                end
+                vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+                -- `incremental_selection = { enable = true }` cannot be easily replicated
+            end,
+        })
 
     end,
     keys = {
