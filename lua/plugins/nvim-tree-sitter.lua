@@ -1,124 +1,159 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    enabled = true,
+    lazy = false,
+    branch = 'main',
     build = ":TSUpdate",
-    event = "VeryLazy",
     dependencies = {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = 'main'
         -- "nfrid/treesitter-utils",  -- Maybe use latter
     },
-    config = function()
-        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+    opts = {
+        languages = {
+            "asm",
+            "bash",
+            "c",
+            "cmake",
+            "cpp",
+            "diff",
+            "gitignore",
+            "gitcommit",
+            "json",
+            "latex",
+            "lua",
+            "make",
+            "markdown",
+            "markdown_inline",
+            "mermaid",
+            "python",
+            "regex",
+            "rust",
+            -- "systemverilog",
+            "toml",
+            -- "verilog",
+            "vim",
+            "vimdoc",
+            "zsh"
+        },
+    },
+    config = function(_, opts)
+        local TS = require('nvim-treesitter')
 
-        require('nvim-treesitter.configs').setup({
-            -- A list of parser names, or "all"
-            ensure_installed = {
-                "asm",
-                "bash",
-                "c",
-                "cmake",
-                "cpp",
-                "diff",
-                "gitignore",
-                "json",
-                "latex", -- need tree-sitter client install
-                "lua",
-                "toml",
-                "make",
-                "markdown",
-                "markdown_inline",
-                "mermaid",
-                -- "org",
-                "python",
-                "regex",
-                "rust",
-                "verilog",
-                "vim",
-                -- "systemverilog"
-                "css",
-                "html",
-                "javascript",
-                "norg",
-                "scss",
-                "svelte",
-                "typst",
-                "vue",
-                "tsx",
-            },
+        -- Install parsers from custom ensured_install opt
+        if opts.languages and #opts.languages > 0 then
+            TS.install(opts.languages)
+            -- register and start parsers for ft
+            for _, parser in ipairs(opts.languages) do
+                vim.treesitter.language.register(parser, parser)
+            end
+            vim.api.nvim_create_autocmd('FileType', {
+                group = vim.api.nvim_create_augroup("TreeSitterLazyLoader", { clear = true }),
+                pattern = opts.languages,
+                callback = function(event)
+                    if event.match == "verilog" or event.match == "systemverilog" then
+                        -- vim.treesitter.start(event.buf, "systemverilog")
+                    else
+                        vim.treesitter.start(event.buf, event.match)
+                        vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
+                        vim.treesitter.start(event.buf, event.match)
+                        vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                end,
+            })
+        end
 
-            ignore_install = {},
-
-            modules = {},
-
-            auto_install = true,
-
-            -- Install parsers synchronously (only applied to `ensure_installed`)
-            sync_install = false,
-
-            -- List of parsers to ignore installing (for "all")
-            -- ignore_install = { "javascript" },
-
-            highlight = {
-                -- `false` will disable the whole extension
-                enable = true,
-                additional_vim_regex_highlighting = { 'org' },
-                disable = {
-                    "latex",
-                    "make",
-                    "cmake",
-                    "verilog",
-                    "systemverilog"
-                    -- "org"
-                },
-                -- additional_vim_regex_highlighting = true,
-            },
-            indent = {
-                enable = true,
-            },
-
-            fold = {
-                enable = true,
-            },
-
-            matchup = {
-                enable = true, -- mandatory, false will disable the whole extension
-                -- disable = { "c", "ruby" },  -- optional, list of language that will be disabled
-                -- [options]
-                disable_virtual_text = true,
-            },
-
-            textobjects = {
-                select = {
-                    enable = true,
-                    lookahead = true,
-                    keymaps = {
-                        ["af"] = "@function.outer",
-                        ["if"] = "@function.inner",
-                        ["ac"] = "@conditional.outer",
-                        ["ic"] = "@conditional.inner",
-                        ["aL"] = "@loop.outer",
-                        ["iL"] = "@loop.inner",
-                    }
-                }
-            }
-
-        })
-
-        vim.treesitter.language.register('verilog', 'systemverilog') -- the someft filetype will use the python parser and queries.
-
-        -- @TODO: Check how to install parsers properly
-        -- parser_config.systemverilog = {
-        --   install_info = {
-        --     -- url = "https://github.com/gmlarumbe/tree-sitter-systemverilog",
-        --     url = "/home/vico/Repos/parsers/tree-sitter-systemverilog",
-        --     files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
-        --     -- optional entries:
-        --     branch = "main", -- default branch in case of git repo if different from master
-        --     generate_requires_npm = true, -- if stand-alone parser without npm dependencies
-        --     requires_generate_from_grammar = true, -- if folder contains pre-generated src/parser.c
-        --   },
-        --   filetype = "systemverilog", -- if filetype does not match the parser name
-        -- }
     end,
+    keys = {
+        {
+            "af",
+            function()
+                require("nvim-treesitter-textobjects.select").select_textobject(
+                    "@function.outer",
+                    "textobjects"
+                )
+            end,
+            mode = { 'x', 'o' },
+            silent = true,
+            desc = "Select Outer Function",
+        },
+        {
+            "if",
+            function()
+                require("nvim-treesitter-textobjects.select").select_textobject(
+                    "@function.inner",
+                    "textobjects"
+                )
+            end,
+            mode = { 'x', 'o' },
+            silent = true,
+            desc = "Select Inner Function",
+        },
+        {
+            "ac",
+            function()
+                require("nvim-treesitter-textobjects.select").select_textobject(
+                    "@conditional.outer",
+                    "textobjects"
+                )
+            end,
+            mode = { 'x', 'o' },
+            silent = true,
+            desc = "Select Outer Conditional",
+        },
+        {
+            "ic",
+            function()
+                require("nvim-treesitter-textobjects.select").select_textobject(
+                    "@conditional.inner",
+                    "textobjects"
+                )
+            end,
+            mode = { 'x', 'o' },
+            silent = true,
+            desc = "Select Inner Conditional",
+        },
+        {
+            "al",
+            function()
+                require("nvim-treesitter-textobjects.select").select_textobject(
+                    "@loop.outer",
+                    "textobjects"
+                )
+            end,
+            mode = { 'x', 'o' },
+            silent = true,
+            desc = "Select Outer Loop",
+        },
+        {
+            "il",
+            function()
+                require("nvim-treesitter-textobjects.select").select_textobject(
+                    "@loop.inner",
+                    "textobjects"
+                )
+            end,
+            mode = { 'x', 'o' },
+            silent = true,
+            desc = "Select Inner Loop",
+        },
+        {
+            "<leader>sn",
+            function()
+                require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "Select Inner Loop",
+        },
+        {
+            "<leader>sp",
+            function()
+                require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "Select Inner Loop",
+        },
+    }
 }
-
