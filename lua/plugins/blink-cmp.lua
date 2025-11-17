@@ -98,7 +98,6 @@ return {
             -- }
         },
 
-
         signature = { -- This is manage by Noice
             enabled = false,
             window = {
@@ -230,11 +229,14 @@ return {
                 path = {
                     name = " ",
                     module = "blink.cmp.sources.path",
-                    min_keyword_length = 2,
+                    score_offset = 3,
+                    -- min_keyword_length = 2,
+                    fallbacks = { 'buffer' },
                     opts = {
-                        get_cwd = function(_)
-                            return vim.fn.getcwd()
-                        end,
+                        trailing_slash = true,
+                        label_trailing_slash = true,
+                        get_cwd = function(context) return vim.fn.expand(('#%d:p:h'):format(context.bufnr)) end,
+                        ignore_root_slash = true,
                     },
                 },
                 buffer = {
@@ -249,6 +251,7 @@ return {
                 },
             },
         },
+        fuzzy = { implementation = "prefer_rust" },
     },
     opts_extend = { "sources.default" }
 }
