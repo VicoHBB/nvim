@@ -50,15 +50,15 @@ return {
                 group = vim.api.nvim_create_augroup("TreeSitterLazyLoader", { clear = true }),
                 pattern = opts.languages,
                 callback = function(event)
-                    if event.match == "verilog" or event.match == "systemverilog" then
-                        -- vim.treesitter.start(event.buf, "systemverilog")
-                    else
-                        vim.treesitter.start(event.buf, event.match)
-                        vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                    end
-                        vim.treesitter.start(event.buf, event.match)
-                        vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    -- if event.match == "verilog" or event.match == "systemverilog" then
+                    --     -- vim.treesitter.start(event.buf, "systemverilog")
+                    -- else
+                    --     vim.treesitter.start(event.buf, event.match)
+                    --     vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    -- end
                     vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                    vim.treesitter.start(event.buf, event.match)
+                    vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                 end,
             })
         end
