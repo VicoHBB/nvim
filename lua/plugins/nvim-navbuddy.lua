@@ -1,13 +1,9 @@
 return {
     "hasansujon786/nvim-navbuddy",
+    enabled = true,
     dependencies = {
         "SmiteshP/nvim-navic",
-        -- "MunifTanjim/nui.nvim"
-        {
-            -- @TODO: This is a partial solution
-            "pynappo/nui.nvim",
-            branch = "support-winborder"
-        },
+        "MunifTanjim/nui.nvim",
     },
     opts = {
         lsp = {

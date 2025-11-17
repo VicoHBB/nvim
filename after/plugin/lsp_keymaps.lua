@@ -51,7 +51,7 @@ autocmd("LspAttach", {
             end,
             "[R]ename"
         )
-        keyset('n', "<leader>a", fzf.lsp_code_actions,
+        keyset('n', "<leader>aa", fzf.lsp_code_actions,
             "Code [A]ction"
         )
         -- Move diag shortcut
