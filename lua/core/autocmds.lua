@@ -98,13 +98,6 @@ autocmd("User", {
   end,
 })
 
-vim.cmd([[
-  augroup matchup_matchparen_highlight
-    autocmd!
-    autocmd ColorScheme * hi MatchParen guifg=red
-  augroup END
-]])
-
 -- Ignore quickfix as buffer
 vim.cmd([[
   augroup qf
