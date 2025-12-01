@@ -354,7 +354,7 @@ return {
             end,
             mode = { 'n' },
             silent = true,
-            desc = "FZFLua Search Word under cursor",
+            desc = "FZFLua Search Word",
         },
         {
             "gs",
@@ -391,6 +391,84 @@ return {
             mode = { 'v' },
             silent = true,
             desc = "FZFLua Tag (Visual Selection)",
+        },
+        -- For projects that does not configure properly
+        {
+            "<leader>fi",
+            function()
+                require('fzf-lua').files({
+                    cwd = Initial_Dir,
+                })
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "FZFLua Find Files (Initial Dir)",
+        },
+        {
+            "<leader>fU",
+            function()
+                local filename = vim.fn.expand("<cword>")
+                require('fzf-lua').files({
+                    query = filename,
+                    cwd = Initial_Dir,
+                })
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "FZFLua Find File Under Cursor (Initial Dir)",
+        },
+        {
+            "<leader>fU",
+            function()
+
+                local reg, visual_selection
+
+                reg = vim.fn.getreg('"')
+                vim.cmd('normal! "vy')
+                visual_selection = vim.fn.getreg('"')
+                vim.fn.setreg('v', reg)
+
+                require('fzf-lua').files({
+                    query = visual_selection,
+                    cwd = Initial_Dir,
+                })
+            end,
+            mode = { 'v' },
+            silent = true,
+            desc = "FZFLua Find File Visual Selection (Initial Dir)",
+        },
+        {
+            "<leader>gi",
+            function()
+                require('fzf-lua').grep_cword({
+                    cwd = Initial_Dir,
+                })
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "FZFLua Search Exact Word under cursor (Initial Dir)",
+        },
+        {
+            "<leader>gi",
+            function()
+                require('fzf-lua').grep_visual({
+                    cwd = Initial_Dir,
+                })
+            end,
+            mode = { 'v' },
+            silent = true,
+            desc = "FZFLua Search - Visual Selection (Initial Dir)",
+        },
+        {
+            "<Space>gI",
+            function()
+                require('fzf-lua').live_grep({
+                    cwd = Initial_Dir,
+                })
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "FZFLua Search Word (Initial Dir)",
         },
     }
 }

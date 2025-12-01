@@ -1,6 +1,7 @@
 local commands = require('core.custom_commands')
 local autocmd = vim.api.nvim_create_autocmd
 local keyset = vim.keymap.set
+Initial_Dir = vim.fn.getcwd()
 
 -- Remove spaces in the final of the line after write a file
 autocmd({ "BufWritePre" }, {
@@ -89,6 +90,7 @@ autocmd("User", {
     end,
 })
 
+
 autocmd("User", {
   pattern = "OilActionsPost",
   callback = function(event)
@@ -96,6 +98,13 @@ autocmd("User", {
           Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
       end
   end,
+})
+
+autocmd("VimEnter", {
+    once = true,
+    callback = function()
+        Initial_Dir = vim.fn.getcwd()
+    end,
 })
 
 -- Ignore quickfix as buffer
