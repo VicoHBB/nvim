@@ -15,7 +15,6 @@ vim.bo.autoindent    = true
 vim.bo.smartindent   = false
 vim.bo.commentstring = "/* %s */"
 vim.opt_local.wrap   = true
-
 -- ============================================================================
 -- Autocommands
 -- ============================================================================

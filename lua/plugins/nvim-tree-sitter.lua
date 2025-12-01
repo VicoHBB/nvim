@@ -4,8 +4,10 @@ return {
     branch = 'main',
     build = ":TSUpdate",
     dependencies = {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        branch = 'main'
+        {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            branch = 'main'
+        }
         -- "nfrid/treesitter-utils",  -- Maybe use latter
     },
     opts = {
@@ -28,9 +30,9 @@ return {
             "python",
             "regex",
             "rust",
-            "systemverilog",
+            "systemverilog", -- This does not work properly; manage on ftplugin/
             "toml",
-            "verilog",
+            -- "verilog", -- This does not work properly; manage on ftplugin/
             "vim",
             "vimdoc",
             "zsh"
@@ -41,12 +43,13 @@ return {
 
         TS.install(opts.languages)
 
+        vim.treesitter.language.register('systemverilog',{'verilog'})
+
         vim.api.nvim_create_autocmd('FileType', {
             group = vim.api.nvim_create_augroup('treesitter.setup', {}),
             callback = function(args)
                 local buf = args.buf
                 local filetype = args.match
-
                 -- you need some mechanism to avoid running on buffers that do not
                 -- correspond to a language (like oil.nvim buffers), this implementation
                 -- checks if a parser exists for the current language
@@ -55,21 +58,21 @@ return {
                     return
                 end
 
-                -- replicate `fold = { enable = true }`
-                vim.wo.foldmethod = 'expr'
-                vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-
-                -- replicate `highlight = { enable = true }`
-                vim.treesitter.start(buf, language)
-
-                -- replicate `indent = { enable = true }`
                 if filetype == "verilog" or filetype == "systemverilog" then
-                    vim.bo[buf].indentexpr = ""
-                    return
+                    vim.bo[buf].syntax = filetype
+                    vim.bo[buf].indentexpr = "GetVerilogIndent()"
+                    vim.wo.foldmethod = 'expr'
+                    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                else
+                    -- replicate `highlight = { enable = true }`
+                    vim.treesitter.start(buf, language)
+                    -- replicate `indent = { enable = true }`
+                    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    -- replicate `fold = { enable = true }`
+                    vim.wo.foldmethod = 'expr'
+                    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
                 end
-                vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
-                -- `incremental_selection = { enable = true }` cannot be easily replicated
             end,
         })
 
