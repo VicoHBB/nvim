@@ -74,7 +74,7 @@ return {
             end,
             mode = { 'n', 't' },
             silent = true,
-            desc = "Resize down",
+            desc = "Resize Down",
         },
         {
             '<A-k>',

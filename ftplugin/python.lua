@@ -37,7 +37,7 @@ overseer.register_template({
 
 -- Run Pytest
 overseer.register_template({
-    name = 'pytest',
+    name = 'UVTest',
     builder = function(opts)
         return {
             name = opts.name or 'pytest',
@@ -96,12 +96,12 @@ keyset('n', "<F9>", "<CMD>OverseerRun UVRun<CR>",
     }
 )
 
-keyset('n', "<F10>", "<CMD>OverseerRunCmd pytest<CR>",
+keyset('n', "<F10>", "<CMD>OverseerRun UVTest<CR>",
     {
         buffer = 0,
         noremap = true,
         silent = true,
-        desc = "Run file",
+        desc = "Run UV Pytest",
     }
 )
 

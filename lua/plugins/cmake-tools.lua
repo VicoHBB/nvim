@@ -45,6 +45,11 @@ return {
                 opts = {},         -- the options the executor will get, possible values depend on the executor type. See `default_opts` for possible values.
                 default_opts = {   -- a list of default and possible values for executors
                     overseer = {   -- take defaults from over seer
+                        new_task_opts = {
+                            strategy = {
+                                "jobstart",
+                            }
+                        },
                         on_new_task = function(task)
                             -- Do not open
                         end, -- a function that gets overseer.Task when it is created, before calling `task:start`
@@ -56,6 +61,11 @@ return {
                 opts = {},                           -- the options the runner will get, possible values depend on the runner type. See `default_opts` for possible values.
                 default_opts = {                     -- a list of default and possible values for runners
                     overseer = {                     -- Take defaults from overseer
+                        new_task_opts = {
+                            strategy = {
+                                "jobstart",
+                            }
+                        },
                         on_new_task = function(task) -- Open Runner
                             require("overseer").open(
                                 {
