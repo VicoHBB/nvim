@@ -5,11 +5,12 @@ return {
         'nvim-treesitter/nvim-treesitter',
         'nvim-tree/nvim-web-devicons'
     },
-    ft = { 'markdown' },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
+    ft = { "markdown" },
     opts = {
         render_modes = true,
+        file_types = { "markdown" },
         latex = {
             position = 'below'
         },

@@ -1,7 +1,7 @@
 return {
     'codota/tabnine-nvim',
-    enabled = Is_Not_Win32, -- @TODO: Review this
-    -- lazy = true,
+    -- enabled = Is_Not_Win32, -- @TODO: Review this
+    enabled = false, -- @TODO: Review this
     build = "./dl_binaries.sh",
     event = "VeryLazy",
     config = function()

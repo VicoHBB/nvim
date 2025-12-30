@@ -7,28 +7,9 @@ return {
     },
     -- optional: provides snippets for the snippet source
     dependencies = {
-        {
             -- @WARN: Comment all on windows
             "L3MON4D3/LuaSnip",
-            -- enabled = Is_Not_Win32,
-            -- follow latest release.
-            version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-            -- install jsregexp (optional!).
-            build = "make install_jsregexp",
-            dependencies = {
-                "rafamadriz/friendly-snippets",
-            },
-            config = function()
-                require("luasnip.loaders.from_vscode").lazy_load()
-                require("luasnip.loaders.from_lua").lazy_load({
-                    paths = vim.fn.stdpath("config") .. "/lua/snippets"
-                })
-                -- Use C snippets on CPP
-                require("luasnip").filetype_extend("cpp", { "c", "comments_c_style" })
-                -- Use Verilog snippets on Systemverilog
-                require("luasnip").filetype_extend("systemverilog", { "verilog", "comments_c_style" })
-            end,
-        }
+            "rafamadriz/friendly-snippets",
     },
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -55,8 +36,10 @@ return {
             ['<C-y>'] = { 'select_and_accept' },
             ['<CR>'] = { 'select_and_accept', 'fallback' },
 
+
             ['<Up>'] = { 'select_prev', 'fallback' },
             ['<Down>'] = { 'select_next', 'fallback' },
+
 
             ['<C-p>'] = { 'show', 'select_prev', 'fallback' },
             ['<C-n>'] = { 'show', 'select_next', 'fallback' },
@@ -79,23 +62,24 @@ return {
         cmdline = {
             keymap =
             {
-                ['<C-e>'] = { 'hide' },
-                ['<CR>'] = { 'select_and_accept', 'fallback' },
-                ['<Tab>'] = { 'show', 'select_next', 'fallback' },
-                ['<S-Tab>'] = { 'show', 'select_prev', 'fallback' },
-                ['C-Space'] = { 'show_documentation', 'hide_documentation' }
+                ['<Tab>'] = { 'show_and_insert_or_accept_single', 'select_next' },
+                ['<S-Tab>'] = { 'show_and_insert_or_accept_single', 'select_prev' },
+
+                ['<C-space>'] = { 'show', 'fallback' },
+
+                ['<C-n>'] = { 'select_next', 'fallback' },
+                ['<C-p>'] = { 'select_prev', 'fallback' },
+                ['<Right>'] = { 'select_next', 'fallback' },
+                ['<Left>'] = { 'select_prev', 'fallback' },
+
+                ['<C-y>'] = { 'select_and_accept', 'fallback' },
+                ['<C-e>'] = { 'cancel', 'fallback' },
             },
             completion = {
                 ghost_text = {
                     enabled = false
                 },
             },
-            -- sources = {
-            --   'cmdline',
-            --   'lazydev',
-            --   'path',
-            --   'buffer',
-            -- }
         },
 
         signature = { -- This is manage by Noice
@@ -253,5 +237,4 @@ return {
         },
         fuzzy = { implementation = "prefer_rust" },
     },
-    opts_extend = { "sources.default" }
 }

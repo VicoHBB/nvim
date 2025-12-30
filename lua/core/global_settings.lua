@@ -9,6 +9,7 @@ vim.opt.ruler = true          -- Show cursor position in the status line
 vim.opt.encoding = "UTF-8"    -- Set file encoding to UTF-8
 vim.opt.showmatch = true      -- Highlight matching parentheses
 vim.opt.shiftwidth = 2        -- Set indentation width to 2 spaces
+vim.opt.winborder = "rounded"
 vim.opt.spell = true          -- Enable spell check
 vim.opt.spelllang = {         -- Set spell to support ES & EN
     "en_us",
@@ -18,7 +19,8 @@ vim.opt.spelllang = {         -- Set spell to support ES & EN
 
 -- [[ UI and Visual Settings ]]
 vim.o.termguicolors = true -- Enable 24-bit color support in the terminal
-vim.opt.clipboard = "unnamed" -- Use system clipboard for yank, delete, etc.
+-- vim.opt.clipboard = "unnamed" -- Use system clipboard for yank, delete, etc.
+vim.opt.clipboard = "unnamedplus"
 vim.opt.showmode = false -- Disable mode display in the status line (redundant with 'laststatus')
 vim.opt.showtabline = 2 -- Always show tab line (useful for multiple buffers)
 vim.opt.list = true -- Show hidden characters (tabs, spaces, etc.)

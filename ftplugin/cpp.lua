@@ -36,7 +36,7 @@ keyset('n', "<leader>ch", function()
 )
 
 -- This is for Verilator tests
-keyset('n', "<leader>vr", "<CMD>OverseerRunCmd make run<CR>",
+keyset('n', "<leader>vr", "<CMD>OverseerShell make run<CR>",
     {
         buffer = 0,
         noremap = true,

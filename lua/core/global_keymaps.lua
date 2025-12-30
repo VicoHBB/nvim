@@ -70,7 +70,7 @@ keyset('n', "<leader>k", "<CMD>bnext<CR>", { silent = true })
 keyset('n', "<leader>j", "<CMD>bprevious<CR>", { silent = true })
 
 -- Close Buffers
-keyset('n', '<leader>X', '<CMD>%bd|e#|bd#<CR>',
+keyset('n', '<leader>X', ':%bd|e#|bd#<CR>',
     {
         silent = true,
         desc = "Close the Other buffrers"
@@ -80,10 +80,6 @@ keyset('n', '<leader>X', '<CMD>%bd|e#|bd#<CR>',
 -- Split window
 keyset('n', "<leader>|", "<CMD>vsp<CR>", { silent = true })
 keyset('n', "<leader>_", "<CMD>sp<CR>", { silent = true })
-
--- CommandLine recall
-keyset('c', "<C-j>", "<Down>", {})
-keyset('c', "<C-k>", "<Up>", {})
 
 -- Sessions
 keyset("n", "<leader>ms", "<CMD>mksession<CR>",

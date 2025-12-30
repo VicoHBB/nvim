@@ -23,6 +23,10 @@ vim.opt_local.wrap   = true
 -- Keymaps
 -- ============================================================================
 
+-- Disable pairs for \' & \`
+keyset('i', "'", "'", { buffer = 0 })
+keyset('i', "`", "`", { buffer = 0 })
+
 -- Compilation & Simulation
 
 keyset('n', "<F9>", ":OverseerShell make all<CR>", {

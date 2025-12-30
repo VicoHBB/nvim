@@ -181,6 +181,13 @@ return {
                 Snacks.picker.undo()
             end,
             desc = "Toggle UndoTree",
+        },
+        {
+            "<localleader>.",
+            function()
+                Snacks.scratch()
+            end,
+            desc = "Toggle Scratch Buffer",
         }
     },
 }

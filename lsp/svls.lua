@@ -9,12 +9,12 @@
 ---  cargo install svls
 ---  ```
 return {
-  cmd = { 'svls', "-d" },
-  filetypes = { 'verilog', 'systemverilog' },
-  root_markers = {
-                '.git',
-                '.gitignore',
-                '.svlint.toml',
-                '.svls.toml'
-  },
+    cmd = { 'svls', "-d" },
+    filetypes = { 'verilog', 'systemverilog' },
+    root_markers = {
+        '.git',
+        '.gitignore',
+        '.svlint.toml',
+        '.svls.toml'
+    },
 }
