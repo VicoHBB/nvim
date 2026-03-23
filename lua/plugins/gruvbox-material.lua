@@ -13,7 +13,7 @@ return {
         vim.g.gruvbox_material_menu_selection_background = "green"
         -- vim.g.gruvbox_material_sign_column_background = 'none'
         -- vim.g.gruvbox_material_spell_foreground = "none"
-        -- vim.g.gruvbox_material_ui_contrast = "high"
+        vim.g.gruvbox_material_ui_contrast = "high"
         vim.g.gruvbox_material_float_style = "dim"
         vim.g.gruvbox_material_diagnostic_text_highlight = 1
         vim.g.gruvbox_material_diagnostic_virtual_text = "colored"

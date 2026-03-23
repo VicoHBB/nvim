@@ -21,6 +21,21 @@ autocmd("LspAttach", {
                 }
             )
         end
+
+        local keyset_expr = function(mode, keys, func, desc)
+            vim.keymap.set(
+                mode,
+                keys,
+                func,
+                {
+                    expr = true,
+                    silent = true,
+                    buffer = event.buf,
+                    desc = "LSP -> " .. desc
+                }
+            )
+        end
+
         local fzf = require("fzf-lua")
 
         local function lsp_action(cmd)
@@ -45,60 +60,57 @@ autocmd("LspAttach", {
             vim.cmd(cmd .. " " .. table.concat(client_names, " "))
         end
 
-        keyset('n', "<leader>R", function()
-                -- vim.lsp.buf.rename()
-                -- vim.cmd("wall")
-                vim.cmd("Lspsaga rename")
-                vim.cmd("wall")
-            end,
+        keyset_expr( 'n', "<leader>R",
+            function() return ":IncRename " .. vim.fn.expand("<cword>") end,
             "[R]ename"
         )
+
         keyset('n', "<leader>aa", function()
-                -- fzf.lsp_code_actions()
-                vim.cmd("Lspsaga code_action")
+                fzf.lsp_code_actions()
+                -- vim.cmd("Lspsaga code_action")
             end,
             "Code [A]ction"
         )
         -- Move diag shortcut
         keyset('n', "<leader>[",
             function()
-                -- vim.diagnostic.jump({ count = -1, float = true })
-                vim.cmd('Lspsaga diagnostic_jump_prev')
+                vim.diagnostic.jump({ count = -1, float = true })
+                -- vim.cmd('Lspsaga diagnostic_jump_prev')
             end,
             "Previous Dx"
         )
         keyset('n', "<leader>]",
             function()
-                -- vim.diagnostic.jump({ count = 1, float = true })
-                vim.cmd('Lspsaga diagnostic_jump_next')
+                vim.diagnostic.jump({ count = 1, float = true })
+                -- vim.cmd('Lspsaga diagnostic_jump_next')
             end,
             "Next Dx"
         )
         keyset('n', "[d",
             function()
-                -- vim.diagnostic.jump({ count = -1, float = true })
-                vim.cmd('Lspsaga diagnostic_jump_prev')
+                vim.diagnostic.jump({ count = -1, float = true })
+                -- vim.cmd('Lspsaga diagnostic_jump_prev')
             end,
             "Previous Dx"
         )
         keyset('n', "]d",
             function()
-                -- vim.diagnostic.jump({ count = 1, float = true })
-                vim.cmd('Lspsaga diagnostic_jump_next')
+                vim.diagnostic.jump({ count = 1, float = true })
+                -- vim.cmd('Lspsaga diagnostic_jump_next')
             end,
             "Next Dx"
         )
         keyset('n', '<leader>?', function()
-                -- vim.diagnostic.setqflist()
-                vim.cmd("Lspsaga show_workspace_diagnostics")
+                vim.diagnostic.setqflist()
+                -- vim.cmd("Lspsaga show_workspace_diagnostics")
             end
             ,
             "Show Dx"
         )
         -- GoTo
         keyset("n", "gd", function()
-                -- fzf.lsp_definitions()
-                vim.cmd("Lspsaga goto_definition")
+                fzf.lsp_definitions()
+                -- vim.cmd("Lspsaga goto_definition")
                 vim.cmd("normal zz")
             end,
             "[G]o to [D]efinitions"
@@ -110,15 +122,15 @@ autocmd("LspAttach", {
             "[G]o to [D]eclaration"
         )
         keyset("n", "gr", function()
-                -- fzf.lsp_references()
-                vim.cmd("Lspsaga finder")
+                fzf.lsp_references()
+                -- vim.cmd("Lspsaga finder")
                 vim.cmd("normal zz")
             end,
             "[G]o to [R]eferences"
         )
         keyset("n", "gt", function()
-                -- fzf.lsp_typedefs()
-                vim.cmd("Lspsaga goto_type_definition")
+                fzf.lsp_typedefs()
+                -- vim.cmd("Lspsaga goto_type_definition")
                 vim.cmd("normal zz")
             end,
             "[G]o to [T]ype Definitions"
@@ -137,37 +149,37 @@ autocmd("LspAttach", {
 
         )
         keyset("n", "gci", function()
-                -- fzf.lsp_incoming_calls()
-                vim.cmd("Lspsaga incoming_calls")
+                fzf.lsp_incoming_calls()
+                -- vim.cmd("Lspsaga incoming_calls")
                 vim.cmd("normal zz")
             end,
             "[G]o to [I]ncoming [C]alls"
 
         )
         keyset("n", "gco", function()
-                -- fzf.lsp_outgoing_calls()
-                vim.cmd("Lspsaga outgoing_calls")
+                fzf.lsp_outgoing_calls()
+                -- vim.cmd("Lspsaga outgoing_calls")
                 vim.cmd("normal zz")
             end,
             "[G]o to [O]utgoing [C]alls"
 
         )
         keyset("n", "K", function()
-                -- require("noice.lsp").hover()
-                vim.cmd("Lspsaga hover_doc")
+                require("noice.lsp").hover()
+                -- vim.cmd("Lspsaga hover_doc")
             end,
             "Hover Documentation"
         )
         keyset("n", "gpd", function()
-            -- require("noice.lsp").hover()
-            vim.cmd("Lspsaga peek_definition")
+            require("noice.lsp").hover()
+            -- vim.cmd("Lspsaga peek_definition")
         end,
             "Hover Documentation"
         )
 
         keyset("n", "gpt", function()
-            -- require("noice.lsp").hover()
-            vim.cmd("Lspsaga peek_type_definition")
+            require("noice.lsp").hover()
+            -- vim.cmd("Lspsaga peek_type_definition")
         end,
             "Hover Documentation"
 

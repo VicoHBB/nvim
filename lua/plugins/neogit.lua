@@ -45,7 +45,7 @@ return {
             desc = "Git Show Last Commit"
         },
         {
-            "<leader>gl",
+            "<leader>gL",
             function()
                 vim.cmd("Neogit log")
             end,

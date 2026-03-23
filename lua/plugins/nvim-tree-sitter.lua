@@ -32,6 +32,7 @@ return {
             "rust",
             "systemverilog", -- This does not work properly; manage on ftplugin/
             "toml",
+            "tmux",
             -- "verilog", -- This does not work properly; manage on ftplugin/
             "vim",
             "vimdoc",

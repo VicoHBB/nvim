@@ -1,11 +1,12 @@
 return {
     "folke/sidekick.nvim",
+    enabled = true,
     opts = {
         -- add any options here
         cli = {
             mux = {
                 backend = "tmux",
-                enabled = true,
+                enabled = false,
             },
             nes = { enabled = false },
         },

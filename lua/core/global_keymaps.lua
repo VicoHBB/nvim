@@ -88,3 +88,24 @@ keyset("n", "<leader>ms", "<CMD>mksession<CR>",
         desc = "Save session"
     }
 )
+keyset( "n", "<leader>rn",
+    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    {
+        silent = true,
+        desc = "Search and replace word under cursor"
+    }
+)
+
+keyset( "v", "<leader>rn", function()
+        vim.cmd('normal! "yy')
+        local text = vim.fn.getreg('"')
+        local escaped = vim.fn.escape(text, '/\\.*$^~[')
+        -- Envía las teclas a Neovim
+        local keys = ':%s/' .. escaped .. '/' .. escaped .. '/gI' .. string.rep('<Left>', 3)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), 'n', false)
+    end,
+    {
+        silent = true,
+        desc = "Search and replace visual selection"
+    }
+)

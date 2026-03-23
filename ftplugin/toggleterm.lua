@@ -11,6 +11,7 @@ vim.bo.expandtab   = true
 vim.bo.shiftwidth  = 2
 vim.wo.colorcolumn = "0"
 vim.opt_local.wrap = true
+vim.opt_local.wrap = true
 
 -- ============================================================================
 -- Autocommands

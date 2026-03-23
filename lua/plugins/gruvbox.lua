@@ -23,13 +23,18 @@ return {
         contrast = "hard", -- can be "hard", "soft" or empty string
         palette_overrides = {},
         overrides = {
-            SignColumn = { link = "Normal" },
+            SignColumn = {
+                bg = "#1d2021",
+                -- bg = "#161616",
+                -- link = "Normal"
+            },
         },
         dim_inactive = true,
         transparent_mode = false,
     },
-    config = function()
+    config = function (_, opts)
+        require("gruvbox").setup(opts)
         -- [[ Set colorscheme ]]
-        vim.cmd.colorscheme "gruvbox"
-    end,
+        vim.cmd.colorscheme("gruvbox")
+    end
 }
