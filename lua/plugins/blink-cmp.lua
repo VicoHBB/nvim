@@ -235,6 +235,7 @@ return {
                 },
             },
         },
-        fuzzy = { implementation = "prefer_rust" },
+        -- fuzzy = { implementation = "prefer_rust" }, -- Rust backend can crash in long session
+        fuzzy = { implementation = "lua" }, -- Rust backend can crash in long session
     },
 }

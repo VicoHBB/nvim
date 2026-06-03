@@ -30,7 +30,7 @@ return {
             override = {
                 ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                 ["vim.lsp.util.stylize_markdown"] = true,
-                ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+                ["cmp.entry.get_documentation"] = false, -- nvim-cmp is disabled, blink.cmp is used instead
             },
             hover = {
                 enabled = true,
@@ -44,6 +44,14 @@ return {
                 },
                 view = nil, -- when nil, use defaults from documentation
                 opts = {}, -- merged with defaults from documentation
+            },
+            documentation = {
+            --     view = "hover",
+                opts = {
+                    lang = "markdown",
+                    replace = true,
+                    render = "markdown",
+                },
             },
         },
         -- you can enable a preset for easier configuration
