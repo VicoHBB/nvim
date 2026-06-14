@@ -4,12 +4,13 @@ return {
     cmd = {
         "Neogit",
         "NeogitCommit",
-        "DiffviewOpen",
-        "DiffviewFileHistory"
+        -- "DiffviewOpen",
+        -- "DiffviewFileHistory"
     },
     dependencies = {
-        "nvim-lua/plenary.nvim",  -- required
-        "sindrets/diffview.nvim", -- optional - Diff integration
+        "nvim-lua/plenary.nvim", -- required
+        -- This is manage on diffview.lua to lazy loading
+        -- "sindrets/diffview.nvim", -- optional - Diff integration
 
         -- Only one of these is needed, not both.
         "ibhagwan/fzf-lua",
@@ -25,7 +26,7 @@ return {
             silent = true,
             desc = "Open Neogit"
         },
-        -- @TODO: Chamges vim.cmd for lua function
+        -- @TODO: Changes vim.cmd for lua function
         {
             "<leader>gc",
             function()
@@ -79,24 +80,6 @@ return {
             mode = { "n" },
             silent = true,
             desc = "Git Diff"
-        },
-        {
-            "<leader>gD",
-            function()
-                vim.cmd("DiffviewOpen --untracked-files")
-            end,
-            mode = { "n" },
-            silent = true,
-            desc = "Git Diff"
-        },
-        {
-            "<leader>gh",
-            function()
-                vim.cmd("DiffviewFileHistory %")
-            end,
-            mode = { "n" },
-            silent = true,
-            desc = "Git Diff File History"
         },
     }
 }

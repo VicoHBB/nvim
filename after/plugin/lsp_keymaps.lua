@@ -4,11 +4,6 @@ autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
     callback = function(event)
 
-        -- Set capabilities when LSP attaches for autocompletion
-        vim.lsp.config("*", {
-            capabilities = require("blink.cmp").get_lsp_capabilities(),
-        })
-
         local keyset = function(mode, keys, func, desc)
             vim.keymap.set(
                 mode,
@@ -67,7 +62,6 @@ autocmd("LspAttach", {
 
         keyset('n', "<leader>aa", function()
                 fzf.lsp_code_actions()
-                -- vim.cmd("Lspsaga code_action")
             end,
             "Code [A]ction"
         )
@@ -75,34 +69,29 @@ autocmd("LspAttach", {
         keyset('n', "<leader>[",
             function()
                 vim.diagnostic.jump({ count = -1, float = true })
-                -- vim.cmd('Lspsaga diagnostic_jump_prev')
             end,
             "Previous Dx"
         )
         keyset('n', "<leader>]",
             function()
                 vim.diagnostic.jump({ count = 1, float = true })
-                -- vim.cmd('Lspsaga diagnostic_jump_next')
             end,
             "Next Dx"
         )
         keyset('n', "[d",
             function()
                 vim.diagnostic.jump({ count = -1, float = true })
-                -- vim.cmd('Lspsaga diagnostic_jump_prev')
             end,
             "Previous Dx"
         )
         keyset('n', "]d",
             function()
                 vim.diagnostic.jump({ count = 1, float = true })
-                -- vim.cmd('Lspsaga diagnostic_jump_next')
             end,
             "Next Dx"
         )
         keyset('n', '<leader>?', function()
                 vim.diagnostic.setqflist()
-                -- vim.cmd("Lspsaga show_workspace_diagnostics")
             end
             ,
             "Show Dx"
@@ -110,99 +99,84 @@ autocmd("LspAttach", {
         -- GoTo
         keyset("n", "gd", function()
                 fzf.lsp_definitions()
-                -- vim.cmd("Lspsaga goto_definition")
-                vim.cmd("normal zz")
+
             end,
             "[G]o to [D]efinitions"
         )
         keyset("n", "gD", function()
                 vim.lsp.buf.declaration()
-                vim.cmd("normal zz")
+
             end,
             "[G]o to [D]eclaration"
         )
         keyset("n", "gr", function()
                 fzf.lsp_references()
-                -- vim.cmd("Lspsaga finder")
-                vim.cmd("normal zz")
+
             end,
             "[G]o to [R]eferences"
         )
         keyset("n", "gt", function()
                 fzf.lsp_typedefs()
-                -- vim.cmd("Lspsaga goto_type_definition")
-                vim.cmd("normal zz")
+
             end,
             "[G]o to [T]ype Definitions"
         )
         keyset("n", "gI", function()
                 fzf.lsp_implementations()
-                vim.cmd("normal zz")
+
             end,
-            "[G]o to [I]mplementataion"
+            "[G]o to [I]mplementation"
         )
         keyset("n", "gF", function()
                 fzf.lsp_finder()
-                vim.cmd("normal zz")
+
             end,
             "[G]o to [F]inder"
 
         )
         keyset("n", "gci", function()
                 fzf.lsp_incoming_calls()
-                -- vim.cmd("Lspsaga incoming_calls")
-                vim.cmd("normal zz")
+
             end,
             "[G]o to [I]ncoming [C]alls"
 
         )
         keyset("n", "gco", function()
                 fzf.lsp_outgoing_calls()
-                -- vim.cmd("Lspsaga outgoing_calls")
-                vim.cmd("normal zz")
+
             end,
             "[G]o to [O]utgoing [C]alls"
 
         )
+        keyset("n", "gO", function()
+                fzf.lsp_document_symbols()
+
+            end,
+            "[G]o to [O]utline / Symbols"
+        )
         keyset("n", "K", function()
                 require("noice.lsp").hover()
-                -- vim.cmd("Lspsaga hover_doc")
             end,
             "Hover Documentation"
         )
-        keyset("n", "gpd", function()
-            require("noice.lsp").hover()
-            -- vim.cmd("Lspsaga peek_definition")
-        end,
-            "Hover Documentation"
-        )
-
-        keyset("n", "gpt", function()
-            require("noice.lsp").hover()
-            -- vim.cmd("Lspsaga peek_type_definition")
-        end,
-            "Hover Documentation"
-
-        )
-
         keyset("n", "gK", require("noice.lsp").signature,
             "Show Signature"
         )
 
-        keyset({ "n", "i", "s" }, "<c-f>", function()
+        keyset_expr("n", "<c-f>", function()
                 if not require("noice.lsp").scroll(4) then
                     return "<c-f>"
                 end
             end,
-            "Scroll down"
+            "Scroll hover down"
         )
 
-        keyset({ "n", "i", "s" }, "<c-b>", function()
+        keyset_expr("n", "<c-b>", function()
                 if not require("noice.lsp").scroll(-4) then
                     return "<c-b>"
                 end
             end,
-            "Scroll up"
+            "Scroll hover up"
         )
 
         -- Navbudy
@@ -210,20 +184,12 @@ autocmd("LspAttach", {
             "Navigate trough symbols"
         )
 
-        -- Format
-        keyset({ 'v', 'x' }, '<leader>f', function()
-                vim.lsp.buf.format { async = true }
-                vim.notify("Format Done",vim.log.levels.INFO)
+        -- @TODO: Evaluate conform.nvim for per-formatter control and format-on-save.
+        keyset({ 'v', 'x' }, 'gq', function()
+                vim.notify("Formatting Code...", vim.log.levels.INFO)
+                vim.lsp.buf.format { async = false }
             end,
-            "Format"
-        )
-
-        -- Format
-        keyset({ 'v', 'x' }, '<leader>f', function()
-                vim.lsp.buf.format { async = true }
-                vim.notify("Format Done",vim.log.levels.INFO)
-            end,
-            "Format"
+            "Format selection (LSP)"
         )
 
         -- Restart lsp stop
@@ -254,7 +220,7 @@ autocmd("LspAttach", {
         keyset({ 'n' }, '<Space>Ls', function()
                 lsp_action("LspStart")
             end,
-            "Stop all lsp client attached to the buffer"
+            "Start LSP clients for the current buffer"
         )
 
         -- Restart all lsp
@@ -263,17 +229,5 @@ autocmd("LspAttach", {
             end,
             "Restart all lsp client attached to the buffer"
         )
-
-        -- Restart lsp manually
-        -- keyset({ 'n' }, '<Space>Lr', function()
-        --         lsp_action("LspRestart")
-        --     end,
-        --     "Restart all lsp client attached to the buffer"
-        -- )
-
-        -- @NOTE: Check this
-        -- will be done with conform
-        -- map("<leader>f", vim.lsp.buf.format, "[F]ormat the document")
-
     end,
 })

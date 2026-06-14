@@ -168,7 +168,7 @@ return { -- The task runner we use
         {
             "<leader>rt",
             function()
-                -- @TODO: Chamges vim.cmd for lua function
+                -- @TODO: Changes vim.cmd for lua function
                 vim.cmd("OverseerRun")
             end,
             mode = { 'n' },

@@ -24,13 +24,13 @@ vim.opt_local.wrap = true
 -- ============================================================================
 
 -- Toggle src & header
-keyset('n', "<leader>ch", function()
+keyset('n', "<leader>ah", function()
         vim.cmd("LspClangdSwitchSourceHeader")
     end,
     {
         buffer = 0,
         noremap = true,
         silent = true,
-        desc = "Clangd Switch Source Header"
+        desc = "Clangd Alternate Header/Source"
     }
 )

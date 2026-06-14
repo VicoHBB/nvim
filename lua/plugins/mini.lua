@@ -9,7 +9,6 @@ return {
         -- require('mini.ai').setup()
         -- require('mini.animate').setup()
         -- require('mini.pick').setup()
-        require('mini.files').setup()
         require('mini.sessions').setup()
         require('mini.pairs').setup()
         require('mini.files').setup({
@@ -27,13 +26,13 @@ return {
         })
         require('mini.operators').setup({
             replace = {
-                prefix = '<leader>mr',
+                prefix = '<leader>or',
             },
             exchange = {
                 prefix = '<leader>e',
             },
             sort = {
-                prefix = '<leader>s',
+                prefix = '<leader>os',
             },
         })
 

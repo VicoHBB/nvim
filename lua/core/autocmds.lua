@@ -115,7 +115,7 @@ vim.cmd([[
   augroup END
 ]])
 
--- @TODO: Check if this steel need it
+-- @TODO: Check if this still need it
 -- To support org files
 vim.cmd [[
   autocmd BufRead,BufNewFile *.org set filetype=org

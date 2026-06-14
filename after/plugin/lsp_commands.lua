@@ -39,7 +39,7 @@ autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
                 callback = function(event2)
                     vim.lsp.buf.clear_references()
-                    vim.api.nvim_clear_autocmds({ group = "kickstart-slp-highlight", buffer = event2.buf })
+                    vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
                 end,
             })
         end
@@ -60,26 +60,31 @@ cmd("LspInfo", function()
     }
 )
 
--- @TODO: Is not working properly the following code:
-
 cmd('LspStart', function(info)
     local clients = info.fargs
 
-    -- Default to enabling all servers matching the filetype of the current buffer.
-    -- This assumes that they've been explicitly configured through `vim.lsp.config`,
-    -- otherwise they won't be present in the private `vim.lsp.config._configs` table.
+    -- Default to servers matching the current buffer's filetype, discovered
+    -- via runtime files instead of the private vim.lsp.config._configs table.
     if #clients == 0 then
-      local filetype = vim.bo.filetype
-      for name, _ in pairs(vim.lsp.config._configs) do
-        local filetypes = vim.lsp.config[name].filetypes
-        if filetypes and vim.tbl_contains(filetypes, filetype) then
-          table.insert(clients, name)
+        local filetype = vim.bo.filetype
+        for _, path in ipairs(vim.api.nvim_get_runtime_file('lsp/*.lua', true)) do
+            local name = path:match('([^/]+)%.lua$')
+            if name then
+                local cfg = vim.lsp.config[name]
+                if cfg and cfg.filetypes and vim.tbl_contains(cfg.filetypes, filetype) then
+                    table.insert(clients, name)
+                end
+            end
         end
-      end
+    end
+
+    if #clients == 0 then
+        vim.notify('No LSP servers found for filetype: ' .. vim.bo.filetype, vim.log.levels.WARN)
+        return
     end
 
     vim.lsp.enable(clients)
-    vim.notify(('LSP -> %s started.'):format(table.concat(clients, ', ')), vim.log.levels.INFO)
+    vim.notify(('LSP -> started: %s'):format(table.concat(clients, ', ')), vim.log.levels.INFO)
     end,
     {
         desc = 'Start a language server by its configured name',
@@ -89,35 +94,40 @@ cmd('LspStart', function(info)
 )
 
 cmd('LspStop', function()
-        local clients = vim.lsp.get_clients()
-        vim.lsp.stop_client(clients, true)
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
+        if #clients == 0 then
+            vim.notify('No active LSP clients found.', vim.log.levels.WARN)
+            return
+        end
         for _, client in ipairs(clients) do
-            vim.notify(('LSP -> %s stopped.'):format(client.name), vim.log.levels.INFO)
+            client:stop(true)
+            vim.notify(('LSP -> stopped: %s'):format(client.name), vim.log.levels.INFO)
         end
     end,
     {
-        desc = 'Stop all active language servers',
+        desc = 'Stop all active language servers on the current buffer',
     }
 )
 
 cmd('LspRestart', function()
-        local clients = vim.lsp.get_clients()
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
 
         if #clients == 0 then
             vim.notify('No active LSP clients found.', vim.log.levels.WARN)
-        else
-            vim.notify('Restarting LSP clients...', vim.log.levels.INFO)
-            vim.lsp.stop_client(clients)
-            vim.cmd('e') -- use insted of e! to avoid lost changes
-            for _, client in ipairs(clients) do
-                -- @TODO: check how to fix this
-                -- vim.lsp.enable(client.name)
-                vim.notify(('LSP -> %s restarted.'):format(client.name), vim.log.levels.INFO)
-            end
+            return
         end
 
+        local names = vim.tbl_map(function(c) return c.name end, clients)
+        for _, client in ipairs(clients) do client:stop() end
+
+        -- Defer the reload to give clients time to fully stop before restarting.
+        -- vim.cmd('e') retriggers FileType which causes enabled servers to reattach.
+        vim.defer_fn(function()
+            vim.cmd('e')
+            vim.notify(('LSP -> restarted: %s'):format(table.concat(names, ', ')), vim.log.levels.INFO)
+        end, 500)
     end,
     {
-        desc = 'Restart the given client(s)', -- Description for the command
+        desc = 'Restart LSP clients attached to the current buffer',
     }
 )

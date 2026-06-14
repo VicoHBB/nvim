@@ -15,7 +15,7 @@ return {
         local autocmd = vim.api.nvim_create_autocmd
         local commands = require('core.custom_commands')
         autocmd("User", {
-            -- @TODO: Find the way to executen when run "nvim file.py/file.lua"
+            -- @TODO: Find the way to execute when run "nvim file.py/file.lua"
             -- pattern = "VeryLazy",
             -- pattern = { "lua", "python" },
             callback = commands.set_repl

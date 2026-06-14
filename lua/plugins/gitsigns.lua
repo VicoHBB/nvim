@@ -121,7 +121,7 @@ return {
                 require('gitsigns').toggle_word_diff()
             end,
             mode = { "n" },
-            desc = "Hinks Togglw Words Diff",
+            desc = "Git Toggle Words Diff",
         },
         {
             "ih",

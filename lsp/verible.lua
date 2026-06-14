@@ -12,12 +12,17 @@ return {
     cmd = {
         'verible-verilog-ls',
         '--rules_config_search',
-        '--indentation_spaces=4'
+        '--indentation_spaces=4',
+        '--column_limit=120',
+        '--lsp_enable_hover',
+        '--variables_in_outline=true'
     },
     filetypes = { 'systemverilog', 'verilog' },
     root_markers = {
-        '.git',
-        '.rules.verible_lint',
-        'verible.filelist'
+        'verible.filelist',
+        {
+            '.rules.verible_lint',
+            '.git'
+        }      -- fallback de igual peso
     },
 }

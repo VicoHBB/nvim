@@ -1,13 +1,5 @@
 local keyset = vim.keymap.set
 
--- Think
-keyset('n', "<leader>", "<CMD>echo 'What to do?'<CR>",
-    {
-        silent = true,
-        desc = "Leader Key (print msg)"
-    }
-)
-
 -- Run Lua codo
 keyset('n', "<leader>lc", ":lua ",
     {

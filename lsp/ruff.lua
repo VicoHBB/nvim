@@ -30,4 +30,7 @@ return {
   filetypes = { 'python' },
   root_markers = { 'pyproject.toml', 'ruff.toml', '.ruff.toml', '.git' },
   settings = {},
+  on_attach = function(client)
+    -- This fix the message "information not available on python files hover is manage for pyright"
+    client.server_capabilities.hoverProvider = false   end,
 }

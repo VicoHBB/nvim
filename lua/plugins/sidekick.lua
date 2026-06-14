@@ -9,6 +9,11 @@ return {
                 enabled = false,
             },
             nes = { enabled = false },
+            tools = {
+                antigravity = {
+                    cmd = { "agy" },
+                }
+            }
         },
     },
     keys = {
@@ -16,7 +21,7 @@ return {
             "<F5>",
             function()
                 require("sidekick.cli").toggle({
-                    name = "gemini"
+                    name = "antigravity"
                 })
             end,
             desc = "Sidekick Gemini-Cli Toggle",

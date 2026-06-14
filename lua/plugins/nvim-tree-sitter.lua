@@ -44,7 +44,7 @@ return {
 
         TS.install(opts.languages)
 
-        vim.treesitter.language.register('systemverilog',{'verilog'})
+        vim.treesitter.language.register('systemverilog',{'verilog', 'sv', 'v'})
 
         vim.api.nvim_create_autocmd('FileType', {
             group = vim.api.nvim_create_augroup('treesitter.setup', {}),
@@ -158,7 +158,7 @@ return {
             end,
             mode = { 'n' },
             silent = true,
-            desc = "Select Inner Loop",
+            desc = "Swap Next Parameter",
         },
         {
             "<leader>sp",
@@ -167,7 +167,7 @@ return {
             end,
             mode = { 'n' },
             silent = true,
-            desc = "Select Inner Loop",
+            desc = "Swap Previous Parameter",
         },
     }
 }

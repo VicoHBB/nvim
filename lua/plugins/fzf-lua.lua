@@ -1,6 +1,6 @@
 return {
     "ibhagwan/fzf-lua",
-    enbled = true,
+    enabled = true,
     lazy = true,
     cmd = "FzfLua",
     -- evvent = "VeryLazy",
@@ -185,6 +185,18 @@ return {
             width    = 0.25,
         }
 
+        -- Buffers
+        config.defaults.buffers.winopts = winopts_files_default
+
+        -- Marks
+        config.defaults.marks.winopts = {
+            preview = {
+                layout = "vertical",
+                vertical = "down:70%",
+                -- hidden = true,
+            }
+        }
+
         require('fzf-lua').register_ui_select({
             winopts = winopts_nvim_default
         })
@@ -236,35 +248,31 @@ return {
             desc = "FZFLua Find Files",
         },
         {
-            "<leader>fu",
+            "<leader>fb",
             function()
-                local filename = vim.fn.expand("<cword>")
-                require('fzf-lua').files({
-                    query = filename,
-                })
+                require('fzf-lua').buffers()
             end,
             mode = { 'n' },
             silent = true,
-            desc = "FZFLua Find File Under Cursor",
+            desc = "FZFLua Buffers",
         },
         {
             "<leader>fu",
             function()
-
-                local reg, visual_selection
-
-                reg = vim.fn.getreg('"')
-                vim.cmd('normal! "vy')
-                visual_selection = vim.fn.getreg('"')
-                vim.fn.setreg('v', reg)
-
-                require('fzf-lua').files({
-                    query = visual_selection,
-                })
+                local query
+                if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
+                    local reg = vim.fn.getreg('"')
+                    vim.cmd('normal! "vy')
+                    query = vim.fn.getreg('v')
+                    vim.fn.setreg('"', reg)
+                else
+                    query = vim.fn.expand("<cword>")
+                end
+                require('fzf-lua').files({ query = query })
             end,
-            mode = { 'v' },
+            mode = { 'n', 'v' },
             silent = true,
-            desc = "FZFLua Find File Visual Selection",
+            desc = "FZFLua Find File Under Cursor / Selection",
         },
         {
             "<leader>fo",
@@ -407,57 +415,33 @@ return {
         {
             "<leader>fU",
             function()
-                local filename = vim.fn.expand("<cword>")
-                require('fzf-lua').files({
-                    query = filename,
-                    cwd = Initial_Dir,
-                })
+                local query
+                if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
+                    local reg = vim.fn.getreg('"')
+                    vim.cmd('normal! "vy')
+                    query = vim.fn.getreg('v')
+                    vim.fn.setreg('"', reg)
+                else
+                    query = vim.fn.expand("<cword>")
+                end
+                require('fzf-lua').files({ query = query, cwd = Initial_Dir })
             end,
-            mode = { 'n' },
+            mode = { 'n', 'v' },
             silent = true,
-            desc = "FZFLua Find File Under Cursor (Initial Dir)",
-        },
-        {
-            "<leader>fU",
-            function()
-
-                local reg, visual_selection
-
-                reg = vim.fn.getreg('"')
-                vim.cmd('normal! "vy')
-                visual_selection = vim.fn.getreg('"')
-                vim.fn.setreg('v', reg)
-
-                require('fzf-lua').files({
-                    query = visual_selection,
-                    cwd = Initial_Dir,
-                })
-            end,
-            mode = { 'v' },
-            silent = true,
-            desc = "FZFLua Find File Visual Selection (Initial Dir)",
+            desc = "FZFLua Find File Under Cursor / Selection (Initial Dir)",
         },
         {
             "<leader>gi",
             function()
-                require('fzf-lua').grep_cword({
-                    cwd = Initial_Dir,
-                })
+                if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
+                    require('fzf-lua').grep_visual({ cwd = Initial_Dir })
+                else
+                    require('fzf-lua').grep_cword({ cwd = Initial_Dir })
+                end
             end,
-            mode = { 'n' },
+            mode = { 'n', 'v' },
             silent = true,
-            desc = "FZFLua Search Exact Word under cursor (Initial Dir)",
-        },
-        {
-            "<leader>gi",
-            function()
-                require('fzf-lua').grep_visual({
-                    cwd = Initial_Dir,
-                })
-            end,
-            mode = { 'v' },
-            silent = true,
-            desc = "FZFLua Search - Visual Selection (Initial Dir)",
+            desc = "FZFLua Search Word / Selection (Initial Dir)",
         },
         {
             "<Space>gI",
