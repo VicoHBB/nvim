@@ -31,7 +31,8 @@ autocmd("LspAttach", {
             )
         end
 
-        local fzf = require("fzf-lua")
+        local fzf      = require("fzf-lua")
+        local goto_opts = { jump1 = true }
 
         local function lsp_action(cmd)
             local clients = vim.lsp.get_clients({ bufnr = 0 })
@@ -98,8 +99,7 @@ autocmd("LspAttach", {
         )
         -- GoTo
         keyset("n", "gd", function()
-                fzf.lsp_definitions()
-
+                fzf.lsp_definitions(goto_opts)
             end,
             "[G]o to [D]efinitions"
         )
@@ -110,47 +110,37 @@ autocmd("LspAttach", {
             "[G]o to [D]eclaration"
         )
         keyset("n", "gr", function()
-                fzf.lsp_references()
-
+                fzf.lsp_references(goto_opts)
             end,
             "[G]o to [R]eferences"
         )
         keyset("n", "gt", function()
-                fzf.lsp_typedefs()
-
+                fzf.lsp_typedefs(goto_opts)
             end,
             "[G]o to [T]ype Definitions"
         )
         keyset("n", "gI", function()
-                fzf.lsp_implementations()
-
+                fzf.lsp_implementations(goto_opts)
             end,
             "[G]o to [I]mplementation"
         )
         keyset("n", "gF", function()
-                fzf.lsp_finder()
-
+                fzf.lsp_finder(goto_opts)
             end,
             "[G]o to [F]inder"
-
         )
         keyset("n", "gci", function()
-                fzf.lsp_incoming_calls()
-
+                fzf.lsp_incoming_calls(goto_opts)
             end,
             "[G]o to [I]ncoming [C]alls"
-
         )
         keyset("n", "gco", function()
-                fzf.lsp_outgoing_calls()
-
+                fzf.lsp_outgoing_calls(goto_opts)
             end,
             "[G]o to [O]utgoing [C]alls"
-
         )
         keyset("n", "gO", function()
-                fzf.lsp_document_symbols()
-
+                fzf.lsp_document_symbols(goto_opts)
             end,
             "[G]o to [O]utline / Symbols"
         )

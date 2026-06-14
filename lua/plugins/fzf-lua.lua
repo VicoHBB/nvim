@@ -14,9 +14,32 @@ return {
         local config  = fzf.config
         local actions = fzf.actions
         local keyset  = vim.keymap.set
+        local jump_flash_ns = vim.api.nvim_create_namespace("jump_flash")
+
+        local function flash_line()
+            local bufnr = vim.api.nvim_get_current_buf()
+            local line  = vim.api.nvim_win_get_cursor(0)[1] - 1
+            vim.api.nvim_buf_set_extmark(bufnr, jump_flash_ns, line, 0, {
+                end_row  = line + 1,
+                hl_group = "Search",
+            })
+            vim.defer_fn(function()
+                vim.api.nvim_buf_clear_namespace(bufnr, jump_flash_ns, 0, -1)
+            end, 300)
+        end
+
+        local function jump_and_flash(selected, opts)
+            actions.file_edit(selected, opts)
+            vim.schedule(flash_line)
+        end
+
+        local function mark_and_flash(selected, opts)
+            actions.goto_mark(selected, opts)
+            vim.schedule(flash_line)
+        end
 
         local default_actions = {
-            ["enter"]  = actions.file_edit,
+            ["enter"]  = jump_and_flash,
             ["alt-q"]  = actions.file_sel_to_qf,
             ["ctrl-s"] = actions.file_split,
             ["ctrl-v"] = actions.file_vsplit,
@@ -108,7 +131,8 @@ return {
         config.defaults.keymap.fzf["ctrl-w"] = "toggle-preview-wrap"
 
         -- [[ actions ]]
-        config.defaults.actions.files = default_actions
+        config.defaults.actions.files  = default_actions
+        config.defaults.jump1_action   = jump_and_flash -- flash on auto-jump (single result)
 
         -- [[ Pickers ]]
 
@@ -152,7 +176,8 @@ return {
         -- [[ Integrations ]]
 
         -- LSP
-        config.defaults.lsp.winopts = winopts_cursor_default
+        config.defaults.lsp.winopts      = winopts_cursor_default
+        config.defaults.lsp.jump1_action = jump_and_flash -- redundant with defaults.jump1_action, kept for clarity
 
         -- LSP finder
         config.defaults.lsp.finder.winopts = winopts_cursor_default
@@ -189,13 +214,15 @@ return {
         config.defaults.buffers.winopts = winopts_files_default
 
         -- Marks
-        config.defaults.marks.winopts = {
+        config.defaults.marks.winopts      = {
             preview = {
                 layout = "vertical",
                 vertical = "down:70%",
                 -- hidden = true,
             }
         }
+        config.defaults.marks.actions["enter"] = mark_and_flash -- preserves ctrl-s/v/t/x
+        config.defaults.marks.jump1_action     = mark_and_flash
 
         require('fzf-lua').register_ui_select({
             winopts = winopts_nvim_default
@@ -374,6 +401,15 @@ return {
             desc = "FZFLua Search (Visual Selection)",
         },
         {
+            "<leader>fm",
+            function()
+                require('fzf-lua').marks({ jump1 = true })
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "FZFLua Marks",
+        },
+        {
             "<leader>ft",
             function()
                 require('fzf-lua').tags()
@@ -385,7 +421,7 @@ return {
         {
             "g]",
             function()
-                require('fzf-lua').tags_grep_cword()
+                require('fzf-lua').tags_grep_cword({ jump1 = true })
             end,
             mode = { 'n' },
             silent = true,
@@ -394,7 +430,7 @@ return {
         {
             "g]",
             function()
-                require('fzf-lua').tags_grep_visual()
+                require('fzf-lua').tags_grep_visual({ jump1 = true })
             end,
             mode = { 'v' },
             silent = true,

@@ -73,6 +73,7 @@ return {
                     vim.wo.foldmethod = 'expr'
                     vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
                 end
+                vim.wo.foldlevel = 99
 
             end,
         })
