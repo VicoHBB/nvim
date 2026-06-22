@@ -1,9 +1,4 @@
 -- ============================================================================
--- Local variables
--- ============================================================================
-local keyset       = vim.keymap.set
-
--- ============================================================================
 -- Buffer variables
 -- ============================================================================
 vim.bo.tabstop     = 2
@@ -11,7 +6,8 @@ vim.bo.softtabstop = 2
 vim.bo.expandtab   = true
 vim.bo.shiftwidth  = 2
 vim.wo.colorcolumn = "120"
-vim.opt_local.wrap = true
+vim.bo.textwidth   = 120
+vim.opt_local.formatoptions:append("t") -- Auto-wrap text using textwidth while typing
 
 -- ============================================================================
 -- Autocommands
@@ -20,14 +16,3 @@ vim.opt_local.wrap = true
 -- ============================================================================
 -- Keymaps
 -- ============================================================================
-keyset(
-    'n',
-    "\\t",
-    "0120lbi<CR><ESC>0",
-    {
-        buffer = 0,
-        noremap = true,
-        silent = true,
-        desc = "Limit text to 120 columns"
-    }
-)

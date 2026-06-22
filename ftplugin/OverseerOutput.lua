@@ -1,18 +1,16 @@
 -- ============================================================================
 -- Local variables
 -- ============================================================================
-local keyset = vim.keymap.set
-local add_cmd = vim.api.nvim_create_autocmd
 
 -- ============================================================================
 -- Buffer variables
 -- ============================================================================
-vim.bo.tabstop     = 4
-vim.bo.softtabstop = 4
+vim.bo.tabstop     = 2
+vim.bo.softtabstop = 2
 vim.bo.expandtab   = true
-vim.bo.shiftwidth  = 4
-vim.wo.colorcolumn = "120"
-vim.bo.textwidth   = 120
+vim.bo.shiftwidth  = 2
+vim.wo.colorcolumn = "0"
+vim.opt_local.wrap = false
 
 -- ============================================================================
 -- Autocommands

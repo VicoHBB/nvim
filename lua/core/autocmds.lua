@@ -106,17 +106,3 @@ autocmd("VimEnter", {
         Initial_Dir = vim.fn.getcwd()
     end,
 })
-
--- Ignore quickfix as buffer
-vim.cmd([[
-  augroup qf
-    autocmd!
-    autocmd FileType qf set nobuflisted
-  augroup END
-]])
-
--- @TODO: Check if this still need it
--- To support org files
-vim.cmd [[
-  autocmd BufRead,BufNewFile *.org set filetype=org
-]]

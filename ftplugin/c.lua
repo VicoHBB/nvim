@@ -11,9 +11,9 @@ vim.bo.softtabstop = 4
 vim.bo.expandtab   = true
 vim.bo.shiftwidth  = 4
 vim.wo.colorcolumn = "120"
+vim.bo.textwidth   = 120
 vim.bo.autoindent  = true
 vim.bo.smartindent = true
-vim.opt_local.wrap = true
 
 -- ============================================================================
 -- Autocommands

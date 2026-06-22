@@ -8,8 +8,8 @@ local trim_spaces = false
 -- Buffer variables
 -- ============================================================================
 vim.wo.colorcolumn = "120"
+vim.bo.textwidth   = 120
 vim.bo.autoindent  = true
-vim.opt_local.wrap = true
 
 
 -- ============================================================================

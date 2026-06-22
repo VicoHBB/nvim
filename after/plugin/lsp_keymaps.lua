@@ -4,6 +4,8 @@ autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
     callback = function(event)
 
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+
         local keyset = function(mode, keys, func, desc)
             vim.keymap.set(
                 mode,
@@ -175,12 +177,21 @@ autocmd("LspAttach", {
         )
 
         -- @TODO: Evaluate conform.nvim for per-formatter control and format-on-save.
-        keyset({ 'v', 'x' }, 'gq', function()
-                vim.notify("Formatting Code...", vim.log.levels.INFO)
-                vim.lsp.buf.format { async = false }
-            end,
-            "Format selection (LSP)"
-        )
+        if client and client:supports_method("textDocument/rangeFormatting", event.buf) then
+            keyset({ 'v', 'x' }, 'gq', function()
+                    vim.notify("Formatting with LSP...", vim.log.levels.INFO)
+                    vim.lsp.buf.format { async = false }
+                end,
+                "Format selection (LSP)"
+            )
+        else
+            keyset({ 'v', 'x' }, 'gq', function()
+                    vim.notify("Formatting with native gq...", vim.log.levels.INFO)
+                    vim.cmd("normal! gq")
+                end,
+                "Format selection (native gq)"
+            )
+        end
 
         -- Restart lsp stop
         keyset({ 'n' }, '<leader>LS', function()

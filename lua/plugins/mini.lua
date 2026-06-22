@@ -82,7 +82,6 @@ return {
             silent = true,
             desc = "Read session"
         },
-        -- @TODO: Check how to set with MiniPairs.map_buf
         {
             "/*",
             "/* */<Left><Left><Left>",

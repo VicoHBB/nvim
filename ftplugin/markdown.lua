@@ -11,7 +11,8 @@ vim.bo.softtabstop = 2
 vim.bo.expandtab   = true
 vim.bo.shiftwidth  = 2
 vim.wo.colorcolumn = "120"
-vim.opt_local.wrap = false
+vim.bo.textwidth   = 120
+vim.opt_local.formatoptions:append("t") -- Auto-wrap text using textwidth while typing
 
 -- ============================================================================
 -- Keymaps
@@ -42,16 +43,4 @@ keyset( 'v', "||",
     silent= true,
     desc = "Align Table(Need to check)"
   }
-)
-
-keyset(
-    'n',
-    "\\t",
-    "0120lbi<CR><ESC>0",
-    {
-        buffer = 0,
-        noremap = true,
-        silent = true,
-        desc = "Limit text to 120 columns"
-    }
 )
