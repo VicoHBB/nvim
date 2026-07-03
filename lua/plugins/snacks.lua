@@ -120,6 +120,13 @@ return {
             desc = "Delete Buffer",
         },
         {
+            "<leader>X",
+            function()
+                Snacks.bufdelete.other()
+            end,
+            desc = "Delete Other Buffers",
+        },
+        {
             "<leader><leader>",
             function()
                 Snacks.notifier.hide()

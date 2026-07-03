@@ -13,7 +13,8 @@ return {
                 antigravity = {
                     cmd = { "agy" },
                 }
-            }
+            },
+            picker = "fzf-lua",
         },
     },
     keys = {

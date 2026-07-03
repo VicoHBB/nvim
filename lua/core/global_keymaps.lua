@@ -61,14 +61,6 @@ keyset('n', "<leader>H", "<CMD>noh<CR>", { silent = true })
 keyset('n', "<leader>k", "<CMD>bnext<CR>", { silent = true })
 keyset('n', "<leader>j", "<CMD>bprevious<CR>", { silent = true })
 
--- Close Buffers
-keyset('n', '<leader>X', ':%bd|e#|bd#<CR>',
-    {
-        silent = true,
-        desc = "Close the Other buffrers"
-    }
-)
-
 -- Split window
 keyset('n', "<leader>|", "<CMD>vsp<CR>", { silent = true })
 keyset('n', "<leader>_", "<CMD>sp<CR>", { silent = true })
@@ -80,24 +72,35 @@ keyset("n", "<leader>ms", "<CMD>mksession<CR>",
         desc = "Save session"
     }
 )
-keyset( "n", "<leader>rn",
-    [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    {
-        silent = true,
-        desc = "Search and replace word under cursor"
-    }
-)
 
-keyset( "v", "<leader>rn", function()
-        vim.cmd('normal! "yy')
-        local text = vim.fn.getreg('"')
+keyset({ 'n', 'v' }, '<leader>rn', function()
+        local text, word_boundary
+
+        if 'n' == vim.fn.mode() then
+            text = vim.fn.expand('<cword>')
+            word_boundary = true
+        else
+            -- getpos('v') = selection anchor, getpos('.') = cursor (other end)
+            local _, r1, c1 = unpack(vim.fn.getpos('v'))
+            local _, r2, c2 = unpack(vim.fn.getpos('.'))
+            -- normalize: ensure r1,c1 is always the start
+            if r1 > r2 or (r1 == r2 and c1 > c2) then
+                r1, r2 = r2, r1
+                c1, c2 = c2, c1
+            end
+            local lines = vim.api.nvim_buf_get_text(0, r1 - 1, c1 - 1, r2 - 1, c2, {})
+            text = table.concat(lines, '\n')
+            word_boundary = false
+        end
+
         local escaped = vim.fn.escape(text, '/\\.*$^~[')
-        -- Envía las teclas a Neovim
-        local keys = ':%s/' .. escaped .. '/' .. escaped .. '/gI' .. string.rep('<Left>', 3)
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), 'n', false)
+        local pattern = word_boundary and ('\\<' .. escaped .. '\\>') or escaped
+        -- <Esc> first to exit visual mode before opening the command line
+        local cmd     = '<Esc>:%s/' .. pattern .. '/' .. escaped .. '/gI' .. string.rep('<Left>', 3)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(cmd, true, false, true), 'n', false)
     end,
     {
         silent = true,
-        desc = "Search and replace visual selection"
+        desc = "Search and replace word/selection"
     }
 )

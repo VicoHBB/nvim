@@ -6,7 +6,9 @@ Initial_Dir = vim.fn.getcwd()
 -- Remove spaces in the final of the line after write a file
 autocmd({ "BufWritePre" }, {
     callback = function()
-        vim.cmd([[%s/\s\+$//e]])
+        local view = vim.fn.winsaveview()     -- Keep the cursor position
+        vim.cmd([[keeppatterns %s/\s\+$//e]]) -- 'keeppatterns' avoid to modify history
+        vim.fn.winrestview(view)              -- Restore position
     end,
 })
 
