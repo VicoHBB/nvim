@@ -1,18 +1,27 @@
+-- Query para pickers: selección visual si está activa, si no la palabra bajo el cursor
+local function cword_or_visual()
+    if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
+        local reg = vim.fn.getreg('"')
+        vim.cmd('normal! "vy')
+        local query = vim.fn.getreg('v')
+        vim.fn.setreg('"', reg)
+        return query
+    end
+    return vim.fn.expand("<cword>")
+end
+
 return {
     "ibhagwan/fzf-lua",
     enabled = true,
     lazy = true,
     cmd = "FzfLua",
-    -- evvent = "VeryLazy",
     -- optional for icon support
     dependencies = {
         "nvim-tree/nvim-web-devicons",
         -- "echasnovski/mini.icons",
     },
-    opts = function(_, opts)
-        local fzf     = require('fzf-lua')
-        local config  = fzf.config
-        local actions = fzf.actions
+    opts = function()
+        local actions = require('fzf-lua').actions
         local keyset  = vim.keymap.set
         local jump_flash_ns = vim.api.nvim_create_namespace("jump_flash")
 
@@ -57,6 +66,9 @@ return {
                 layout = "vertical",
                 vertical = "down:75%",
                 hidden = true,
+                -- files/git.files traen cursorline = false en sus defaults; explícito
+                -- para conservar el comportamiento previo (heredaba el global true)
+                winopts = { cursorline = true },
             }
         }
 
@@ -86,146 +98,164 @@ return {
             return string.rep( direction, times)
         end
 
-        -- [[ globlas ]]
-        -- config.defaults.fzf_bin = 'sk'
+        return {
+            -- [[ globals ]]
+            -- fzf_bin = 'sk',
+            jump1_action = jump_and_flash, -- flash on auto-jump (single result)
 
-        -- [[ winopts ]]
+            -- [[ winopts ]]
+            winopts = {
+                height  = 0.85,
+                width   = 0.80,
+                row     = 0.50,
+                col     = 0.50,
+                preview = {
+                    vertical   = "down:45%",
+                    horizontal = "right:60%",
+                    winopts    = {
+                        number = true,
+                        wrap   = true,
+                    },
+                },
+                on_create = function()
+                    keyset({ "t", 'i' }, "<C-j>", "<Down>", { silent = true, buffer = true })
+                    keyset({ "t", "i" }, "<C-k>", "<Up>", { silent = true, buffer = true })
+                    keyset({ "t", 'i' }, "<C-d>", fast_move("<Down>", 5), { silent = true, buffer = true })
+                    keyset({ "t", "i" }, "<C-u>", fast_move("<Up>", 5), { silent = true, buffer = true })
+                    -- @NOTE: This prevent to move to an split, need to check(Need review)
+                    keyset({ "t", 'i' }, "<C-h>", "", { silent = true, buffer = true })
+                    keyset({ "t", "i" }, "<C-l>", "", { silent = true, buffer = true })
+                end,
+            },
 
-        -- All win
-        config.defaults.winopts.height = 0.85
-        config.defaults.winopts.width  = 0.80
-        config.defaults.winopts.row    = 0.50
-        config.defaults.winopts.col    = 0.50
+            -- [[ keymaps ]]
+            keymap = {
+                -- [1] = true hereda los binds default; sin él la tabla los reemplaza
+                builtin = {
+                    true,
+                    ["<c-f>"]     = "preview-page-down",
+                    ["<c-b>"]     = "preview-page-up",
+                    ["<c-space>"] = "toggle-preview",
+                    ["<a-m>"]     = "toggle-fullscreen",
+                    ["<c-r>"]     = "toggle-preview-cw",
+                    ["<a-r>"]     = "toggle-preview-ccw",
+                    ["<c-w>"]     = "toggle-preview-wrap",
+                },
+                fzf = {
+                    true,
+                    ["ctrl-f"]     = "preview-page-down",
+                    ["ctrl-b"]     = "preview-page-up",
+                    ["ctrl-space"] = "toggle-preview",
+                    ["ctrl-w"]     = "toggle-preview-wrap",
+                },
+            },
 
-        --  Preview
-        config.defaults.winopts.preview.vertical       = "down:45%"
-        config.defaults.winopts.preview.horizontal     = "right:60%"
-        config.defaults.winopts.preview.winopts.number = true
-        config.defaults.winopts.preview.winopts.wrap   = true
+            -- [[ actions ]]
+            actions = {
+                files = default_actions,
+            },
 
-        config.defaults.winopts.on_create              = function()
-            keyset({ "t", 'i' }, "<C-j>", "<Down>", { silent = true, buffer = true })
-            keyset({ "t", "i" }, "<C-k>", "<Up>", { silent = true, buffer = true })
-            keyset({ "t", 'i' }, "<C-d>", fast_move("<Down>", 5), { silent = true, buffer = true })
-            keyset({ "t", "i" }, "<C-u>", fast_move("<Up>", 5), { silent = true, buffer = true })
-            -- @NOTE: This prevent to move to an split, need to check(Need review)
-            keyset({ "t", 'i' }, "<C-h>", "", { silent = true, buffer = true })
-            keyset({ "t", "i" }, "<C-l>", "", { silent = true, buffer = true })
-        end
+            -- [[ Pickers ]]
+            files    = { winopts = winopts_files_default },
+            oldfiles = { winopts = winopts_files_default },
+            git      = {
+                icons = {
+                    ["M"] = { icon = "★", color = "red" },
+                    ["D"] = { icon = "✗", color = "red" },
+                    ["A"] = { icon = "+", color = "green" },
+                },
+                files = { winopts = winopts_files_default },
+            },
+            builtin  = { winopts = winopts_files_default },
+            blines   = {
+                winopts = {
+                    layout  = "vertical",
+                    preview = {
+                        hidden = true,
+                    },
+                },
+            },
 
-        -- [[ keymaps ]]
+            -- Neovim Pickers
+            commands        = { winopts = winopts_nvim_default },
+            command_history = { winopts = winopts_nvim_default },
+            search_history  = { winopts = winopts_nvim_default },
+            nvim_options    = { winopts = winopts_nvim_default },
+            helptags        = {
+                winopts = {
+                    preview = {
+                        layout = "vertical",
+                        vertical = "down:80%",
+                        wrap = true,
+                    },
+                },
+            },
 
-        -- builtin
-        config.defaults.keymap.builtin["<c-f>"] = "preview-page-down"
-        config.defaults.keymap.builtin["<c-b>"] = "preview-page-up"
-        config.defaults.keymap.builtin["<c-space>"] = "toggle-preview"
-        config.defaults.keymap.builtin["<a-m>"] = "toggle-fullscreen"
-        config.defaults.keymap.builtin["<c-r>"] = "toggle-preview-cw"
-        config.defaults.keymap.builtin["<a-r>"] = "toggle-preview-ccw"
-        config.defaults.keymap.builtin["<c-w>"] = "toggle-preview-wrap"
+            -- TAGS
+            tags = { winopts = winopts_cursor_default },
 
-        -- fzf
-        config.defaults.keymap.fzf["ctrl-f"] = "preview-page-down"
-        config.defaults.keymap.fzf["ctrl-b"] = "preview-page-up"
-        config.defaults.keymap.fzf["ctrl-space"] = "toggle-preview"
-        config.defaults.keymap.fzf["ctrl-w"] = "toggle-preview-wrap"
+            -- [[ Integrations ]]
 
-        -- [[ actions ]]
-        config.defaults.actions.files  = default_actions
-        config.defaults.jump1_action   = jump_and_flash -- flash on auto-jump (single result)
+            -- LSP
+            lsp = {
+                winopts      = winopts_cursor_default,
+                jump1_action = jump_and_flash, -- redundant with defaults.jump1_action, kept for clarity
+                finder       = { winopts = winopts_cursor_default },
+                code_actions = {
+                    winopts = {
+                        relative = "cursor",
+                        row      = 1,
+                        col      = 0,
+                        height   = 0.30,
+                        width    = 0.40,
+                        preview  = {
+                            layout     = "flex",
+                            wrap       = true, -- preview line wrap (fzf's 'wrap|nowrap')
+                            vertical   = "down:75%",
+                            horizontal = "right:75%",
+                            hidden     = true,
+                            winopts    = {
+                                number = true
+                            }
+                        }
+                    },
+                },
+            },
 
-        -- [[ Pickers ]]
+            -- Spell Suggest
+            spell_suggest = {
+                winopts = {
+                    relative = "cursor",
+                    row      = 1,
+                    col      = 0,
+                    height   = 0.25,
+                    width    = 0.25,
+                },
+            },
 
-        -- Files
-        config.defaults.files.winopts = winopts_files_default
-        -- Old Files
-        config.defaults.oldfiles.winopts = winopts_files_default
-        -- Git Files
-        config.defaults.git.icons = {
-            ["M"] = { icon = "★", color = "red" },
-            ["D"] = { icon = "✗", color = "red" },
-            ["A"] = { icon = "+", color = "green" },
+            -- Buffers
+            buffers = { winopts = winopts_files_default },
+
+            -- Marks
+            marks = {
+                winopts = {
+                    preview = {
+                        layout = "vertical",
+                        vertical = "down:70%",
+                        -- hidden = true,
+                    },
+                },
+                actions      = { ["enter"] = mark_and_flash }, -- merge: preserva ctrl-s/v/t/x
+                jump1_action = mark_and_flash,
+            },
         }
-        config.defaults.git.files.winopts = winopts_files_default
-
-        config.defaults.builtin.winopts = winopts_files_default
-
-        config.defaults.blines.winopts = {
-            layout = "vertical",
-            preview = {
-                hidden = true,
-            }
-        }
-
-        -- Neovim Pickers
-        config.defaults.commands.winopts        = winopts_nvim_default
-        config.defaults.command_history.winopts = winopts_nvim_default
-        config.defaults.search_history.winopts  = winopts_nvim_default
-        config.defaults.nvim_options.winopts    = winopts_nvim_default
-        config.defaults.helptags.winopts        = {
-            preview = {
-                layout = "vertical",
-                vertical = "down:80%",
-                wrap = true,
-            }
-        }
-
-        -- TAGS
-        config.defaults.tags.winopts = winopts_cursor_default
-
-        -- [[ Integrations ]]
-
-        -- LSP
-        config.defaults.lsp.winopts      = winopts_cursor_default
-        config.defaults.lsp.jump1_action = jump_and_flash -- redundant with defaults.jump1_action, kept for clarity
-
-        -- LSP finder
-        config.defaults.lsp.finder.winopts = winopts_cursor_default
-
-        -- Code Actions
-        config.defaults.lsp.code_actions.winopts = {
-            relative = "cursor",
-            row      = 1,
-            col      = 0,
-            height   = 0.30,
-            width    = 0.40,
-            preview  = {
-                layout     = "flex",
-                wrap       = true, -- preview line wrap (fzf's 'wrap|nowrap')
-                vertical   = "down:75%",
-                horizontal = "right:75%",
-                hidden     = true,
-                winopts    = {
-                    number = true
-                }
-            }
-        }
-
-        -- Spell Suggest
-        config.defaults.spell_suggest.winopts = {
-            relative = "cursor",
-            row      = 1,
-            col      = 0,
-            height   = 0.25,
-            width    = 0.25,
-        }
-
-        -- Buffers
-        config.defaults.buffers.winopts = winopts_files_default
-
-        -- Marks
-        config.defaults.marks.winopts      = {
-            preview = {
-                layout = "vertical",
-                vertical = "down:70%",
-                -- hidden = true,
-            }
-        }
-        config.defaults.marks.actions["enter"] = mark_and_flash -- preserves ctrl-s/v/t/x
-        config.defaults.marks.jump1_action     = mark_and_flash
-
-        require('fzf-lua').register_ui_select({
-            winopts = winopts_nvim_default
+    end,
+    config = function(_, opts)
+        local fzf = require('fzf-lua')
+        fzf.setup(opts)
+        fzf.register_ui_select({
+            -- misma tabla que winopts_nvim_default (compartida por los pickers de nvim)
+            winopts = opts.commands.winopts,
         })
     end,
     keys = {
@@ -286,16 +316,7 @@ return {
         {
             "<leader>fu",
             function()
-                local query
-                if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
-                    local reg = vim.fn.getreg('"')
-                    vim.cmd('normal! "vy')
-                    query = vim.fn.getreg('v')
-                    vim.fn.setreg('"', reg)
-                else
-                    query = vim.fn.expand("<cword>")
-                end
-                require('fzf-lua').files({ query = query })
+                require('fzf-lua').files({ query = cword_or_visual() })
             end,
             mode = { 'n', 'v' },
             silent = true,
@@ -451,16 +472,7 @@ return {
         {
             "<leader>fU",
             function()
-                local query
-                if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
-                    local reg = vim.fn.getreg('"')
-                    vim.cmd('normal! "vy')
-                    query = vim.fn.getreg('v')
-                    vim.fn.setreg('"', reg)
-                else
-                    query = vim.fn.expand("<cword>")
-                end
-                require('fzf-lua').files({ query = query, cwd = Initial_Dir })
+                require('fzf-lua').files({ query = cword_or_visual(), cwd = Initial_Dir })
             end,
             mode = { 'n', 'v' },
             silent = true,
@@ -480,7 +492,7 @@ return {
             desc = "FZFLua Search Word / Selection (Initial Dir)",
         },
         {
-            "<Space>gI",
+            "<leader>gI",
             function()
                 require('fzf-lua').live_grep({
                     cwd = Initial_Dir,

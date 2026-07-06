@@ -127,7 +127,7 @@ autocmd("LspAttach", {
             "[G]o to [I]mplementation"
         )
         keyset("n", "gF", function()
-                fzf.lsp_finder(goto_opts)
+                fzf.lsp_finder() -- This is for see all
             end,
             "[G]o to [F]inder"
         )

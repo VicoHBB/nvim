@@ -1,5 +1,4 @@
 local M = {}
-local fzf = require('fzf-lua')
 
 local function set_web_devicons(name, cat)
     -- stylua: ignore
@@ -48,13 +47,17 @@ M.opt = {
                 icon = " ",
                 key = "<Space>fo",
                 desc = "Complete History",
-                action = fzf.oldfiles,
+                action = function()
+                    require('fzf-lua').oldfiles()
+                end,
             },
             {
                 icon = " ",
                 key = "<Space>ff",
                 desc = "Find Files",
-                action = fzf.files,
+                action = function()
+                    require('fzf-lua').files()
+                end,
             },
             {
                 icon = " ",
@@ -69,7 +72,9 @@ M.opt = {
                 icon = " ",
                 key = "<Space>S",
                 desc = "Find Text",
-                action = fzf.live_grep,
+                action = function()
+                    require('fzf-lua').live_grep()
+                end,
             },
             {
                 icon = " ",
@@ -115,7 +120,7 @@ M.opt = {
                 key = "cc",
                 desc = "Config",
                 action = function()
-                    fzf.files({
+                    require('fzf-lua').files({
                         cwd = vim.fn.stdpath('config'),
                     })
                 end

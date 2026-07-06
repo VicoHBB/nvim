@@ -5,17 +5,22 @@ return {
     -- event = "VeryLazy",
     version = '*',
     config = function()
+        local autocmd = vim.api.nvim_create_autocmd
+        local mini_group = vim.api.nvim_create_augroup("mini_autocmds", { clear = true })
+
         -- require('mini.icons').setup()
         -- require('mini.ai').setup()
         -- require('mini.animate').setup()
         -- require('mini.pick').setup()
         require('mini.sessions').setup()
         require('mini.pairs').setup()
+
         require('mini.files').setup({
             mappings = {
                 synchronize = '<leader>w',
             }
         })
+
         require('mini.comment').setup({
             mappings = {
                 comment = '<leader>c',
@@ -61,6 +66,24 @@ return {
                 suffix_last = 'L',             -- Suffix to search with "prev" method
                 suffix_next = 'N',             -- Suffix to search with "next" method
             },
+        })
+
+        -- Set MiniPairs for "$" in TeX equations
+        autocmd("FileType", {
+            group = mini_group,
+            pattern = { 'tex', 'markdown', 'org' },
+            callback = function()
+                MiniPairs.map_buf(0, 'i', '$', { action = 'closeopen', pair = '$$' })
+            end
+        })
+
+        -- Sync LSP references/imports when a file is renamed in mini.files
+        autocmd("User", {
+            group = mini_group,
+            pattern = "MiniFilesActionRename",
+            callback = function(event)
+                Snacks.rename.on_rename_file(event.data.from, event.data.to)
+            end,
         })
     end,
     keys = {

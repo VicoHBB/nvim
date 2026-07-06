@@ -132,6 +132,23 @@ return {
             },
         },
     },
+    config = function(_, opts)
+        require("oil").setup(opts)
+
+        local autocmd = vim.api.nvim_create_autocmd
+        local oil_group = vim.api.nvim_create_augroup("oil_autocmds", { clear = true })
+
+        -- Sync LSP references/imports when a file is moved in oil
+        autocmd("User", {
+            group = oil_group,
+            pattern = "OilActionsPost",
+            callback = function(event)
+                if event.data.actions[1].type == "move" then
+                    Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
+                end
+            end,
+        })
+    end,
     keys = {
         {
             "-",
