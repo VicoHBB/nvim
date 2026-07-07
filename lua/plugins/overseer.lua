@@ -1,6 +1,6 @@
 return { -- The task runner we use
     "stevearc/overseer.nvim",
-    enabled = Is_Not_Win32, -- @TODO: Review this
+    enabled = Is_Not_Win32,
     -- version = "v1.6.0",   -- @NOTE: To prevent errors
     cmd = {
         "OverseerRun",

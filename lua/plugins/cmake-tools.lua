@@ -1,6 +1,6 @@
 return {
     'Civitasv/cmake-tools.nvim',
-    enabled = Is_Not_Win32, -- @TODO: Review this
+    enabled = Is_Not_Win32,
     ft = {
         "c",
         "cpp",

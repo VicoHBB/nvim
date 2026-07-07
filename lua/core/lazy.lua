@@ -33,6 +33,9 @@ local plugins = {
         enabled = true,
         notify = true
     },
+    install = {
+        colorscheme = { "gruvbox-material" },
+    },
     ui = {
         border = "rounded",
     },

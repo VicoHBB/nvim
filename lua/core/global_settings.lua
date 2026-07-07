@@ -47,7 +47,8 @@ vim.opt.laststatus = 2 -- Always show the status line
 if Is_Not_Win32 then
     vim.opt.shell = "/bin/zsh"
 else
-    vim.opt.shell = "powershell"
+    -- @WARN: Maybe need more parameters to works with powershell, why? Dunno
+    vim.opt.shell = "pwsh"
 end
 
 

@@ -1,7 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local core_group = vim.api.nvim_create_augroup("core_autocmds", { clear = true })
 local keyset = vim.keymap.set
-Initial_Dir = vim.fn.getcwd()
 
 -- Remove spaces in the final of the line after write a file
 autocmd({ "BufWritePre" }, {
@@ -87,20 +86,8 @@ autocmd({ "DirChanged" }, {
     end,
 })
 
-autocmd("VimEnter", {
-    group = core_group,
-    once = true,
-    callback = function()
-        Initial_Dir = vim.fn.getcwd()
-    end,
-})
-
-vim.api.nvim_create_user_command("PrintInitialDir", function()
-    vim.notify(tostring(Initial_Dir), vim.log.levels.INFO)
-end, {})
-
 -- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
+autocmd("TextYankPost", {
     group = core_group,
     callback = function()
         (vim.hl or vim.highlight).on_yank()
