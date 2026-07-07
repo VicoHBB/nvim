@@ -64,8 +64,7 @@ M.opt = {
                 key = "<Space>F",
                 desc = "File Browser",
                 action = function()
-                    require("tfm").select_file_manager("yazi")
-                    vim.cmd("Tfm")
+                    vim.cmd("Yazi")
                 end,
             },
             {

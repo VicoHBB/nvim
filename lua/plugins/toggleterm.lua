@@ -18,6 +18,19 @@ local interpreters = {
     },
 }
 
+-- File managers (replaces tfm.nvim): each builds the command that makes the
+-- file manager write its selection to the chooser file on exit
+local file_managers = {
+    Yazi = function(chooser)
+        local current = vim.fn.expand("%:p")
+        current = current ~= "" and vim.fn.shellescape(current) or ""
+        return ("yazi %s --chooser-file=%s"):format(current, chooser)
+    end,
+    ViFm = function(chooser)
+        return ("vifm --choose-files %s %s"):format(chooser, vim.fn.shellescape(vim.fn.expand("%:p:h")))
+    end,
+}
+
 local repls = {}
 
 -- Cached per-filetype REPL terminal; open=true also makes sure it is running
@@ -57,20 +70,49 @@ end
 local function repl_run_file()
     local ft = vim.bo.filetype
     local repl = get_repl(ft, true)
+    if not repl then
+        return
+    end
     vim.cmd(repl.count .. "TermExec cmd='" .. interpreters[ft].run .. "'")
 end
 
 local function repl_send_lines(selection_type)
     local ft = vim.bo.filetype
     local repl = get_repl(ft, true)
+    if not repl then
+        return
+    end
     require("toggleterm").send_lines_to_terminal(selection_type, interpreters[ft].trim, { args = repl.count })
+end
+
+-- Float the file manager and open whatever it selected in the current window;
+-- a fresh terminal per invocation because the chooser file is unique each time
+local function open_file_manager(name)
+    local chooser = vim.fn.tempname()
+    local Terminal = require('toggleterm.terminal').Terminal
+
+    Terminal:new({
+        cmd = file_managers[name](chooser),
+        direction = "float",
+        close_on_exit = true,
+        on_exit = function()
+            vim.schedule(function()
+                if vim.fn.filereadable(chooser) == 1 then
+                    for _, file in ipairs(vim.fn.readfile(chooser)) do
+                        if file ~= "" then
+                            vim.cmd.edit(vim.fn.fnameescape(file))
+                        end
+                    end
+                    vim.fn.delete(chooser)
+                end
+            end)
+        end,
+    }):open()
 end
 
 return {
     'akinsho/toggleterm.nvim',
-    enabled = Is_Not_Win32, -- @TODO: Review this
-    -- lazy = true,
-    -- event = "VeryLazy",
+    enabled = Is_Not_Win32,
     cmd = {
         "ToggleTerm",
         "TermExec",
@@ -82,6 +124,17 @@ return {
     init = function()
         local autocmd = vim.api.nvim_create_autocmd
         local buf_cmd = vim.api.nvim_buf_create_user_command
+        local cmd = vim.api.nvim_create_user_command
+
+        -- Like :REPL below, these exist without loading the plugin (it loads on first use)
+        for name in pairs(file_managers) do
+            cmd(name, function()
+                open_file_manager(name)
+            end, {
+                nargs = 0,
+                desc = "Open " .. name
+            })
+        end
 
         -- :REPL lives in init so the command exists without loading the plugin (it loads on first use).
         -- FileType instead of the old pattern-less User autocmd: fires per matching buffer, including
@@ -151,6 +204,15 @@ return {
             ft = { "lua", "python" },
             silent = true,
             desc = "Run lines on REPL",
+        },
+        {
+            "<leader>F",
+            function()
+                vim.cmd("Yazi")
+            end,
+            mode = { 'n' },
+            silent = true,
+            desc = "Open Yazi",
         },
     }
 }
