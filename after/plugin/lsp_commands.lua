@@ -12,45 +12,9 @@ local complete_config = function(arg)
         :totable()
 end
 
-autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-    callback = function(event)
-        -- The following two autocommands are used to highlight references of the
-        -- word under your cursor when your cursor rests there for a little while.
-        --    See `:help CursorHold` for information about when this is executed
-        --
-        -- When you move your cursor, the highlights will be cleared (the second autocommand).
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client.server_capabilities.documentHighlightProvider then
-            local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
-            autocmd({ "CursorHold", "CursorHoldI" }, {
-                buffer = event.buf,
-                group = highlight_augroup,
-                callback = vim.lsp.buf.document_highlight,
-            })
-
-            autocmd({ "CursorMoved", "CursorMovedI" }, {
-                buffer = event.buf,
-                group = highlight_augroup,
-                callback = vim.lsp.buf.clear_references,
-            })
-
-            autocmd("LspDetach", {
-                group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
-                callback = function(event2)
-                    vim.lsp.buf.clear_references()
-                    vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
-                end,
-            })
-        end
-    end
-})
-
--- autocmd("LspAttach", {
---     group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
---     callback = function ()
---     end
--- })
+local complete_active = function()
+    return vim.tbl_map(function(c) return c.name end, vim.lsp.get_clients())
+end
 
 cmd("LspInfo", function()
         vim.cmd("checkhealth vim.lsp")
@@ -93,41 +57,71 @@ cmd('LspStart', function(info)
     }
 )
 
-cmd('LspStop', function()
-        local clients = vim.lsp.get_clients({ bufnr = 0 })
-        if #clients == 0 then
+cmd('LspStop', function(info)
+        local names = info.fargs
+        if #names == 0 then
+            names = vim.tbl_map(function(c) return c.name end, vim.lsp.get_clients({ bufnr = 0 }))
+        end
+
+        if #names == 0 then
             vim.notify('No active LSP clients found.', vim.log.levels.WARN)
             return
         end
-        for _, client in ipairs(clients) do
-            client:stop(true)
-            vim.notify(('LSP -> stopped: %s'):format(client.name), vim.log.levels.INFO)
+
+        -- enable(false) disables the config besides stopping the client, so the
+        -- server stays down instead of reattaching on the next FileType event
+        for _, name in ipairs(names) do
+            vim.lsp.enable(name, false)
+            if info.bang then
+                for _, client in ipairs(vim.lsp.get_clients({ name = name })) do
+                    client:stop(true)
+                end
+            end
         end
+
+        vim.notify(('LSP -> stopped: %s'):format(table.concat(names, ', ')), vim.log.levels.INFO)
     end,
     {
-        desc = 'Stop all active language servers on the current buffer',
+        desc = 'Stop the language servers on the current buffer (! = force kill)',
+        nargs = '*',
+        bang = true,
+        complete = complete_active,
     }
 )
 
-cmd('LspRestart', function()
-        local clients = vim.lsp.get_clients({ bufnr = 0 })
+cmd('LspRestart', function(info)
+        local names = info.fargs
+        if #names == 0 then
+            names = vim.tbl_map(function(c) return c.name end, vim.lsp.get_clients())
+        end
 
-        if #clients == 0 then
+        if #names == 0 then
             vim.notify('No active LSP clients found.', vim.log.levels.WARN)
             return
         end
 
-        local names = vim.tbl_map(function(c) return c.name end, clients)
-        for _, client in ipairs(clients) do client:stop() end
+        for _, name in ipairs(names) do
+            vim.lsp.enable(name, false)
+            if info.bang then
+                for _, client in ipairs(vim.lsp.get_clients({ name = name })) do
+                    client:stop(true)
+                end
+            end
+        end
 
-        -- Defer the reload to give clients time to fully stop before restarting.
-        -- vim.cmd('e') retriggers FileType which causes enabled servers to reattach.
-        vim.defer_fn(function()
-            vim.cmd('e')
+        -- Re-enable once the clients had time to exit; enable() reattaches to every
+        -- matching buffer without reloading it
+        local timer = assert(vim.uv.new_timer())
+        timer:start(500, 0, vim.schedule_wrap(function()
+            timer:close()
+            vim.lsp.enable(names)
             vim.notify(('LSP -> restarted: %s'):format(table.concat(names, ', ')), vim.log.levels.INFO)
-        end, 500)
+        end))
     end,
     {
-        desc = 'Restart LSP clients attached to the current buffer',
+        desc = 'Restart all active language servers (! = force kill)',
+        nargs = '*',
+        bang = true,
+        complete = complete_active,
     }
 )

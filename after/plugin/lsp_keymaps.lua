@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+    group = vim.api.nvim_create_augroup("lsp_keymaps", { clear = true }),
     callback = function(event)
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
@@ -35,28 +35,6 @@ autocmd("LspAttach", {
 
         local fzf      = require("fzf-lua")
         local goto_opts = { jump1 = true }
-
-        local function lsp_action(cmd)
-            local clients = vim.lsp.get_clients({ bufnr = 0 })
-            local client_names = {}
-
-            -- get name from each client and append n to a new table
-            for _, client in ipairs(clients) do
-                table.insert(client_names, client.name)
-            end
-
-            if cmd == "LspStop" then
-                vim.notify("Stopping" .. " " .. table.concat(client_names, " "))
-            elseif cmd == "LspStart" then
-                vim.notify("Starting" .. " " .. table.concat(client_names, " "))
-            elseif cmd == "LspRestart" then
-                vim.notify("Restarting" .. " " .. table.concat(client_names, " "))
-            else
-                vim.notify("Invalid command: " .. cmd)
-            end
-
-            vim.cmd(cmd .. " " .. table.concat(client_names, " "))
-        end
 
         keyset_expr( 'n', "<leader>R",
             function() return ":IncRename " .. vim.fn.expand("<cword>") end,
@@ -195,17 +173,7 @@ autocmd("LspAttach", {
 
         -- Restart lsp stop
         keyset({ 'n' }, '<leader>LS', function()
-                local clients = vim.lsp.get_clients({ bufnr = 0 })
-                local client_names = {}
-
-                -- get name from each client and append n to a new table
-                for _, client in ipairs(clients) do
-                    table.insert(client_names, client.name)
-                    client:stop()
-                end
-
-                vim.notify("Stopped LSP clients: " .. table.concat(client_names, ", "), vim.log.levels.INFO)
-
+                vim.cmd("LspStop")
             end,
             "Stop all lsp client attached to the buffer"
         )
@@ -219,7 +187,7 @@ autocmd("LspAttach", {
 
         --  Start all lsp on the buffer
         keyset({ 'n' }, '<Space>Ls', function()
-                lsp_action("LspStart")
+                vim.cmd("LspStart")
             end,
             "Start LSP clients for the current buffer"
         )
