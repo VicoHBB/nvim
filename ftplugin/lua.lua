@@ -2,7 +2,6 @@
 -- Local variables
 -- ============================================================================
 local keyset       = vim.keymap.set
-local trim_spaces  = true
 
 -- ============================================================================
 -- Buffer variables
@@ -22,46 +21,21 @@ vim.bo.textwidth   = 120
 -- Keymaps
 -- ============================================================================
 
+
 -- Compilation & Simulation
 
-keyset("n", "<F9>", "<CMD>TermExec cmd='dofile(\"%\")'<CR>", {
-    buffer = 0,
-    noremap = true,
-    silent = true,
-    desc = "Run file",
-})
-
-keyset("n", "<F10>", "<CMD>REPL<CR>", {
-    buffer = 0,
-    noremap = true,
-    silent = true,
-    desc = "REPL",
-})
-
--- Utilities
-
--- keyset("v", "<space>rl", function()
---     -- require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
---     require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = 1 })
---   end,
---   {
---     buffer = 0,
---     noremap = true,
---     silent = true,
---     desc = "Run lines on REPL",
---   }
--- )
-
-keyset("n", "<leader>rl", function()
-        require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = 1 })
+keyset("n", "<F9>", function()
+        vim.cmd("OverseerRun LuaRunFile")
     end,
     {
         buffer = 0,
         noremap = true,
         silent = true,
-        desc = "Run lines on REPL",
+        desc = "Run File",
     }
 )
+
+-- Utilities
 
 keyset("n", "<leader>lf", function()
         vim.cmd("source %")

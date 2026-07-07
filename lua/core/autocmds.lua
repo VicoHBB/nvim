@@ -61,7 +61,7 @@ autocmd("FileType", {
 autocmd("FileType", {
     group = core_group,
     pattern = "help",
-    command = "wincmd H", -- Mueve la ventana de ayuda a la derecha
+    command = "wincmd H", -- Move the help window to the far left
 })
 
 -- Settings for output-like buffers (terminal, task output, quickfix); replaces
@@ -78,12 +78,6 @@ autocmd("FileType", {
         vim.opt_local.wrap = event.match == "toggleterm"
     end,
 })
-
--- Define autocommands to enable the command for specific file types
--- add_cmd('FileType', {
---   pattern = { 'txt', 'markdown', 'org', 'tex' },
---   callback = commands.ltexedit
--- })
 
 -- Show CWD
 autocmd({ "DirChanged" }, {

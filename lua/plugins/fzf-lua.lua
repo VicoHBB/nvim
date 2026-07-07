@@ -1,4 +1,4 @@
--- Query para pickers: selección visual si está activa, si no la palabra bajo el cursor
+-- Query for pickers: visual selection if active, otherwise the word under the cursor
 local function cword_or_visual()
     if vim.fn.mode() == 'v' or vim.fn.mode() == 'V' then
         local reg = vim.fn.getreg('"')
@@ -66,8 +66,8 @@ return {
                 layout = "vertical",
                 vertical = "down:75%",
                 hidden = true,
-                -- files/git.files traen cursorline = false en sus defaults; explícito
-                -- para conservar el comportamiento previo (heredaba el global true)
+                -- files/git.files ship cursorline = false in their defaults; explicit
+                -- here to keep the previous behavior (it inherited the global true)
                 winopts = { cursorline = true },
             }
         }
@@ -130,7 +130,7 @@ return {
 
             -- [[ keymaps ]]
             keymap = {
-                -- [1] = true hereda los binds default; sin él la tabla los reemplaza
+                -- [1] = true inherits the default binds; without it the table replaces them
                 builtin = {
                     true,
                     ["<c-f>"]     = "preview-page-down",
@@ -245,7 +245,7 @@ return {
                         -- hidden = true,
                     },
                 },
-                actions      = { ["enter"] = mark_and_flash }, -- merge: preserva ctrl-s/v/t/x
+                actions      = { ["enter"] = mark_and_flash }, -- merge: preserves ctrl-s/v/t/x
                 jump1_action = mark_and_flash,
             },
         }
@@ -254,7 +254,7 @@ return {
         local fzf = require('fzf-lua')
         fzf.setup(opts)
         fzf.register_ui_select({
-            -- misma tabla que winopts_nvim_default (compartida por los pickers de nvim)
+            -- same table as winopts_nvim_default (shared by the nvim pickers)
             winopts = opts.commands.winopts,
         })
     end,
