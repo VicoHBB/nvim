@@ -65,14 +65,6 @@ keyset('n', "<leader>j", "<CMD>bprevious<CR>", { silent = true })
 keyset('n', "<leader>|", "<CMD>vsp<CR>", { silent = true })
 keyset('n', "<leader>_", "<CMD>sp<CR>", { silent = true })
 
--- Sessions
-keyset("n", "<leader>ms", "<CMD>mksession<CR>",
-    {
-        silent = true,
-        desc = "Save session"
-    }
-)
-
 keyset({ 'n', 'v' }, '<leader>rn', function()
         local text, word_boundary
 

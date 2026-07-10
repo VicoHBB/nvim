@@ -12,8 +12,9 @@ return {
         -- require('mini.ai').setup()
         -- require('mini.animate').setup()
         -- require('mini.pick').setup()
-        require('mini.sessions').setup()
+        require('mini.sessions').setup({ file = '.Session.vim' })
         require('mini.pairs').setup()
+        require('mini.git').setup()
 
         require('mini.files').setup({
             mappings = {
@@ -85,6 +86,66 @@ return {
                 Snacks.rename.on_rename_file(event.data.from, event.data.to)
             end,
         })
+
+        -- Keymaps taken from gitlineage.nvim for MiniGit range-history buffers
+        -- (show_range_history names them "minigit://<buf>/log -L...")
+        autocmd("FileType", {
+            group = mini_group,
+            pattern = "git",
+            callback = function(event)
+                if not vim.api.nvim_buf_get_name(event.buf):match("^minigit://%d+/log %-L") then
+                    return
+                end
+
+                local buf_keyset = function(lhs, rhs, desc)
+                    vim.keymap.set("n", lhs, rhs, { buffer = event.buf, silent = true, desc = desc })
+                end
+
+                -- Traced file, taken from the buffer name ("log -L1,2:path REV")
+                local rel_path = vim.api.nvim_buf_get_name(event.buf):match("%-L%d+,%d+:(.+) %S+$")
+
+                buf_keyset("q", function()
+                    vim.cmd("close")
+                end, "Close")
+
+                buf_keyset("]c", function()
+                    if vim.fn.search("^commit ", "W") == 0 then
+                        vim.notify("No more commits", vim.log.levels.INFO)
+                    end
+                end, "Next commit")
+
+                buf_keyset("[c", function()
+                    if vim.fn.search("^commit ", "bW") == 0 then
+                        vim.notify("Already at first commit", vim.log.levels.INFO)
+                    end
+                end, "Previous commit")
+
+                buf_keyset("yc", function()
+                    local sha = vim.api.nvim_get_current_line():match("^commit (%x+)")
+                    if not sha then
+                        return vim.notify("Not on a commit line", vim.log.levels.WARN)
+                    end
+                    vim.fn.setreg('"', sha)
+                    vim.fn.setreg("+", sha)
+                    vim.notify("Yanked " .. sha:sub(1, 8))
+                end, "Yank commit SHA")
+
+                buf_keyset("<CR>", function()
+                    local sha = vim.api.nvim_get_current_line():match("^commit (%x+)")
+                    if not sha then
+                        return vim.notify("Not on a commit line", vim.log.levels.WARN)
+                    end
+
+                    if pcall(require, "diffview") then
+                        -- Root commit has no parent: diff against empty tree
+                        vim.fn.systemlist({ "git", "rev-parse", "--verify", sha .. "^" })
+                        vim.cmd("DiffviewOpen " .. sha .. (vim.v.shell_error == 0 and "^!" or ""))
+                    else
+                        vim.cmd("NDiff " .. sha .. "^ " .. sha .. " " .. vim.fn.fnameescape(rel_path))
+                    end
+                end, "Open commit diff")
+            end,
+        })
     end,
     keys = {
         {
@@ -104,6 +165,26 @@ return {
             mode = { "n" },
             silent = true,
             desc = "Read session"
+        },
+        {
+            "<leader>ms",
+            function()
+                MiniSessions.write(vim.v.this_session == '' and MiniSessions.config.file or nil)
+            end,
+            mode = { "n" },
+            silent = true,
+            desc = "Save session"
+        },
+        {
+            "<leader>gl",
+            function()
+                -- gitlineage-style auto split: wide window → vertical
+                local wide = vim.api.nvim_win_get_width(0) > 2 * vim.api.nvim_win_get_height(0)
+                MiniGit.show_range_history({ split = wide and "vertical" or "horizontal" })
+            end,
+            mode = { "n", "v" },
+            silent = true,
+            desc = "Git history for selected lines"
         },
         {
             "/*",

@@ -1,6 +1,6 @@
 return {
     'kosayoda/nvim-lightbulb',
-    enabled = false,
+    enabled = true,
     event = 'LspAttach',
     config = function()
         require("nvim-lightbulb").setup({
