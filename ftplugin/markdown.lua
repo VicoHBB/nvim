@@ -3,16 +3,7 @@
 -- ============================================================================
 local keyset = vim.keymap.set
 
--- ============================================================================
--- Buffer variables
--- ============================================================================
-vim.bo.tabstop     = 2
-vim.bo.softtabstop = 2
-vim.bo.expandtab   = true
-vim.bo.shiftwidth  = 2
-vim.wo.colorcolumn = "120"
-vim.bo.textwidth   = 120
-vim.opt_local.formatoptions:append("t") -- Auto-wrap text using textwidth while typing
+-- Buffer options live in the prose-like FileType autocmd of core/autocmds.lua
 
 -- ============================================================================
 -- Keymaps

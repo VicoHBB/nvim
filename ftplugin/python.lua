@@ -6,8 +6,6 @@ local keyset      = vim.keymap.set
 -- ============================================================================
 -- Buffer variables
 -- ============================================================================
-vim.wo.colorcolumn = "120"
-vim.bo.textwidth   = 120
 vim.bo.autoindent  = true
 
 

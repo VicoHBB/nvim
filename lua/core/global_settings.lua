@@ -9,7 +9,8 @@ vim.opt.ruler = true          -- Show cursor position in the status line
 vim.opt.encoding = "UTF-8"    -- Set file encoding to UTF-8
 vim.opt.showmatch = true      -- Highlight matching parentheses
 vim.opt.shiftwidth = 2        -- Set indentation width to 2 spaces
-vim.opt.textwidth = 120       -- Default width used by gq/gw formatting; overridden per-filetype in ftplugin/
+vim.opt.textwidth = 120       -- Global fallback; colorcolumn mirrors it automatically (core/autocmds.lua).
+                               -- Override per-filetype in ftplugin/ when a filetype needs a different width
 vim.opt.winborder = "rounded"
 vim.opt.spell = true          -- Enable spell check
 vim.opt.spelllang = {         -- Set spell to support ES & EN

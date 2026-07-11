@@ -1,21 +1,8 @@
 -- ============================================================================
 -- Buffer variables
 -- ============================================================================
-vim.opt.conceallevel  = 2
-vim.opt.concealcursor = 'nc'
-
-vim.bo.tabstop        = 2
-vim.bo.softtabstop    = 2
-vim.bo.expandtab      = true
-vim.bo.shiftwidth     = 2
-vim.wo.colorcolumn    = "120"
-vim.bo.textwidth      = 120
-vim.opt_local.formatoptions:append("t") -- Auto-wrap text using textwidth while typing
-
--- ============================================================================
--- Autocommands
--- ============================================================================
-
--- ============================================================================
--- Keymaps
--- ============================================================================
+-- opt_local, not opt: the global form leaked conceallevel=2 to every window
+-- opened afterwards (global_settings sets 1). Shared prose options live in
+-- the prose-like FileType autocmd of core/autocmds.lua
+vim.opt_local.conceallevel  = 2
+vim.opt_local.concealcursor = 'nc'

@@ -5,7 +5,7 @@ local ins_node = ls.insert_node    -- Insert node
 local func_node = ls.function_node -- Function node
 
 local function create_asterisk_line( args, parent)
-    local max_colums = 120
+    local max_colums = vim.bo.textwidth
     local current_column = vim.fn.col(".")
     local length = max_colums - ( current_column - 1 )
     local asterisks = string.rep("*", length - 4 ) -- Subtract 4 for "/* " and " */"
