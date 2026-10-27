@@ -1,17 +1,20 @@
 return {
-    'mrjones2014/smart-splits.nvim',
+    'smart-splits-nvim/smart-splits.nvim',
     enabled = true,
-    lazy = true, -- Recommend (@TODO: Check this)
-    -- build = './kitty/install-kittens.bash',
-    opts = function()
-        return {
-            at_edge = 'wrap', -- split doesn't work on kitty
-            float_win_behavior = 'previous',
-        }
-    end,
-    config = function(_, opts)
-        require('smart-splits').setup(opts)
-    end,
+    lazy = false, -- @NOTE: backend-tmux only sets @pane-is-vim once the plugin loads
+    dependencies = {
+        -- @NOTE: Only for tmux, v3 ships no backends; swap it for your multiplexer's one
+        { 'smart-splits-nvim/backend-tmux', main = 'smart-splits-backend-tmux' },
+    },
+    opts = {
+        move = {
+            at_edge = 'wrap', -- keep in sync with @smart-splits_at_edge in tmux.conf
+            float = 'previous',
+        },
+        mux = {
+            backend = 'smart-splits-backend-tmux',
+        },
+    },
     keys = {
         {
             '<C-h>',
@@ -48,15 +51,6 @@ return {
             mode = { 'n', 't' },
             silent = true,
             desc = "Navigate Right",
-        },
-        {
-            '<C-\\><c-\\>',
-            function()
-                require('smart-splits').move_cursor_previous()
-            end,
-            mode = { 'n', 't' },
-            silent = true,
-            desc = "Navigate to Previous",
         },
         {
             '<A-h>',
@@ -99,14 +93,14 @@ return {
             "<C-w>=",
             mode = { 'n', 't' },
             silent = true,
-            desc = "Rezize Right",
+            desc = "Equalize Splits",
         },
         {
             '<leader><C-h>',
             function()
                 require('smart-splits').swap_buf_left()
             end,
-            mode = { 'n', 't' },
+            mode = { 'n' },
             silent = true,
             desc = "Swap to Left",
         },
@@ -115,7 +109,7 @@ return {
             function()
                 require('smart-splits').swap_buf_down()
             end,
-            mode = { 'n', 't' },
+            mode = { 'n' },
             silent = true,
             desc = "Swap to down",
         },
@@ -124,7 +118,7 @@ return {
             function()
                 require('smart-splits').swap_buf_up()
             end,
-            mode = { 'n', 't' },
+            mode = { 'n' },
             silent = true,
             desc = "Swap to Up",
         },
@@ -133,7 +127,7 @@ return {
             function()
                 require('smart-splits').swap_buf_right()
             end,
-            mode = { 'n', 't' },
+            mode = { 'n' },
             silent = true,
             desc = "Swap to Right",
         },

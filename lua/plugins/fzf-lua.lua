@@ -359,6 +359,15 @@ return {
             desc = "FZFLua Lines",
         },
         {
+            "<leader>fl",
+            function()
+                require('fzf-lua').blines({ query = cword_or_visual() })
+            end,
+            mode = { 'v' },
+            silent = true,
+            desc = "FZFLua Lines (Visual Selection)",
+        },
+        {
             "<leader>fh",
             function()
                 require('fzf-lua').git_bcommits()
