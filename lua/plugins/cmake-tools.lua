@@ -87,7 +87,7 @@ return {
             ft = { "c", "cpp", "cmake" },
             noremap = true,
             silent = true,
-            desc = "Build C/C++ Project",
+            desc = "Run C/C++ Project",
         },
         {
             "<F12>",

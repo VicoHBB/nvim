@@ -32,15 +32,3 @@ keyset('n', "<leader>ah", function()
         desc = "Clangd Alternate Header/Source"
     }
 )
-
--- This is for Verilator tests
-keyset('n', "<leader>vr", "<CMD>OverseerShell make run<CR>",
-    {
-        buffer = 0,
-        noremap = true,
-        silent = true,
-        desc = "Run simulation with Verilator",
-    }
-)
-
--- Utilities

@@ -19,20 +19,6 @@ vim.bo.shiftwidth  = 4
 -- Keymaps
 -- ============================================================================
 
-
--- Compilation & Simulation
-
-keyset("n", "<F9>", function()
-        vim.cmd("OverseerRun LuaRunFile")
-    end,
-    {
-        buffer = 0,
-        noremap = true,
-        silent = true,
-        desc = "Run File",
-    }
-)
-
 -- Utilities
 
 keyset("n", "<leader>lf", function()
