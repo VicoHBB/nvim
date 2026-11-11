@@ -30,24 +30,54 @@ return {
             "python",
             "regex",
             "rust",
-            "systemverilog", -- This does not work properly; manage on ftplugin/
+            "systemverilog",
             "toml",
             "tmux",
-            -- "verilog", -- This does not work properly; manage on ftplugin/
             "vim",
             "vimdoc",
             "zsh"
         },
     },
     config = function(_, opts)
+        local autocmd = vim.api.nvim_create_autocmd
+        local ts_group = vim.api.nvim_create_augroup("treesitter_autocmds", { clear = true })
         local TS = require('nvim-treesitter')
+
+        -- tmux was dropped from the upstream parser registry; register it as
+        -- an unlisted parser. Must run before TS.install(), which reloads
+        -- the registry (firing this same event) before validating languages.
+        autocmd('User', {
+            group = ts_group,
+            pattern = 'TSUpdate',
+            callback = function()
+                require('nvim-treesitter.parsers').tmux = {
+                    install_info = {
+                        url = 'https://github.com/Freed-Wu/tree-sitter-tmux',
+                        branch = 'release',
+                        revision = '534b7cbc6d2d23504b1ea0accb886d8a6cf93906',
+                        queries = 'queries',
+                    },
+                    tier = 2,
+                }
+            end,
+        })
 
         TS.install(opts.languages)
 
         vim.treesitter.language.register('systemverilog',{'verilog', 'sv', 'v'})
 
-        vim.api.nvim_create_autocmd('FileType', {
-            group = vim.api.nvim_create_augroup('treesitter.setup', {}),
+        -- tmux config is split across files under dotfiles/tmux/ that don't start
+        -- with "tmux" in the name, so Neovim's built-in ftdetect falls back to the
+        -- generic "conf" filetype (shared with picom.conf & friends). Scope the
+        -- override to the path instead of registering 'conf' -> tmux globally.
+        vim.filetype.add({
+            pattern = {
+                ['.*/dotfiles/tmux/.*%.conf'] = 'tmux',
+            },
+        })
+
+        autocmd('FileType', {
+            group = ts_group,
             callback = function(args)
                 local buf = args.buf
                 local filetype = args.match

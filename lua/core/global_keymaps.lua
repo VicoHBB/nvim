@@ -3,7 +3,6 @@ local keyset = vim.keymap.set
 -- Run Lua codo
 keyset('n', "<leader>lc", ":lua ",
     {
-        silent = true,
         desc = "Run lua CMD"
     }
 )
@@ -55,15 +54,42 @@ keyset('n', "<leader>,", "$a,<ESC>",
 )
 
 -- Fast 'noh"
-keyset('n', "<leader>H", "<CMD>noh<CR>", { silent = true })
+keyset( 'n', "<leader>H", "<CMD>noh<CR>",
+    {
+        silent = true,
+        desc = "Clear Search Highlight"
+    }
+)
 
 -- Moves between buffers
-keyset('n', "<leader>k", "<CMD>bnext<CR>", { silent = true })
-keyset('n', "<leader>j", "<CMD>bprevious<CR>", { silent = true })
+keyset( 'n', "<leader>k", "<CMD>bnext<CR>",
+    {
+        silent = true,
+        desc = "Next Buffer"
+    }
+)
+
+keyset( 'n', "<leader>j", "<CMD>bprevious<CR>",
+    {
+        silent = true,
+        desc = "Previous Buffer"
+    }
+)
 
 -- Split window
-keyset('n', "<leader>|", "<CMD>vsp<CR>", { silent = true })
-keyset('n', "<leader>_", "<CMD>sp<CR>", { silent = true })
+keyset( 'n', "<leader>|", "<CMD>vsp<CR>",
+    {
+        silent = true,
+        desc = "Vertical Split"
+    }
+)
+
+keyset( 'n', "<leader>_", "<CMD>sp<CR>",
+    {
+        silent = true,
+        desc = "Horizontal Split"
+    }
+)
 
 keyset({ 'n', 'v' }, '<leader>rn', function()
         local text, word_boundary

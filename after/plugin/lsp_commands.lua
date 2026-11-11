@@ -51,7 +51,7 @@ cmd('LspStart', function(info)
     vim.notify(('LSP -> started: %s'):format(table.concat(clients, ', ')), vim.log.levels.INFO)
     end,
     {
-        desc = 'Start a language server by its configured name',
+        desc = 'Start a language server by name (default: all servers for the current filetype)',
         nargs = '?',
         complete = complete_config,
     }
