@@ -49,14 +49,19 @@ autocmd("FileType", {
     callback = function(event)
         vim.bo[event.buf].buflisted = false
         vim.schedule(function()
+            if not vim.api.nvim_buf_is_valid(event.buf) then
+                return
+            end
             keyset("n", "q", function()
-                vim.cmd("close")
-                pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-            end, {
-                buffer = event.buf,
-                silent = true,
-                desc = "Quit buffer",
-            })
+                    vim.cmd("close")
+                    pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+                end,
+                {
+                    buffer = event.buf,
+                    silent = true,
+                    desc = "Quit buffer",
+                }
+            )
         end)
     end,
 })
@@ -102,7 +107,7 @@ autocmd("BufWinEnter", {
     callback = function(event)
         local win = vim.api.nvim_get_current_win()
         vim.schedule(function()
-            if not vim.api.nvim_win_is_valid(win) then
+            if not vim.api.nvim_win_is_valid(win) or not vim.api.nvim_buf_is_valid(event.buf) then
                 return
             end
             local buftype = vim.bo[event.buf].buftype

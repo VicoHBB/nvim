@@ -5,6 +5,10 @@ return {
     config = function()
         require("nvim-lightbulb").setup({
             priority = 40,
+            -- Hidden while debugging: its sign (40) covers DapStopped (22) in the single-width signcolumn
+            filter = function()
+                return not (package.loaded.dap and require("dap").session())
+            end,
             autocmd = {
                 enabled = true,
                 updatetime = 10,

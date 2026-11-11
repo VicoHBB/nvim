@@ -1,7 +1,21 @@
+-- Prompt for args on start, pre-filled with the config's (LazyVim's dap core)
+local function get_args(config)
+    local args = type(config.args) == "function" and (config.args() or {}) or config.args or {}
+    local args_str = type(args) == "table" and table.concat(args, " ") or args
+
+    config = vim.deepcopy(config)
+    config.args = function()
+        local new_args = vim.fn.expand(vim.fn.input('Run with args: ', args_str))
+        if config.type and config.type == 'java' then
+            return new_args
+        end
+        return require('dap.utils').splitstr(new_args)
+    end
+    return config
+end
+
 return {
-    -- NOTE: Yes, you can install new plugins here!
     'mfussenegger/nvim-dap',
-    -- NOTE: And you can specify dependencies as well
     dependencies = {
         -- Creates a beautiful debugger UI
         'rcarriga/nvim-dap-ui',
@@ -59,15 +73,13 @@ return {
             },
         }
 
-        -- Change breakpoint icons
-        vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
-        vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })
+        -- Change breakpoint icons; built-in Diagnostic groups follow the colorscheme (custom ones get cleared on change)
         local breakpoint_icons = vim.g.have_nerd_font
             and { Breakpoint = '', BreakpointCondition = '', BreakpointRejected = '', LogPoint = '', Stopped = '' }
             or { Breakpoint = '●', BreakpointCondition = '⊜', BreakpointRejected = '⊘', LogPoint = '◆', Stopped = '⭔' }
         for type, icon in pairs(breakpoint_icons) do
             local tp = 'Dap' .. type
-            local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
+            local hl = (type == 'Stopped') and 'DiagnosticWarn' or 'DiagnosticError'
             vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
         end
 

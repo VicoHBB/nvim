@@ -4,7 +4,11 @@ return {
     lazy = false, -- @NOTE: backend-tmux only sets @pane-is-vim once the plugin loads
     dependencies = {
         -- @NOTE: Only for tmux, v3 ships no backends; swap it for your multiplexer's one
-        { 'smart-splits-nvim/backend-tmux', main = 'smart-splits-backend-tmux' },
+        {
+            'smart-splits-nvim/backend-tmux',
+            main = 'smart-splits-backend-tmux',
+            enabled = Is_Not_Win32,
+        },
     },
     opts = {
         move = {
@@ -12,7 +16,8 @@ return {
             float = 'previous',
         },
         mux = {
-            backend = 'smart-splits-backend-tmux',
+            -- @NOTE: nil on Windows, a backend that can't be required notifies an error on every start
+            backend = Is_Not_Win32 and 'smart-splits-backend-tmux' or nil,
         },
     },
     keys = {
