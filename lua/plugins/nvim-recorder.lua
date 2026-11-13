@@ -1,9 +1,10 @@
 return {
     "chrisgrieser/nvim-recorder",
     enabled = true,
-    dependencies = {
-        "rcarriga/nvim-notify"
-    },
+    -- Optional: only calls vim.notify, already rendered by noice → snacks.notifier
+    -- dependencies = {
+    --     "rcarriga/nvim-notify"
+    -- },
     -- event = "VeryLazy",
     opts = {
 

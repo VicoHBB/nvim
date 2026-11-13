@@ -43,6 +43,18 @@ return {
             opts = {
                 new_task_opts = {
                     strategy = { "jobstart" },
+                    -- gcc/clang diagnostics with %t, so quicker shows error/warning/note icons;
+                    -- hides make's recursive "*** [...] Error N" echo (keeps real make errors)
+                    default_component_params = {
+                        errorformat = table.concat({
+                            [[%f:%l:%c: %trror: %m]],
+                            [[%f:%l:%c: %tarning: %m]],
+                            [[%f:%l:%c: %tote: %m]],
+                            [[%f:%l: %trror: %m]],
+                            [[%f:%l: %tarning: %m]],
+                            [[%-Gmake%.%#] Error %\d%\+]],
+                        }, ","),
+                    },
                 },
                 on_new_task = function()
                     -- Do not open the task list (default opens it at the right)
